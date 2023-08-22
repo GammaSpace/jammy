@@ -14,7 +14,7 @@ jobs:
       - name: Setup Go environment
         uses: actions/setup-go@v4.1.0
         with:
-          go-version: 4.1.x
+          go-version: "^1.13.1"
 
       - name: build game
         run: |
