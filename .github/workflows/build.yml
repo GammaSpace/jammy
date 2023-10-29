@@ -20,7 +20,7 @@ jobs:
         run: |
           go install github.com/tmedwards/tweego@master
           export PATH=$PATH:$(go env GOPATH)/bin
-          tweego -f harlowe-3 -o index.html twine_src
+          tweego -f snowman-2 -o index.html twine_src
 
       - name: Deploy to Pages
         uses: peaceiris/actions-gh-pages@v3.9.3
