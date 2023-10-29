@@ -9,8 +9,6 @@
 Twee! it is good
 
 :: Start
-
-
 <% console.log(setup.game) %>
 <% console.log(s) %>
 
