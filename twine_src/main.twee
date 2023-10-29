@@ -1,9 +1,87 @@
 :: StoryData
 {
-	"ifid": "26C4E0D5-E346-4B7E-93DA-9172B2497F38",
-  "format": "Harlowe",
-  "format-version": "3.3.6"
+    "ifid": "26C4E0D5-E346-4B7E-93DA-9172B2497F38",
+    "format": "Snowman",
+    "format-version": "2.0.2"
 }
 
 :: StoryTitle
 Twee! it is good
+
+:: Start
+
+
+<% console.log(setup.game) %>
+<% console.log(s) %>
+
+## What are your pronouns, sir?
+
+<a onclick='story.state.setHe()'>Him/his.</a> 
+<a onclick='story.state.setShe()'>Her/hers.</a> 
+<a onclick='story.state.setThey()'>They/theirs.</a> 
+<a onclick='story.state.setIt()'>It/its.</a> 
+
+<% if (story.state.pronouns) { %>
+<button onclick="story.show('Preface')">Next</button>
+<% } %>
+
+:: Customization
+<button onclick="passage('Preface')">Next</button>
+
+
+
+:: Preface
+**DJ FUNKYBEATZ:** Welcome to Gamma Space collaborative federation!
+
+What's your name?
+
+<input id="playerName" value="" name="playerName" type="text" placeholder="Ham Sandwich">
+
+What's your planet name?
+
+<input id="planetName" value="" name="planetName" type="text" placeholder="Ham Sandwich">
+
+<button onclick="saveData()">Next</button>
+
+<script type="text/javascript">
+    function saveData() {
+        var playerName = document.getElementById('playerName').value;
+        var planetName = document.getElementById('planetName').value;
+        
+        story.state.playerName = playerName;
+        story.state.planetName = planetName;
+
+        // Navigate to the next passage
+        story.show('MapScreen');
+    }
+</script>
+
+
+<%= s.cPronouns[0] %> walks up to the planet map…
+
+<% if (story.state.playerName && story.state.planetName) { %>
+
+[[Next->MapScreen]]
+
+<% } %>
+
+:: MapScreen
+
+OK, hello <%= s.playerName %>! Your planet is called <%= s.planetName %>.
+
+<button onclick="story.show('HelpPlanets')">Help Planets</button>
+<button onclick="story.show('RadioShow')">Start Radio Show</button>
+[[Help planets!|HelpPlanets]]
+[[Start radio show!|RadioShow]]
+
+
+
+:: HelpPlanets
+[[Back|MapScreen]]
+
+
+:: RadioShow 
+[[To epilogue|Epilogue]]
+
+:: Epilogue
+## So sad, what happened…
