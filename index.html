@@ -3,22 +3,98 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
-		<title>Twee! it is good</title>
+		<title>Jammy Jam</title>
 		<style>
 		/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}details,main,tw-passage{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;color:#222;text-decoration-color:#ccc}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[hidden],template,tw-storydata{display:none}body{font:1.5em "Helvetica Neue",Helvetica,Arial,sans-serif;color:#222;margin:.5em}tw-story{max-width:35em;margin:0 auto;line-height:150%;display:block}a:hover{color:#cc8929;text-decoration-color:#cc8929}a:active{color:#ffb040;text-decoration-color:#cc8929}@media screen and (max-width:480px){#passage{font-size:70%}}
 		</style>
 	</head>
 	<body>
 		<tw-story tags></tw-story>
-		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Twee! it is good" startnode="1" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
+		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Jammy Jam" startnode="1" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body {
+  margin: 0;
+}
+
+body[data-tags~="map-screen"] {
+  padding: 0;
+}
+tw-story {
+  max-width: 100vw;
+  line-height: normal;
+}
+#mapScreen {
+  position: relative; /* This makes it a positioning context for absolutely positioned children */
+
+  display: grid;
+  grid-template-areas:
+    ". p1 . p2 ."
+    "p3 . . . p4"
+    ". . p5 . ."
+    "p6 . . . p7";
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  width: 100vw;
+  height: 100vh; /* Full viewport height */
+  background-image: url("/img/twinkle.gif");
+  background-size: cover;
+  padding: 20px;
+}
+#contentContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  z-index: 100;
+  display: none;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 20px;
+}
+.planet {
+  width: 100px; /* Adjust based on your preference */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.planet:hover {
+  transform: scale(1.1);
+}
+
+.planet1 {
+  grid-area: p1;
+}
+.planet2 {
+  grid-area: p2;
+}
+.planet3 {
+  grid-area: p3;
+}
+.planet4 {
+  grid-area: p4;
+}
+.planet5 {
+  grid-area: p5;
+}
+.planet6 {
+  grid-area: p6;
+}
+.planet7 {
+  grid-area: p7;
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
 window.setup = window.setup || {};
 
 // scripts/init.js
 setup.game = {
   playerName: "",
   energyReserves: 100,
+
   planets: [
     {
+      id: 1,
+      imgSrc: "img/planet-1.png",
       name: "Planet A (Tutorial): FuNKybEAtZ",
       rep: "DJ FuNKybEAtZ (they/them)",
       project:
@@ -27,32 +103,169 @@ setup.game = {
         "DJ FUNKYBEATZ is the onboarder & tutorial for the game. Very welcoming and a little wacky.",
       scenarios: {
         regular: [
-          { title: "Scenario A1", description: "Description of Scenario A1" },
-          { title: "Scenario A2", description: "Description of Scenario A2" },
+          {
+            title: "Scenario A1",
+            description: "Description of Scenario A1",
+            complete: false,
+          },
+          {
+            title: "Scenario A2",
+            description: "Description of Scenario A2",
+            complete: false,
+          },
         ],
         dependent: [
           {
             title: "Dependent Scenario A1",
             description: "Description of Dependent Scenario A1",
+            complete: false,
+          },
+          {
+            title: "Dependent Scenario A2",
+            description: "Description of Dependent Scenario A2",
+            complete: false,
           },
         ],
       },
     },
     {
+      id: 2,
+      imgSrc: "img/planet-2.png",
+      name: "Planet B: Razzmatazz",
+      rep: "Boris the Clown (he/him)",
+      project:
+        "Holographic circus show. Involves juggling spoons and repurposing all kinds of garbage. Very silly and wild.",
+      description:
+        "Boris is a loveable grump who has seen some stuff. Loves collecting the weirdos to join his circus planet.",
+      scenarios: {
+        regular: [
+          {
+            title: "Scenario B1",
+            description: "Description of Scenario B1",
+            complete: false,
+          },
+          {
+            title: "Scenario B2",
+            description: "Description of Scenario B2",
+            complete: false,
+          },
+        ],
+        dependent: [
+          {
+            title: "Dependent Scenario B1",
+            description: "Description of Dependent Scenario B1",
+            complete: false,
+          },
+          {
+            title: "Dependent Scenario B2",
+            description: "Description of Dependent Scenario B2",
+            complete: false,
+          },
+        ],
+      },
+    },
+    {
+      id: 3,
+      imgSrc: "img/planet-3.png",
+      name: "Planet C: Chanterella",
+      rep: "Spore T. Spice (she/they high femme drag)",
+      project: "Holographic psychedelic performance art drag show.",
+      description:
+        "High fashion. High drama. Dragtastic. Spore T. Spice is fun. Definitely probably on mushrooms some of the time. Incredible gardener and environmentalist. Makes some mean food.",
+      scenarios: {
+        regular: [
+          {
+            title: "Scenario C1",
+            description: "Description of Scenario C1",
+            complete: false,
+          },
+          {
+            title: "Scenario C2",
+            description: "Description of Scenario C2",
+            complete: false,
+          },
+        ],
+        dependent: [
+          {
+            title: "Dependent Scenario C1",
+            description: "Description of Dependent Scenario C1",
+            complete: false,
+          },
+          {
+            title: "Dependent Scenario C2",
+            description: "Description of Dependent Scenario C2",
+            complete: false,
+          },
+        ],
+      },
+    },
+    {
+      id: 4,
+      imgSrc: "img/planet-4.png",
+      name: "Planet D: Kelpler",
+      rep: "Flotsam (they/them)",
+      project:
+        "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
+      description:
+        "Genderless being made of water. Somewhat surfer-bro but real genuine n sweet. Has a sibling Jestam they refer to, who is stuck trying to make it big in the Dominion Planetation. Jetsam is MORE surfer bro. Jetsam is maybe a shark (but art team can decide.) We may only see Jetsam in a special scenario ending.",
+      scenarios: {
+        regular: [
+          {
+            title: "Scenario D1",
+            description: "Description of Scenario D1",
+            complete: false,
+          },
+          {
+            title: "Scenario D2",
+            description: "Description of Scenario D2",
+            complete: false,
+          },
+        ],
+        dependent: [
+          {
+            title: "Dependent Scenario D1",
+            description: "Description of Dependent Scenario D1",
+            complete: false,
+          },
+          {
+            title: "Dependent Scenario D2",
+            description: "Description of Dependent Scenario D2",
+            complete: false,
+          },
+        ],
+      },
+    },
+    {
+      id: 5,
+      imgSrc: "img/planet-5.png",
       name: "Planet E: Barkenberg",
       rep: "Spike (cat), Spook (raccoon), and Spark (dog) - (independent genders)",
       project: "Audio drama of their heists narrated (like War of the Worlds).",
       description:
-        "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. https://twitter.com/mischiefanimals - They love to cause mischief and fuck with capitalism -- sneak into the Dominion Planetation and mess things up.",
+        "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
       scenarios: {
         regular: [
-          { title: "Scenario E1", description: "Description of Scenario E1" },
-          { title: "Scenario E2", description: "Description of Scenario E2" },
+          {
+            title: "Scenario E1",
+            description: "Description of Scenario E1",
+            complete: false,
+          },
+          {
+            title: "Scenario E2",
+            description: "Description of Scenario E2",
+            complete: false,
+          },
         ],
         dependent: [
           {
             title: "Dependent Scenario E1",
             description: "Description of Dependent Scenario E1",
+            complete: false,
+          },
+          {
+            title: "Dependent Scenario E2",
+            description: "Description of Dependent Scenario E2",
+            complete: false,
           },
         ],
       },
@@ -60,6 +273,20 @@ setup.game = {
   ],
 };
 
+setup.saveNames = function () {
+  var playerName = document.getElementById("playerName").value;
+  var planetName = document.getElementById("planetName").value;
+  story.state.playerName = playerName;
+  story.state.planetName = planetName;
+  story.show("MapScreen");
+};
+setup.checkInputs = function () {
+  var playerName = document.getElementById("playerName").value;
+  var planetName = document.getElementById("planetName").value;
+  var nextButton = document.getElementById("nextButton");
+
+  nextButton.disabled = !(playerName && planetName);
+};
 story.state.setHe = function () {
   story.state.pronouns = ["he", "him", "his", "his", "he's"];
   story.state.cPronouns = ["He", "Him", "His", "His", "He's"];
@@ -84,30 +311,92 @@ story.state.setIt = function () {
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
-  // ... generate more content based on planet data ...
-  story.render(content);
-};
-
-setup.showScenario = function (planetIndex, scenarioType, scenarioIndex) {
-  const scenario =
-    setup.game.planets[planetIndex].scenarios[scenarioType][scenarioIndex];
-  let content = `<h1>${scenario.title}</h1><p>${scenario.description}</p>`;
-  // ... generate more content based on scenario data ...
-  story.render(content);
-};
-
-setup.getScenarioContent = function (planetIndex, scenarioType, scenarioIndex) {
-  const scenario =
-    setup.game.planets[planetIndex].scenarios[scenarioType][scenarioIndex];
-  let content = `<h1>${scenario.title}</h1><p>${scenario.description}</p>`;
-  // ... generate more content based on scenario data ...
   return content;
 };
+setup.renderPlanetPassage = function (planetIndex) {
+  try {
+    var planetContent = setup.showPlanet(planetIndex);
+    var scenarioContent = setup.showRandomIncompleteScenario(planetIndex);
+    var content = planetContent + scenarioContent;
+    var contentContainer = document.getElementById("contentContainer");
+
+    if (contentContainer) {
+      contentContainer.innerHTML = content;
+    } else {
+      console.error("contentContainer element not found");
+    }
+  } catch (error) {
+    console.error("Error in renderPlanetPassage:", error);
+  }
+};
+setup.toggleContentContainer = function (shouldShow) {
+  var contentContainer = document.getElementById("contentContainer");
+  contentContainer.style.display = shouldShow ? "flex" : "none";
+};
+// For displaying the map
+setup.showMap = function () {
+  var mapScreen = document.getElementById("mapScreen");
+  mapScreen.style.display = "grid"; // Show the map
+  setup.game.planets.forEach((planet) => {
+    const img = document.createElement("img");
+    img.className = `planet planet${planet.id}`;
+    img.src = planet.imgSrc;
+    img.onclick = function () {
+      setup.renderPlanetPassage(planet.id - 1);
+      setup.toggleContentContainer(true); // Show the content container when a planet is clicked
+    };
+    mapScreen.appendChild(img);
+  });
+
+  // Add event listener to the mapScreen
+  mapScreen.addEventListener("click", function (event) {
+    if (event.target === mapScreen) {
+      setup.toggleContentContainer(false); // Hide the content container if mapScreen is clicked
+    }
+  });
+};
+
+// For returning to the map from a planet/scenario
+setup.returnToMap = function () {
+  var contentContainer = document.getElementById("contentContainer");
+  var mapScreen = document.getElementById("mapScreen");
+
+  contentContainer.style.display = "none"; // Hide the content
+  mapScreen.style.display = "grid"; // Show the map
+};
+
+setup.showRandomIncompleteScenario = function (planetIndex) {
+  try {
+    // console.log("showRandomIncompleteScenario ran!", planetIndex);
+    var planet = setup.game.planets[planetIndex];
+    // console.log("planet: ", planet);
+    var allScenarios = planet.scenarios.regular.concat(
+      planet.scenarios.dependent
+    );
+    // console.log("allScenarios: ", allScenarios);
+    var incompleteScenarios = allScenarios.filter(function (scenario) {
+      return !scenario.complete;
+    });
+    // console.log("incompleteScenarios: ", incompleteScenarios);
+
+    if (incompleteScenarios.length > 0) {
+      var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
+      var scenario = incompleteScenarios[randomIndex];
+      var content = `<h2>${scenario.title}</h2><p>${scenario.description}</p>`;
+      console.log("content: ", content);
+      return content;
+    } else {
+      story.render("<p>No incomplete scenarios left for this planet.</p>");
+    }
+  } catch (error) {
+    console.error("Error in showRandomIncompleteScenario:", error);
+  }
+};
 /* twine-user-script #2: "utilities.js" */
-</script><tw-passagedata pid="1" name="Start" tags="" position="100,100" size="100,100">&lt;% console.log(setup.game) %&gt;
+</script><tw-passagedata pid="1" name="Start" tags="alfa bravo charlie" position="100,100" size="100,100">&lt;% console.log(setup.game) %&gt;
 &lt;% console.log(s) %&gt;
 
-## What are your pronouns, sir?
+## What are your pronouns?
 
 &lt;a onclick=&#39;story.state.setHe()&#39;&gt;Him/his.&lt;/a&gt; 
 &lt;a onclick=&#39;story.state.setShe()&#39;&gt;Her/hers.&lt;/a&gt; 
@@ -119,41 +408,30 @@ setup.getScenarioContent = function (planetIndex, scenarioType, scenarioIndex) {
 &lt;% } %&gt;</tw-passagedata><tw-passagedata pid="2" name="Customization" tags="" position="225,100" size="100,100">&lt;button onclick=&quot;passage(&#39;Preface&#39;)&quot;&gt;Next&lt;/button&gt;</tw-passagedata><tw-passagedata pid="3" name="Preface" tags="" position="350,100" size="100,100">**DJ FUNKYBEATZ:** Welcome to Gamma Space collaborative federation!
 
 What&#39;s your name?
-
-&lt;input id=&quot;playerName&quot; value=&quot;&quot; name=&quot;playerName&quot; type=&quot;text&quot; placeholder=&quot;Ham Sandwich&quot;&gt;
+&lt;input id=&quot;playerName&quot; name=&quot;playerName&quot; type=&quot;text&quot; value=&quot;Ham Sandwich&quot; oninput=&quot;setup.checkInputs()&quot;&gt;
 
 What&#39;s your planet name?
+&lt;input id=&quot;planetName&quot; name=&quot;planetName&quot; type=&quot;text&quot; value=&quot;Snack Planet&quot; oninput=&quot;setup.checkInputs()&quot;&gt;
 
-&lt;input id=&quot;planetName&quot; value=&quot;&quot; name=&quot;planetName&quot; type=&quot;text&quot; placeholder=&quot;Ham Sandwich&quot;&gt;
+&lt;button id=&quot;nextButton&quot; onclick=&quot;setup.saveNames()&quot; disabled&gt;Next&lt;/button&gt;
 
-&lt;button onclick=&quot;saveData()&quot;&gt;Next&lt;/button&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-    function saveData() {
-        var playerName = document.getElementById(&#39;playerName&#39;).value;
-        var planetName = document.getElementById(&#39;planetName&#39;).value;
-        
-        story.state.playerName = playerName;
-        story.state.planetName = planetName;
-
-        // Navigate to the next passage
-        story.show(&#39;MapScreen&#39;);
-    }
-&lt;/script&gt;
-
-
-&lt;%= s.cPronouns[0] %&gt; walks up to the planet map…
 
 &lt;% if (story.state.playerName &amp;&amp; story.state.planetName) { %&gt;
-
 [[Next-&gt;MapScreen]]
+&lt;% } %&gt;</tw-passagedata><tw-passagedata pid="4" name="MapScreen" tags="scripted" position="475,100" size="100,100">&lt;div style=&quot;position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200&quot;&gt;hello &lt;%= s.playerName %&gt;! Your planet is called &lt;%= s.planetName %&gt;.&lt;/div&gt;
+&lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;contentContainer&quot;&gt;&lt;/div&gt;
 
-&lt;% } %&gt;</tw-passagedata><tw-passagedata pid="4" name="MapScreen" tags="" position="475,100" size="100,100">OK, hello &lt;%= s.playerName %&gt;! Your planet is called &lt;%= s.planetName %&gt;.
+&lt;script&gt;
+  setup.showMap();
+&lt;/script&gt;
 
-&lt;button onclick=&quot;story.show(&#39;HelpPlanets&#39;)&quot;&gt;Help Planets&lt;/button&gt;
-&lt;button onclick=&quot;story.show(&#39;RadioShow&#39;)&quot;&gt;Start Radio Show&lt;/button&gt;
-[[Help planets!|HelpPlanets]]
-[[Start radio show!|RadioShow]]</tw-passagedata><tw-passagedata pid="5" name="HelpPlanets" tags="" position="600,100" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="6" name="RadioShow" tags="" position="725,100" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="7" name="Epilogue" tags="" position="850,100" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
+[[Help Planets|HelpPlanets]]
+[[Start Radio Show|RadioShow]]</tw-passagedata><tw-passagedata pid="5" name="PlanetPassage" tags="planet" position="600,100" size="100,100">&lt;script&gt;
+  var planetIndex = story.state.planetIndex; // Retrieve the index from story.state
+  setup.renderPlanetPassage(planetIndex);
+&lt;/script&gt;
+[[Back to Map|MapScreen]]</tw-passagedata><tw-passagedata pid="6" name="HelpPlanets" tags="" position="725,100" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="7" name="RadioShow" tags="" position="850,100" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="8" name="Epilogue" tags="" position="975,100" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};
