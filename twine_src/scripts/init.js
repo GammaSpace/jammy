@@ -176,16 +176,7 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioData = setup.showRandomIncompleteScenario();
     var scenarioContent = scenarioData.content;
     var passageContent = "";
-
-    // Only render the passage if relatedPassage is not null
-    if (scenarioData.relatedPassage) {
-      passageContent = window.story.render(scenarioData.relatedPassage);
-    } else {
-      console.error("relatedPassage is null for scenario", scenarioData);
-    }
-
     var content = planetContent + scenarioContent + passageContent;
-
     var mapScreen = document.getElementById("mapScreen");
     var passageContainer = document.getElementById("passageContainer");
     var hud = document.getElementById("hud");
@@ -212,15 +203,6 @@ setup.returnToMap = function () {
 
   // Reset the current planet index or any other state variables if needed
   // story.state.currentPlanetIndex = null;
-};
-
-setup.renderRelatedPassage = function (passageName) {
-  // Assuming you have a function that returns the content of a passage given its name
-  var passageContent = setup.getPassageContent(passageName);
-  if (passageContent) {
-    story.render(passageName);
-  }
-  return "<p>Related passage not found.</p>";
 };
 
 setup.showRandomIncompleteScenario = function () {
