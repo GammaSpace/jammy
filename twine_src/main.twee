@@ -86,7 +86,15 @@ What's your planet name?
 [[Back to Map|MapScreen]] -->
 
 :: Melodic Quest
-The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy. [[Retrieve fragments->Energy Depletion]]
+
+:: Energy Depletion
+
+Energy depleted!
+<script>
+  story.state.energy -= 50;
+</script>
+[[Back to Map|MapScreen]]
 
 :: Quantum Conundrum
 A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
