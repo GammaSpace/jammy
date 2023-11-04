@@ -176,7 +176,16 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioData = setup.showRandomIncompleteScenario();
     var scenarioContent = scenarioData.content;
     var passageContent = "";
+
+    // Only render the passage if relatedPassage is not null
+    if (scenarioData.relatedPassage) {
+      passageContent = window.story.render(scenarioData.relatedPassage);
+    } else {
+      console.error("relatedPassage is null for scenario", scenarioData);
+    }
+
     var content = planetContent + scenarioContent + passageContent;
+
     var mapScreen = document.getElementById("mapScreen");
     var passageContainer = document.getElementById("passageContainer");
     var hud = document.getElementById("hud");
