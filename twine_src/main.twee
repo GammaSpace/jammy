@@ -8,7 +8,7 @@
 :: StoryTitle
 Jammy Jam
 
-:: Start  [alfa bravo charlie]
+:: Start-Old  [alfa bravo charlie]
 <% console.log(setup.game) %>
 <% console.log(s) %>
 
@@ -44,24 +44,72 @@ What's your planet name?
 
 
 
-:: MapScreen [scripted]
-<div style="position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200">hello <%= s.playerName %>! Your planet is called <%= s.planetName %>.</div>
-<div id="mapScreen"></div>
-<div id="contentContainer"></div>
+:: Start [scripted]
+<!-- <div style="position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200">hello <%= s.playerName %>! Your planet is called <%= s.planetName %>.</div> -->
+
+    <div id="mapScreen"></div>
+    <div id="hud">
+        <div id="passageContainer"></div>
+        <div id="sidebar">
+        <button onclick="setup.returnToMap()">Close</button>
+        <ul>
+            <li id="energy">ENERGY: <%= story.state.energy %></li>
+            <li id="buddyUp">BUDDY UP</li>
+            <li id="trackTime">TRACK TIME</li>
+            <li id="engageInProject">ENGAGE IN PROJECT</li>
+            <li id="shareSkills">SHARE SKILLS</li>
+            <li id="accountForValue">ACCOUNT FOR VALUE</li>
+        </ul>
+    </div>
+</div>
 
 <script>
   setup.showMap();
 </script>
-
+<!-- 
 [[Help Planets|HelpPlanets]]
-[[Start Radio Show|RadioShow]]
+[[Start Radio Show|RadioShow]] -->
 
 :: PlanetPassage [planet]
 <script>
   var planetIndex = story.state.planetIndex; // Retrieve the index from story.state
   setup.renderPlanetPassage(planetIndex);
+  setup.story.render(planets[planetIndex].passage); 
 </script>
-[[Back to Map|MapScreen]]
+<!-- [[Help Planet|HelpPlanet]]
+
+[[Back to Map|MapScreen]] -->
+
+:: Melodic Quest
+The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+
+:: Quantum Conundrum
+A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
+
+:: Stellar Cradle
+A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
+
+:: Asteroid Deflection
+An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet's inhabitants from disaster.
+
+:: Horticultural Healing
+A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.
+
+:: Stellar Cartography
+Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.
+
+:: Luminous Labyrinth
+Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it's a natural occurrence or something more.
+
+:: Climate Conundrum
+A planet's weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.
+
+:: Android Anarchy
+A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.
+
+:: Warp Wayfarer
+A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.
+
 
 :: HelpPlanets
 [[Back|MapScreen]]
