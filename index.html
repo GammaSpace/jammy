@@ -10,8 +10,72 @@
 	</head>
 	<body>
 		<tw-story tags></tw-story>
-		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Jammy Jam" startnode="1" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body {
+		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Jammy Jam" startnode="4" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body,
+html {
   margin: 0;
+  height: 100%; /* Full height */
+  overflow: hidden; /* Prevent body scrolling */
+}
+
+#hud {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#mapScreen {
+  background-image: url(./img/twinkle.gif);
+  background-size: cover;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  flex-grow: 1;
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+  grid-template-areas:
+    ". p1 . p2 ."
+    "p3 . . . p4"
+    ". . p5 . ."
+    "p6 . . . p7";
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+#passageContainer {
+  justify-self: end;
+  align-self: end;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 20px;
+  /* max-width: 50vw; */
+  max-height: 33vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+#sidebar {
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  justify-self: end;
+  align-items: end;
+  justify-items: end;
 }
 
 body[data-tags~="map-screen"] {
@@ -21,37 +85,7 @@ tw-story {
   max-width: 100vw;
   line-height: normal;
 }
-#mapScreen {
-  position: relative; /* This makes it a positioning context for absolutely positioned children */
 
-  display: grid;
-  grid-template-areas:
-    ". p1 . p2 ."
-    "p3 . . . p4"
-    ". . p5 . ."
-    "p6 . . . p7";
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 10px;
-  width: 100vw;
-  height: 100vh; /* Full viewport height */
-  background-image: url("./img/twinkle.gif");
-  background-size: cover;
-  padding: 20px;
-}
-#contentContainer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  flex-direction: column;
-  z-index: 100;
-  display: none;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 20px;
-}
 .planet {
   width: 100px; /* Adjust based on your preference */
   cursor: pointer;
@@ -83,6 +117,22 @@ tw-story {
 .planet7 {
   grid-area: p7;
 }
+
+#sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar li {
+  font-size: 0.75rem;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+}
+
+#sidebar li:hover {
+  background-color: #555;
+}
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
 window.setup = window.setup || {};
 
@@ -101,32 +151,6 @@ setup.game = {
         "EmCee for the show. The broadcast is actually being transmitted through DJ FUNKYBEATZ.",
       description:
         "DJ FUNKYBEATZ is the onboarder & tutorial for the game. Very welcoming and a little wacky.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario A1",
-            description: "Description of Scenario A1",
-            complete: false,
-          },
-          {
-            title: "Scenario A2",
-            description: "Description of Scenario A2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario A1",
-            description: "Description of Dependent Scenario A1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario A2",
-            description: "Description of Dependent Scenario A2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 2,
@@ -137,32 +161,6 @@ setup.game = {
         "Holographic circus show. Involves juggling spoons and repurposing all kinds of garbage. Very silly and wild.",
       description:
         "Boris is a loveable grump who has seen some stuff. Loves collecting the weirdos to join his circus planet.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario B1",
-            description: "Description of Scenario B1",
-            complete: false,
-          },
-          {
-            title: "Scenario B2",
-            description: "Description of Scenario B2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario B1",
-            description: "Description of Dependent Scenario B1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario B2",
-            description: "Description of Dependent Scenario B2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 3,
@@ -172,32 +170,6 @@ setup.game = {
       project: "Holographic psychedelic performance art drag show.",
       description:
         "High fashion. High drama. Dragtastic. Spore T. Spice is fun. Definitely probably on mushrooms some of the time. Incredible gardener and environmentalist. Makes some mean food.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario C1",
-            description: "Description of Scenario C1",
-            complete: false,
-          },
-          {
-            title: "Scenario C2",
-            description: "Description of Scenario C2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario C1",
-            description: "Description of Dependent Scenario C1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario C2",
-            description: "Description of Dependent Scenario C2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 4,
@@ -208,32 +180,6 @@ setup.game = {
         "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
       description:
         "Genderless being made of water. Somewhat surfer-bro but real genuine n sweet. Has a sibling Jestam they refer to, who is stuck trying to make it big in the Dominion Planetation. Jetsam is MORE surfer bro. Jetsam is maybe a shark (but art team can decide.) We may only see Jetsam in a special scenario ending.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario D1",
-            description: "Description of Scenario D1",
-            complete: false,
-          },
-          {
-            title: "Scenario D2",
-            description: "Description of Scenario D2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario D1",
-            description: "Description of Dependent Scenario D1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario D2",
-            description: "Description of Dependent Scenario D2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 5,
@@ -243,32 +189,68 @@ setup.game = {
       project: "Audio drama of their heists narrated (like War of the Worlds).",
       description:
         "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario E1",
-            description: "Description of Scenario E1",
-            complete: false,
-          },
-          {
-            title: "Scenario E2",
-            description: "Description of Scenario E2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario E1",
-            description: "Description of Dependent Scenario E1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario E2",
-            description: "Description of Dependent Scenario E2",
-            complete: false,
-          },
-        ],
-      },
+    },
+  ],
+  scenarios: [
+    {
+      title: "Stellar Harmony",
+      description:
+        "The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.",
+      relatedPassage: "Melodic Quest",
+    },
+    {
+      title: "Quantum Quandary",
+      description:
+        "A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.",
+      relatedPassage: "Quantum Conundrum",
+    },
+    {
+      title: "Nebula Nurturing",
+      description:
+        "A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.",
+      relatedPassage: "Stellar Cradle",
+    },
+    {
+      title: "Asteroid Anomaly",
+      description:
+        "An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet's inhabitants from disaster.",
+      relatedPassage: "Asteroid Deflection",
+    },
+    {
+      title: "Galactic Gardening",
+      description:
+        "A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.",
+      relatedPassage: "Horticultural Healing",
+    },
+    {
+      title: "Cosmic Cartography",
+      description:
+        "Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.",
+      relatedPassage: "Stellar Cartography",
+    },
+    {
+      title: "Photon Phantoms",
+      description:
+        "Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it's a natural occurrence or something more.",
+      relatedPassage: "Luminous Labyrinth",
+    },
+    {
+      title: "Meteorological Mystery",
+      description:
+        "A planet's weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.",
+      relatedPassage: "Climate Conundrum",
+    },
+    {
+      title: "Rogue Robotics",
+      description:
+        "A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.",
+      relatedPassage: "Android Anarchy",
+    },
+    {
+      title: "Wormhole Woes",
+      description:
+        "A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.",
+      relatedPassage: "Warp Wayfarer",
     },
   ],
 };
@@ -316,84 +298,140 @@ setup.showPlanet = function (planetIndex) {
 setup.renderPlanetPassage = function (planetIndex) {
   try {
     var planetContent = setup.showPlanet(planetIndex);
-    var scenarioContent = setup.showRandomIncompleteScenario(planetIndex);
-    var content = planetContent + scenarioContent;
-    var contentContainer = document.getElementById("contentContainer");
+    var scenarioData = setup.showRandomIncompleteScenario();
+    var scenarioContent = scenarioData.content;
+    var passageContent = "";
 
-    if (contentContainer) {
-      contentContainer.innerHTML = content;
+    // Only render the passage if relatedPassage is not null
+    if (scenarioData.relatedPassage) {
+      passageContent = window.story.render(scenarioData.relatedPassage);
     } else {
-      console.error("contentContainer element not found");
+      console.error("relatedPassage is null for scenario", scenarioData);
+    }
+
+    var content = planetContent + scenarioContent + passageContent;
+
+    var mapScreen = document.getElementById("mapScreen");
+    var passageContainer = document.getElementById("passageContainer");
+    var hud = document.getElementById("hud");
+
+    if (mapScreen) mapScreen.style.display = "none";
+    if (hud) hud.style.display = "flex";
+    if (passageContainer) {
+      passageContainer.innerHTML = content;
+      passageContainer.style.display = "block";
     }
   } catch (error) {
     console.error("Error in renderPlanetPassage:", error);
   }
 };
-setup.toggleContentContainer = function (shouldShow) {
-  var contentContainer = document.getElementById("contentContainer");
-  contentContainer.style.display = shouldShow ? "flex" : "none";
-};
-// For displaying the map
-setup.showMap = function () {
-  var mapScreen = document.getElementById("mapScreen");
-  mapScreen.style.display = "grid"; // Show the map
-  setup.game.planets.forEach((planet) => {
-    const img = document.createElement("img");
-    img.className = `planet planet${planet.id}`;
-    img.src = planet.imgSrc;
-    img.onclick = function () {
-      setup.renderPlanetPassage(planet.id - 1);
-      setup.toggleContentContainer(true); // Show the content container when a planet is clicked
-    };
-    mapScreen.appendChild(img);
-  });
 
-  // Add event listener to the mapScreen
-  mapScreen.addEventListener("click", function (event) {
-    if (event.target === mapScreen) {
-      setup.toggleContentContainer(false); // Hide the content container if mapScreen is clicked
-    }
-  });
-};
-
-// For returning to the map from a planet/scenario
 setup.returnToMap = function () {
-  var contentContainer = document.getElementById("contentContainer");
+  var hud = document.getElementById("hud");
   var mapScreen = document.getElementById("mapScreen");
+  var passageContainer = document.getElementById("passageContainer");
 
-  contentContainer.style.display = "none"; // Hide the content
-  mapScreen.style.display = "grid"; // Show the map
+  if (hud) hud.style.display = "none"; // Hide the HUD
+  if (mapScreen) mapScreen.style.display = "grid"; // Show the map
+  if (passageContainer) passageContainer.innerHTML = ""; // Clear the passage content
+
+  // Reset the current planet index or any other state variables if needed
+  // story.state.currentPlanetIndex = null;
 };
 
-setup.showRandomIncompleteScenario = function (planetIndex) {
-  try {
-    // console.log("showRandomIncompleteScenario ran!", planetIndex);
-    var planet = setup.game.planets[planetIndex];
-    // console.log("planet: ", planet);
-    var allScenarios = planet.scenarios.regular.concat(
-      planet.scenarios.dependent
-    );
-    // console.log("allScenarios: ", allScenarios);
-    var incompleteScenarios = allScenarios.filter(function (scenario) {
-      return !scenario.complete;
-    });
-    // console.log("incompleteScenarios: ", incompleteScenarios);
+setup.renderRelatedPassage = function (passageName) {
+  // Assuming you have a function that returns the content of a passage given its name
+  var passageContent = setup.getPassageContent(passageName);
+  if (passageContent) {
+    story.render(passageName);
+  }
+  return "<p>Related passage not found.</p>";
+};
 
-    if (incompleteScenarios.length > 0) {
-      var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
-      var scenario = incompleteScenarios[randomIndex];
-      var content = `<h2>${scenario.title}</h2><p>${scenario.description}</p>`;
-      console.log("content: ", content);
-      return content;
-    } else {
-      story.render("<p>No incomplete scenarios left for this planet.</p>");
-    }
-  } catch (error) {
-    console.error("Error in showRandomIncompleteScenario:", error);
+setup.showRandomIncompleteScenario = function () {
+  var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
+    return !scenario.complete;
+  });
+
+  if (incompleteScenarios.length > 0) {
+    var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
+    var scenario = incompleteScenarios[randomIndex];
+    return {
+      content: `<h2>${scenario.title}</h2><p>${scenario.description}</p>`,
+      relatedPassage: scenario.relatedPassage,
+    };
+  } else {
+    return {
+      content: "<p>No incomplete scenarios left.</p>",
+      relatedPassage: null,
+    };
   }
 };
+
+setup.showMap = function () {
+  var mapScreen = document.getElementById("mapScreen");
+  if (mapScreen) {
+    mapScreen.style.display = "grid"; // Show the map
+    setup.game.planets.forEach((planet) => {
+      const img = document.createElement("img");
+      img.className = `planet planet${planet.id}`;
+      img.src = planet.imgSrc;
+      img.onclick = function () {
+        setup.renderPlanetPassage(planet.id - 1);
+        setup.toggleHUD(true);
+      };
+      mapScreen.appendChild(img);
+    });
+  }
+};
+
+setup.toggleHUD = function (shouldShow) {
+  var hud = document.getElementById("hud");
+  if (hud) {
+    hud.style.display = shouldShow ? "flex" : "none";
+    if (!shouldShow) {
+      var passageContainer = document.getElementById("passageContainer");
+      if (passageContainer) {
+        passageContainer.innerHTML = ""; // Clear the passage container
+      }
+    }
+  } else {
+    console.error("HUD element not found");
+  }
+};
+
+// planet interactiosn
+
+setup.buddyUp = function () {
+  // Code for the BUDDY UP action
+};
+
+setup.trackTime = function () {
+  // Code for the TRACK TIME action
+};
+
+setup.engageInProject = function () {
+  // Code for the ENGAGE IN PROJECT action
+};
+
+setup.shareSkills = function () {
+  // Code for the SHARE SKILLS action
+};
+
+setup.accountForValue = function () {
+  // Code for the ACCOUNT FOR VALUE action
+};
+
+// Bind the actions to the list items
+// window.onload = function () {
+//   document.getElementById("buddyUp").onclick = setup.buddyUp;
+//   document.getElementById("trackTime").onclick = setup.trackTime;
+//   document.getElementById("engageInProject").onclick = setup.engageInProject;
+//   document.getElementById("shareSkills").onclick = setup.shareSkills;
+//   document.getElementById("accountForValue").onclick = setup.accountForValue;
+// };
 /* twine-user-script #2: "utilities.js" */
-</script><tw-passagedata pid="1" name="Start" tags="alfa bravo charlie" position="100,100" size="100,100">&lt;% console.log(setup.game) %&gt;
+</script><tw-passagedata pid="1" name="Start-Old" tags="alfa bravo charlie" position="100,100" size="100,100">&lt;% console.log(setup.game) %&gt;
 &lt;% console.log(s) %&gt;
 
 ## What are your pronouns?
@@ -418,20 +456,37 @@ What&#39;s your planet name?
 
 &lt;% if (story.state.playerName &amp;&amp; story.state.planetName) { %&gt;
 [[Next-&gt;MapScreen]]
-&lt;% } %&gt;</tw-passagedata><tw-passagedata pid="4" name="MapScreen" tags="scripted" position="475,100" size="100,100">&lt;div style=&quot;position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200&quot;&gt;hello &lt;%= s.playerName %&gt;! Your planet is called &lt;%= s.planetName %&gt;.&lt;/div&gt;
-&lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;contentContainer&quot;&gt;&lt;/div&gt;
+&lt;% } %&gt;</tw-passagedata><tw-passagedata pid="4" name="Start" tags="scripted" position="475,100" size="100,100">&lt;!-- &lt;div style=&quot;position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200&quot;&gt;hello &lt;%= s.playerName %&gt;! Your planet is called &lt;%= s.planetName %&gt;.&lt;/div&gt; --&gt;
+
+    &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;hud&quot;&gt;
+        &lt;div id=&quot;passageContainer&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;sidebar&quot;&gt;
+        &lt;button onclick=&quot;setup.returnToMap()&quot;&gt;Close&lt;/button&gt;
+        &lt;ul&gt;
+            &lt;li id=&quot;energy&quot;&gt;ENERGY: &lt;%= story.state.energy %&gt;&lt;/li&gt;
+            &lt;li id=&quot;buddyUp&quot;&gt;BUDDY UP&lt;/li&gt;
+            &lt;li id=&quot;trackTime&quot;&gt;TRACK TIME&lt;/li&gt;
+            &lt;li id=&quot;engageInProject&quot;&gt;ENGAGE IN PROJECT&lt;/li&gt;
+            &lt;li id=&quot;shareSkills&quot;&gt;SHARE SKILLS&lt;/li&gt;
+            &lt;li id=&quot;accountForValue&quot;&gt;ACCOUNT FOR VALUE&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;script&gt;
   setup.showMap();
 &lt;/script&gt;
-
+&lt;!-- 
 [[Help Planets|HelpPlanets]]
-[[Start Radio Show|RadioShow]]</tw-passagedata><tw-passagedata pid="5" name="PlanetPassage" tags="planet" position="600,100" size="100,100">&lt;script&gt;
+[[Start Radio Show|RadioShow]] --&gt;</tw-passagedata><tw-passagedata pid="5" name="PlanetPassage" tags="planet" position="600,100" size="100,100">&lt;script&gt;
   var planetIndex = story.state.planetIndex; // Retrieve the index from story.state
   setup.renderPlanetPassage(planetIndex);
+  setup.story.render(planets[planetIndex].passage); 
 &lt;/script&gt;
-[[Back to Map|MapScreen]]</tw-passagedata><tw-passagedata pid="6" name="HelpPlanets" tags="" position="725,100" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="7" name="RadioShow" tags="" position="850,100" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="8" name="Epilogue" tags="" position="975,100" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
+&lt;!-- [[Help Planet|HelpPlanet]]
+
+[[Back to Map|MapScreen]] --&gt;</tw-passagedata><tw-passagedata pid="6" name="Melodic Quest" tags="" position="725,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.</tw-passagedata><tw-passagedata pid="7" name="Quantum Conundrum" tags="" position="850,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.</tw-passagedata><tw-passagedata pid="8" name="Stellar Cradle" tags="" position="975,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.</tw-passagedata><tw-passagedata pid="9" name="Asteroid Deflection" tags="" position="1100,100" size="100,100">An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet&#39;s inhabitants from disaster.</tw-passagedata><tw-passagedata pid="10" name="Horticultural Healing" tags="" position="1225,100" size="100,100">A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.</tw-passagedata><tw-passagedata pid="11" name="Stellar Cartography" tags="" position="100,225" size="100,100">Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.</tw-passagedata><tw-passagedata pid="12" name="Luminous Labyrinth" tags="" position="225,225" size="100,100">Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it&#39;s a natural occurrence or something more.</tw-passagedata><tw-passagedata pid="13" name="Climate Conundrum" tags="" position="350,225" size="100,100">A planet&#39;s weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.</tw-passagedata><tw-passagedata pid="14" name="Android Anarchy" tags="" position="475,225" size="100,100">A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.</tw-passagedata><tw-passagedata pid="15" name="Warp Wayfarer" tags="" position="600,225" size="100,100">A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.</tw-passagedata><tw-passagedata pid="16" name="HelpPlanets" tags="" position="725,225" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="17" name="RadioShow" tags="" position="850,225" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="18" name="Epilogue" tags="" position="975,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

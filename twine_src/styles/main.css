@@ -1,5 +1,69 @@
-body {
+body,
+html {
   margin: 0;
+  height: 100%; /* Full height */
+  overflow: hidden; /* Prevent body scrolling */
+}
+
+#hud {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#mapScreen {
+  background-image: url(./img/twinkle.gif);
+  background-size: cover;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  flex-grow: 1;
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+  grid-template-areas:
+    ". p1 . p2 ."
+    "p3 . . . p4"
+    ". . p5 . ."
+    "p6 . . . p7";
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+#passageContainer {
+  justify-self: end;
+  align-self: end;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 20px;
+  /* max-width: 50vw; */
+  max-height: 33vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+#sidebar {
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  justify-self: end;
+  align-items: end;
+  justify-items: end;
 }
 
 body[data-tags~="map-screen"] {
@@ -9,37 +73,7 @@ tw-story {
   max-width: 100vw;
   line-height: normal;
 }
-#mapScreen {
-  position: relative; /* This makes it a positioning context for absolutely positioned children */
 
-  display: grid;
-  grid-template-areas:
-    ". p1 . p2 ."
-    "p3 . . . p4"
-    ". . p5 . ."
-    "p6 . . . p7";
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 10px;
-  width: 100vw;
-  height: 100vh; /* Full viewport height */
-  background-image: url("./img/twinkle.gif");
-  background-size: cover;
-  padding: 20px;
-}
-#contentContainer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  flex-direction: column;
-  z-index: 100;
-  display: none;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 20px;
-}
 .planet {
   width: 100px; /* Adjust based on your preference */
   cursor: pointer;
@@ -70,4 +104,20 @@ tw-story {
 }
 .planet7 {
   grid-area: p7;
+}
+
+#sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar li {
+  font-size: 0.75rem;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+}
+
+#sidebar li:hover {
+  background-color: #555;
 }

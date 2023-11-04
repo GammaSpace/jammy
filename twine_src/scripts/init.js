@@ -15,32 +15,6 @@ setup.game = {
         "EmCee for the show. The broadcast is actually being transmitted through DJ FUNKYBEATZ.",
       description:
         "DJ FUNKYBEATZ is the onboarder & tutorial for the game. Very welcoming and a little wacky.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario A1",
-            description: "Description of Scenario A1",
-            complete: false,
-          },
-          {
-            title: "Scenario A2",
-            description: "Description of Scenario A2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario A1",
-            description: "Description of Dependent Scenario A1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario A2",
-            description: "Description of Dependent Scenario A2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 2,
@@ -51,32 +25,6 @@ setup.game = {
         "Holographic circus show. Involves juggling spoons and repurposing all kinds of garbage. Very silly and wild.",
       description:
         "Boris is a loveable grump who has seen some stuff. Loves collecting the weirdos to join his circus planet.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario B1",
-            description: "Description of Scenario B1",
-            complete: false,
-          },
-          {
-            title: "Scenario B2",
-            description: "Description of Scenario B2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario B1",
-            description: "Description of Dependent Scenario B1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario B2",
-            description: "Description of Dependent Scenario B2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 3,
@@ -86,32 +34,6 @@ setup.game = {
       project: "Holographic psychedelic performance art drag show.",
       description:
         "High fashion. High drama. Dragtastic. Spore T. Spice is fun. Definitely probably on mushrooms some of the time. Incredible gardener and environmentalist. Makes some mean food.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario C1",
-            description: "Description of Scenario C1",
-            complete: false,
-          },
-          {
-            title: "Scenario C2",
-            description: "Description of Scenario C2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario C1",
-            description: "Description of Dependent Scenario C1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario C2",
-            description: "Description of Dependent Scenario C2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 4,
@@ -122,32 +44,6 @@ setup.game = {
         "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
       description:
         "Genderless being made of water. Somewhat surfer-bro but real genuine n sweet. Has a sibling Jestam they refer to, who is stuck trying to make it big in the Dominion Planetation. Jetsam is MORE surfer bro. Jetsam is maybe a shark (but art team can decide.) We may only see Jetsam in a special scenario ending.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario D1",
-            description: "Description of Scenario D1",
-            complete: false,
-          },
-          {
-            title: "Scenario D2",
-            description: "Description of Scenario D2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario D1",
-            description: "Description of Dependent Scenario D1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario D2",
-            description: "Description of Dependent Scenario D2",
-            complete: false,
-          },
-        ],
-      },
     },
     {
       id: 5,
@@ -157,32 +53,68 @@ setup.game = {
       project: "Audio drama of their heists narrated (like War of the Worlds).",
       description:
         "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
-      scenarios: {
-        regular: [
-          {
-            title: "Scenario E1",
-            description: "Description of Scenario E1",
-            complete: false,
-          },
-          {
-            title: "Scenario E2",
-            description: "Description of Scenario E2",
-            complete: false,
-          },
-        ],
-        dependent: [
-          {
-            title: "Dependent Scenario E1",
-            description: "Description of Dependent Scenario E1",
-            complete: false,
-          },
-          {
-            title: "Dependent Scenario E2",
-            description: "Description of Dependent Scenario E2",
-            complete: false,
-          },
-        ],
-      },
+    },
+  ],
+  scenarios: [
+    {
+      title: "Stellar Harmony",
+      description:
+        "The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.",
+      relatedPassage: "Melodic Quest",
+    },
+    {
+      title: "Quantum Quandary",
+      description:
+        "A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.",
+      relatedPassage: "Quantum Conundrum",
+    },
+    {
+      title: "Nebula Nurturing",
+      description:
+        "A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.",
+      relatedPassage: "Stellar Cradle",
+    },
+    {
+      title: "Asteroid Anomaly",
+      description:
+        "An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet's inhabitants from disaster.",
+      relatedPassage: "Asteroid Deflection",
+    },
+    {
+      title: "Galactic Gardening",
+      description:
+        "A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.",
+      relatedPassage: "Horticultural Healing",
+    },
+    {
+      title: "Cosmic Cartography",
+      description:
+        "Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.",
+      relatedPassage: "Stellar Cartography",
+    },
+    {
+      title: "Photon Phantoms",
+      description:
+        "Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it's a natural occurrence or something more.",
+      relatedPassage: "Luminous Labyrinth",
+    },
+    {
+      title: "Meteorological Mystery",
+      description:
+        "A planet's weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.",
+      relatedPassage: "Climate Conundrum",
+    },
+    {
+      title: "Rogue Robotics",
+      description:
+        "A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.",
+      relatedPassage: "Android Anarchy",
+    },
+    {
+      title: "Wormhole Woes",
+      description:
+        "A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.",
+      relatedPassage: "Warp Wayfarer",
     },
   ],
 };
@@ -230,79 +162,135 @@ setup.showPlanet = function (planetIndex) {
 setup.renderPlanetPassage = function (planetIndex) {
   try {
     var planetContent = setup.showPlanet(planetIndex);
-    var scenarioContent = setup.showRandomIncompleteScenario(planetIndex);
-    var content = planetContent + scenarioContent;
-    var contentContainer = document.getElementById("contentContainer");
+    var scenarioData = setup.showRandomIncompleteScenario();
+    var scenarioContent = scenarioData.content;
+    var passageContent = "";
 
-    if (contentContainer) {
-      contentContainer.innerHTML = content;
+    // Only render the passage if relatedPassage is not null
+    if (scenarioData.relatedPassage) {
+      passageContent = window.story.render(scenarioData.relatedPassage);
     } else {
-      console.error("contentContainer element not found");
+      console.error("relatedPassage is null for scenario", scenarioData);
+    }
+
+    var content = planetContent + scenarioContent + passageContent;
+
+    var mapScreen = document.getElementById("mapScreen");
+    var passageContainer = document.getElementById("passageContainer");
+    var hud = document.getElementById("hud");
+
+    if (mapScreen) mapScreen.style.display = "none";
+    if (hud) hud.style.display = "flex";
+    if (passageContainer) {
+      passageContainer.innerHTML = content;
+      passageContainer.style.display = "block";
     }
   } catch (error) {
     console.error("Error in renderPlanetPassage:", error);
   }
 };
-setup.toggleContentContainer = function (shouldShow) {
-  var contentContainer = document.getElementById("contentContainer");
-  contentContainer.style.display = shouldShow ? "flex" : "none";
-};
-// For displaying the map
-setup.showMap = function () {
-  var mapScreen = document.getElementById("mapScreen");
-  mapScreen.style.display = "grid"; // Show the map
-  setup.game.planets.forEach((planet) => {
-    const img = document.createElement("img");
-    img.className = `planet planet${planet.id}`;
-    img.src = planet.imgSrc;
-    img.onclick = function () {
-      setup.renderPlanetPassage(planet.id - 1);
-      setup.toggleContentContainer(true); // Show the content container when a planet is clicked
-    };
-    mapScreen.appendChild(img);
-  });
 
-  // Add event listener to the mapScreen
-  mapScreen.addEventListener("click", function (event) {
-    if (event.target === mapScreen) {
-      setup.toggleContentContainer(false); // Hide the content container if mapScreen is clicked
-    }
-  });
-};
-
-// For returning to the map from a planet/scenario
 setup.returnToMap = function () {
-  var contentContainer = document.getElementById("contentContainer");
+  var hud = document.getElementById("hud");
   var mapScreen = document.getElementById("mapScreen");
+  var passageContainer = document.getElementById("passageContainer");
 
-  contentContainer.style.display = "none"; // Hide the content
-  mapScreen.style.display = "grid"; // Show the map
+  if (hud) hud.style.display = "none"; // Hide the HUD
+  if (mapScreen) mapScreen.style.display = "grid"; // Show the map
+  if (passageContainer) passageContainer.innerHTML = ""; // Clear the passage content
+
+  // Reset the current planet index or any other state variables if needed
+  // story.state.currentPlanetIndex = null;
 };
 
-setup.showRandomIncompleteScenario = function (planetIndex) {
-  try {
-    // console.log("showRandomIncompleteScenario ran!", planetIndex);
-    var planet = setup.game.planets[planetIndex];
-    // console.log("planet: ", planet);
-    var allScenarios = planet.scenarios.regular.concat(
-      planet.scenarios.dependent
-    );
-    // console.log("allScenarios: ", allScenarios);
-    var incompleteScenarios = allScenarios.filter(function (scenario) {
-      return !scenario.complete;
-    });
-    // console.log("incompleteScenarios: ", incompleteScenarios);
+setup.renderRelatedPassage = function (passageName) {
+  // Assuming you have a function that returns the content of a passage given its name
+  var passageContent = setup.getPassageContent(passageName);
+  if (passageContent) {
+    story.render(passageName);
+  }
+  return "<p>Related passage not found.</p>";
+};
 
-    if (incompleteScenarios.length > 0) {
-      var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
-      var scenario = incompleteScenarios[randomIndex];
-      var content = `<h2>${scenario.title}</h2><p>${scenario.description}</p>`;
-      console.log("content: ", content);
-      return content;
-    } else {
-      story.render("<p>No incomplete scenarios left for this planet.</p>");
-    }
-  } catch (error) {
-    console.error("Error in showRandomIncompleteScenario:", error);
+setup.showRandomIncompleteScenario = function () {
+  var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
+    return !scenario.complete;
+  });
+
+  if (incompleteScenarios.length > 0) {
+    var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
+    var scenario = incompleteScenarios[randomIndex];
+    return {
+      content: `<h2>${scenario.title}</h2><p>${scenario.description}</p>`,
+      relatedPassage: scenario.relatedPassage,
+    };
+  } else {
+    return {
+      content: "<p>No incomplete scenarios left.</p>",
+      relatedPassage: null,
+    };
   }
 };
+
+setup.showMap = function () {
+  var mapScreen = document.getElementById("mapScreen");
+  if (mapScreen) {
+    mapScreen.style.display = "grid"; // Show the map
+    setup.game.planets.forEach((planet) => {
+      const img = document.createElement("img");
+      img.className = `planet planet${planet.id}`;
+      img.src = planet.imgSrc;
+      img.onclick = function () {
+        setup.renderPlanetPassage(planet.id - 1);
+        setup.toggleHUD(true);
+      };
+      mapScreen.appendChild(img);
+    });
+  }
+};
+
+setup.toggleHUD = function (shouldShow) {
+  var hud = document.getElementById("hud");
+  if (hud) {
+    hud.style.display = shouldShow ? "flex" : "none";
+    if (!shouldShow) {
+      var passageContainer = document.getElementById("passageContainer");
+      if (passageContainer) {
+        passageContainer.innerHTML = ""; // Clear the passage container
+      }
+    }
+  } else {
+    console.error("HUD element not found");
+  }
+};
+
+// planet interactiosn
+
+setup.buddyUp = function () {
+  // Code for the BUDDY UP action
+};
+
+setup.trackTime = function () {
+  // Code for the TRACK TIME action
+};
+
+setup.engageInProject = function () {
+  // Code for the ENGAGE IN PROJECT action
+};
+
+setup.shareSkills = function () {
+  // Code for the SHARE SKILLS action
+};
+
+setup.accountForValue = function () {
+  // Code for the ACCOUNT FOR VALUE action
+};
+
+// Bind the actions to the list items
+// window.onload = function () {
+//   document.getElementById("buddyUp").onclick = setup.buddyUp;
+//   document.getElementById("trackTime").onclick = setup.trackTime;
+//   document.getElementById("engageInProject").onclick = setup.engageInProject;
+//   document.getElementById("shareSkills").onclick = setup.shareSkills;
+//   document.getElementById("accountForValue").onclick = setup.accountForValue;
+// };
