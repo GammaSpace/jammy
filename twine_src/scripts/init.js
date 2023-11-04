@@ -9,6 +9,7 @@ setup.game = {
     {
       id: 1,
       imgSrc: "img/planet-1.png",
+      repImgSrc: "img/rep-1.png",
       name: "Planet A (Tutorial): FuNKybEAtZ",
       rep: "DJ FuNKybEAtZ (they/them)",
       project:
@@ -19,6 +20,7 @@ setup.game = {
     {
       id: 2,
       imgSrc: "img/planet-2.png",
+      repImgSrc: "img/rep-2.png",
       name: "Planet B: Razzmatazz",
       rep: "Boris the Clown (he/him)",
       project:
@@ -29,6 +31,7 @@ setup.game = {
     {
       id: 3,
       imgSrc: "img/planet-3.png",
+      repImgSrc: "img/rep-3.png",
       name: "Planet C: Chanterella",
       rep: "Spore T. Spice (she/they high femme drag)",
       project: "Holographic psychedelic performance art drag show.",
@@ -38,6 +41,7 @@ setup.game = {
     {
       id: 4,
       imgSrc: "img/planet-4.png",
+      repImgSrc: "img/rep-4.png",
       name: "Planet D: Kelpler",
       rep: "Flotsam (they/them)",
       project:
@@ -48,6 +52,7 @@ setup.game = {
     {
       id: 5,
       imgSrc: "img/planet-5.png",
+      repImgSrc: "img/rep-5.png",
       name: "Planet E: Barkenberg",
       rep: "Spike (cat), Spook (raccoon), and Spark (dog) - (independent genders)",
       project: "Audio drama of their heists narrated (like War of the Worlds).",
@@ -55,6 +60,7 @@ setup.game = {
         "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
     },
   ],
+
   scenarios: [
     {
       title: "Stellar Harmony",
@@ -157,6 +163,11 @@ story.state.setIt = function () {
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
+  let repContent = `<span class='repName'>${planet.rep}</span><div><img class='repImage' src='${planet.repImgSrc}' /></div>`;
+  var repContainer = document.getElementById("rep");
+
+  repContainer.innerHTML = repContent;
+
   return content;
 };
 setup.renderPlanetPassage = function (planetIndex) {

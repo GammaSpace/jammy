@@ -49,7 +49,12 @@ What's your planet name?
 
     <div id="mapScreen"></div>
     <div id="hud">
-        <div id="passageContainer"></div>
+
+        <div id="planet-info">
+            <div id="rep"></div>
+            <div id="passageContainer"></div>
+        </div>
+        
         <div id="sidebar">
         <button onclick="setup.returnToMap()">Close</button>
         <ul>
