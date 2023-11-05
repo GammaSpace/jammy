@@ -8,9 +8,7 @@
 :: StoryTitle
 Jammy Jam
 
-:: Start-Old  [alfa bravo charlie]
-<% console.log(setup.game) %>
-<% console.log(s) %>
+:: Start-Old 
 
 ## What are your pronouns?
 
@@ -45,13 +43,16 @@ What's your planet name?
 
 
 :: Start [scripted]
+
+<% console.log(setup.game) %>
+<% console.log(s) %>
 <!-- <div style="position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200">hello <%= s.playerName %>! Your planet is called <%= s.planetName %>.</div> -->
 
     <div id="mapScreen"></div>
     <div id="hud">
 
         <div id="planet-info">
-            <div id="rep"></div>
+            <div id="rep" class="rep flex flex-col self-end"></div>
             <div id="passageContainer"></div>
         </div>
         
@@ -86,15 +87,24 @@ What's your planet name?
 [[Back to Map|MapScreen]] -->
 
 :: Melodic Quest
-The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy. [[Retrieve fragments->Energy Depletion]]
+The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+
+<div class="flex flex-row justify-between">
+    <a onclick='story.state.changeEnergy(10)'>Increase energy</a>
+    <a onclick='story.state.changeEnergy(-10)'>Decrease energy</a>
+</div>
+[[Retrieve fragments->Energy Depletion]]
+
 
 :: Energy Depletion
 
 Energy depleted!
+<a onclick='story.state.changeEnergy()'>Change energy</a> 
+
 <script>
   story.state.energy -= 50;
 </script>
-[[Back to Map|MapScreen]]
+[[Back to Map|Start]]
 
 :: Quantum Conundrum
 A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
