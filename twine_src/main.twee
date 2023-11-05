@@ -51,15 +51,20 @@ What's your planet name?
     <div id="mapScreen"></div>
     <div id="hud">
 
+        <div id="planet-splash" class="flex-shrink-0"></div>
         <div id="planet-info">
-            <div id="rep" class="rep flex flex-col self-end"></div>
-            <div id="passageContainer"></div>
+            <div id="rep" class=""></div>
+            <div id="passageContainer" class="bg-red-200">
+                <div id="passage"  class="prose prose-neutral max-width-full"></div>
+            </div>
         </div>
         
         <div id="sidebar">
-        <button onclick="setup.returnToMap()">Close</button>
+        <span onclick="setup.returnToMap()" class="flex justify-center uppercase underline text-center text-base mx-auto cursor-pointer">back to map</span>
+        <div id="planetContent" class="text-base my-2 py-6"></div>
+
         <ul>
-            <li id="energy">ENERGY: <%= story.state.energy %></li>
+            <li id="">ENERGY: <span id="energy"><%= setup.game.energy %></span></li>
             <li id="buddyUp">BUDDY UP</li>
             <li id="trackTime">TRACK TIME</li>
             <li id="engageInProject">ENGAGE IN PROJECT</li>
@@ -90,21 +95,10 @@ What's your planet name?
 The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
 <div class="flex flex-row justify-between">
-    <a onclick='story.state.changeEnergy(10)'>Increase energy</a>
-    <a onclick='story.state.changeEnergy(-10)'>Decrease energy</a>
+    <a onclick='story.state.changeEnergy(10); story.show("Start")'>Help planet</a>
+    [[Move on…|Start]]
 </div>
-[[Retrieve fragments->Energy Depletion]]
 
-
-:: Energy Depletion
-
-Energy depleted!
-<a onclick='story.state.changeEnergy()'>Change energy</a> 
-
-<script>
-  story.state.energy -= 50;
-</script>
-[[Back to Map|Start]]
 
 :: Quantum Conundrum
 A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.

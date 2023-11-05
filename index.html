@@ -10,11 +10,1227 @@
 	</head>
 	<body>
 		<tw-story tags></tw-story>
-		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Jammy Jam" startnode="4" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body,
+		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Jammy Jam" startnode="4" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*
+! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+*/
+
+html {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden] {
+  display: none;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+.prose {
+  color: var(--tw-prose-body);
+  max-width: 65ch;
+}
+
+.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.prose :where([class~="lead"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-lead);
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+
+.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-links);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-bold);
+  font-weight: 600;
+}
+
+.prose :where(a strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(blockquote strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(thead th strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(ol):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: decimal;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+
+.prose :where(ol[type="A"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-alpha;
+}
+
+.prose :where(ol[type="a"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-alpha;
+}
+
+.prose :where(ol[type="A" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-alpha;
+}
+
+.prose :where(ol[type="a" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-alpha;
+}
+
+.prose :where(ol[type="I"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-roman;
+}
+
+.prose :where(ol[type="i"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-roman;
+}
+
+.prose :where(ol[type="I" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-roman;
+}
+
+.prose :where(ol[type="i" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-roman;
+}
+
+.prose :where(ol[type="1"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: decimal;
+}
+
+.prose :where(ul):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: disc;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+
+.prose :where(ol > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::marker {
+  font-weight: 400;
+  color: var(--tw-prose-counters);
+}
+
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::marker {
+  color: var(--tw-prose-bullets);
+}
+
+.prose :where(dt):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  margin-top: 1.25em;
+}
+
+.prose :where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-color: var(--tw-prose-hr);
+  border-top-width: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.prose :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--tw-prose-quotes);
+  border-left-width: 0.25rem;
+  border-left-color: var(--tw-prose-quote-borders);
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
+
+.prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  content: open-quote;
+}
+
+.prose :where(blockquote p:last-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: close-quote;
+}
+
+.prose :where(h1):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}
+
+.prose :where(h1 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 900;
+  color: inherit;
+}
+
+.prose :where(h2):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3333333;
+}
+
+.prose :where(h2 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 800;
+  color: inherit;
+}
+
+.prose :where(h3):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  font-size: 1.25em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.prose :where(h3 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 700;
+  color: inherit;
+}
+
+.prose :where(h4):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+.prose :where(h4 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 700;
+  color: inherit;
+}
+
+.prose :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.prose :where(picture):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.prose :where(kbd):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--tw-prose-kbd);
+  box-shadow: 0 0 0 1px rgb(var(--tw-prose-kbd-shadows) / 10%), 0 3px 0 rgb(var(--tw-prose-kbd-shadows) / 10%);
+  font-size: 0.875em;
+  border-radius: 0.3125rem;
+  padding-top: 0.1875em;
+  padding-right: 0.375em;
+  padding-bottom: 0.1875em;
+  padding-left: 0.375em;
+}
+
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-code);
+  font-weight: 600;
+  font-size: 0.875em;
+}
+
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  content: "`";
+}
+
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: "`";
+}
+
+.prose :where(a code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(h1 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(h2 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+  font-size: 0.875em;
+}
+
+.prose :where(h3 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+  font-size: 0.9em;
+}
+
+.prose :where(h4 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(blockquote code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(thead th code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+
+.prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-pre-code);
+  background-color: var(--tw-prose-pre-bg);
+  overflow-x: auto;
+  font-weight: 400;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+  border-radius: 0.375rem;
+  padding-top: 0.8571429em;
+  padding-right: 1.1428571em;
+  padding-bottom: 0.8571429em;
+  padding-left: 1.1428571em;
+}
+
+.prose :where(pre code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.prose :where(pre code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  content: none;
+}
+
+.prose :where(pre code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: none;
+}
+
+.prose :where(table):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+}
+
+.prose :where(thead):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--tw-prose-th-borders);
+}
+
+.prose :where(thead th):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  vertical-align: bottom;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+
+.prose :where(tbody tr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--tw-prose-td-borders);
+}
+
+.prose :where(tbody tr:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-bottom-width: 0;
+}
+
+.prose :where(tbody td):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  vertical-align: baseline;
+}
+
+.prose :where(tfoot):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-top-width: 1px;
+  border-top-color: var(--tw-prose-th-borders);
+}
+
+.prose :where(tfoot td):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  vertical-align: top;
+}
+
+.prose :where(figure > *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose :where(figcaption):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-captions);
+  font-size: 0.875em;
+  line-height: 1.4285714;
+  margin-top: 0.8571429em;
+}
+
+.prose {
+  --tw-prose-body: #374151;
+  --tw-prose-headings: #111827;
+  --tw-prose-lead: #4b5563;
+  --tw-prose-links: #111827;
+  --tw-prose-bold: #111827;
+  --tw-prose-counters: #6b7280;
+  --tw-prose-bullets: #d1d5db;
+  --tw-prose-hr: #e5e7eb;
+  --tw-prose-quotes: #111827;
+  --tw-prose-quote-borders: #e5e7eb;
+  --tw-prose-captions: #6b7280;
+  --tw-prose-kbd: #111827;
+  --tw-prose-kbd-shadows: 17 24 39;
+  --tw-prose-code: #111827;
+  --tw-prose-pre-code: #e5e7eb;
+  --tw-prose-pre-bg: #1f2937;
+  --tw-prose-th-borders: #d1d5db;
+  --tw-prose-td-borders: #e5e7eb;
+  --tw-prose-invert-body: #d1d5db;
+  --tw-prose-invert-headings: #fff;
+  --tw-prose-invert-lead: #9ca3af;
+  --tw-prose-invert-links: #fff;
+  --tw-prose-invert-bold: #fff;
+  --tw-prose-invert-counters: #9ca3af;
+  --tw-prose-invert-bullets: #4b5563;
+  --tw-prose-invert-hr: #374151;
+  --tw-prose-invert-quotes: #f3f4f6;
+  --tw-prose-invert-quote-borders: #374151;
+  --tw-prose-invert-captions: #9ca3af;
+  --tw-prose-invert-kbd: #fff;
+  --tw-prose-invert-kbd-shadows: 255 255 255;
+  --tw-prose-invert-code: #fff;
+  --tw-prose-invert-pre-code: #d1d5db;
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: #4b5563;
+  --tw-prose-invert-td-borders: #374151;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.prose :where(picture > img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose :where(video):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.prose :where(li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose :where(ol > li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0.375em;
+}
+
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0.375em;
+}
+
+.prose :where(.prose > ul > li p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose :where(.prose > ul > li > *:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+}
+
+.prose :where(.prose > ul > li > *:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-bottom: 1.25em;
+}
+
+.prose :where(.prose > ol > li > *:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+}
+
+.prose :where(.prose > ol > li > *:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-bottom: 1.25em;
+}
+
+.prose :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose :where(dl):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.prose :where(dd):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.5em;
+  padding-left: 1.625em;
+}
+
+.prose :where(hr + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose :where(h2 + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose :where(h3 + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose :where(h4 + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose :where(thead th:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0;
+}
+
+.prose :where(thead th:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-right: 0;
+}
+
+.prose :where(tbody td, tfoot td):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-top: 0.5714286em;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+
+.prose :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0;
+}
+
+.prose :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-right: 0;
+}
+
+.prose :where(figure):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.prose :where(.prose > :first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose :where(.prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-bottom: 0;
+}
+
+.prose-neutral {
+  --tw-prose-body: #404040;
+  --tw-prose-headings: #171717;
+  --tw-prose-lead: #525252;
+  --tw-prose-links: #171717;
+  --tw-prose-bold: #171717;
+  --tw-prose-counters: #737373;
+  --tw-prose-bullets: #d4d4d4;
+  --tw-prose-hr: #e5e5e5;
+  --tw-prose-quotes: #171717;
+  --tw-prose-quote-borders: #e5e5e5;
+  --tw-prose-captions: #737373;
+  --tw-prose-kbd: #171717;
+  --tw-prose-kbd-shadows: 23 23 23;
+  --tw-prose-code: #171717;
+  --tw-prose-pre-code: #e5e5e5;
+  --tw-prose-pre-bg: #262626;
+  --tw-prose-th-borders: #d4d4d4;
+  --tw-prose-td-borders: #e5e5e5;
+  --tw-prose-invert-body: #d4d4d4;
+  --tw-prose-invert-headings: #fff;
+  --tw-prose-invert-lead: #a3a3a3;
+  --tw-prose-invert-links: #fff;
+  --tw-prose-invert-bold: #fff;
+  --tw-prose-invert-counters: #a3a3a3;
+  --tw-prose-invert-bullets: #525252;
+  --tw-prose-invert-hr: #404040;
+  --tw-prose-invert-quotes: #f5f5f5;
+  --tw-prose-invert-quote-borders: #404040;
+  --tw-prose-invert-captions: #a3a3a3;
+  --tw-prose-invert-kbd: #fff;
+  --tw-prose-invert-kbd-shadows: 255 255 255;
+  --tw-prose-invert-code: #fff;
+  --tw-prose-invert-pre-code: #d4d4d4;
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: #525252;
+  --tw-prose-invert-td-borders: #404040;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.-mb-4 {
+  margin-bottom: -1rem;
+}
+
+.block {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.h-40 {
+  height: 10rem;
+}
+
+.w-40 {
+  width: 10rem;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.bg-neutral-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 212 212 / var(--tw-bg-opacity));
+}
+
+.bg-red-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.underline {
+  text-decoration-line: underline;
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+body,
 html {
   margin: 0;
-  height: 100%; /* Full height */
-  overflow: hidden; /* Prevent body scrolling */
+  height: 100%;
+  /* Full height */
+  overflow: hidden;
+  /* Prevent body scrolling */
 }
 
 #hud {
@@ -24,18 +1240,14 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  top: 0;
-  left: 0;
   z-index: 100;
 }
 
 #mapScreen {
   background-image: url(./img/twinkle.gif);
   background-size: cover;
-  position: relative;
   top: 0;
   left: 0;
-  z-index: 0;
   flex-grow: 1;
   display: grid;
   height: 100vh;
@@ -53,32 +1265,64 @@ html {
   position: relative;
   overflow: hidden;
 }
+
 #planet-info {
+  z-index: 20;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
+#planet-splash {
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+#rep {
+  position: relative;
+  z-index: 30;
+  margin-left: -1.5rem;
   display: flex;
   flex-direction: column;
-  align-self: end;
-}
-#rep {
-  display: flex;
-  align-items: end;
-  justify-content: end;
+  align-self: flex-end;
 }
 
 .repImage {
 }
+
 #passageContainer {
-  justify-self: end;
-  flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 20px;
-  /* max-width: 50vw; */
-  max-height: 33vh;
-  overflow-y: auto;
   width: 100%;
+  flex-direction: column;
+  align-self: flex-end;
+  overflow-y: auto;
+  --tw-bg-opacity: 1;
+  background-color: rgb(163 163 163 / var(--tw-bg-opacity));
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  #passageContainer {
+    max-height: 24rem;
+  }
+}
+
+#passage {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+  }
 }
 
 #sidebar {
+  z-index: 20;
   height: 100vh;
   width: 30vw;
   min-width: 300px;
@@ -94,13 +1338,15 @@ html {
 body[data-tags~="map-screen"] {
   padding: 0;
 }
+
 tw-story {
   max-width: 100vw;
   line-height: normal;
 }
 
 .planet {
-  width: 100px; /* Adjust based on your preference */
+  width: 100px;
+  /* Adjust based on your preference */
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
@@ -112,35 +1358,46 @@ tw-story {
 .planet1 {
   grid-area: p1;
 }
+
 .planet2 {
   grid-area: p2;
 }
+
 .planet3 {
   grid-area: p3;
 }
+
 .planet4 {
   grid-area: p4;
 }
+
 .planet5 {
   grid-area: p5;
 }
+
 .planet6 {
   grid-area: p6;
 }
+
 .planet7 {
   grid-area: p7;
 }
 
 #sidebar ul {
   list-style-type: none;
-  padding: 0;
+  padding: 0px;
 }
 
 #sidebar li {
-  font-size: 0.75rem;
-  padding: 10px;
-  border-bottom: 1px solid #444;
   cursor: pointer;
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(212 212 212 / var(--tw-border-opacity));
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 #sidebar li:hover {
@@ -148,9 +1405,7 @@ tw-story {
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
 window.setup = window.setup || {};
-$.getScript("https://cdn.tailwindcss.com", function () {
-  console.log("Tailwind CSS loaded.");
-});
+
 // scripts/init.js
 setup.game = {
   playerName: "",
@@ -161,6 +1416,7 @@ setup.game = {
       id: 1,
       imgSrc: "img/planet-1.png",
       repImgSrc: "img/rep-1.png",
+      splashImgSrc: "img/planet-1-splash.png",
       name: "Planet A (Tutorial): FuNKybEAtZ",
       rep: "DJ FuNKybEAtZ (they/them)",
       project:
@@ -172,6 +1428,7 @@ setup.game = {
       id: 2,
       imgSrc: "img/planet-2.png",
       repImgSrc: "img/rep-2.png",
+      splashImgSrc: "img/planet-2-splash.png",
       name: "Planet B: Razzmatazz",
       rep: "Boris the Clown (he/him)",
       project:
@@ -183,6 +1440,7 @@ setup.game = {
       id: 3,
       imgSrc: "img/planet-3.png",
       repImgSrc: "img/rep-3.png",
+      splashImgSrc: "img/planet-3-splash.png",
       name: "Planet C: Chanterella",
       rep: "Spore T. Spice (she/they high femme drag)",
       project: "Holographic psychedelic performance art drag show.",
@@ -193,6 +1451,7 @@ setup.game = {
       id: 4,
       imgSrc: "img/planet-4.png",
       repImgSrc: "img/rep-4.png",
+      splashImgSrc: "img/planet-4-splash.png",
       name: "Planet D: Kelpler",
       rep: "Flotsam (they/them)",
       project:
@@ -204,6 +1463,7 @@ setup.game = {
       id: 5,
       imgSrc: "img/planet-5.png",
       repImgSrc: "img/rep-5.png",
+      splashImgSrc: "img/planet-5-splash.png",
       name: "Planet E: Barkenberg",
       rep: "Spike (cat), Spook (raccoon), and Spark (dog) - (independent genders)",
       project: "Audio drama of their heists narrated (like War of the Worlds).",
@@ -319,12 +1579,16 @@ story.state.setIt = function () {
 story.state.changeEnergy = function (change) {
   setup.game.energy += change;
   console.log("Energy is now ", setup.game.energy);
+  setup.updateEnergy(setup.game.energy);
 };
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
-  let repContent = `<span class='repName text-sm uppercase text-center'>${planet.rep}</span><div><img class='repImage w-40 h-40 -mb-4' src='${planet.repImgSrc}' /></div>`;
+  let repContent = `<span class='repName text-sm uppercase p-1 bg-neutral-300 text-center'>${planet.rep}</span><div><img class='repImage w-40 h-40 -mb-4' src='${planet.repImgSrc}' /></div>`;
   var repContainer = document.getElementById("rep");
+
+  var splashContainer = document.getElementById("planet-splash");
+  splashContainer.style.backgroundImage = `url(${planet.splashImgSrc})`;
 
   repContainer.innerHTML = repContent;
 
@@ -344,16 +1608,18 @@ setup.renderPlanetPassage = function (planetIndex) {
       console.error("relatedPassage is null for scenario", scenarioData);
     }
 
-    var content = planetContent + scenarioContent + passageContent;
-
+    var content = scenarioContent + passageContent;
     var mapScreen = document.getElementById("mapScreen");
+    var passage = document.getElementById("passage");
+    var planetContentContainer = document.getElementById("planetContent");
     var passageContainer = document.getElementById("passageContainer");
     var hud = document.getElementById("hud");
 
     if (mapScreen) mapScreen.style.display = "none";
     if (hud) hud.style.display = "flex";
     if (passageContainer) {
-      passageContainer.innerHTML = content;
+      passage.innerHTML = content;
+      planetContentContainer.innerHTML = planetContent;
       passageContainer.style.display = "block";
     }
   } catch (error) {
@@ -368,7 +1634,7 @@ setup.returnToMap = function () {
 
   if (hud) hud.style.display = "none"; // Hide the HUD
   if (mapScreen) mapScreen.style.display = "grid"; // Show the map
-  if (passageContainer) passageContainer.innerHTML = ""; // Clear the passage content
+  if (passageContainer) passage.innerHTML = ""; // Clear the passage content
 
   // Reset the current planet index or any other state variables if needed
   // story.state.currentPlanetIndex = null;
@@ -419,12 +1685,22 @@ setup.toggleHUD = function (shouldShow) {
     hud.style.display = shouldShow ? "flex" : "none";
     if (!shouldShow) {
       var passageContainer = document.getElementById("passageContainer");
+      var passage = document.getElementById("passage");
       if (passageContainer) {
-        passageContainer.innerHTML = ""; // Clear the passage container
+        passage.innerHTML = ""; // Clear the passage container
       }
     }
   } else {
     console.error("HUD element not found");
+  }
+};
+setup.updateEnergy = function (change) {
+  // update the $energy div when energy changes
+  var energy = document.getElementById("energy");
+  if (energy) {
+    energy.innerHTML = setup.game.energy;
+  } else {
+    console.error("Energy element not found");
   }
 };
 
@@ -488,15 +1764,20 @@ What&#39;s your planet name?
     &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;hud&quot;&gt;
 
+        &lt;div id=&quot;planet-splash&quot; class=&quot;flex-shrink-0&quot;&gt;&lt;/div&gt;
         &lt;div id=&quot;planet-info&quot;&gt;
-            &lt;div id=&quot;rep&quot; class=&quot;rep flex flex-col self-end&quot;&gt;&lt;/div&gt;
-            &lt;div id=&quot;passageContainer&quot;&gt;&lt;/div&gt;
+            &lt;div id=&quot;rep&quot; class=&quot;&quot;&gt;&lt;/div&gt;
+            &lt;div id=&quot;passageContainer&quot; class=&quot;bg-red-200&quot;&gt;
+                &lt;div id=&quot;passage&quot;  class=&quot;prose prose-neutral max-width-full&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
         
         &lt;div id=&quot;sidebar&quot;&gt;
-        &lt;button onclick=&quot;setup.returnToMap()&quot;&gt;Close&lt;/button&gt;
+        &lt;span onclick=&quot;setup.returnToMap()&quot; class=&quot;flex justify-center uppercase underline text-center text-base mx-auto cursor-pointer&quot;&gt;back to map&lt;/span&gt;
+        &lt;div id=&quot;planetContent&quot; class=&quot;text-base my-2 py-6&quot;&gt;&lt;/div&gt;
+
         &lt;ul&gt;
-            &lt;li id=&quot;energy&quot;&gt;ENERGY: &lt;%= story.state.energy %&gt;&lt;/li&gt;
+            &lt;li id=&quot;&quot;&gt;ENERGY: &lt;span id=&quot;energy&quot;&gt;&lt;%= setup.game.energy %&gt;&lt;/span&gt;&lt;/li&gt;
             &lt;li id=&quot;buddyUp&quot;&gt;BUDDY UP&lt;/li&gt;
             &lt;li id=&quot;trackTime&quot;&gt;TRACK TIME&lt;/li&gt;
             &lt;li id=&quot;engageInProject&quot;&gt;ENGAGE IN PROJECT&lt;/li&gt;
@@ -521,16 +1802,9 @@ What&#39;s your planet name?
 [[Back to Map|MapScreen]] --&gt;</tw-passagedata><tw-passagedata pid="6" name="Melodic Quest" tags="" position="725,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
 &lt;div class=&quot;flex flex-row justify-between&quot;&gt;
-    &lt;a onclick=&#39;story.state.changeEnergy(10)&#39;&gt;Increase energy&lt;/a&gt;
-    &lt;a onclick=&#39;story.state.changeEnergy(-10)&#39;&gt;Decrease energy&lt;/a&gt;
-&lt;/div&gt;
-[[Retrieve fragments-&gt;Energy Depletion]]</tw-passagedata><tw-passagedata pid="7" name="Energy Depletion" tags="" position="850,100" size="100,100">Energy depleted!
-&lt;a onclick=&#39;story.state.changeEnergy()&#39;&gt;Change energy&lt;/a&gt; 
-
-&lt;script&gt;
-  story.state.energy -= 50;
-&lt;/script&gt;
-[[Back to Map|Start]]</tw-passagedata><tw-passagedata pid="8" name="Quantum Conundrum" tags="" position="975,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.</tw-passagedata><tw-passagedata pid="9" name="Stellar Cradle" tags="" position="1100,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.</tw-passagedata><tw-passagedata pid="10" name="Asteroid Deflection" tags="" position="1225,100" size="100,100">An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet&#39;s inhabitants from disaster.</tw-passagedata><tw-passagedata pid="11" name="Horticultural Healing" tags="" position="100,225" size="100,100">A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.</tw-passagedata><tw-passagedata pid="12" name="Stellar Cartography" tags="" position="225,225" size="100,100">Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.</tw-passagedata><tw-passagedata pid="13" name="Luminous Labyrinth" tags="" position="350,225" size="100,100">Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it&#39;s a natural occurrence or something more.</tw-passagedata><tw-passagedata pid="14" name="Climate Conundrum" tags="" position="475,225" size="100,100">A planet&#39;s weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.</tw-passagedata><tw-passagedata pid="15" name="Android Anarchy" tags="" position="600,225" size="100,100">A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.</tw-passagedata><tw-passagedata pid="16" name="Warp Wayfarer" tags="" position="725,225" size="100,100">A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.</tw-passagedata><tw-passagedata pid="17" name="HelpPlanets" tags="" position="850,225" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="18" name="RadioShow" tags="" position="975,225" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="19" name="Epilogue" tags="" position="1100,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
+    &lt;a onclick=&#39;story.state.changeEnergy(10); story.show(&quot;Start&quot;)&#39;&gt;Help planet&lt;/a&gt;
+    [[Move on…|Start]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Quantum Conundrum" tags="" position="850,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.</tw-passagedata><tw-passagedata pid="8" name="Stellar Cradle" tags="" position="975,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.</tw-passagedata><tw-passagedata pid="9" name="Asteroid Deflection" tags="" position="1100,100" size="100,100">An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet&#39;s inhabitants from disaster.</tw-passagedata><tw-passagedata pid="10" name="Horticultural Healing" tags="" position="1225,100" size="100,100">A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.</tw-passagedata><tw-passagedata pid="11" name="Stellar Cartography" tags="" position="100,225" size="100,100">Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.</tw-passagedata><tw-passagedata pid="12" name="Luminous Labyrinth" tags="" position="225,225" size="100,100">Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it&#39;s a natural occurrence or something more.</tw-passagedata><tw-passagedata pid="13" name="Climate Conundrum" tags="" position="350,225" size="100,100">A planet&#39;s weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.</tw-passagedata><tw-passagedata pid="14" name="Android Anarchy" tags="" position="475,225" size="100,100">A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.</tw-passagedata><tw-passagedata pid="15" name="Warp Wayfarer" tags="" position="600,225" size="100,100">A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.</tw-passagedata><tw-passagedata pid="16" name="HelpPlanets" tags="" position="725,225" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="17" name="RadioShow" tags="" position="850,225" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="18" name="Epilogue" tags="" position="975,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};
