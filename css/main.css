@@ -55,9 +55,13 @@ html {
 #rep {
   @apply flex flex-col self-end -ml-6 z-30 relative w-72;
 }
-
-.repImage {
+.passage-choices {
+  @apply flex flex-row justify-between;
 }
+.passage-choices span {
+  @apply underline font-bold cursor-pointer hover:text-neutral-950 text-neutral-800;
+}
+
 #passageContainer {
   @apply self-end flex-col w-full p-6 md:max-h-96 overflow-y-auto bg-neutral-400;
 }

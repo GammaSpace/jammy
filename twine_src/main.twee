@@ -46,15 +46,25 @@ What's your planet name?
 
 <% console.log(setup.game) %>
 <% console.log(s) %>
-<!-- <div style="position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200">hello <%= s.playerName %>! Your planet is called <%= s.planetName %>.</div> -->
 
     <div id="mapScreen"></div>
+    <div id="hudTop" class="w-full p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex flex-row">
+        <div class="block text-sm mr-6">Energy:</div>
+    
+        <div id="hudTop" class="w-full block h-6 bg-neutral-200 rounded-full dark:bg-neutral-700">
+            <div class="h-6 bg-neutral-600 rounded-full dark:bg-neutral-500"
+            style="width: <%= setup.game.energy / 700 * 100 %>%">
+            </div>
+        </div>
+        <div class="block text-sm mx-6">Turn:</div>
+        <div class="block text-sm">1</div>
+    </div>
     <div id="hud">
 
         <div id="planet-splash" class="flex-shrink-0"></div>
         <div id="planet-info">
             <div id="rep" class=""></div>
-            <div id="passageContainer" class="bg-red-200">
+            <div id="passageContainer">
                 <div id="passage"  class="prose prose-neutral max-width-full"></div>
             </div>
         </div>
@@ -64,7 +74,7 @@ What's your planet name?
         <div id="planetContent" class="text-base my-2 py-6"></div>
 
         <ul>
-            <li id="">ENERGY: <span id="energy"><%= setup.game.energy %></span></li>
+            <li id="">ENERGY: <span class="energy"><%= setup.game.energy %></span></li>
             <li id="buddyUp">BUDDY UP</li>
             <li id="trackTime">TRACK TIME</li>
             <li id="engageInProject">ENGAGE IN PROJECT</li>
@@ -76,6 +86,7 @@ What's your planet name?
 
 <script>
   setup.showMap();
+  setup.toggleHUDTop(true)
 </script>
 <!-- 
 [[Help Planets|HelpPlanets]]
@@ -94,8 +105,10 @@ What's your planet name?
 :: Melodic Quest
 The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
-<div class="flex flex-row justify-between">
-    <a onclick='story.state.changeEnergy(10); story.show("Start")'>Help planet</a>
+<div class="passage-choices">
+    <span onclick='story.state.changeEnergy(10); story.show("Start")'>
+        Gather musical fragments (+10 energy)
+    </span>
     [[Move on…|Start]]
 </div>
 
@@ -103,29 +116,18 @@ The Intergalactic Orchestra has lost its melody, scattering notes across the cos
 :: Quantum Conundrum
 A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
 
+<div class="passage-choices">
+    <span onclick='story.state.changeEnergy(200); story.show("Start")'>Solve puzzles (+200 energy)</span>
+    [[Forget it…|Start]]
+</div>
+
 :: Stellar Cradle
 A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
 
-:: Asteroid Deflection
-An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet's inhabitants from disaster.
-
-:: Horticultural Healing
-A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.
-
-:: Stellar Cartography
-Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.
-
-:: Luminous Labyrinth
-Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it's a natural occurrence or something more.
-
-:: Climate Conundrum
-A planet's weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.
-
-:: Android Anarchy
-A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.
-
-:: Warp Wayfarer
-A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.
+<div class="passage-choices">
+    <span onclick='story.state.changeEnergy(100); story.show("Start")'>Gather stardust (+100 energy)</span>
+    [[Forget it…|Start]]
+</div>
 
 
 :: HelpPlanets

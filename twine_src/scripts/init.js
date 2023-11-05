@@ -72,60 +72,21 @@ setup.game = {
       description:
         "The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.",
       relatedPassage: "Melodic Quest",
+      complete: false,
     },
     {
       title: "Quantum Quandary",
       description:
         "A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.",
       relatedPassage: "Quantum Conundrum",
+      complete: false,
     },
     {
       title: "Nebula Nurturing",
       description:
         "A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.",
       relatedPassage: "Stellar Cradle",
-    },
-    {
-      title: "Asteroid Anomaly",
-      description:
-        "An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet's inhabitants from disaster.",
-      relatedPassage: "Asteroid Deflection",
-    },
-    {
-      title: "Galactic Gardening",
-      description:
-        "A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.",
-      relatedPassage: "Horticultural Healing",
-    },
-    {
-      title: "Cosmic Cartography",
-      description:
-        "Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.",
-      relatedPassage: "Stellar Cartography",
-    },
-    {
-      title: "Photon Phantoms",
-      description:
-        "Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it's a natural occurrence or something more.",
-      relatedPassage: "Luminous Labyrinth",
-    },
-    {
-      title: "Meteorological Mystery",
-      description:
-        "A planet's weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.",
-      relatedPassage: "Climate Conundrum",
-    },
-    {
-      title: "Rogue Robotics",
-      description:
-        "A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.",
-      relatedPassage: "Android Anarchy",
-    },
-    {
-      title: "Wormhole Woes",
-      description:
-        "A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.",
-      relatedPassage: "Warp Wayfarer",
+      complete: false,
     },
   ],
   turns: [
@@ -272,14 +233,21 @@ setup.showMap = function () {
     });
   }
 };
-
+setup.toggleHUDTop = function (shouldShow) {
+  var hudTop = document.getElementById("hudTop");
+  if (hudTop) {
+    hudTop.style.display = shouldShow ? "flex" : "none";
+  }
+};
 setup.toggleHUD = function (shouldShow) {
   var hud = document.getElementById("hud");
   if (hud) {
     hud.style.display = shouldShow ? "flex" : "none";
+
     if (!shouldShow) {
       var passageContainer = document.getElementById("passageContainer");
       var passage = document.getElementById("passage");
+
       if (passageContainer) {
         passage.innerHTML = ""; // Clear the passage container
       }

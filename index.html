@@ -1125,6 +1125,10 @@ video {
   position: absolute;
 }
 
+.top-0 {
+  top: 0px;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1135,8 +1139,17 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
 .-mb-4 {
   margin-bottom: -1rem;
+}
+
+.mr-6 {
+  margin-right: 1.5rem;
 }
 
 .block {
@@ -1155,8 +1168,16 @@ video {
   height: 10rem;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .w-40 {
   width: 10rem;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .flex-shrink-0 {
@@ -1175,8 +1196,13 @@ video {
   justify-content: center;
 }
 
-.justify-between {
-  justify-content: space-between;
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.bg-neutral-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
 .bg-neutral-300 {
@@ -1184,13 +1210,22 @@ video {
   background-color: rgb(212 212 212 / var(--tw-bg-opacity));
 }
 
-.bg-red-200 {
+.bg-neutral-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+  background-color: rgb(163 163 163 / var(--tw-bg-opacity));
+}
+
+.bg-neutral-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
 }
 
 .p-1 {
   padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .py-6 {
@@ -1212,8 +1247,18 @@ video {
   line-height: 1.25rem;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .uppercase {
   text-transform: uppercase;
+}
+
+.text-neutral-900 {
+  --tw-text-opacity: 1;
+  color: rgb(23 23 23 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1293,7 +1338,23 @@ html {
   align-self: flex-end;
 }
 
-.repImage {
+.passage-choices {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.passage-choices span {
+  cursor: pointer;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(38 38 38 / var(--tw-text-opacity));
+  text-decoration-line: underline;
+}
+
+.passage-choices span:hover {
+  --tw-text-opacity: 1;
+  color: rgb(10 10 10 / var(--tw-text-opacity));
 }
 
 #passageContainer {
@@ -1406,6 +1467,18 @@ tw-story {
 #sidebar li:hover {
   background-color: #555;
 }
+
+@media (prefers-color-scheme: dark) {
+  .dark\:bg-neutral-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(115 115 115 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-neutral-700 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+  }
+}
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
 window.setup = window.setup || {};
 
@@ -1481,60 +1554,21 @@ setup.game = {
       description:
         "The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.",
       relatedPassage: "Melodic Quest",
+      complete: false,
     },
     {
       title: "Quantum Quandary",
       description:
         "A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.",
       relatedPassage: "Quantum Conundrum",
+      complete: false,
     },
     {
       title: "Nebula Nurturing",
       description:
         "A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.",
       relatedPassage: "Stellar Cradle",
-    },
-    {
-      title: "Asteroid Anomaly",
-      description:
-        "An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet's inhabitants from disaster.",
-      relatedPassage: "Asteroid Deflection",
-    },
-    {
-      title: "Galactic Gardening",
-      description:
-        "A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.",
-      relatedPassage: "Horticultural Healing",
-    },
-    {
-      title: "Cosmic Cartography",
-      description:
-        "Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.",
-      relatedPassage: "Stellar Cartography",
-    },
-    {
-      title: "Photon Phantoms",
-      description:
-        "Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it's a natural occurrence or something more.",
-      relatedPassage: "Luminous Labyrinth",
-    },
-    {
-      title: "Meteorological Mystery",
-      description:
-        "A planet's weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.",
-      relatedPassage: "Climate Conundrum",
-    },
-    {
-      title: "Rogue Robotics",
-      description:
-        "A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.",
-      relatedPassage: "Android Anarchy",
-    },
-    {
-      title: "Wormhole Woes",
-      description:
-        "A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.",
-      relatedPassage: "Warp Wayfarer",
+      complete: false,
     },
   ],
   turns: [
@@ -1681,14 +1715,21 @@ setup.showMap = function () {
     });
   }
 };
-
+setup.toggleHUDTop = function (shouldShow) {
+  var hudTop = document.getElementById("hudTop");
+  if (hudTop) {
+    hudTop.style.display = shouldShow ? "flex" : "none";
+  }
+};
 setup.toggleHUD = function (shouldShow) {
   var hud = document.getElementById("hud");
   if (hud) {
     hud.style.display = shouldShow ? "flex" : "none";
+
     if (!shouldShow) {
       var passageContainer = document.getElementById("passageContainer");
       var passage = document.getElementById("passage");
+
       if (passageContainer) {
         passage.innerHTML = ""; // Clear the passage container
       }
@@ -1762,15 +1803,25 @@ What&#39;s your planet name?
 [[Next-&gt;MapScreen]]
 &lt;% } %&gt;</tw-passagedata><tw-passagedata pid="4" name="Start" tags="scripted" position="475,100" size="100,100">&lt;% console.log(setup.game) %&gt;
 &lt;% console.log(s) %&gt;
-&lt;!-- &lt;div style=&quot;position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200&quot;&gt;hello &lt;%= s.playerName %&gt;! Your planet is called &lt;%= s.planetName %&gt;.&lt;/div&gt; --&gt;
 
     &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;hudTop&quot; class=&quot;w-full p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex flex-row&quot;&gt;
+        &lt;div class=&quot;block text-sm mr-6&quot;&gt;Energy:&lt;/div&gt;
+    
+        &lt;div id=&quot;hudTop&quot; class=&quot;w-full block h-6 bg-neutral-200 rounded-full dark:bg-neutral-700&quot;&gt;
+            &lt;div class=&quot;h-6 bg-neutral-600 rounded-full dark:bg-neutral-500&quot;
+            style=&quot;width: &lt;%= setup.game.energy / 700 * 100 %&gt;%&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;block text-sm mx-6&quot;&gt;Turn:&lt;/div&gt;
+        &lt;div class=&quot;block text-sm&quot;&gt;1&lt;/div&gt;
+    &lt;/div&gt;
     &lt;div id=&quot;hud&quot;&gt;
 
         &lt;div id=&quot;planet-splash&quot; class=&quot;flex-shrink-0&quot;&gt;&lt;/div&gt;
         &lt;div id=&quot;planet-info&quot;&gt;
             &lt;div id=&quot;rep&quot; class=&quot;&quot;&gt;&lt;/div&gt;
-            &lt;div id=&quot;passageContainer&quot; class=&quot;bg-red-200&quot;&gt;
+            &lt;div id=&quot;passageContainer&quot;&gt;
                 &lt;div id=&quot;passage&quot;  class=&quot;prose prose-neutral max-width-full&quot;&gt;&lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -1780,7 +1831,7 @@ What&#39;s your planet name?
         &lt;div id=&quot;planetContent&quot; class=&quot;text-base my-2 py-6&quot;&gt;&lt;/div&gt;
 
         &lt;ul&gt;
-            &lt;li id=&quot;&quot;&gt;ENERGY: &lt;span id=&quot;energy&quot;&gt;&lt;%= setup.game.energy %&gt;&lt;/span&gt;&lt;/li&gt;
+            &lt;li id=&quot;&quot;&gt;ENERGY: &lt;span class=&quot;energy&quot;&gt;&lt;%= setup.game.energy %&gt;&lt;/span&gt;&lt;/li&gt;
             &lt;li id=&quot;buddyUp&quot;&gt;BUDDY UP&lt;/li&gt;
             &lt;li id=&quot;trackTime&quot;&gt;TRACK TIME&lt;/li&gt;
             &lt;li id=&quot;engageInProject&quot;&gt;ENGAGE IN PROJECT&lt;/li&gt;
@@ -1792,6 +1843,7 @@ What&#39;s your planet name?
 
 &lt;script&gt;
   setup.showMap();
+  setup.toggleHUDTop(true)
 &lt;/script&gt;
 &lt;!-- 
 [[Help Planets|HelpPlanets]]
@@ -1804,10 +1856,22 @@ What&#39;s your planet name?
 
 [[Back to Map|MapScreen]] --&gt;</tw-passagedata><tw-passagedata pid="6" name="Melodic Quest" tags="" position="725,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
-&lt;div class=&quot;flex flex-row justify-between&quot;&gt;
-    &lt;a onclick=&#39;story.state.changeEnergy(10); story.show(&quot;Start&quot;)&#39;&gt;Help planet&lt;/a&gt;
+&lt;div class=&quot;passage-choices&quot;&gt;
+    &lt;span onclick=&#39;story.state.changeEnergy(10); story.show(&quot;Start&quot;)&#39;&gt;
+        Gather musical fragments (+10 energy)
+    &lt;/span&gt;
     [[Move on…|Start]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Quantum Conundrum" tags="" position="850,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.</tw-passagedata><tw-passagedata pid="8" name="Stellar Cradle" tags="" position="975,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.</tw-passagedata><tw-passagedata pid="9" name="Asteroid Deflection" tags="" position="1100,100" size="100,100">An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet&#39;s inhabitants from disaster.</tw-passagedata><tw-passagedata pid="10" name="Horticultural Healing" tags="" position="1225,100" size="100,100">A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.</tw-passagedata><tw-passagedata pid="11" name="Stellar Cartography" tags="" position="100,225" size="100,100">Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.</tw-passagedata><tw-passagedata pid="12" name="Luminous Labyrinth" tags="" position="225,225" size="100,100">Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it&#39;s a natural occurrence or something more.</tw-passagedata><tw-passagedata pid="13" name="Climate Conundrum" tags="" position="350,225" size="100,100">A planet&#39;s weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.</tw-passagedata><tw-passagedata pid="14" name="Android Anarchy" tags="" position="475,225" size="100,100">A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.</tw-passagedata><tw-passagedata pid="15" name="Warp Wayfarer" tags="" position="600,225" size="100,100">A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.</tw-passagedata><tw-passagedata pid="16" name="HelpPlanets" tags="" position="725,225" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="17" name="RadioShow" tags="" position="850,225" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="18" name="Epilogue" tags="" position="975,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Quantum Conundrum" tags="" position="850,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+    &lt;span onclick=&#39;story.state.changeEnergy(200); story.show(&quot;Start&quot;)&#39;&gt;Solve puzzles (+200 energy)&lt;/span&gt;
+    [[Forget it…|Start]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Stellar Cradle" tags="" position="975,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+    &lt;span onclick=&#39;story.state.changeEnergy(100); story.show(&quot;Start&quot;)&#39;&gt;Gather stardust (+100 energy)&lt;/span&gt;
+    [[Forget it…|Start]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="HelpPlanets" tags="" position="1100,100" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="10" name="RadioShow" tags="" position="1225,100" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="11" name="Epilogue" tags="" position="100,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};
