@@ -65,9 +65,6 @@ html {
 }
 
 .repImage {
-  width: 100px;
-
-  margin-bottom: -2rem;
 }
 #passageContainer {
   justify-self: end;
@@ -151,11 +148,13 @@ tw-story {
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
 window.setup = window.setup || {};
-
+$.getScript("https://cdn.tailwindcss.com", function () {
+  console.log("Tailwind CSS loaded.");
+});
 // scripts/init.js
 setup.game = {
   playerName: "",
-  energyReserves: 100,
+  energy: 100,
 
   planets: [
     {
@@ -275,6 +274,12 @@ setup.game = {
       relatedPassage: "Warp Wayfarer",
     },
   ],
+  turns: [
+    {
+      1: {},
+      2: {},
+    },
+  ],
 };
 
 setup.saveNames = function () {
@@ -311,11 +316,14 @@ story.state.setIt = function () {
   story.state.cPronouns = ["It", "It", "Its", "Its", "It's"];
   story.show("Preface");
 };
-
+story.state.changeEnergy = function (change) {
+  setup.game.energy += change;
+  console.log("Energy is now ", setup.game.energy);
+};
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
-  let repContent = `<span class='repName'>${planet.rep}</span><div><img class='repImage' src='${planet.repImgSrc}' /></div>`;
+  let repContent = `<span class='repName text-sm uppercase text-center'>${planet.rep}</span><div><img class='repImage w-40 h-40 -mb-4' src='${planet.repImgSrc}' /></div>`;
   var repContainer = document.getElementById("rep");
 
   repContainer.innerHTML = repContent;
@@ -373,7 +381,9 @@ setup.showRandomIncompleteScenario = function () {
 
   if (incompleteScenarios.length > 0) {
     var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
-    var scenario = incompleteScenarios[randomIndex];
+    // var scenario = incompleteScenarios[randomIndex];
+    var scenario = either(incompleteScenarios);
+
     return {
       content: `<h2>${scenario.title}</h2><p>${scenario.description}</p>`,
       relatedPassage: scenario.relatedPassage,
@@ -449,10 +459,7 @@ setup.accountForValue = function () {
 //   document.getElementById("accountForValue").onclick = setup.accountForValue;
 // };
 /* twine-user-script #2: "utilities.js" */
-</script><tw-passagedata pid="1" name="Start-Old" tags="alfa bravo charlie" position="100,100" size="100,100">&lt;% console.log(setup.game) %&gt;
-&lt;% console.log(s) %&gt;
-
-## What are your pronouns?
+</script><tw-passagedata pid="1" name="Start-Old" tags="" position="100,100" size="100,100">## What are your pronouns?
 
 &lt;a onclick=&#39;story.state.setHe()&#39;&gt;Him/his.&lt;/a&gt; 
 &lt;a onclick=&#39;story.state.setShe()&#39;&gt;Her/hers.&lt;/a&gt; 
@@ -474,13 +481,15 @@ What&#39;s your planet name?
 
 &lt;% if (story.state.playerName &amp;&amp; story.state.planetName) { %&gt;
 [[Next-&gt;MapScreen]]
-&lt;% } %&gt;</tw-passagedata><tw-passagedata pid="4" name="Start" tags="scripted" position="475,100" size="100,100">&lt;!-- &lt;div style=&quot;position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200&quot;&gt;hello &lt;%= s.playerName %&gt;! Your planet is called &lt;%= s.planetName %&gt;.&lt;/div&gt; --&gt;
+&lt;% } %&gt;</tw-passagedata><tw-passagedata pid="4" name="Start" tags="scripted" position="475,100" size="100,100">&lt;% console.log(setup.game) %&gt;
+&lt;% console.log(s) %&gt;
+&lt;!-- &lt;div style=&quot;position: absolute; top: 0; left: 0; padding: 20px; color: white; z-index: 200&quot;&gt;hello &lt;%= s.playerName %&gt;! Your planet is called &lt;%= s.planetName %&gt;.&lt;/div&gt; --&gt;
 
     &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;hud&quot;&gt;
 
         &lt;div id=&quot;planet-info&quot;&gt;
-            &lt;div id=&quot;rep&quot;&gt;&lt;/div&gt;
+            &lt;div id=&quot;rep&quot; class=&quot;rep flex flex-col self-end&quot;&gt;&lt;/div&gt;
             &lt;div id=&quot;passageContainer&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
         
@@ -509,11 +518,19 @@ What&#39;s your planet name?
 &lt;/script&gt;
 &lt;!-- [[Help Planet|HelpPlanet]]
 
-[[Back to Map|MapScreen]] --&gt;</tw-passagedata><tw-passagedata pid="6" name="Melodic Quest" tags="" position="725,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy. [[Retrieve fragments-&gt;Energy Depletion]]</tw-passagedata><tw-passagedata pid="7" name="Energy Depletion" tags="" position="850,100" size="100,100">Energy depleted!
+[[Back to Map|MapScreen]] --&gt;</tw-passagedata><tw-passagedata pid="6" name="Melodic Quest" tags="" position="725,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+
+&lt;div class=&quot;flex flex-row justify-between&quot;&gt;
+    &lt;a onclick=&#39;story.state.changeEnergy(10)&#39;&gt;Increase energy&lt;/a&gt;
+    &lt;a onclick=&#39;story.state.changeEnergy(-10)&#39;&gt;Decrease energy&lt;/a&gt;
+&lt;/div&gt;
+[[Retrieve fragments-&gt;Energy Depletion]]</tw-passagedata><tw-passagedata pid="7" name="Energy Depletion" tags="" position="850,100" size="100,100">Energy depleted!
+&lt;a onclick=&#39;story.state.changeEnergy()&#39;&gt;Change energy&lt;/a&gt; 
+
 &lt;script&gt;
   story.state.energy -= 50;
 &lt;/script&gt;
-[[Back to Map|MapScreen]]</tw-passagedata><tw-passagedata pid="8" name="Quantum Conundrum" tags="" position="975,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.</tw-passagedata><tw-passagedata pid="9" name="Stellar Cradle" tags="" position="1100,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.</tw-passagedata><tw-passagedata pid="10" name="Asteroid Deflection" tags="" position="1225,100" size="100,100">An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet&#39;s inhabitants from disaster.</tw-passagedata><tw-passagedata pid="11" name="Horticultural Healing" tags="" position="100,225" size="100,100">A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.</tw-passagedata><tw-passagedata pid="12" name="Stellar Cartography" tags="" position="225,225" size="100,100">Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.</tw-passagedata><tw-passagedata pid="13" name="Luminous Labyrinth" tags="" position="350,225" size="100,100">Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it&#39;s a natural occurrence or something more.</tw-passagedata><tw-passagedata pid="14" name="Climate Conundrum" tags="" position="475,225" size="100,100">A planet&#39;s weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.</tw-passagedata><tw-passagedata pid="15" name="Android Anarchy" tags="" position="600,225" size="100,100">A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.</tw-passagedata><tw-passagedata pid="16" name="Warp Wayfarer" tags="" position="725,225" size="100,100">A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.</tw-passagedata><tw-passagedata pid="17" name="HelpPlanets" tags="" position="850,225" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="18" name="RadioShow" tags="" position="975,225" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="19" name="Epilogue" tags="" position="1100,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
+[[Back to Map|Start]]</tw-passagedata><tw-passagedata pid="8" name="Quantum Conundrum" tags="" position="975,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.</tw-passagedata><tw-passagedata pid="9" name="Stellar Cradle" tags="" position="1100,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.</tw-passagedata><tw-passagedata pid="10" name="Asteroid Deflection" tags="" position="1225,100" size="100,100">An asteroid is on a collision course with a peaceful planet. Devise a plan to redirect its trajectory and save the planet&#39;s inhabitants from disaster.</tw-passagedata><tw-passagedata pid="11" name="Horticultural Healing" tags="" position="100,225" size="100,100">A rare space garden is withering due to a mysterious blight. Research alien flora and concoct a remedy to revive the extraterrestrial vegetation.</tw-passagedata><tw-passagedata pid="12" name="Stellar Cartography" tags="" position="225,225" size="100,100">Star maps have been scrambled by a solar storm, leaving travelers astray. Chart the stars anew to guide lost ships back to safe harbors.</tw-passagedata><tw-passagedata pid="13" name="Luminous Labyrinth" tags="" position="350,225" size="100,100">Eerie lights have been sighted near a black hole, spooking spacefarers. Investigate the phenomenon to uncover whether it&#39;s a natural occurrence or something more.</tw-passagedata><tw-passagedata pid="14" name="Climate Conundrum" tags="" position="475,225" size="100,100">A planet&#39;s weather system has gone rogue, unleashing extreme conditions. Analyze atmospheric data to unravel the cause and restore climatic balance.</tw-passagedata><tw-passagedata pid="15" name="Android Anarchy" tags="" position="600,225" size="100,100">A fleet of robots has malfunctioned and is causing mayhem on a mining moon. Reprogram the rogue automatons to prevent a full-scale disaster.</tw-passagedata><tw-passagedata pid="16" name="Warp Wayfarer" tags="" position="725,225" size="100,100">A network of wormholes is malfunctioning, stranding travelers in unknown sectors. Traverse the treacherous paths to repair the wormholes and reunite lost travelers with their destinations.</tw-passagedata><tw-passagedata pid="17" name="HelpPlanets" tags="" position="850,225" size="100,100">[[Back|MapScreen]]</tw-passagedata><tw-passagedata pid="18" name="RadioShow" tags="" position="975,225" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="19" name="Epilogue" tags="" position="1100,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

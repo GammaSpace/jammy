@@ -1,9 +1,11 @@
 window.setup = window.setup || {};
-
+$.getScript("https://cdn.tailwindcss.com", function () {
+  console.log("Tailwind CSS loaded.");
+});
 // scripts/init.js
 setup.game = {
   playerName: "",
-  energyReserves: 100,
+  energy: 100,
 
   planets: [
     {
@@ -123,6 +125,12 @@ setup.game = {
       relatedPassage: "Warp Wayfarer",
     },
   ],
+  turns: [
+    {
+      1: {},
+      2: {},
+    },
+  ],
 };
 
 setup.saveNames = function () {
@@ -159,11 +167,14 @@ story.state.setIt = function () {
   story.state.cPronouns = ["It", "It", "Its", "Its", "It's"];
   story.show("Preface");
 };
-
+story.state.changeEnergy = function (change) {
+  setup.game.energy += change;
+  console.log("Energy is now ", setup.game.energy);
+};
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
-  let repContent = `<span class='repName'>${planet.rep}</span><div><img class='repImage' src='${planet.repImgSrc}' /></div>`;
+  let repContent = `<span class='repName text-sm uppercase text-center'>${planet.rep}</span><div><img class='repImage w-40 h-40 -mb-4' src='${planet.repImgSrc}' /></div>`;
   var repContainer = document.getElementById("rep");
 
   repContainer.innerHTML = repContent;
@@ -221,7 +232,9 @@ setup.showRandomIncompleteScenario = function () {
 
   if (incompleteScenarios.length > 0) {
     var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
-    var scenario = incompleteScenarios[randomIndex];
+    // var scenario = incompleteScenarios[randomIndex];
+    var scenario = either(incompleteScenarios);
+
     return {
       content: `<h2>${scenario.title}</h2><p>${scenario.description}</p>`,
       relatedPassage: scenario.relatedPassage,
