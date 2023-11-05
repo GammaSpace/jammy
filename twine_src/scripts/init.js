@@ -1,7 +1,5 @@
 window.setup = window.setup || {};
-$.getScript("https://cdn.tailwindcss.com", function () {
-  console.log("Tailwind CSS loaded.");
-});
+
 // scripts/init.js
 setup.game = {
   playerName: "",
@@ -12,6 +10,7 @@ setup.game = {
       id: 1,
       imgSrc: "img/planet-1.png",
       repImgSrc: "img/rep-1.png",
+      splashImgSrc: "img/planet-1-splash.png",
       name: "Planet A (Tutorial): FuNKybEAtZ",
       rep: "DJ FuNKybEAtZ (they/them)",
       project:
@@ -23,6 +22,7 @@ setup.game = {
       id: 2,
       imgSrc: "img/planet-2.png",
       repImgSrc: "img/rep-2.png",
+      splashImgSrc: "img/planet-2-splash.png",
       name: "Planet B: Razzmatazz",
       rep: "Boris the Clown (he/him)",
       project:
@@ -34,6 +34,7 @@ setup.game = {
       id: 3,
       imgSrc: "img/planet-3.png",
       repImgSrc: "img/rep-3.png",
+      splashImgSrc: "img/planet-3-splash.png",
       name: "Planet C: Chanterella",
       rep: "Spore T. Spice (she/they high femme drag)",
       project: "Holographic psychedelic performance art drag show.",
@@ -44,6 +45,7 @@ setup.game = {
       id: 4,
       imgSrc: "img/planet-4.png",
       repImgSrc: "img/rep-4.png",
+      splashImgSrc: "img/planet-4-splash.png",
       name: "Planet D: Kelpler",
       rep: "Flotsam (they/them)",
       project:
@@ -55,6 +57,7 @@ setup.game = {
       id: 5,
       imgSrc: "img/planet-5.png",
       repImgSrc: "img/rep-5.png",
+      splashImgSrc: "img/planet-5-splash.png",
       name: "Planet E: Barkenberg",
       rep: "Spike (cat), Spook (raccoon), and Spark (dog) - (independent genders)",
       project: "Audio drama of their heists narrated (like War of the Worlds).",
@@ -170,12 +173,16 @@ story.state.setIt = function () {
 story.state.changeEnergy = function (change) {
   setup.game.energy += change;
   console.log("Energy is now ", setup.game.energy);
+  setup.updateEnergy(setup.game.energy);
 };
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
-  let repContent = `<span class='repName text-sm uppercase text-center'>${planet.rep}</span><div><img class='repImage w-40 h-40 -mb-4' src='${planet.repImgSrc}' /></div>`;
+  let repContent = `<span class='repName text-sm uppercase p-1 bg-neutral-300 text-center'>${planet.rep}</span><div><img class='repImage w-40 h-40 -mb-4' src='${planet.repImgSrc}' /></div>`;
   var repContainer = document.getElementById("rep");
+
+  var splashContainer = document.getElementById("planet-splash");
+  splashContainer.style.backgroundImage = `url(${planet.splashImgSrc})`;
 
   repContainer.innerHTML = repContent;
 
@@ -195,16 +202,18 @@ setup.renderPlanetPassage = function (planetIndex) {
       console.error("relatedPassage is null for scenario", scenarioData);
     }
 
-    var content = planetContent + scenarioContent + passageContent;
-
+    var content = scenarioContent + passageContent;
     var mapScreen = document.getElementById("mapScreen");
+    var passage = document.getElementById("passage");
+    var planetContentContainer = document.getElementById("planetContent");
     var passageContainer = document.getElementById("passageContainer");
     var hud = document.getElementById("hud");
 
     if (mapScreen) mapScreen.style.display = "none";
     if (hud) hud.style.display = "flex";
     if (passageContainer) {
-      passageContainer.innerHTML = content;
+      passage.innerHTML = content;
+      planetContentContainer.innerHTML = planetContent;
       passageContainer.style.display = "block";
     }
   } catch (error) {
@@ -219,7 +228,7 @@ setup.returnToMap = function () {
 
   if (hud) hud.style.display = "none"; // Hide the HUD
   if (mapScreen) mapScreen.style.display = "grid"; // Show the map
-  if (passageContainer) passageContainer.innerHTML = ""; // Clear the passage content
+  if (passageContainer) passage.innerHTML = ""; // Clear the passage content
 
   // Reset the current planet index or any other state variables if needed
   // story.state.currentPlanetIndex = null;
@@ -270,12 +279,22 @@ setup.toggleHUD = function (shouldShow) {
     hud.style.display = shouldShow ? "flex" : "none";
     if (!shouldShow) {
       var passageContainer = document.getElementById("passageContainer");
+      var passage = document.getElementById("passage");
       if (passageContainer) {
-        passageContainer.innerHTML = ""; // Clear the passage container
+        passage.innerHTML = ""; // Clear the passage container
       }
     }
   } else {
     console.error("HUD element not found");
+  }
+};
+setup.updateEnergy = function (change) {
+  // update the $energy div when energy changes
+  var energy = document.getElementById("energy");
+  if (energy) {
+    energy.innerHTML = setup.game.energy;
+  } else {
+    console.error("Energy element not found");
   }
 };
 

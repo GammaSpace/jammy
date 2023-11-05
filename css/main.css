@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body,
 html {
   margin: 0;
@@ -6,7 +10,8 @@ html {
 }
 
 #hud {
-  display: none;
+  @apply hidden;
+
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -42,31 +47,32 @@ html {
   overflow: hidden;
 }
 #planet-info {
-  display: flex;
-  flex-direction: column;
-  align-self: end;
+  @apply flex flex-col self-end flex-grow z-20;
+}
+#planet-splash {
+  @apply absolute w-full h-full z-0 flex flex-col;
 }
 #rep {
-  display: flex;
-  align-items: end;
-  justify-content: end;
+  @apply flex flex-col self-end -ml-6 z-30 relative;
 }
 
 .repImage {
 }
 #passageContainer {
-  justify-self: end;
-  flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 20px;
-  /* max-width: 50vw; */
-  max-height: 33vh;
-  overflow-y: auto;
-  width: 100%;
+  @apply self-end flex-col w-full p-6 md:max-h-96 overflow-y-auto bg-neutral-400;
+}
+#passage {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+  }
 }
 
 #sidebar {
+  @apply z-20;
   height: 100vh;
   width: 30vw;
   min-width: 300px;
@@ -120,15 +126,11 @@ tw-story {
 }
 
 #sidebar ul {
-  list-style-type: none;
-  padding: 0;
+  @apply p-0 list-none;
 }
 
 #sidebar li {
-  font-size: 0.75rem;
-  padding: 10px;
-  border-bottom: 1px solid #444;
-  cursor: pointer;
+  @apply text-sm px-0 py-2 border-b-neutral-300 cursor-pointer;
 }
 
 #sidebar li:hover {
