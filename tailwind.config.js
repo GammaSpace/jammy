@@ -7,10 +7,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: "Barlow",
-        display: "NB Television Pro",
-        mono: "Courier New",
-        sans: "Neue Montreal, sans-serif",
+        body: "Helvetica",
+        display: "Handjet",
+        sans: "Helvetica",
       },
     },
   },

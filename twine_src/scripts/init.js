@@ -201,6 +201,10 @@ setup.showPlanet = function (planetIndex) {
 
   var splashContainer = document.getElementById("planet-splash");
   splashContainer.style.backgroundImage = `url(${planet.splashImgSrc})`;
+  splashContainer.innerHTML =
+    "<h1 class='text-xl md:text-6xl text-neutral-200 p-6 font-display uppercase'>" +
+    planet.name +
+    "</h1>";
 
   repContainer.innerHTML = repContent;
 
