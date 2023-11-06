@@ -174,9 +174,7 @@ story.state.setIt = function () {
 story.state.changeEnergy = function (change) {
   setup.game.energy += change;
   console.log("Energy is now ", setup.game.energy);
-  setup.updateEnergy(setup.game.energy);
-
-  // Animate the energy change text
+  setup.updateEnergyBar();
   var energyChangeText = document.getElementById("energyChangeText");
   if (change >= 0) {
     energyChangeText.innerText = `+${change}`;
@@ -252,7 +250,7 @@ setup.returnToMap = function () {
 
   story.state.currentPlanetIndex = null;
 
-  setup.updateEnergy();
+  // setup.updateEnergy();
 };
 
 setup.showRandomIncompleteScenario = function () {
@@ -344,12 +342,14 @@ setup.toggleHUD = function (shouldShow) {
     console.error("HUD element not found");
   }
 };
-setup.updateEnergy = function (change) {
-  var energy = document.getElementById("energy");
-  if (energy) {
-    energy.innerHTML = setup.game.energy;
+setup.updateEnergyBar = function () {
+  var energyBar = document.querySelector(".energy-bar"); // Assuming you add a class "energy-bar" to the div
+  if (energyBar) {
+    var newWidth = (setup.game.energy / 700) * 100;
+    newWidth = Math.min(Math.max(newWidth, 0), 100); // Clamp the value between 0 and 100
+    energyBar.style.width = newWidth + "%";
   } else {
-    console.error("Energy element not found");
+    console.error("Energy bar element not found");
   }
 };
 
