@@ -1525,12 +1525,24 @@ input[type="range"]::-ms-fill-lower{
   position: absolute;
 }
 
+.relative{
+  position: relative;
+}
+
+.left-2{
+  left: 0.5rem;
+}
+
 .top-0{
   top: 0px;
 }
 
 .z-10{
   z-index: 10;
+}
+
+.z-40{
+  z-index: 40;
 }
 
 .mx-auto{
@@ -1605,6 +1617,10 @@ input[type="range"]::-ms-fill-lower{
 
 .w-full{
   width: 100%;
+}
+
+.max-w-full{
+  max-width: 100%;
 }
 
 .flex-shrink-0{
@@ -1804,8 +1820,8 @@ html {
 }
 
 #mapScreen{
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   padding-top: 3rem;
   padding-bottom: 0px;
   background-image: url(./img/twinkle.gif);
@@ -1939,6 +1955,15 @@ body[data-tags~="map-screen"] {
 tw-story {
   max-width: 100vw;
   line-height: normal;
+}
+
+.energy-change-text {
+  opacity: 0;
+  transition: opacity 2s, transform 2s;
+  pointer-events: none;
+  /* So it doesn't block clicks */
+  z-index: 10;
+  /* Make sure it's above other elements */
 }
 
 .planet {
@@ -2190,7 +2215,26 @@ story.state.changeEnergy = function (change) {
   setup.game.energy += change;
   console.log("Energy is now ", setup.game.energy);
   setup.updateEnergy(setup.game.energy);
+
+  // Animate the energy change text
+  var energyChangeText = document.getElementById("energyChangeText");
+  if (change >= 0) {
+    energyChangeText.innerText = `+${change}`;
+  } else {
+    energyChangeText.innerText = `+${change}`;
+  }
+
+  energyChangeText.style.opacity = 0;
+
+  setTimeout(function () {
+    energyChangeText.style.opacity = 1;
+  }, 10);
+
+  setTimeout(function () {
+    energyChangeText.style.opacity = 0;
+  }, 2000);
 };
+
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
@@ -2244,10 +2288,11 @@ setup.returnToMap = function () {
 
   if (hud) hud.style.display = "none"; // Hide the HUD
   if (mapScreen) mapScreen.style.display = "grid"; // Show the map
-  if (passageContainer) passage.innerHTML = ""; // Clear the passage content
+  if (passageContainer) passageContainer.innerHTML = ""; // Clear the passage content
 
-  // Reset the current planet index or any other state variables if needed
-  // story.state.currentPlanetIndex = null;
+  story.state.currentPlanetIndex = null;
+
+  setup.updateEnergy();
 };
 
 setup.showRandomIncompleteScenario = function () {
@@ -2272,32 +2317,6 @@ setup.showRandomIncompleteScenario = function () {
   }
 };
 
-// setup.showMap = function () {
-//   var mapScreen = document.getElementById("mapScreen");
-//   if (mapScreen) {
-//     mapScreen.style.display = "grid"; // Show the map
-//     setup.game.planets.forEach((planet) => {
-//       const img = document.createElement("img");
-//       img.className = `planet planet${planet.id}`;
-
-//       // Check if the planet has a need for the current turn
-//       const currentTurn = setup.game.turns.find(
-//         (turn) => turn.turnNumber === setup.game.turn
-//       );
-//       if (currentTurn && currentTurn.planets.find((p) => p.id === planet.id)) {
-//         img.classList.add("active-turn"); // Add a class if the planet has a need this turn
-//       }
-
-//       img.src = planet.imgSrc;
-//       img.onclick = function () {
-//         setup.renderPlanetPassage(planet.id - 1);
-//         setup.toggleHUD(true);
-//       };
-//       mapScreen.appendChild(img);
-//     });
-//   }
-// };
-
 setup.showMap = function () {
   var mapScreen = document.getElementById("mapScreen");
   if (mapScreen) {
@@ -2315,7 +2334,7 @@ setup.showMap = function () {
         (turn) => turn.turnNumber === setup.game.turn
       );
       if (currentTurn && currentTurn.planets.find((p) => p.id === planet.id)) {
-        img.classList.add("active-turn"); // Add a class if the planet has a need this turn
+        img.classList.add("active-turn");
       }
 
       img.src = planet.imgSrc;
@@ -2366,7 +2385,6 @@ setup.toggleHUD = function (shouldShow) {
   }
 };
 setup.updateEnergy = function (change) {
-  // update the $energy div when energy changes
   var energy = document.getElementById("energy");
   if (energy) {
     energy.innerHTML = setup.game.energy;
@@ -2376,12 +2394,12 @@ setup.updateEnergy = function (change) {
 };
 
 setup.startNewTurn = function () {
-  setup.game.turn += 1; // Increment the turn counter
-  document.getElementById("turnCounter").innerText = setup.game.turn; // Update the turn display in the HUD
-  setup.game.addressedNeeds = []; // Reset the addressed needs
-  setup.checkPlanetaryNeeds(); // Check if any planets have needs for the new turn
-  setup.checkTurnEvents(); // Check if there are any events for the new turn
-  // checkpoint?
+  setup.game.turn += 1;
+  document.getElementById("turnCounter").innerText = setup.game.turn;
+  setup.game.addressedNeeds = [];
+  setup.checkPlanetaryNeeds();
+  setup.checkTurnEvents();
+  // srt checkpoint?
 };
 
 setup.checkPlanetaryNeeds = function () {
@@ -2486,11 +2504,11 @@ What&#39;s your planet name?
     &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;hudTop&quot; class=&quot;flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex flex-row&quot;&gt;
         &lt;div class=&quot;block text-sm mr-6&quot;&gt;Energy:&lt;/div&gt;
-    
-        &lt;div id=&quot;hudTop&quot; class=&quot;w-2/3 block h-6 bg-neutral-200 rounded-full dark:bg-neutral-700&quot;&gt;
-            &lt;div class=&quot;h-6 bg-neutral-600 rounded-full dark:bg-neutral-500&quot;
-            style=&quot;width: &lt;%= setup.game.energy / 700 * 100 %&gt;%&quot;&gt;
-            &lt;/div&gt;
+
+        &lt;div class=&quot;relative w-2/3 block h-6 bg-neutral-200 rounded-full dark:bg-neutral-700&quot;&gt;
+            &lt;div id=&quot;energyChangeText&quot; class=&quot;h-6 flex items-center text-white text-sm z-40 energy-change-text absolute left-2&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;h-6 relative bg-neutral-600 rounded-full dark:bg-neutral-500 max-w-full&quot;
+            style=&quot;width: &lt;%= setup.game.energy / 700 * 100 %&gt;%&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class=&quot;ml-6 block text-sm&quot;&gt;Turn: &lt;span id=&quot;turnCounter&quot;&gt;&lt;%= setup.game.turn %&gt;&lt;/span&gt;&lt;/div&gt;
 
@@ -2533,20 +2551,20 @@ What&#39;s your planet name?
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="6" name="Melodic Quest" tags="" position="725,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
-    &lt;span onclick=&#39;story.state.changeEnergy(10); story.show(&quot;Start&quot;)&#39;&gt;
+    &lt;span onclick=&#39;story.show(&quot;Start&quot;);story.state.changeEnergy(10); &#39;&gt;
         Gather musical fragments (+10 energy)
     &lt;/span&gt;
     [[Move on…|Start]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Quantum Conundrum" tags="" position="850,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
-    &lt;span onclick=&#39;story.state.changeEnergy(200); story.show(&quot;Start&quot;)&#39;&gt;Solve puzzles (+200 energy)&lt;/span&gt;
+    &lt;span onclick=&#39;story.show(&quot;Start&quot;);story.state.changeEnergy(200);&#39;&gt;Solve puzzles (+200 energy)&lt;/span&gt;
     &lt;span onclick=&#39;setup.addressPlanetaryNeed(1);&#39;&gt;Address need&lt;/span&gt;
     [[Forget it…|Start]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Stellar Cradle" tags="" position="975,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
-    &lt;span onclick=&#39;story.state.changeEnergy(100); story.show(&quot;Start&quot;)&#39;&gt;Gather stardust (+100 energy)&lt;/span&gt;
+    &lt;span onclick=&#39;story.show(&quot;Start&quot;);story.state.changeEnergy(100);&#39;&gt;Gather stardust (+100 energy)&lt;/span&gt;
     &lt;span onclick=&#39;setup.addressPlanetaryNeed(1);&#39;&gt;Address need&lt;/span&gt;
 
     [[Forget it…|Start]]

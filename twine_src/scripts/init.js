@@ -175,7 +175,26 @@ story.state.changeEnergy = function (change) {
   setup.game.energy += change;
   console.log("Energy is now ", setup.game.energy);
   setup.updateEnergy(setup.game.energy);
+
+  // Animate the energy change text
+  var energyChangeText = document.getElementById("energyChangeText");
+  if (change >= 0) {
+    energyChangeText.innerText = `+${change}`;
+  } else {
+    energyChangeText.innerText = `+${change}`;
+  }
+
+  energyChangeText.style.opacity = 0;
+
+  setTimeout(function () {
+    energyChangeText.style.opacity = 1;
+  }, 10);
+
+  setTimeout(function () {
+    energyChangeText.style.opacity = 0;
+  }, 2000);
 };
+
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
   let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
@@ -229,10 +248,11 @@ setup.returnToMap = function () {
 
   if (hud) hud.style.display = "none"; // Hide the HUD
   if (mapScreen) mapScreen.style.display = "grid"; // Show the map
-  if (passageContainer) passage.innerHTML = ""; // Clear the passage content
+  if (passageContainer) passageContainer.innerHTML = ""; // Clear the passage content
 
-  // Reset the current planet index or any other state variables if needed
-  // story.state.currentPlanetIndex = null;
+  story.state.currentPlanetIndex = null;
+
+  setup.updateEnergy();
 };
 
 setup.showRandomIncompleteScenario = function () {
@@ -257,32 +277,6 @@ setup.showRandomIncompleteScenario = function () {
   }
 };
 
-// setup.showMap = function () {
-//   var mapScreen = document.getElementById("mapScreen");
-//   if (mapScreen) {
-//     mapScreen.style.display = "grid"; // Show the map
-//     setup.game.planets.forEach((planet) => {
-//       const img = document.createElement("img");
-//       img.className = `planet planet${planet.id}`;
-
-//       // Check if the planet has a need for the current turn
-//       const currentTurn = setup.game.turns.find(
-//         (turn) => turn.turnNumber === setup.game.turn
-//       );
-//       if (currentTurn && currentTurn.planets.find((p) => p.id === planet.id)) {
-//         img.classList.add("active-turn"); // Add a class if the planet has a need this turn
-//       }
-
-//       img.src = planet.imgSrc;
-//       img.onclick = function () {
-//         setup.renderPlanetPassage(planet.id - 1);
-//         setup.toggleHUD(true);
-//       };
-//       mapScreen.appendChild(img);
-//     });
-//   }
-// };
-
 setup.showMap = function () {
   var mapScreen = document.getElementById("mapScreen");
   if (mapScreen) {
@@ -300,7 +294,7 @@ setup.showMap = function () {
         (turn) => turn.turnNumber === setup.game.turn
       );
       if (currentTurn && currentTurn.planets.find((p) => p.id === planet.id)) {
-        img.classList.add("active-turn"); // Add a class if the planet has a need this turn
+        img.classList.add("active-turn");
       }
 
       img.src = planet.imgSrc;
@@ -351,7 +345,6 @@ setup.toggleHUD = function (shouldShow) {
   }
 };
 setup.updateEnergy = function (change) {
-  // update the $energy div when energy changes
   var energy = document.getElementById("energy");
   if (energy) {
     energy.innerHTML = setup.game.energy;
@@ -361,12 +354,12 @@ setup.updateEnergy = function (change) {
 };
 
 setup.startNewTurn = function () {
-  setup.game.turn += 1; // Increment the turn counter
-  document.getElementById("turnCounter").innerText = setup.game.turn; // Update the turn display in the HUD
-  setup.game.addressedNeeds = []; // Reset the addressed needs
-  setup.checkPlanetaryNeeds(); // Check if any planets have needs for the new turn
-  setup.checkTurnEvents(); // Check if there are any events for the new turn
-  // checkpoint?
+  setup.game.turn += 1;
+  document.getElementById("turnCounter").innerText = setup.game.turn;
+  setup.game.addressedNeeds = [];
+  setup.checkPlanetaryNeeds();
+  setup.checkTurnEvents();
+  // srt checkpoint?
 };
 
 setup.checkPlanetaryNeeds = function () {
