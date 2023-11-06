@@ -25,7 +25,7 @@ html {
 }
 
 #mapScreen {
-  @apply pt-12 px-20 pb-0;
+  @apply pt-12 px-6 pb-0;
   background-image: url(./img/twinkle.gif);
   background-size: cover;
   position: relative;
@@ -113,6 +113,13 @@ body[data-tags~="map-screen"] {
 tw-story {
   max-width: 100vw;
   line-height: normal;
+}
+
+.energy-change-text {
+  opacity: 0;
+  transition: opacity 2s, transform 2s;
+  pointer-events: none; /* So it doesn't block clicks */
+  z-index: 10; /* Make sure it's above other elements */
 }
 
 .planet {
