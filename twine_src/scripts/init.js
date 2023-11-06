@@ -1,17 +1,26 @@
 window.setup = window.setup || {};
-
+$.getScript(
+  "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"
+);
 // scripts/init.js
 setup.game = {
   playerName: "",
+  turn: 1,
   energy: 100,
-
+  playerPlanet: {
+    id: 0,
+    name: "",
+    description: "",
+    energy: 0,
+    imgSrc: "",
+  },
   planets: [
     {
       id: 1,
       imgSrc: "img/planet-1.png",
       repImgSrc: "img/rep-1.png",
       splashImgSrc: "img/planet-1-splash.png",
-      name: "Planet A (Tutorial): FuNKybEAtZ",
+      name: "FuNKybEAtZ",
       rep: "DJ FuNKybEAtZ (they/them)",
       project:
         "EmCee for the show. The broadcast is actually being transmitted through DJ FUNKYBEATZ.",
@@ -23,7 +32,7 @@ setup.game = {
       imgSrc: "img/planet-2.png",
       repImgSrc: "img/rep-2.png",
       splashImgSrc: "img/planet-2-splash.png",
-      name: "Planet B: Razzmatazz",
+      name: "Razzmatazz",
       rep: "Boris the Clown (he/him)",
       project:
         "Holographic circus show. Involves juggling spoons and repurposing all kinds of garbage. Very silly and wild.",
@@ -35,7 +44,7 @@ setup.game = {
       imgSrc: "img/planet-3.png",
       repImgSrc: "img/rep-3.png",
       splashImgSrc: "img/planet-3-splash.png",
-      name: "Planet C: Chanterella",
+      name: "Chanterella",
       rep: "Spore T. Spice (she/they high femme drag)",
       project: "Holographic psychedelic performance art drag show.",
       description:
@@ -46,7 +55,7 @@ setup.game = {
       imgSrc: "img/planet-4.png",
       repImgSrc: "img/rep-4.png",
       splashImgSrc: "img/planet-4-splash.png",
-      name: "Planet D: Kelpler",
+      name: "Kelpler",
       rep: "Flotsam (they/them)",
       project:
         "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
@@ -58,14 +67,13 @@ setup.game = {
       imgSrc: "img/planet-5.png",
       repImgSrc: "img/rep-5.png",
       splashImgSrc: "img/planet-5-splash.png",
-      name: "Planet E: Barkenberg",
+      name: "Barkenberg",
       rep: "Spike (cat), Spook (raccoon), and Spark (dog) - (independent genders)",
       project: "Audio drama of their heists narrated (like War of the Worlds).",
       description:
         "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
     },
   ],
-
   scenarios: [
     {
       title: "Stellar Harmony",
@@ -91,9 +99,41 @@ setup.game = {
   ],
   turns: [
     {
-      1: {},
-      2: {},
+      turnNumber: 1,
+      event: {
+        description: "Swarm of space bees",
+      },
+      planets: [
+        {
+          id: 1,
+          need: {
+            askText: "Plant a garden",
+            energyChange: 5,
+            helpSuccessText: "Success Text",
+            helpFailedText: "Failed Text",
+          },
+        },
+        {
+          id: 3,
+          need: {
+            askText: "Capture the bees",
+            energyChange: 15,
+            helpSuccessText: "Success Text",
+            helpFailedText: "Failed Text",
+          },
+        },
+        {
+          id: 5,
+          need: {
+            askText: "Invite the Queen to dinner",
+            energyChange: 25,
+            helpSuccessText: "Success Text",
+            helpFailedText: "Failed Text",
+          },
+        },
+      ],
     },
+    // ... other turns
   ],
 };
 
@@ -217,6 +257,32 @@ setup.showRandomIncompleteScenario = function () {
   }
 };
 
+// setup.showMap = function () {
+//   var mapScreen = document.getElementById("mapScreen");
+//   if (mapScreen) {
+//     mapScreen.style.display = "grid"; // Show the map
+//     setup.game.planets.forEach((planet) => {
+//       const img = document.createElement("img");
+//       img.className = `planet planet${planet.id}`;
+
+//       // Check if the planet has a need for the current turn
+//       const currentTurn = setup.game.turns.find(
+//         (turn) => turn.turnNumber === setup.game.turn
+//       );
+//       if (currentTurn && currentTurn.planets.find((p) => p.id === planet.id)) {
+//         img.classList.add("active-turn"); // Add a class if the planet has a need this turn
+//       }
+
+//       img.src = planet.imgSrc;
+//       img.onclick = function () {
+//         setup.renderPlanetPassage(planet.id - 1);
+//         setup.toggleHUD(true);
+//       };
+//       mapScreen.appendChild(img);
+//     });
+//   }
+// };
+
 setup.showMap = function () {
   var mapScreen = document.getElementById("mapScreen");
   if (mapScreen) {
@@ -224,15 +290,43 @@ setup.showMap = function () {
     setup.game.planets.forEach((planet) => {
       const img = document.createElement("img");
       img.className = `planet planet${planet.id}`;
+      img.setAttribute(
+        "data-tooltip-target",
+        `tooltip-animation-planet${planet.id}`
+      );
+
+      // Check if the planet has a need for the current turn
+      const currentTurn = setup.game.turns.find(
+        (turn) => turn.turnNumber === setup.game.turn
+      );
+      if (currentTurn && currentTurn.planets.find((p) => p.id === planet.id)) {
+        img.classList.add("active-turn"); // Add a class if the planet has a need this turn
+      }
+
       img.src = planet.imgSrc;
       img.onclick = function () {
         setup.renderPlanetPassage(planet.id - 1);
         setup.toggleHUD(true);
       };
+
+      // Tooltip creation
+      const tooltip = document.createElement("div");
+      tooltip.id = `tooltip-animation-planet${planet.id}`;
+      tooltip.setAttribute("role", "tooltip");
+      tooltip.className =
+        "absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-neutral-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700 text-sm font-mono";
+      tooltip.innerText = planet.name;
+      const tooltipArrow = document.createElement("div");
+      tooltipArrow.className = "tooltip-arrow";
+      tooltipArrow.setAttribute("data-popper-arrow", "");
+      tooltip.appendChild(tooltipArrow);
+
       mapScreen.appendChild(img);
+      mapScreen.appendChild(tooltip); // Append tooltip to the map screen
     });
   }
 };
+
 setup.toggleHUDTop = function (shouldShow) {
   var hudTop = document.getElementById("hudTop");
   if (hudTop) {
@@ -263,6 +357,58 @@ setup.updateEnergy = function (change) {
     energy.innerHTML = setup.game.energy;
   } else {
     console.error("Energy element not found");
+  }
+};
+
+setup.startNewTurn = function () {
+  setup.game.turn += 1; // Increment the turn counter
+  document.getElementById("turnCounter").innerText = setup.game.turn; // Update the turn display in the HUD
+  setup.game.addressedNeeds = []; // Reset the addressed needs
+  setup.checkPlanetaryNeeds(); // Check if any planets have needs for the new turn
+  setup.checkTurnEvents(); // Check if there are any events for the new turn
+  // checkpoint?
+};
+
+setup.checkPlanetaryNeeds = function () {
+  setup.game.planets.forEach((planet) => {
+    const turnNeed = setup.game.turns.find(
+      (turn) =>
+        turn.turnNumber === setup.game.turn &&
+        turn.planets.some((p) => p.id === planet.id)
+    );
+    if (turnNeed) {
+      // Handle the planet's need here
+      console.log(
+        "Planet " + planet.name + " has a need: " + turnNeed.need.askText
+      );
+    }
+  });
+};
+
+setup.checkTurnEvents = function () {
+  // Check if there is an event for the current turn
+  const turnEvent = setup.game.turns.find(
+    (turn) => turn.turnNumber === setup.game.turn && turn.event
+  );
+  if (turnEvent) {
+    // Handle the event here
+    console.log("Event occurs: " + turnEvent.event.description);
+  }
+};
+
+setup.addressPlanetaryNeed = function (planetId) {
+  setup.game.addressedNeeds.push(planetId);
+
+  const needsForTurn = setup.game.turns
+    .find((turn) => turn.turnNumber === setup.game.turn)
+    .planets.map((planet) => planet.id);
+
+  const allNeedsAddressed = needsForTurn.every((id) =>
+    setup.game.addressedNeeds.includes(id)
+  );
+
+  if (allNeedsAddressed) {
+    setup.endTurn();
   }
 };
 
