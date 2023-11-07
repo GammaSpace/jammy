@@ -1571,8 +1571,6 @@ html {
   margin: 0;
   height: 100%;
   /* Full height */
-  overflow: hidden;
-  /* Prevent body scrolling */
 }
 
 #hud{
@@ -1722,6 +1720,8 @@ html {
 
 body[data-tags~="map-screen"] {
   padding: 0;
+  overflow: hidden;
+  /* Prevent body scrolling */
 }
 
 body.customization{
