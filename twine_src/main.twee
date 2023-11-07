@@ -18,35 +18,35 @@ Jammy Jam
 
 
         <div>
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">What's your name?</label>
+            <label for="playerName" class="block text-sm font-medium leading-6 text-gray-900">What's your name?</label>
             <div class="mt-2">
                 <input id="playerName" name="playerName" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
         <div>
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">What's your planet's name?</label>
+            <label for="planetName" class="block text-sm font-medium leading-6 text-gray-900">What's your planet's name?</label>
             <div class="mt-2">
                 <input id="planetName" name="planetName" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
         <div>
-            <label for="comment" class="block text-sm font-medium leading-6 text-gray-900">Tell us more about your planet.</label>
+            <label for="planetDescription" class="block text-sm font-medium leading-6 text-gray-900">Tell us more about your planet.</label>
             <div class="mt-2">
-            <textarea rows="4" name="planetDescription" id="planetDescription" class="customization-textarea" oninput="setup.checkInputs()" />
+            <textarea rows="4" name="planetDescription" id="planetDescription" class="customization-textarea" oninput="setup.checkInputs()"></textarea>
             </div>
         </div>
 
         <div>
-        <label class="text-base font-semibold text-gray-900">Home Planet</label>
-        <p class="text-sm text-gray-500">Pick a planet body:</p>
-        <fieldset class="mt-4">
+        <p for="planetImg" class="text-base font-semibold text-neutral-50">Home Planet</p>
+        <p class="text-sm text-neutral-200">Pick a planet body:</p>
+        <fieldset class="mt-4" id="planetImg">
             <div class="space-y-4">
                 <% 
                 ["saturn", "banana", "blorb", "earth", "macaroni"].map(function(imgName, index) {
                     var imgPath = "img/player-planet-" + imgName + ".png";
                 %>
                     <div class="flex items-center">
-                    <input id="planetImg<%= index %>" value="<%= imgPath %>" name="planetImage" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" <%= index === 0 ? "checked" : "" %>>
+                    <input oninput="setup.checkInputs()" id="planetImg<%= index %>" value="<%= imgPath %>" name="planetImage" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" <%= index === 0 ? "checked" : "" %>>
                     <label for="planetImg<%= index %>" class="ml-3 h-12 w-12 block text-sm font-medium leading-6 text-gray-900"><img src="<%= imgPath %>" alt="Planet Image <%= index + 1 %>"></label>
                     </div>
                 <% 
@@ -57,7 +57,7 @@ Jammy Jam
         </div>
 
 
-        <button id="nextButton" onclick="setup.savePlayerInfo()" class="enabled:hover:border-gray-400 disabled:opacity-75" disabled>Next</button>
+        <button id="nextButton" onclick="setup.savePlayerInfo()" class="disabled:opacity-25" disabled>Next</button>
 
 
         <% if (story.state.playerName && story.state.planetName) { %>

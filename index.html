@@ -1532,11 +1532,6 @@ select{
   line-height: 1.5rem;
 }
 
-.text-gray-500{
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
 .text-gray-900{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -1550,6 +1545,11 @@ select{
 .text-neutral-200{
   --tw-text-opacity: 1;
   color: rgb(229 229 229 / var(--tw-text-opacity));
+}
+
+.text-neutral-50{
+  --tw-text-opacity: 1;
+  color: rgb(250 250 250 / var(--tw-text-opacity));
 }
 
 .text-neutral-900{
@@ -1909,6 +1909,37 @@ tw-story {
   border-color: black transparent transparent transparent;
 }
 
+button{
+  cursor: pointer;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+button:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+
+button:focus-visible{
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: #4f46e5;
+}
+
 /* Show the tooltip text when you hover over the tooltip container */
 
 .tooltip-container:hover .tooltip-text {
@@ -2028,6 +2059,10 @@ tw-story {
 
 .disabled\:opacity-75:disabled{
   opacity: 0.75;
+}
+
+.disabled\:opacity-25:disabled{
+  opacity: 0.25;
 }
 
 @media (prefers-color-scheme: dark){
@@ -2213,12 +2248,28 @@ setup.savePlayerInfo = function () {
 };
 
 setup.checkInputs = function () {
-  var playerName = document.getElementById("playerName").value;
-  var planetName = document.getElementById("planetName").value;
+  var playerName = document.getElementById("playerName").value.trim();
+  var planetName = document.getElementById("planetName").value.trim();
+  var planetDescription = document
+    .getElementById("planetDescription")
+    .value.trim();
+
+  // Access the checked radio button by name
+  var planetImage = document.querySelector(
+    'input[name="planetImage"]:checked'
+  )?.value;
+
   var nextButton = document.getElementById("nextButton");
 
-  nextButton.disabled = !(playerName && planetName);
+  // Enable the button only if all fields have values
+  nextButton.disabled = !(
+    playerName &&
+    planetName &&
+    planetDescription &&
+    planetImage
+  );
 };
+
 story.state.setHe = function () {
   story.state.pronouns = ["he", "him", "his", "his", "he's"];
   story.state.cPronouns = ["He", "Him", "His", "His", "He's"];
@@ -2572,35 +2623,35 @@ setup.accountForValue = function () {
 
 
         &lt;div&gt;
-            &lt;label for=&quot;email&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;What&#39;s your name?&lt;/label&gt;
+            &lt;label for=&quot;playerName&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;What&#39;s your name?&lt;/label&gt;
             &lt;div class=&quot;mt-2&quot;&gt;
                 &lt;input id=&quot;playerName&quot; name=&quot;playerName&quot; type=&quot;text&quot; value=&quot;&quot; oninput=&quot;setup.checkInputs()&quot; class=&quot;customization-text-input&quot;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
-            &lt;label for=&quot;email&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;What&#39;s your planet&#39;s name?&lt;/label&gt;
+            &lt;label for=&quot;planetName&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;What&#39;s your planet&#39;s name?&lt;/label&gt;
             &lt;div class=&quot;mt-2&quot;&gt;
                 &lt;input id=&quot;planetName&quot; name=&quot;planetName&quot; type=&quot;text&quot; value=&quot;&quot; oninput=&quot;setup.checkInputs()&quot; class=&quot;customization-text-input&quot;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
-            &lt;label for=&quot;comment&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;Tell us more about your planet.&lt;/label&gt;
+            &lt;label for=&quot;planetDescription&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;Tell us more about your planet.&lt;/label&gt;
             &lt;div class=&quot;mt-2&quot;&gt;
-            &lt;textarea rows=&quot;4&quot; name=&quot;planetDescription&quot; id=&quot;planetDescription&quot; class=&quot;customization-textarea&quot; oninput=&quot;setup.checkInputs()&quot; /&gt;
+            &lt;textarea rows=&quot;4&quot; name=&quot;planetDescription&quot; id=&quot;planetDescription&quot; class=&quot;customization-textarea&quot; oninput=&quot;setup.checkInputs()&quot;&gt;&lt;/textarea&gt;
             &lt;/div&gt;
         &lt;/div&gt;
 
         &lt;div&gt;
-        &lt;label class=&quot;text-base font-semibold text-gray-900&quot;&gt;Home Planet&lt;/label&gt;
-        &lt;p class=&quot;text-sm text-gray-500&quot;&gt;Pick a planet body:&lt;/p&gt;
-        &lt;fieldset class=&quot;mt-4&quot;&gt;
+        &lt;p for=&quot;planetImg&quot; class=&quot;text-base font-semibold text-neutral-50&quot;&gt;Home Planet&lt;/p&gt;
+        &lt;p class=&quot;text-sm text-neutral-200&quot;&gt;Pick a planet body:&lt;/p&gt;
+        &lt;fieldset class=&quot;mt-4&quot; id=&quot;planetImg&quot;&gt;
             &lt;div class=&quot;space-y-4&quot;&gt;
                 &lt;% 
                 [&quot;saturn&quot;, &quot;banana&quot;, &quot;blorb&quot;, &quot;earth&quot;, &quot;macaroni&quot;].map(function(imgName, index) {
                     var imgPath = &quot;img/player-planet-&quot; + imgName + &quot;.png&quot;;
                 %&gt;
                     &lt;div class=&quot;flex items-center&quot;&gt;
-                    &lt;input id=&quot;planetImg&lt;%= index %&gt;&quot; value=&quot;&lt;%= imgPath %&gt;&quot; name=&quot;planetImage&quot; type=&quot;radio&quot; class=&quot;h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600&quot; &lt;%= index === 0 ? &quot;checked&quot; : &quot;&quot; %&gt;&gt;
+                    &lt;input oninput=&quot;setup.checkInputs()&quot; id=&quot;planetImg&lt;%= index %&gt;&quot; value=&quot;&lt;%= imgPath %&gt;&quot; name=&quot;planetImage&quot; type=&quot;radio&quot; class=&quot;h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600&quot; &lt;%= index === 0 ? &quot;checked&quot; : &quot;&quot; %&gt;&gt;
                     &lt;label for=&quot;planetImg&lt;%= index %&gt;&quot; class=&quot;ml-3 h-12 w-12 block text-sm font-medium leading-6 text-gray-900&quot;&gt;&lt;img src=&quot;&lt;%= imgPath %&gt;&quot; alt=&quot;Planet Image &lt;%= index + 1 %&gt;&quot;&gt;&lt;/label&gt;
                     &lt;/div&gt;
                 &lt;% 
@@ -2611,7 +2662,7 @@ setup.accountForValue = function () {
         &lt;/div&gt;
 
 
-        &lt;button id=&quot;nextButton&quot; onclick=&quot;setup.savePlayerInfo()&quot; class=&quot;enabled:hover:border-gray-400 disabled:opacity-75&quot; disabled&gt;Next&lt;/button&gt;
+        &lt;button id=&quot;nextButton&quot; onclick=&quot;setup.savePlayerInfo()&quot; class=&quot;disabled:opacity-25&quot; disabled&gt;Next&lt;/button&gt;
 
 
         &lt;% if (story.state.playerName &amp;&amp; story.state.planetName) { %&gt;
