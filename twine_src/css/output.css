@@ -1672,7 +1672,7 @@ html {
 @keyframes pulseGlow {
   0%,
   100% {
-    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.6));
   }
 
   50% {
@@ -1874,12 +1874,12 @@ tw-story {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   --tw-text-opacity: 1;
   color: rgb(212 212 212 / var(--tw-text-opacity));
   position: absolute;
-  bottom: 100%;
+  bottom: 70%;
   left: 50%;
   transform: translate(-50%, -10px);
 }
@@ -2038,15 +2038,6 @@ button:focus-visible{
 .focus\:ring-indigo-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
-}
-
-.enabled\:hover\:border-gray-400:hover:enabled{
-  --tw-border-opacity: 1;
-  border-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
-
-.disabled\:opacity-75:disabled{
-  opacity: 0.75;
 }
 
 .disabled\:opacity-25:disabled{
