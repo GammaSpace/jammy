@@ -479,7 +479,7 @@ setup.completeScenario = function (energyChange) {
     (s) => s.title === currentPassageTitle
   );
   if (scenario) scenario.complete = true;
-  // setup.game.energy += energyChange;
+  story.checkpoint("Completed " + currentPassageTitle);
   story.show("Map Screen");
   story.state.changeEnergy(energyChange);
 };
