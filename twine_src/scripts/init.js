@@ -1,19 +1,9 @@
 window.setup = window.setup || {};
-$.getScript(
-  "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"
-);
+
 // scripts/init.js
 setup.game = {
-  playerName: "",
   turn: 1,
   energy: 100,
-  playerPlanet: {
-    id: 0,
-    name: "",
-    description: "",
-    energy: 0,
-    imgSrc: "",
-  },
   planets: [
     {
       id: 1,
@@ -137,13 +127,26 @@ setup.game = {
   ],
 };
 
-setup.saveNames = function () {
+setup.savePlayerInfo = function () {
   var playerName = document.getElementById("playerName").value;
   var planetName = document.getElementById("planetName").value;
+  var planetDescription = document.getElementById("planetDescription").value;
+
+  var planetImgSrc = document.querySelector(
+    'input[name="planetImage"]:checked'
+  ).value;
+
+  story.state.playerPlanet = {
+    name: planetName,
+    description: planetDescription,
+    imgSrc: planetImgSrc,
+  };
+
   story.state.playerName = playerName;
-  story.state.planetName = planetName;
-  story.show("MapScreen");
+
+  story.show("Map Screen");
 };
+
 setup.checkInputs = function () {
   var playerName = document.getElementById("playerName").value;
   var planetName = document.getElementById("planetName").value;
@@ -248,13 +251,11 @@ setup.returnToMap = function () {
   var mapScreen = document.getElementById("mapScreen");
   var passageContainer = document.getElementById("passageContainer");
 
-  if (hud) hud.style.display = "none"; // Hide the HUD
-  if (mapScreen) mapScreen.style.display = "grid"; // Show the map
-  if (passageContainer) passageContainer.innerHTML = ""; // Clear the passage content
+  if (hud) hud.style.display = "none";
+  if (mapScreen) mapScreen.style.display = "grid";
+  if (passage) passage.innerHTML = "";
 
   story.state.currentPlanetIndex = null;
-
-  // setup.updateEnergy();
 };
 
 setup.showRandomIncompleteScenario = function () {
@@ -283,46 +284,103 @@ setup.showMap = function () {
   var mapScreen = document.getElementById("mapScreen");
   if (mapScreen) {
     mapScreen.style.display = "grid"; // Show the map
+
+    // Clear the map screen before adding new elements
+    mapScreen.innerHTML = "";
+
+    // Create and append planet containers with images and tooltips
     setup.game.planets.forEach((planet) => {
+      const planetContainer = document.createElement("div");
+      planetContainer.className = `planet-container planet-container${planet.id}`;
+
       const img = document.createElement("img");
       img.className = `planet planet${planet.id}`;
-      img.setAttribute(
-        "data-tooltip-target",
-        `tooltip-animation-planet${planet.id}`
-      );
-
-      // Check if the planet has a need for the current turn
-      const currentTurn = setup.game.turns.find(
-        (turn) => turn.turnNumber === setup.game.turn
-      );
-      if (currentTurn && currentTurn.planets.find((p) => p.id === planet.id)) {
-        img.classList.add("active-turn");
-      }
 
       img.src = planet.imgSrc;
-      img.onclick = function () {
-        setup.renderPlanetPassage(planet.id - 1);
-        setup.toggleHUD(true);
+
+      // Image load event
+      img.onload = function () {
+        // Check for the current turn's needs for this planet
+        const currentTurn = setup.game.turns.find(
+          (turn) => turn.turnNumber === setup.game.turn
+        );
+        if (
+          currentTurn &&
+          currentTurn.planets.find((p) => p.id === planet.id)
+        ) {
+          img.classList.add("active-turn");
+        }
+
+        // Click event for the image
+        img.onclick = function () {
+          setup.renderPlanetPassage(planet.id - 1);
+          setup.toggleHUD(true);
+        };
+
+        // Append image to planet container
+        planetContainer.appendChild(img);
+        // Append tooltip to planet container
+        setup.appendTooltip(planet, planetContainer);
+
+        // Finally, append the planet container to the map screen
+        mapScreen.appendChild(planetContainer);
       };
-
-      // Tooltip creation
-      const tooltip = document.createElement("div");
-      tooltip.id = `tooltip-animation-planet${planet.id}`;
-      tooltip.setAttribute("role", "tooltip");
-      tooltip.className =
-        "absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-neutral-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700 text-sm font-mono";
-      tooltip.innerText = planet.name;
-      const tooltipArrow = document.createElement("div");
-      tooltipArrow.className = "tooltip-arrow";
-      tooltipArrow.setAttribute("data-popper-arrow", "");
-      tooltip.appendChild(tooltipArrow);
-
-      mapScreen.appendChild(img);
-      mapScreen.appendChild(tooltip); // Append tooltip to the map screen
     });
+
+    // Append the player's planet if it exists
+    if (story.state.playerPlanet) {
+      const playerPlanetContainer = document.createElement("div");
+      playerPlanetContainer.className =
+        "planet-container planet-container-player";
+
+      const playerPlanetImg = document.createElement("img");
+      playerPlanetImg.className = "planet planet-player";
+      playerPlanetImg.src = story.state.playerPlanet.imgSrc;
+
+      // Player planet image load event
+      playerPlanetImg.onload = function () {
+        // Click event for the player planet image
+        playerPlanetImg.onclick = function () {
+          setup.renderPlanetPassage("player");
+          setup.toggleHUD(true);
+        };
+
+        // Append player planet image to its container
+        playerPlanetContainer.appendChild(playerPlanetImg);
+        // Append tooltip to player planet container
+        setup.appendTooltip(story.state.playerPlanet, playerPlanetContainer);
+
+        // Finally, append the player planet container to the map screen
+        mapScreen.appendChild(playerPlanetContainer);
+      };
+    }
   }
 };
+setup.appendTooltip = (planet, container) => {
+  const tooltipDiv = document.createElement("div");
+  tooltipDiv.className = "tooltip";
+  tooltipDiv.innerText = planet.name;
+  // Hide the tooltip initially
+  tooltipDiv.style.visibility = "hidden";
+  tooltipDiv.style.opacity = "0";
+  tooltipDiv.style.transition =
+    "visibility 0s linear 0.5s, opacity 0.5s linear";
+  container.appendChild(tooltipDiv);
 
+  // Show the tooltip on hover
+  container.onmouseover = function () {
+    tooltipDiv.style.visibility = "visible";
+    tooltipDiv.style.opacity = "1";
+    tooltipDiv.style.transitionDelay = "0s";
+  };
+
+  // Hide the tooltip when not hovered
+  container.onmouseleave = function () {
+    tooltipDiv.style.visibility = "hidden";
+    tooltipDiv.style.opacity = "0";
+    tooltipDiv.style.transitionDelay = "0.5s";
+  };
+};
 setup.toggleHUDTop = function (shouldShow) {
   var hudTop = document.getElementById("hudTop");
   if (hudTop) {
