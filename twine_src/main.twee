@@ -81,7 +81,9 @@ Jammy Jam
             <div class="h-6 relative bg-neutral-600 rounded-full dark:bg-neutral-500 max-w-full energy-bar"
             style="width: <%= setup.game.energy / 700 * 100 %>%"></div>
         </div>
-        <div class="ml-6 block text-sm">Turn: <span id="turnCounter"><%= setup.game.turn %></span></div>
+        <div class="ml-6 block text-sm">
+        <span id="turnCounter"><%= 7 - setup.game.turn %> weeks to the show!</span>
+        </div>
 
     </div>
     <div id="hud">
