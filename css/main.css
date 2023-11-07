@@ -218,6 +218,10 @@ tw-story {
   border-color: black transparent transparent transparent;
 }
 
+button {
+  @apply cursor-pointer rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+}
+
 /* Show the tooltip text when you hover over the tooltip container */
 .tooltip-container:hover .tooltip-text {
   visibility: visible;

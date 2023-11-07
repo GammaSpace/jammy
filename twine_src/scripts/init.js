@@ -148,12 +148,28 @@ setup.savePlayerInfo = function () {
 };
 
 setup.checkInputs = function () {
-  var playerName = document.getElementById("playerName").value;
-  var planetName = document.getElementById("planetName").value;
+  var playerName = document.getElementById("playerName").value.trim();
+  var planetName = document.getElementById("planetName").value.trim();
+  var planetDescription = document
+    .getElementById("planetDescription")
+    .value.trim();
+
+  // Access the checked radio button by name
+  var planetImage = document.querySelector(
+    'input[name="planetImage"]:checked'
+  )?.value;
+
   var nextButton = document.getElementById("nextButton");
 
-  nextButton.disabled = !(playerName && planetName);
+  // Enable the button only if all fields have values
+  nextButton.disabled = !(
+    playerName &&
+    planetName &&
+    planetDescription &&
+    planetImage
+  );
 };
+
 story.state.setHe = function () {
   story.state.pronouns = ["he", "him", "his", "his", "he's"];
   story.state.cPronouns = ["He", "Him", "His", "His", "He's"];
