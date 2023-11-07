@@ -73,7 +73,7 @@ Jammy Jam
 
     <div id="mapScreen"></div>
     <div id="tooltips"></div>
-    <div id="hudTop" class="flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex flex-row">
+    <div id="hudTop" class="flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex-row">
         <div class="block text-sm mr-6">Energy:</div>
 
         <div class="relative w-2/3 block h-6 bg-neutral-200 rounded-full dark:bg-neutral-700">
@@ -101,7 +101,6 @@ Jammy Jam
         <div id="planetContent" class="text-base my-2 py-6"></div>
 
         <ul>
-            <li id="">ENERGY: <span class="energy"><%= setup.game.energy %></span></li>
             <li id="buddyUp">BUDDY UP</li>
             <li id="trackTime">TRACK TIME</li>
             <li id="engageInProject">ENGAGE IN PROJECT</li>
@@ -136,7 +135,7 @@ Jammy Jam
 The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
 <div class="passage-choices">
-    <span onclick='story.show("Map Screen");story.state.changeEnergy(10); '>
+    <span onclick='setup.completeScenario(10);'>
         Gather musical fragments (+10 energy)
     </span>
     [[Move on…|Map Screen]]
@@ -144,11 +143,12 @@ The Intergalactic Orchestra has lost its melody, scattering notes across the cos
 
 
 :: Quantum Conundrum
-A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
+
+A quantum computer has gone **haywire**, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
 
 <div class="passage-choices">
-    <span onclick='story.show("Map Screen");story.state.changeEnergy(200);'>Solve puzzles (+200 energy)</span>
-    <span onclick='setup.addressPlanetaryNeed(1);'>Address need</span>
+    <span onclick='setup.completeScenario(200);'>Solve puzzles (+200 energy)</span>
+    <!-- <span onclick='setup.addressPlanetaryNeed(1);'>Address need</span> -->
     [[Forget it…|Map Screen]]
 </div>
 
@@ -156,8 +156,8 @@ A quantum computer has gone haywire, creating chaos in the time-space continuum.
 A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
 
 <div class="passage-choices">
-    <span onclick='story.show("Map Screen");story.state.changeEnergy(100);'>Gather stardust (+100 energy)</span>
-    <span onclick='setup.addressPlanetaryNeed(1);'>Address need</span>
+    <span onclick='setup.completeScenario(100);'>Gather stardust (+100 energy)</span>
+    <!-- <span onclick='setup.addressPlanetaryNeed(1);'>Address need</span> -->
 
     [[Forget it…|Map Screen]]
 </div>

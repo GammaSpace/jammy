@@ -66,24 +66,15 @@ setup.game = {
   ],
   scenarios: [
     {
-      title: "Stellar Harmony",
-      description:
-        "The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.",
-      relatedPassage: "Melodic Quest",
+      scenarioPassage: "Melodic Quest",
       complete: false,
     },
     {
-      title: "Quantum Quandary",
-      description:
-        "A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.",
-      relatedPassage: "Quantum Conundrum",
+      scenarioPassage: "Quantum Conundrum",
       complete: false,
     },
     {
-      title: "Nebula Nurturing",
-      description:
-        "A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.",
-      relatedPassage: "Stellar Cradle",
+      scenarioPassage: "Stellar Cradle",
       complete: false,
     },
   ],
@@ -236,14 +227,13 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioContent = scenarioData.content;
     var passageContent = "";
 
-    // Only render the passage if relatedPassage is not null
-    if (scenarioData.relatedPassage) {
-      passageContent = window.story.render(scenarioData.relatedPassage);
+    // Only render the passage if scenarioPassage is not null
+    if (scenarioData.scenarioPassage) {
+      passageContent = story.render(scenarioData.scenarioPassage);
     } else {
-      console.error("relatedPassage is null for scenario", scenarioData);
+      console.error("scenarioPassage is null for scenario", scenarioData);
     }
 
-    var content = scenarioContent + passageContent;
     var mapScreen = document.getElementById("mapScreen");
     var passage = document.getElementById("passage");
     var planetContentContainer = document.getElementById("planetContent");
@@ -253,7 +243,7 @@ setup.renderPlanetPassage = function (planetIndex) {
     if (mapScreen) mapScreen.style.display = "none";
     if (hud) hud.style.display = "flex";
     if (passageContainer) {
-      passage.innerHTML = content;
+      passage.innerHTML = passageContent;
       planetContentContainer.innerHTML = planetContent;
       passageContainer.style.display = "block";
     }
@@ -286,12 +276,12 @@ setup.showRandomIncompleteScenario = function () {
 
     return {
       content: `<h2>${scenario.title}</h2><p>${scenario.description}</p>`,
-      relatedPassage: scenario.relatedPassage,
+      scenarioPassage: scenario.scenarioPassage,
     };
   } else {
     return {
       content: "<p>No incomplete scenarios left.</p>",
-      relatedPassage: null,
+      scenarioPassage: null,
     };
   }
 };
@@ -481,6 +471,17 @@ setup.addressPlanetaryNeed = function (planetId) {
   if (allNeedsAddressed) {
     setup.endTurn();
   }
+};
+
+setup.completeScenario = function (energyChange) {
+  var currentPassageTitle = story.passage.title;
+  const scenario = setup.game.scenarios.find(
+    (s) => s.title === currentPassageTitle
+  );
+  if (scenario) scenario.complete = true;
+  // setup.game.energy += energyChange;
+  story.show("Map Screen");
+  story.state.changeEnergy(energyChange);
 };
 
 // planet interactiosn

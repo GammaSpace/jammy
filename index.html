@@ -2157,24 +2157,15 @@ setup.game = {
   ],
   scenarios: [
     {
-      title: "Stellar Harmony",
-      description:
-        "The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.",
-      relatedPassage: "Melodic Quest",
+      scenarioPassage: "Melodic Quest",
       complete: false,
     },
     {
-      title: "Quantum Quandary",
-      description:
-        "A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.",
-      relatedPassage: "Quantum Conundrum",
+      scenarioPassage: "Quantum Conundrum",
       complete: false,
     },
     {
-      title: "Nebula Nurturing",
-      description:
-        "A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.",
-      relatedPassage: "Stellar Cradle",
+      scenarioPassage: "Stellar Cradle",
       complete: false,
     },
   ],
@@ -2327,14 +2318,13 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioContent = scenarioData.content;
     var passageContent = "";
 
-    // Only render the passage if relatedPassage is not null
-    if (scenarioData.relatedPassage) {
-      passageContent = window.story.render(scenarioData.relatedPassage);
+    // Only render the passage if scenarioPassage is not null
+    if (scenarioData.scenarioPassage) {
+      passageContent = story.render(scenarioData.scenarioPassage);
     } else {
-      console.error("relatedPassage is null for scenario", scenarioData);
+      console.error("scenarioPassage is null for scenario", scenarioData);
     }
 
-    var content = scenarioContent + passageContent;
     var mapScreen = document.getElementById("mapScreen");
     var passage = document.getElementById("passage");
     var planetContentContainer = document.getElementById("planetContent");
@@ -2344,7 +2334,7 @@ setup.renderPlanetPassage = function (planetIndex) {
     if (mapScreen) mapScreen.style.display = "none";
     if (hud) hud.style.display = "flex";
     if (passageContainer) {
-      passage.innerHTML = content;
+      passage.innerHTML = passageContent;
       planetContentContainer.innerHTML = planetContent;
       passageContainer.style.display = "block";
     }
@@ -2377,12 +2367,12 @@ setup.showRandomIncompleteScenario = function () {
 
     return {
       content: `<h2>${scenario.title}</h2><p>${scenario.description}</p>`,
-      relatedPassage: scenario.relatedPassage,
+      scenarioPassage: scenario.scenarioPassage,
     };
   } else {
     return {
       content: "<p>No incomplete scenarios left.</p>",
-      relatedPassage: null,
+      scenarioPassage: null,
     };
   }
 };
@@ -2574,6 +2564,17 @@ setup.addressPlanetaryNeed = function (planetId) {
   }
 };
 
+setup.completeScenario = function (energyChange) {
+  var currentPassageTitle = story.passage.title;
+  const scenario = setup.game.scenarios.find(
+    (s) => s.title === currentPassageTitle
+  );
+  if (scenario) scenario.complete = true;
+  // setup.game.energy += energyChange;
+  story.show("Map Screen");
+  story.state.changeEnergy(energyChange);
+};
+
 // planet interactiosn
 
 setup.buddyUp = function () {
@@ -2664,7 +2665,7 @@ setup.accountForValue = function () {
 
     &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;tooltips&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;hudTop&quot; class=&quot;flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex flex-row&quot;&gt;
+    &lt;div id=&quot;hudTop&quot; class=&quot;flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex-row&quot;&gt;
         &lt;div class=&quot;block text-sm mr-6&quot;&gt;Energy:&lt;/div&gt;
 
         &lt;div class=&quot;relative w-2/3 block h-6 bg-neutral-200 rounded-full dark:bg-neutral-700&quot;&gt;
@@ -2692,7 +2693,6 @@ setup.accountForValue = function () {
         &lt;div id=&quot;planetContent&quot; class=&quot;text-base my-2 py-6&quot;&gt;&lt;/div&gt;
 
         &lt;ul&gt;
-            &lt;li id=&quot;&quot;&gt;ENERGY: &lt;span class=&quot;energy&quot;&gt;&lt;%= setup.game.energy %&gt;&lt;/span&gt;&lt;/li&gt;
             &lt;li id=&quot;buddyUp&quot;&gt;BUDDY UP&lt;/li&gt;
             &lt;li id=&quot;trackTime&quot;&gt;TRACK TIME&lt;/li&gt;
             &lt;li id=&quot;engageInProject&quot;&gt;ENGAGE IN PROJECT&lt;/li&gt;
@@ -2718,21 +2718,21 @@ setup.accountForValue = function () {
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Melodic Quest" tags="" position="475,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
-    &lt;span onclick=&#39;story.show(&quot;Map Screen&quot;);story.state.changeEnergy(10); &#39;&gt;
+    &lt;span onclick=&#39;setup.completeScenario(10);&#39;&gt;
         Gather musical fragments (+10 energy)
     &lt;/span&gt;
     [[Move on…|Map Screen]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Quantum Conundrum" tags="" position="600,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Quantum Conundrum" tags="" position="600,100" size="100,100">A quantum computer has gone **haywire**, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
-    &lt;span onclick=&#39;story.show(&quot;Map Screen&quot;);story.state.changeEnergy(200);&#39;&gt;Solve puzzles (+200 energy)&lt;/span&gt;
-    &lt;span onclick=&#39;setup.addressPlanetaryNeed(1);&#39;&gt;Address need&lt;/span&gt;
+    &lt;span onclick=&#39;setup.completeScenario(200);&#39;&gt;Solve puzzles (+200 energy)&lt;/span&gt;
+    &lt;!-- &lt;span onclick=&#39;setup.addressPlanetaryNeed(1);&#39;&gt;Address need&lt;/span&gt; --&gt;
     [[Forget it…|Map Screen]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Stellar Cradle" tags="" position="725,100" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
-    &lt;span onclick=&#39;story.show(&quot;Map Screen&quot;);story.state.changeEnergy(100);&#39;&gt;Gather stardust (+100 energy)&lt;/span&gt;
-    &lt;span onclick=&#39;setup.addressPlanetaryNeed(1);&#39;&gt;Address need&lt;/span&gt;
+    &lt;span onclick=&#39;setup.completeScenario(100);&#39;&gt;Gather stardust (+100 energy)&lt;/span&gt;
+    &lt;!-- &lt;span onclick=&#39;setup.addressPlanetaryNeed(1);&#39;&gt;Address need&lt;/span&gt; --&gt;
 
     [[Forget it…|Map Screen]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="HelpPlanets" tags="" position="850,100" size="100,100">[[Back|Map Screen]]</tw-passagedata><tw-passagedata pid="8" name="RadioShow" tags="" position="975,100" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="9" name="Epilogue" tags="" position="1100,100" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
