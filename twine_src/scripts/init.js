@@ -1,5 +1,33 @@
 window.setup = window.setup || {};
 
+// this is demented, but it works
+// couldn't figure out how to override default behaviour of Twine's a tags
+
+$(document).on("click", "div[data-next]", function (e) {
+  var passageName = $(this).attr("data-next");
+  renderToSelector("#passage", passageName);
+});
+
+function startObserving() {
+  var targetNode = document.getElementById("passageContainer");
+  if (targetNode) {
+    var config = { childList: true, subtree: true };
+    var callback = function (mutationsList, observer) {
+      for (var mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          setup.modifyLinks();
+          break;
+        }
+      }
+    };
+    var observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+  } else {
+    setTimeout(startObserving, 500);
+  }
+}
+startObserving();
+
 // scripts/init.js
 setup.game = {
   turn: 1,
@@ -69,14 +97,14 @@ setup.game = {
       scenarioPassage: "Melodic Quest",
       complete: false,
     },
-    {
-      scenarioPassage: "Quantum Conundrum",
-      complete: false,
-    },
-    {
-      scenarioPassage: "Stellar Cradle",
-      complete: false,
-    },
+    // {
+    //   scenarioPassage: "Quantum Conundrum",
+    //   complete: false,
+    // },
+    // {
+    //   scenarioPassage: "Stellar Cradle",
+    //   complete: false,
+    // },
   ],
   turns: [
     {
@@ -121,7 +149,7 @@ setup.game = {
 setup.savePlayerInfo = function () {
   var playerName = document.getElementById("playerName").value;
   var planetName = document.getElementById("planetName").value;
-  var planetDescription = document.getElementById("planetDescription").value;
+  var projectDescription = document.getElementById("projectDescription").value;
 
   var planetImgSrc = document.querySelector(
     'input[name="planetImage"]:checked'
@@ -129,7 +157,7 @@ setup.savePlayerInfo = function () {
 
   story.state.playerPlanet = {
     name: planetName,
-    description: planetDescription,
+    description: projectDescription,
     imgSrc: planetImgSrc,
   };
 
@@ -141,8 +169,8 @@ setup.savePlayerInfo = function () {
 setup.checkInputs = function () {
   var playerName = document.getElementById("playerName").value.trim();
   var planetName = document.getElementById("planetName").value.trim();
-  var planetDescription = document
-    .getElementById("planetDescription")
+  var projectDescription = document
+    .getElementById("projectDescription")
     .value.trim();
 
   // Access the checked radio button by name
@@ -156,7 +184,7 @@ setup.checkInputs = function () {
   nextButton.disabled = !(
     playerName &&
     planetName &&
-    planetDescription &&
+    projectDescription &&
     planetImage
   );
 };
@@ -205,21 +233,32 @@ story.state.changeEnergy = function (change) {
 
 setup.showPlanet = function (planetIndex) {
   const planet = setup.game.planets[planetIndex];
-  let content = `<h1>${planet.name}</h1><p>${planet.description}</p>`;
-  let repContent = `<span class='repName text-sm uppercase p-1 bg-neutral-300 text-center'>${planet.rep}</span><div><img class='repImage w-40 h-40 -mb-4' src='${planet.repImgSrc}' /></div>`;
+  let content = planet.description;
+  let repContent = `<img class='repImage' src='${planet.repImgSrc}' /><div class='repName'>${planet.rep}</div>`;
   var repContainer = document.getElementById("rep");
 
   var splashContainer = document.getElementById("planet-splash");
   splashContainer.style.backgroundImage = `url(${planet.splashImgSrc})`;
   splashContainer.innerHTML =
-    "<h1 class='text-xl md:text-6xl text-neutral-200 p-6 font-display uppercase'>" +
+    "<h1 class='text-xl md:text-6xl text-neutral-200 font-display uppercase'>" +
     planet.name +
-    "</h1>";
+    "</h1> <div id='planetContent' class='text-neutral-300 text-base'></div>";
 
   repContainer.innerHTML = repContent;
 
   return content;
 };
+
+setup.modifyLinks = function () {
+  $("a[data-passage]").each(function () {
+    var $this = $(this);
+    var passageName = $this.attr("data-passage");
+    var text = $this.text();
+    var newDiv = $('<div data-next="' + passageName + '"></div>').text(text);
+    $this.replaceWith(newDiv);
+  });
+};
+
 setup.renderPlanetPassage = function (planetIndex) {
   try {
     var planetContent = setup.showPlanet(planetIndex);
@@ -270,17 +309,13 @@ setup.showRandomIncompleteScenario = function () {
   });
 
   if (incompleteScenarios.length > 0) {
-    var randomIndex = Math.floor(Math.random() * incompleteScenarios.length);
-    // var scenario = incompleteScenarios[randomIndex];
     var scenario = either(incompleteScenarios);
 
     return {
-      content: `<h2>${scenario.title}</h2><p>${scenario.description}</p>`,
       scenarioPassage: scenario.scenarioPassage,
     };
   } else {
     return {
-      content: "<p>No incomplete scenarios left.</p>",
       scenarioPassage: null,
     };
   }
