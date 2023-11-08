@@ -2075,6 +2075,34 @@ div[data-next]:hover{
   grid-area: p7;
 } */
 
+.inactive{
+  opacity: 0.25;
+}
+
+.next-turn-message{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  --tw-translate-x: -50%;
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  border-radius: 0.5rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.9;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 #sidebar ul{
   list-style-type: none;
   padding: 0px;
@@ -2437,9 +2465,6 @@ setup.game = {
   turns: [
     {
       turnNumber: 1,
-      event: {
-        description: "Swarm of space bees",
-      },
       planets: [
         {
           id: 1,
@@ -2539,7 +2564,6 @@ story.state.setIt = function () {
 };
 story.state.changeEnergy = function (change) {
   setup.game.energy += change;
-  console.log("Energy is now ", setup.game.energy);
   setup.updateEnergyBar();
   var energyChangeText = document.getElementById("energyChangeText");
   if (change >= 0) {
@@ -2593,7 +2617,14 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioData = setup.showRandomIncompleteScenario();
     var scenarioContent = scenarioData.content;
     var passageContent = "";
-
+    // Add check for inactive class
+    if (
+      document
+        .querySelector(".planet" + planetIndex)
+        .classList.contains("inactive")
+    ) {
+      return; // exit the function if the planet should not be clickable
+    }
     // Only render the passage if scenarioPassage is not null
     if (scenarioData.scenarioPassage) {
       passageContent = story.render(scenarioData.scenarioPassage);
@@ -2652,79 +2683,95 @@ setup.showRandomIncompleteScenario = function () {
 setup.showMap = function () {
   var mapScreen = document.getElementById("mapScreen");
   if (mapScreen) {
-    mapScreen.style.display = "grid"; // Show the map
-
-    // Clear the map screen before adding new elements
+    mapScreen.style.display = "grid";
     mapScreen.innerHTML = "";
 
-    // Create and append planet containers with images and tooltips
-    setup.game.planets.forEach((planet) => {
+    let loadedPlanets = 0;
+    const totalPlanets =
+      setup.game.planets.length + (story.state.playerPlanet ? 1 : 0);
+
+    setup.game.planets.forEach((planet, index) => {
       const planetContainer = document.createElement("div");
       planetContainer.className = `planet-container planet-container${planet.id}`;
-
       const img = document.createElement("img");
       img.className = `planet planet${planet.id}`;
-
       img.src = planet.imgSrc;
 
-      // Image load event
       img.onload = function () {
-        // Check for the current turn's needs for this planet
-        const currentTurn = setup.game.turns.find(
-          (turn) => turn.turnNumber === setup.game.turn
-        );
-        if (
-          currentTurn &&
-          currentTurn.planets.find((p) => p.id === planet.id)
-        ) {
+        if (setup.checkTurnNeeds(planet, img)) {
           img.classList.add("active-turn");
         }
-
-        // Click event for the image
         img.onclick = function () {
           setup.renderPlanetPassage(planet.id - 1);
           setup.toggleHUD(true);
         };
-
-        // Append image to planet container
         planetContainer.appendChild(img);
-        // Append tooltip to planet container
         setup.appendTooltip(planet, planetContainer);
-
-        // Finally, append the planet container to the map screen
         mapScreen.appendChild(planetContainer);
+        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
       };
     });
 
-    // Append the player's planet if it exists
     if (story.state.playerPlanet) {
       const playerPlanetContainer = document.createElement("div");
       playerPlanetContainer.className =
         "planet-container planet-container-player";
-
       const playerPlanetImg = document.createElement("img");
       playerPlanetImg.className = "planet planet-player";
       playerPlanetImg.src = story.state.playerPlanet.imgSrc;
 
-      // Player planet image load event
       playerPlanetImg.onload = function () {
-        // Click event for the player planet image
         playerPlanetImg.onclick = function () {
           setup.renderPlanetPassage("player");
           setup.toggleHUD(true);
         };
-
-        // Append player planet image to its container
         playerPlanetContainer.appendChild(playerPlanetImg);
-        // Append tooltip to player planet container
         setup.appendTooltip(story.state.playerPlanet, playerPlanetContainer);
-
-        // Finally, append the player planet container to the map screen
         mapScreen.appendChild(playerPlanetContainer);
+        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
       };
     }
   }
 };
+
+function checkAllPlanetsLoaded(loaded, total) {
+  if (loaded === total) {
+    setup.checkForIncompleteScenarios();
+  }
+}
+
+setup.checkForIncompleteScenarios = function () {
+  var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
+    return !scenario.complete;
+  });
+  console.log(incompleteScenarios.length);
+
+  if (incompleteScenarios.length === 0) {
+    console.log("All scenarios complete");
+    document.querySelectorAll(".planet").forEach(function (planet) {
+      console.log("Getting planets…");
+      planet.style.pointerEvents = "none";
+      planet.classList.add("inactive");
+    });
+    var message = document.createElement("div");
+    message.textContent =
+      "All scenarios complete. Click here to start the next turn.";
+
+    // Tailwind CSS classes to center the message
+    message.classList.add("next-turn-message");
+
+    message.onclick = setup.startNewTurn;
+    document.body.appendChild(message);
+  }
+};
+
+setup.checkTurnNeeds = function (planet, img) {
+  const currentTurn = setup.game.turns.find(
+    (turn) => turn.turnNumber === setup.game.turn
+  );
+  return currentTurn && currentTurn.planets.find((p) => p.id === planet.id);
+};
+
 setup.appendTooltip = (planet, container) => {
   const tooltipDiv = document.createElement("div");
   tooltipDiv.className = "tooltip";
@@ -2977,7 +3024,13 @@ setup.accountForValue = function () {
   setup.story.render(planets[planetIndex].passage); 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Melodic Quest" tags="" position="475,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
-[[Old Notation-&gt;Melodic Quest 2]]</tw-passagedata><tw-passagedata pid="5" name="Melodic Quest 2" tags="" position="600,100" size="100,100">Arrived at the second passage!
+[[Next...-&gt;Melodic Quest 2]]</tw-passagedata><tw-passagedata pid="5" name="Melodic Quest 2" tags="" position="600,100" size="100,100">Arrived at the second passage!
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+    &lt;span onclick=&#39;setup.completeScenario(200);&#39;&gt;Solve puzzles (+200 energy)&lt;/span&gt;
+    &lt;!-- &lt;span onclick=&#39;setup.addressPlanetaryNeed(1);&#39;&gt;Address need&lt;/span&gt; --&gt;
+    [[Forget it…|Map Screen]]
+&lt;/div&gt;
 
 [[Back-&gt;Melodic Quest]]</tw-passagedata><tw-passagedata pid="6" name="HelpPlanets" tags="" position="725,100" size="100,100">[[Back|Map Screen]]</tw-passagedata><tw-passagedata pid="7" name="RadioShow" tags="" position="850,100" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="8" name="Epilogue" tags="" position="975,100" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
 		<script>

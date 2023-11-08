@@ -120,11 +120,17 @@ Jammy Jam
 :: Melodic Quest
 The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
-[[Old Notation->Melodic Quest 2]]
+[[Next...->Melodic Quest 2]]
 
 :: Melodic Quest 2
 
 Arrived at the second passage!
+
+<div class="passage-choices">
+    <span onclick='setup.completeScenario(200);'>Solve puzzles (+200 energy)</span>
+    <!-- <span onclick='setup.addressPlanetaryNeed(1);'>Address need</span> -->
+    [[Forget it…|Map Screen]]
+</div>
 
 [[Back->Melodic Quest]]
 

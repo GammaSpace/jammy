@@ -109,9 +109,6 @@ setup.game = {
   turns: [
     {
       turnNumber: 1,
-      event: {
-        description: "Swarm of space bees",
-      },
       planets: [
         {
           id: 1,
@@ -211,7 +208,6 @@ story.state.setIt = function () {
 };
 story.state.changeEnergy = function (change) {
   setup.game.energy += change;
-  console.log("Energy is now ", setup.game.energy);
   setup.updateEnergyBar();
   var energyChangeText = document.getElementById("energyChangeText");
   if (change >= 0) {
@@ -265,7 +261,14 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioData = setup.showRandomIncompleteScenario();
     var scenarioContent = scenarioData.content;
     var passageContent = "";
-
+    // Add check for inactive class
+    if (
+      document
+        .querySelector(".planet" + planetIndex)
+        .classList.contains("inactive")
+    ) {
+      return; // exit the function if the planet should not be clickable
+    }
     // Only render the passage if scenarioPassage is not null
     if (scenarioData.scenarioPassage) {
       passageContent = story.render(scenarioData.scenarioPassage);
@@ -324,79 +327,95 @@ setup.showRandomIncompleteScenario = function () {
 setup.showMap = function () {
   var mapScreen = document.getElementById("mapScreen");
   if (mapScreen) {
-    mapScreen.style.display = "grid"; // Show the map
-
-    // Clear the map screen before adding new elements
+    mapScreen.style.display = "grid";
     mapScreen.innerHTML = "";
 
-    // Create and append planet containers with images and tooltips
-    setup.game.planets.forEach((planet) => {
+    let loadedPlanets = 0;
+    const totalPlanets =
+      setup.game.planets.length + (story.state.playerPlanet ? 1 : 0);
+
+    setup.game.planets.forEach((planet, index) => {
       const planetContainer = document.createElement("div");
       planetContainer.className = `planet-container planet-container${planet.id}`;
-
       const img = document.createElement("img");
       img.className = `planet planet${planet.id}`;
-
       img.src = planet.imgSrc;
 
-      // Image load event
       img.onload = function () {
-        // Check for the current turn's needs for this planet
-        const currentTurn = setup.game.turns.find(
-          (turn) => turn.turnNumber === setup.game.turn
-        );
-        if (
-          currentTurn &&
-          currentTurn.planets.find((p) => p.id === planet.id)
-        ) {
+        if (setup.checkTurnNeeds(planet, img)) {
           img.classList.add("active-turn");
         }
-
-        // Click event for the image
         img.onclick = function () {
           setup.renderPlanetPassage(planet.id - 1);
           setup.toggleHUD(true);
         };
-
-        // Append image to planet container
         planetContainer.appendChild(img);
-        // Append tooltip to planet container
         setup.appendTooltip(planet, planetContainer);
-
-        // Finally, append the planet container to the map screen
         mapScreen.appendChild(planetContainer);
+        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
       };
     });
 
-    // Append the player's planet if it exists
     if (story.state.playerPlanet) {
       const playerPlanetContainer = document.createElement("div");
       playerPlanetContainer.className =
         "planet-container planet-container-player";
-
       const playerPlanetImg = document.createElement("img");
       playerPlanetImg.className = "planet planet-player";
       playerPlanetImg.src = story.state.playerPlanet.imgSrc;
 
-      // Player planet image load event
       playerPlanetImg.onload = function () {
-        // Click event for the player planet image
         playerPlanetImg.onclick = function () {
           setup.renderPlanetPassage("player");
           setup.toggleHUD(true);
         };
-
-        // Append player planet image to its container
         playerPlanetContainer.appendChild(playerPlanetImg);
-        // Append tooltip to player planet container
         setup.appendTooltip(story.state.playerPlanet, playerPlanetContainer);
-
-        // Finally, append the player planet container to the map screen
         mapScreen.appendChild(playerPlanetContainer);
+        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
       };
     }
   }
 };
+
+function checkAllPlanetsLoaded(loaded, total) {
+  if (loaded === total) {
+    setup.checkForIncompleteScenarios();
+  }
+}
+
+setup.checkForIncompleteScenarios = function () {
+  var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
+    return !scenario.complete;
+  });
+  console.log(incompleteScenarios.length);
+
+  if (incompleteScenarios.length === 0) {
+    console.log("All scenarios complete");
+    document.querySelectorAll(".planet").forEach(function (planet) {
+      console.log("Getting planets…");
+      planet.style.pointerEvents = "none";
+      planet.classList.add("inactive");
+    });
+    var message = document.createElement("div");
+    message.textContent =
+      "All scenarios complete. Click here to start the next turn.";
+
+    // Tailwind CSS classes to center the message
+    message.classList.add("next-turn-message");
+
+    message.onclick = setup.startNewTurn;
+    document.body.appendChild(message);
+  }
+};
+
+setup.checkTurnNeeds = function (planet, img) {
+  const currentTurn = setup.game.turns.find(
+    (turn) => turn.turnNumber === setup.game.turn
+  );
+  return currentTurn && currentTurn.planets.find((p) => p.id === planet.id);
+};
+
 setup.appendTooltip = (planet, container) => {
   const tooltipDiv = document.createElement("div");
   tooltipDiv.className = "tooltip";
