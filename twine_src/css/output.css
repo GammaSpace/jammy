@@ -2035,23 +2035,23 @@ div[data-next]:hover{
   transform: scale(1.1);
 }
 
-.planet-container1 {
+.planet-container0 {
   grid-area: p1;
 }
 
-.planet-container2 {
+.planet-container1 {
   grid-area: p2;
 }
 
-.planet-container3 {
+.planet-container2 {
   grid-area: p3;
 }
 
-.planet-container4 {
+.planet-container3 {
   grid-area: p4;
 }
 
-.planet-container5 {
+.planet-container4 {
   grid-area: p5;
 }
 
@@ -2064,6 +2064,7 @@ div[data-next]:hover{
 } */
 
 .inactive{
+  pointer-events: none;
   opacity: 0.25;
 }
 
