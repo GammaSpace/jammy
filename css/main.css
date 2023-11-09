@@ -141,19 +141,19 @@ div[data-next] {
   transform: scale(1.1);
 }
 
-.planet-container1 {
+.planet-container0 {
   grid-area: p1;
 }
-.planet-container2 {
+.planet-container1 {
   grid-area: p2;
 }
-.planet-container3 {
+.planet-container2 {
   grid-area: p3;
 }
-.planet-container4 {
+.planet-container3 {
   grid-area: p4;
 }
-.planet-container5 {
+.planet-container4 {
   grid-area: p5;
 }
 .planet-container-player {
@@ -164,7 +164,7 @@ div[data-next] {
 } */
 
 .inactive {
-  @apply opacity-25;
+  @apply opacity-25 pointer-events-none;
 }
 .next-turn-message {
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-opacity-90 px-4 py-2 border border-gray-300 shadow rounded-lg text-center bg-white z-50;
