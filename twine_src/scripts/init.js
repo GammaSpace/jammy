@@ -68,6 +68,16 @@ setup.game = {
   ],
 };
 
+story.state = {
+  turn: 1,
+  helpedPlanets: setup.game.planets.map((planet) => ({
+    planet: planet.id,
+    timesHelped: 0,
+  })),
+  lastHelpedPlanet: null,
+  scenarioCompletedThisTurn: false,
+};
+
 setup.game.scenarios = window.story.passages
   .filter((passage) => passage.tags.includes("scenario"))
   .map((passage) => ({
@@ -75,8 +85,6 @@ setup.game.scenarios = window.story.passages
     complete: false,
   }));
 
-story.state.scenarioCompletedThisTurn = false;
-story.state.turn = 1;
 // this is demented, but it works
 // couldn't figure out how to override default behaviour of Twine's a tags
 
@@ -406,15 +414,29 @@ setup.updateEnergyBar = function () {
     console.error("Energy bar element not found");
   }
 };
+setup.helpPlanet = function (planetId) {
+  const planetHelped = story.state.helpedPlanets.find(
+    (p) => p.planet === planetId
+  );
+  story.state.lastHelpedPlanet = planetId;
+
+  if (planetHelped) {
+    planetHelped.timesHelped += 1;
+  } else {
+    story.state.helpedPlanets.push({ planet: planetId, timesHelped: 1 });
+  }
+};
 
 setup.completeScenario = function () {
   var currentScenario = story.state.currentScenario;
+  var currentPlanetIndex = story.state.currentPlanet;
+
   const scenario = setup.game.scenarios.find(
     (s) => s.scenarioPassage === currentScenario
   );
 
   if (scenario && !story.state.scenarioCompletedThisTurn) {
-    var currentPlanet = setup.game.planets[story.state.currentPlanet];
+    var currentPlanet = setup.game.planets[currentPlanetIndex];
     scenario.complete = true;
     story.state.scenarioCompletedThisTurn = true;
 
@@ -431,6 +453,9 @@ setup.completeScenario = function () {
 
     if (currentPlanet) {
       currentPlanet.connections++;
+
+      // Call the function to increment the timesHelped for the currentPlanet
+      setup.helpPlanet(currentPlanet.id);
     } else {
       console.error("currentPlanet is undefined or not found");
     }
@@ -516,4 +541,8 @@ setup.attachEventListenersToPlanets = function () {
       setup.planetClickHandlers[planetIndex]
     );
   });
+};
+setup.getPlanet = function (planetId) {
+  const planet = setup.game.planets.find((p) => p.id === planetId);
+  return planet ? planet.name : null;
 };
