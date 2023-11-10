@@ -2460,6 +2460,16 @@ setup.game = {
   ],
 };
 
+story.state = {
+  turn: 1,
+  helpedPlanets: setup.game.planets.map((planet) => ({
+    planet: planet.id,
+    timesHelped: 0,
+  })),
+  lastHelpedPlanet: null,
+  scenarioCompletedThisTurn: false,
+};
+
 setup.game.scenarios = window.story.passages
   .filter((passage) => passage.tags.includes("scenario"))
   .map((passage) => ({
@@ -2467,8 +2477,6 @@ setup.game.scenarios = window.story.passages
     complete: false,
   }));
 
-story.state.scenarioCompletedThisTurn = false;
-story.state.turn = 1;
 // this is demented, but it works
 // couldn't figure out how to override default behaviour of Twine's a tags
 
@@ -2798,15 +2806,29 @@ setup.updateEnergyBar = function () {
     console.error("Energy bar element not found");
   }
 };
+setup.helpPlanet = function (planetId) {
+  const planetHelped = story.state.helpedPlanets.find(
+    (p) => p.planet === planetId
+  );
+  story.state.lastHelpedPlanet = planetId;
+
+  if (planetHelped) {
+    planetHelped.timesHelped += 1;
+  } else {
+    story.state.helpedPlanets.push({ planet: planetId, timesHelped: 1 });
+  }
+};
 
 setup.completeScenario = function () {
   var currentScenario = story.state.currentScenario;
+  var currentPlanetIndex = story.state.currentPlanet;
+
   const scenario = setup.game.scenarios.find(
     (s) => s.scenarioPassage === currentScenario
   );
 
   if (scenario && !story.state.scenarioCompletedThisTurn) {
-    var currentPlanet = setup.game.planets[story.state.currentPlanet];
+    var currentPlanet = setup.game.planets[currentPlanetIndex];
     scenario.complete = true;
     story.state.scenarioCompletedThisTurn = true;
 
@@ -2823,6 +2845,9 @@ setup.completeScenario = function () {
 
     if (currentPlanet) {
       currentPlanet.connections++;
+
+      // Call the function to increment the timesHelped for the currentPlanet
+      setup.helpPlanet(currentPlanet.id);
     } else {
       console.error("currentPlanet is undefined or not found");
     }
@@ -2908,6 +2933,10 @@ setup.attachEventListenersToPlanets = function () {
       setup.planetClickHandlers[planetIndex]
     );
   });
+};
+setup.getPlanet = function (planetId) {
+  const planet = setup.game.planets.find((p) => p.id === planetId);
+  return planet ? planet.name : null;
 };
 /* twine-user-script #2: "utilities.js" */
 </script><tw-passagedata pid="1" name="Start" tags="" position="100,100" size="100,100">&lt;% $(&quot;body&quot;).toggleClass(&quot;customization&quot;) %&gt;
@@ -3033,7 +3062,7 @@ setup.attachEventListenersToPlanets = function () {
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Week 1" tags="preamble" position="1225,100" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="11" name="Week 2" tags="preamble" position="100,225" size="100,100">A week goes by… Wow, I&#39;m getting the hang of this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="12" name="Week 3" tags="preamble" position="225,225" size="100,100">I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata></tw-storydata>
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Week 1" tags="preamble" position="1225,100" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="11" name="Week 2" tags="preamble" position="100,225" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="12" name="Week 3" tags="preamble" position="225,225" size="100,100">I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

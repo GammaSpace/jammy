@@ -173,7 +173,7 @@ Whew, helping planets is hard! Let's do it again this week.
 
 :: Week 2 [preamble]
 
-A week goes by… Wow, I'm getting the hang of this. Let's help some more planets!
+A week goes by… Wow, helping <%= setup.getPlanet(s.currentPlanet) %> was the right call. Our connection is stronger than ever!
 
 :: Week 3 [preamble]
 
