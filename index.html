@@ -1602,6 +1602,10 @@ select{
   margin-top: 1rem;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .block{
   display: block;
 }
@@ -1741,6 +1745,11 @@ select{
   line-height: 1.75rem;
 }
 
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .font-medium{
   font-weight: 500;
 }
@@ -1852,7 +1861,7 @@ html {
     "p3 . p5 . p4"
     ". . p6 . .";
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 10px;
   position: relative;
   overflow: hidden;
@@ -1922,10 +1931,23 @@ html {
   color: rgb(10 10 10 / var(--tw-text-opacity));
 }
 
-.active-turn {
+.active-turn img {
   /* Initial state of the glow */
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
   animation: pulseGlow 2s infinite;
+}
+
+.planet-container.active-turn::before{
+  z-index: 50;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(250 204 21 / var(--tw-text-opacity));
+  content: "!";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @keyframes pulseGlow {
@@ -2313,6 +2335,19 @@ button:focus-visible{
   }
 }
 
+#weekPreamble {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
 .focus\:ring-indigo-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
@@ -2357,7 +2392,6 @@ button:focus-visible{
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
 window.setup = window.setup || {};
 
-// scripts/init.js
 setup.game = {
   planets: [
     {
@@ -2493,14 +2527,12 @@ setup.checkInputs = function () {
     .getElementById("projectDescription")
     .value.trim();
 
-  // Access the checked radio button by name
   var planetImage = document.querySelector(
     'input[name="planetImage"]:checked'
   )?.value;
 
   var nextButton = document.getElementById("nextButton");
 
-  // Enable the button only if all fields have values
   nextButton.disabled = !(
     playerName &&
     planetName &&
@@ -2544,14 +2576,10 @@ setup.renderPlanetPassage = function (planetIndex) {
 
   if (story.state.scenarioCompletedThisTurn) {
     console.log("A scenario has already been completed this turn.");
-    return; // Exit the function
+    return;
   }
 
   try {
-    // Log the planetIndex for debugging
-    console.log("Rendering planet passage for index: ", planetIndex);
-
-    // Check if the element with the class exists in the DOM
     const planetElementSelector = ".planet" + planetIndex;
     const planetElement = document.querySelector(planetElementSelector);
 
@@ -2561,12 +2589,11 @@ setup.renderPlanetPassage = function (planetIndex) {
       );
     }
 
-    // Check for inactive class
     if (planetElement.classList.contains("inactive")) {
       console.log(
         `Planet with index ${planetIndex} is inactive and should not be clickable.`
       );
-      return; // Exit the function if the planet should not be clickable
+      return;
     }
 
     var planetContent = setup.showPlanet(planetIndex);
@@ -2574,7 +2601,6 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioContent = scenarioData.content;
     var passageContent = "";
 
-    // Only render the passage if scenarioPassage is not null
     if (scenarioData.scenarioPassage) {
       passageContent = story.render(scenarioData.scenarioPassage);
       story.state.currentScenario = scenarioData.scenarioPassage;
@@ -2648,23 +2674,15 @@ setup.showMap = function () {
     setup.game.planets.forEach((planet, index) => {
       const planetContainer = document.createElement("div");
       planetContainer.className = `planet-container planet-container${planet.id}`;
+
       const img = document.createElement("img");
       img.className = `planet planet${planet.id}`;
       img.src = planet.imgSrc;
 
       img.onload = function () {
         if (planet.availableTurns.includes(story.state.turn)) {
-          img.classList.add("active-turn");
+          planetContainer.classList.add("active-turn");
 
-          // Check if a click handler already exists and remove it before adding a new one
-          if (setup.planetClickHandlers[planet.id]) {
-            img.removeEventListener(
-              "click",
-              setup.planetClickHandlers[planet.id]
-            );
-          }
-
-          // Create a new click handler for the planet
           const clickHandler = setup.handlePlanetClick(index);
           setup.planetClickHandlers[planet.id] = clickHandler;
           img.addEventListener("click", clickHandler);
@@ -2676,7 +2694,6 @@ setup.showMap = function () {
       };
     });
 
-    // Check if there is a player's planet and display it
     if (story.state.playerPlanet) {
       const playerPlanetContainer = document.createElement("div");
       playerPlanetContainer.className =
@@ -2686,9 +2703,8 @@ setup.showMap = function () {
       playerPlanetImg.src = story.state.playerPlanet.imgSrc;
 
       playerPlanetImg.onload = function () {
-        // Logic for player planet click
         playerPlanetImg.addEventListener("click", function () {
-          setup.renderPlanetPassage("player"); // Assuming this is the correct way to render the player's planet
+          setup.renderPlanetPassage("player");
           setup.toggleHUD(true);
         });
         playerPlanetContainer.appendChild(playerPlanetImg);
@@ -2720,7 +2736,6 @@ setup.checkForIncompleteScenarios = function () {
     var message = document.createElement("div");
     message.textContent = "All scenarios complete.";
 
-    // Tailwind CSS classes to center the message
     message.classList.add("next-turn-message");
 
     message.onclick = setup.startNewTurn;
@@ -2732,21 +2747,18 @@ setup.appendTooltip = (planet, container) => {
   const tooltipDiv = document.createElement("div");
   tooltipDiv.className = "tooltip";
   tooltipDiv.innerText = planet.name;
-  // Hide the tooltip initially
   tooltipDiv.style.visibility = "hidden";
   tooltipDiv.style.opacity = "0";
   tooltipDiv.style.transition =
     "visibility 0s linear 0.5s, opacity 0.5s linear";
   container.appendChild(tooltipDiv);
 
-  // Show the tooltip on hover
   container.onmouseover = function () {
     tooltipDiv.style.visibility = "visible";
     tooltipDiv.style.opacity = "1";
     tooltipDiv.style.transitionDelay = "0s";
   };
 
-  // Hide the tooltip when not hovered
   container.onmouseleave = function () {
     tooltipDiv.style.visibility = "hidden";
     tooltipDiv.style.opacity = "0";
@@ -2769,7 +2781,7 @@ setup.toggleHUD = function (shouldShow) {
       var passage = document.getElementById("passage");
 
       if (passageContainer) {
-        passage.innerHTML = ""; // Clear the passage container
+        passage.innerHTML = "";
       }
     }
   } else {
@@ -2777,10 +2789,10 @@ setup.toggleHUD = function (shouldShow) {
   }
 };
 setup.updateEnergyBar = function () {
-  var energyBar = document.querySelector(".energy-bar"); // Assuming you add a class "energy-bar" to the div
+  var energyBar = document.querySelector(".energy-bar");
   if (energyBar) {
     var newWidth = (setup.game.energy / 700) * 100;
-    newWidth = Math.min(Math.max(newWidth, 0), 100); // Clamp the value between 0 and 100
+    newWidth = Math.min(Math.max(newWidth, 0), 100);
     energyBar.style.width = newWidth + "%";
   } else {
     console.error("Energy bar element not found");
@@ -2823,34 +2835,51 @@ setup.completeScenario = function () {
 };
 
 setup.startNewTurn = function () {
-  // Increment the turn counter in the story's state
   story.state.turn += 1;
-  // Reset the scenario completion flag for the new turn in the story's state
   story.state.scenarioCompletedThisTurn = false;
+  setup.updatePlanetsAndTurnCounter();
+  setTimeout(setup.showWeekPreamble, 0);
+};
 
-  // Re-enable interaction with the planets for the new turn
+setup.updatePlanetsAndTurnCounter = function () {
   document.querySelectorAll(".planet").forEach(function (planetElement, index) {
     planetElement.classList.remove("inactive");
     planetElement.classList.add("active-turn");
-
-    // Reattach the event listener using the stored handler
     const clickHandler = setup.planetClickHandlers[index];
     if (clickHandler) {
       planetElement.addEventListener("click", clickHandler);
     }
   });
-
-  // Update the turn display, if you have one
   const turnCounterElement = document.getElementById("turnCounter");
   if (turnCounterElement) {
     turnCounterElement.innerText = `Turn: ${story.state.turn}`;
   }
-
-  // Re-render the map screen to reflect any changes
   setup.showMap();
+};
 
-  // Save the game state at the start of a new turn
-  story.checkpoint();
+setup.getWeekPreamble = function () {
+  const turnNumber = story.state.turn;
+  const passageName = "Week " + turnNumber;
+  renderToSelector(modalContent, passageName);
+};
+setup.showWeekPreamble = function () {
+  const modal = document.getElementById("weekPreamble");
+  const modalContent = document.getElementById("modalContent");
+  const turnNumber = story.state.turn;
+  const passageName = "Week " + turnNumber;
+
+  if (passageName) {
+    renderToSelector(modalContent, passageName);
+    modal.style.display = "block";
+  } else {
+    console.error("No content found for passage: " + passageName);
+  }
+};
+setup.hideWeekPreamble = function () {
+  const modal = document.getElementById("weekPreamble");
+  if (modal) {
+    modal.style.display = "none";
+  }
 };
 
 setup.handlePlanetClick = function (planetIndex) {
@@ -2865,19 +2894,13 @@ setup.handlePlanetClick = function (planetIndex) {
 };
 setup.attachEventListenersToPlanets = function () {
   document.querySelectorAll(".planet").forEach((planetElement, index) => {
-    // Ensure that the 'index' passed is correct, based on how you store your planets
-    // It might be 'planet.id - 1' or another method to identify the specific planet data
-    const planetIndex = planet.id; // or another way to get the index if necessary
-
-    // Remove any previously attached handlers to avoid multiple assignments
+    const planetIndex = planet.id;
     if (setup.planetClickHandlers[planetIndex]) {
       planetElement.removeEventListener(
         "click",
         setup.planetClickHandlers[planetIndex]
       );
     }
-
-    // Create a new handler and attach it
     setup.planetClickHandlers[planetIndex] =
       setup.handlePlanetClick(planetIndex);
     planetElement.addEventListener(
@@ -2946,6 +2969,10 @@ setup.attachEventListenersToPlanets = function () {
 
     &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;tooltips&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;weekPreamble&quot;&gt;
+      &lt;p id=&quot;modalContent&quot; class=&quot;text-2xl mb-4&quot;&gt;&lt;/p&gt;
+        &lt;button onclick=&quot;setup.hideWeekPreamble()&quot;&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
     &lt;div id=&quot;hudTop&quot; class=&quot;flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex-row&quot;&gt;
         &lt;div class=&quot;block text-sm mr-6&quot;&gt;Energy:&lt;/div&gt;
 
@@ -2955,7 +2982,7 @@ setup.attachEventListenersToPlanets = function () {
             style=&quot;width: &lt;%= setup.game.energy / 700 * 100 %&gt;%&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class=&quot;ml-6 block text-sm&quot;&gt;
-        &lt;span id=&quot;turnCounter&quot;&gt;&lt;%= 7 - s.turn %&gt; weeks to the show!&lt;/span&gt;
+          &lt;span id=&quot;turnCounter&quot;&gt;&lt;%= 7 - s.turn %&gt; weeks to the show!&lt;/span&gt;
         &lt;/div&gt;
 
     &lt;/div&gt;
@@ -3006,7 +3033,7 @@ setup.attachEventListenersToPlanets = function () {
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="HelpPlanets" tags="" position="1225,100" size="100,100">[[Back|Map Screen]]</tw-passagedata><tw-passagedata pid="11" name="RadioShow" tags="" position="100,225" size="100,100">[[To epilogue|Epilogue]]</tw-passagedata><tw-passagedata pid="12" name="Epilogue" tags="" position="225,225" size="100,100">## So sad, what happened…</tw-passagedata></tw-storydata>
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Week 1" tags="preamble" position="1225,100" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="11" name="Week 2" tags="preamble" position="100,225" size="100,100">A week goes by… Wow, I&#39;m getting the hang of this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="12" name="Week 3" tags="preamble" position="225,225" size="100,100">I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

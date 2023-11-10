@@ -1,6 +1,5 @@
 window.setup = window.setup || {};
 
-// scripts/init.js
 setup.game = {
   planets: [
     {
@@ -136,14 +135,12 @@ setup.checkInputs = function () {
     .getElementById("projectDescription")
     .value.trim();
 
-  // Access the checked radio button by name
   var planetImage = document.querySelector(
     'input[name="planetImage"]:checked'
   )?.value;
 
   var nextButton = document.getElementById("nextButton");
 
-  // Enable the button only if all fields have values
   nextButton.disabled = !(
     playerName &&
     planetName &&
@@ -187,14 +184,10 @@ setup.renderPlanetPassage = function (planetIndex) {
 
   if (story.state.scenarioCompletedThisTurn) {
     console.log("A scenario has already been completed this turn.");
-    return; // Exit the function
+    return;
   }
 
   try {
-    // Log the planetIndex for debugging
-    console.log("Rendering planet passage for index: ", planetIndex);
-
-    // Check if the element with the class exists in the DOM
     const planetElementSelector = ".planet" + planetIndex;
     const planetElement = document.querySelector(planetElementSelector);
 
@@ -204,12 +197,11 @@ setup.renderPlanetPassage = function (planetIndex) {
       );
     }
 
-    // Check for inactive class
     if (planetElement.classList.contains("inactive")) {
       console.log(
         `Planet with index ${planetIndex} is inactive and should not be clickable.`
       );
-      return; // Exit the function if the planet should not be clickable
+      return;
     }
 
     var planetContent = setup.showPlanet(planetIndex);
@@ -217,7 +209,6 @@ setup.renderPlanetPassage = function (planetIndex) {
     var scenarioContent = scenarioData.content;
     var passageContent = "";
 
-    // Only render the passage if scenarioPassage is not null
     if (scenarioData.scenarioPassage) {
       passageContent = story.render(scenarioData.scenarioPassage);
       story.state.currentScenario = scenarioData.scenarioPassage;
@@ -291,23 +282,15 @@ setup.showMap = function () {
     setup.game.planets.forEach((planet, index) => {
       const planetContainer = document.createElement("div");
       planetContainer.className = `planet-container planet-container${planet.id}`;
+
       const img = document.createElement("img");
       img.className = `planet planet${planet.id}`;
       img.src = planet.imgSrc;
 
       img.onload = function () {
         if (planet.availableTurns.includes(story.state.turn)) {
-          img.classList.add("active-turn");
+          planetContainer.classList.add("active-turn");
 
-          // Check if a click handler already exists and remove it before adding a new one
-          if (setup.planetClickHandlers[planet.id]) {
-            img.removeEventListener(
-              "click",
-              setup.planetClickHandlers[planet.id]
-            );
-          }
-
-          // Create a new click handler for the planet
           const clickHandler = setup.handlePlanetClick(index);
           setup.planetClickHandlers[planet.id] = clickHandler;
           img.addEventListener("click", clickHandler);
@@ -319,7 +302,6 @@ setup.showMap = function () {
       };
     });
 
-    // Check if there is a player's planet and display it
     if (story.state.playerPlanet) {
       const playerPlanetContainer = document.createElement("div");
       playerPlanetContainer.className =
@@ -329,9 +311,8 @@ setup.showMap = function () {
       playerPlanetImg.src = story.state.playerPlanet.imgSrc;
 
       playerPlanetImg.onload = function () {
-        // Logic for player planet click
         playerPlanetImg.addEventListener("click", function () {
-          setup.renderPlanetPassage("player"); // Assuming this is the correct way to render the player's planet
+          setup.renderPlanetPassage("player");
           setup.toggleHUD(true);
         });
         playerPlanetContainer.appendChild(playerPlanetImg);
@@ -363,7 +344,6 @@ setup.checkForIncompleteScenarios = function () {
     var message = document.createElement("div");
     message.textContent = "All scenarios complete.";
 
-    // Tailwind CSS classes to center the message
     message.classList.add("next-turn-message");
 
     message.onclick = setup.startNewTurn;
@@ -375,21 +355,18 @@ setup.appendTooltip = (planet, container) => {
   const tooltipDiv = document.createElement("div");
   tooltipDiv.className = "tooltip";
   tooltipDiv.innerText = planet.name;
-  // Hide the tooltip initially
   tooltipDiv.style.visibility = "hidden";
   tooltipDiv.style.opacity = "0";
   tooltipDiv.style.transition =
     "visibility 0s linear 0.5s, opacity 0.5s linear";
   container.appendChild(tooltipDiv);
 
-  // Show the tooltip on hover
   container.onmouseover = function () {
     tooltipDiv.style.visibility = "visible";
     tooltipDiv.style.opacity = "1";
     tooltipDiv.style.transitionDelay = "0s";
   };
 
-  // Hide the tooltip when not hovered
   container.onmouseleave = function () {
     tooltipDiv.style.visibility = "hidden";
     tooltipDiv.style.opacity = "0";
@@ -412,7 +389,7 @@ setup.toggleHUD = function (shouldShow) {
       var passage = document.getElementById("passage");
 
       if (passageContainer) {
-        passage.innerHTML = ""; // Clear the passage container
+        passage.innerHTML = "";
       }
     }
   } else {
@@ -420,10 +397,10 @@ setup.toggleHUD = function (shouldShow) {
   }
 };
 setup.updateEnergyBar = function () {
-  var energyBar = document.querySelector(".energy-bar"); // Assuming you add a class "energy-bar" to the div
+  var energyBar = document.querySelector(".energy-bar");
   if (energyBar) {
     var newWidth = (setup.game.energy / 700) * 100;
-    newWidth = Math.min(Math.max(newWidth, 0), 100); // Clamp the value between 0 and 100
+    newWidth = Math.min(Math.max(newWidth, 0), 100);
     energyBar.style.width = newWidth + "%";
   } else {
     console.error("Energy bar element not found");
@@ -466,34 +443,51 @@ setup.completeScenario = function () {
 };
 
 setup.startNewTurn = function () {
-  // Increment the turn counter in the story's state
   story.state.turn += 1;
-  // Reset the scenario completion flag for the new turn in the story's state
   story.state.scenarioCompletedThisTurn = false;
+  setup.updatePlanetsAndTurnCounter();
+  setTimeout(setup.showWeekPreamble, 0);
+};
 
-  // Re-enable interaction with the planets for the new turn
+setup.updatePlanetsAndTurnCounter = function () {
   document.querySelectorAll(".planet").forEach(function (planetElement, index) {
     planetElement.classList.remove("inactive");
     planetElement.classList.add("active-turn");
-
-    // Reattach the event listener using the stored handler
     const clickHandler = setup.planetClickHandlers[index];
     if (clickHandler) {
       planetElement.addEventListener("click", clickHandler);
     }
   });
-
-  // Update the turn display, if you have one
   const turnCounterElement = document.getElementById("turnCounter");
   if (turnCounterElement) {
     turnCounterElement.innerText = `Turn: ${story.state.turn}`;
   }
-
-  // Re-render the map screen to reflect any changes
   setup.showMap();
+};
 
-  // Save the game state at the start of a new turn
-  story.checkpoint();
+setup.getWeekPreamble = function () {
+  const turnNumber = story.state.turn;
+  const passageName = "Week " + turnNumber;
+  renderToSelector(modalContent, passageName);
+};
+setup.showWeekPreamble = function () {
+  const modal = document.getElementById("weekPreamble");
+  const modalContent = document.getElementById("modalContent");
+  const turnNumber = story.state.turn;
+  const passageName = "Week " + turnNumber;
+
+  if (passageName) {
+    renderToSelector(modalContent, passageName);
+    modal.style.display = "block";
+  } else {
+    console.error("No content found for passage: " + passageName);
+  }
+};
+setup.hideWeekPreamble = function () {
+  const modal = document.getElementById("weekPreamble");
+  if (modal) {
+    modal.style.display = "none";
+  }
 };
 
 setup.handlePlanetClick = function (planetIndex) {
@@ -508,19 +502,13 @@ setup.handlePlanetClick = function (planetIndex) {
 };
 setup.attachEventListenersToPlanets = function () {
   document.querySelectorAll(".planet").forEach((planetElement, index) => {
-    // Ensure that the 'index' passed is correct, based on how you store your planets
-    // It might be 'planet.id - 1' or another method to identify the specific planet data
-    const planetIndex = planet.id; // or another way to get the index if necessary
-
-    // Remove any previously attached handlers to avoid multiple assignments
+    const planetIndex = planet.id;
     if (setup.planetClickHandlers[planetIndex]) {
       planetElement.removeEventListener(
         "click",
         setup.planetClickHandlers[planetIndex]
       );
     }
-
-    // Create a new handler and attach it
     setup.planetClickHandlers[planetIndex] =
       setup.handlePlanetClick(planetIndex);
     planetElement.addEventListener(

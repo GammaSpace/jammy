@@ -73,6 +73,10 @@ Jammy Jam
 
     <div id="mapScreen"></div>
     <div id="tooltips"></div>
+    <div id="weekPreamble">
+      <p id="modalContent" class="text-2xl mb-4"></p>
+        <button onclick="setup.hideWeekPreamble()">Close</button>
+    </div>
     <div id="hudTop" class="flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex-row">
         <div class="block text-sm mr-6">Energy:</div>
 
@@ -82,7 +86,7 @@ Jammy Jam
             style="width: <%= setup.game.energy / 700 * 100 %>%"></div>
         </div>
         <div class="ml-6 block text-sm">
-        <span id="turnCounter"><%= 7 - s.turn %> weeks to the show!</span>
+          <span id="turnCounter"><%= 7 - s.turn %> weeks to the show!</span>
         </div>
 
     </div>
@@ -163,13 +167,14 @@ Gathering stardust might be fun?
 </div>
 
 
+:: Week 1 [preamble]
 
-:: HelpPlanets
-[[Back|Map Screen]]
+Whew, helping planets is hard! Let's do it again this week.
 
+:: Week 2 [preamble]
 
-:: RadioShow 
-[[To epilogue|Epilogue]]
+A week goes by… Wow, I'm getting the hang of this. Let's help some more planets!
 
-:: Epilogue
-## So sad, what happened…
+:: Week 3 [preamble]
+
+I'm getting pretty good at this. Let's help some more planets!
