@@ -1,0 +1,57 @@
+:: Melodic Quest [scenario]
+The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+
+[[Next...->Melodic Quest 2]]
+
+:: Melodic Quest 2
+
+Let's see if I can find the notes…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+
+:: Quantum Conundrum [scenario]
+
+A quantum computer has gone **haywire**, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
+
+[[Next...->Quantum Conundrum 2]]
+
+:: Quantum Conundrum 2 [scenario]
+
+I have no idea how to solve these puzzles, but i'll give it my best shot…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Stellar Cradle
+A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
+
+[[Next...->Stellar Cradle 2]]
+
+:: Stellar Cradle 2
+
+Gathering stardust might be fun?
+
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+
+:: Week 1 [preamble]
+
+Whew, helping planets is hard! Let's do it again this week.
+
+:: Week 2 [preamble]
+
+A week goes by… Wow, helping <%= setup.getPlanet(s.currentPlanet) %> was the right call. Our connection is stronger than ever!
+
+:: Week 3 [preamble]
+
+I'm getting pretty good at this. Let's help some more planets!
