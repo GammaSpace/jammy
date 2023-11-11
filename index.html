@@ -1549,14 +1549,6 @@ select{
   position: absolute;
 }
 
-.relative{
-  position: relative;
-}
-
-.left-2{
-  left: 0.5rem;
-}
-
 .right-6{
   right: 1.5rem;
 }
@@ -1569,10 +1561,6 @@ select{
   top: 1.5rem;
 }
 
-.z-40{
-  z-index: 40;
-}
-
 .z-50{
   z-index: 50;
 }
@@ -1582,16 +1570,12 @@ select{
   margin-right: auto;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .ml-3{
   margin-left: 0.75rem;
-}
-
-.ml-6{
-  margin-left: 1.5rem;
-}
-
-.mr-6{
-  margin-right: 1.5rem;
 }
 
 .mt-2{
@@ -1600,10 +1584,6 @@ select{
 
 .mt-4{
   margin-top: 1rem;
-}
-
-.mb-4{
-  margin-bottom: 1rem;
 }
 
 .block{
@@ -1630,24 +1610,16 @@ select{
   height: 1rem;
 }
 
-.h-6{
-  height: 1.5rem;
-}
-
 .w-12{
   width: 3rem;
-}
-
-.w-2\/3{
-  width: 66.666667%;
 }
 
 .w-4{
   width: 1rem;
 }
 
-.w-full{
-  width: 100%;
+.w-auto{
+  width: auto;
 }
 
 .max-w-3xl{
@@ -1658,10 +1630,6 @@ select{
   max-width: 80rem;
 }
 
-.max-w-full{
-  max-width: 100%;
-}
-
 .flex-shrink-0{
   flex-shrink: 0;
 }
@@ -1670,8 +1638,8 @@ select{
   cursor: pointer;
 }
 
-.flex-row{
-  flex-direction: row;
+.items-end{
+  align-items: flex-end;
 }
 
 .items-center{
@@ -1684,28 +1652,9 @@ select{
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
-.rounded-full{
-  border-radius: 9999px;
-}
-
 .border-gray-300{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
-.bg-neutral-200{
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-400{
-  --tw-bg-opacity: 1;
-  background-color: rgb(163 163 163 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-600{
-  --tw-bg-opacity: 1;
-  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
 }
 
 .p-2{
@@ -1730,6 +1679,11 @@ select{
   font-family: Handjet;
 }
 
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1743,11 +1697,6 @@ select{
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .font-medium{
@@ -1796,16 +1745,6 @@ select{
   color: rgb(250 250 250 / var(--tw-text-opacity));
 }
 
-.text-neutral-900{
-  --tw-text-opacity: 1;
-  color: rgb(23 23 23 / var(--tw-text-opacity));
-}
-
-.text-white{
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1822,7 +1761,6 @@ body,
 html {
   margin: 0;
   height: 100%;
-  /* Full height */
 }
 
 #hud{
@@ -1849,21 +1787,16 @@ html {
   padding-bottom: 0px;
   background-image: url(./img/twinkle.gif);
   background-size: cover;
-  top: 0;
-  left: 0;
+  position: relative;
   flex-grow: 1;
   display: grid;
   height: 100vh;
   width: 100vw;
   z-index: 0;
-  grid-template-areas:
-    ". p1 . p2 ."
-    "p3 . p5 . p4"
-    ". . p6 . .";
+  grid-template-areas: ". p1 . p2 ." "p3 . p5 . p4" ". . p6 . .";
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
-  position: relative;
   overflow: hidden;
 }
 
@@ -1932,7 +1865,6 @@ html {
 }
 
 .active-turn img {
-  /* Initial state of the glow */
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
   animation: pulseGlow 2s infinite;
 }
@@ -1979,7 +1911,6 @@ html {
 body.map {
   padding: 0;
   overflow: hidden;
-  /* Prevent body scrolling */
 }
 
 body.customization{
@@ -2029,40 +1960,36 @@ div[data-next]:hover{
   opacity: 0;
   transition: opacity 2s, transform 2s;
   pointer-events: none;
-  /* So it doesn't block clicks */
   z-index: 10;
-  /* Make sure it's above other elements */
+}
+
+.tooltip{
+  z-index: 50;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -10px);
+  white-space: nowrap;
+}
+
+.planet{
+  z-index: 40;
+  max-height: 10rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
 .planet-container {
   position: relative;
-  display: inline-block;
-  /* or your preferred display type */
-}
-
-.tooltip {
-  position: absolute;
-  bottom: 100%;
-  /* Adjust to position above the image */
-  left: 50%;
-  /* Center horizontally */
-  transform: translate(-50%, -10px);
-  /* Adjust to fine-tune the position */
-  white-space: nowrap;
-  /* Keep the tooltip text on one line */
-  /* Add your styles for padding, background, etc. */
-}
-
-.planet {
-  width: 100px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-  margin: 0 auto;
-}
-
-.planet-container {
   display: flex;
   align-self: center;
+  margin: 0 auto;
+  justify-content: center;
+  justify-self: center;
+  max-height: 100%;
+  width: 100%;
+  align-content: center;
+  align-items: center;
 }
 
 .planet:hover {
@@ -2092,10 +2019,6 @@ div[data-next]:hover{
 .planet-container-player {
   grid-area: p6;
 }
-
-/* .planet-container7 {
-  grid-area: p7;
-} */
 
 .inactive{
   pointer-events: none;
@@ -2162,8 +2085,6 @@ div[data-next]:hover{
   display: inline-block;
 }
 
-/* Tooltip text */
-
 .tooltip{
   white-space: nowrap;
   border-radius: 0.375rem;
@@ -2183,8 +2104,6 @@ div[data-next]:hover{
   left: 50%;
   transform: translate(-50%, -10px);
 }
-
-/* Tooltip arrow */
 
 .tooltip::after {
   content: "";
@@ -2227,8 +2146,6 @@ button:focus-visible{
   outline-offset: 2px;
   outline-color: #4f46e5;
 }
-
-/* Show the tooltip text when you hover over the tooltip container */
 
 .tooltip-container:hover .tooltip-text {
   visibility: visible;
@@ -2348,6 +2265,46 @@ button:focus-visible{
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
+.circle-container{
+  position: absolute;
+  z-index: 30;
+  height: 10rem;
+  width: 10rem;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: blue;
+  width: 100%;
+  height: 100%;
+  animation: radiate 2s infinite;
+  opacity: 0;
+}
+
+@keyframes radiate {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+#overlay{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 40;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.5;
+}
+
 .focus\:ring-indigo-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
@@ -2355,18 +2312,6 @@ button:focus-visible{
 
 .disabled\:opacity-25:disabled{
   opacity: 0.25;
-}
-
-@media (prefers-color-scheme: dark){
-  .dark\:bg-neutral-500{
-    --tw-bg-opacity: 1;
-    background-color: rgb(115 115 115 / var(--tw-bg-opacity));
-  }
-
-  .dark\:bg-neutral-700{
-    --tw-bg-opacity: 1;
-    background-color: rgb(64 64 64 / var(--tw-bg-opacity));
-  }
 }
 
 @media (min-width: 640px){
@@ -2391,553 +2336,578 @@ button:focus-visible{
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
 window.setup = window.setup || {};
-
-setup.game = {
-  planets: [
-    {
-      id: 0,
-      imgSrc: "img/planet-1.png",
-      repImgSrc: "img/rep-1.png",
-      splashImgSrc: "img/planet-1-splash.png",
-      name: "FuNKybEAtZ",
-      rep: "DJ FuNKybEAtZ (they/them)",
-      project:
-        "EmCee for the show. The broadcast is actually being transmitted through DJ FUNKYBEATZ.",
-      description:
-        "DJ FUNKYBEATZ is the onboarder & tutorial for the game. Very welcoming and a little wacky.",
-      availableTurns: [1, 2, 4, 6],
-    },
-    {
-      id: 1,
-      imgSrc: "img/planet-2.png",
-      repImgSrc: "img/rep-2.png",
-      splashImgSrc: "img/planet-2-splash.png",
-      name: "Razzmatazz",
-      rep: "Boris the Clown (he/him)",
-      project:
-        "Holographic circus show. Involves juggling spoons and repurposing all kinds of garbage. Very silly and wild.",
-      description:
-        "Boris is a loveable grump who has seen some stuff. Loves collecting the weirdos to join his circus planet.",
-      availableTurns: [1, 3, 5, 6],
-    },
-    {
-      id: 2,
-      imgSrc: "img/planet-3.png",
-      repImgSrc: "img/rep-3.png",
-      splashImgSrc: "img/planet-3-splash.png",
-      name: "Chanterella",
-      rep: "Spore T. Spice (she/they high femme drag)",
-      project: "Holographic psychedelic performance art drag show.",
-      description:
-        "High fashion. High drama. Dragtastic. Spore T. Spice is fun. Definitely probably on mushrooms some of the time. Incredible gardener and environmentalist. Makes some mean food.",
-      availableTurns: [1, 4, 5, 7],
-    },
-    {
-      id: 3,
-      imgSrc: "img/planet-4.png",
-      repImgSrc: "img/rep-4.png",
-      splashImgSrc: "img/planet-4-splash.png",
-      name: "Kelpler",
-      rep: "Flotsam (they/them)",
-      project:
-        "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
-      description:
-        "Genderless being made of water. Somewhat surfer-bro but real genuine n sweet. Has a sibling Jestam they refer to, who is stuck trying to make it big in the Dominion Planetation. Jetsam is MORE surfer bro. Jetsam is maybe a shark (but art team can decide.) We may only see Jetsam in a special scenario ending.",
-      availableTurns: [2, 3, 4, 6],
-    },
-    {
-      id: 4,
-      imgSrc: "img/planet-5.png",
-      repImgSrc: "img/rep-5.png",
-      splashImgSrc: "img/planet-5-splash.png",
-      name: "Barkenberg",
-      rep: "Spike (cat), Spook (raccoon), and Spark (dog) - (independent genders)",
-      project: "Audio drama of their heists narrated (like War of the Worlds).",
-      description:
-        "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
-      availableTurns: [2, 3, 5, 7],
-    },
-  ],
-};
-
-story.state = {
-  turn: 1,
-  helpedPlanets: setup.game.planets.map((planet) => ({
-    planet: planet.id,
-    timesHelped: 0,
-  })),
-  lastHelpedPlanet: null,
-  scenarioCompletedThisTurn: false,
-};
-
-setup.game.scenarios = window.story.passages
-  .filter((passage) => passage.tags.includes("scenario"))
-  .map((passage) => ({
-    scenarioPassage: passage.name,
-    complete: false,
-  }));
-
-// this is demented, but it works
-// couldn't figure out how to override default behaviour of Twine's a tags
-
-$(document).on("click", "div[data-next]", function (e) {
-  var passageName = $(this).attr("data-next");
-  renderToSelector("#passage", passageName);
-});
-
-setup.startObserving = function () {
-  var targetNode = document.getElementById("passageContainer");
-  if (targetNode) {
-    var config = { childList: true, subtree: true };
-    var callback = function (mutationsList, observer) {
-      for (var mutation of mutationsList) {
-        if (mutation.type === "childList") {
-          setup.modifyLinks();
-          break;
-        }
-      }
-    };
-    var observer = new MutationObserver(callback);
-    observer.observe(targetNode, config);
-  } else {
-    setTimeout(startObserving, 500);
-  }
-};
-
-document.addEventListener("DOMContentLoaded", function () {
-  setup.startObserving();
-});
-
-setup.savePlayerInfo = function () {
-  var playerName = document.getElementById("playerName").value;
-  var planetName = document.getElementById("planetName").value;
-  var projectDescription = document.getElementById("projectDescription").value;
-
-  var planetImgSrc = document.querySelector(
-    'input[name="planetImage"]:checked'
-  ).value;
-
-  story.state.playerPlanet = {
-    name: planetName,
-    description: projectDescription,
-    imgSrc: planetImgSrc,
+$(document).ready(function () {
+  setup.game = {
+    planets: [
+      {
+        id: 0,
+        imgSrc: "img/planet-1.png",
+        repImgSrc: "img/rep-1.png",
+        splashImgSrc: "img/planet-1-splash.png",
+        name: "FuNKybEAtZ",
+        rep: "DJ FuNKybEAtZ (they/them)",
+        project:
+          "EmCee for the show. The broadcast is actually being transmitted through DJ FUNKYBEATZ.",
+        description:
+          "DJ FUNKYBEATZ is the onboarder & tutorial for the game. Very welcoming and a little wacky.",
+        availableTurns: [1, 2, 4, 6],
+      },
+      {
+        id: 1,
+        imgSrc: "img/planet-2.png",
+        repImgSrc: "img/rep-2.png",
+        splashImgSrc: "img/planet-2-splash.png",
+        name: "Razzmatazz",
+        rep: "Boris the Clown (he/him)",
+        project:
+          "Holographic circus show. Involves juggling spoons and repurposing all kinds of garbage. Very silly and wild.",
+        description:
+          "Boris is a loveable grump who has seen some stuff. Loves collecting the weirdos to join his circus planet.",
+        availableTurns: [1, 3, 5, 6],
+      },
+      {
+        id: 2,
+        imgSrc: "img/planet-3.png",
+        repImgSrc: "img/rep-3.png",
+        splashImgSrc: "img/planet-3-splash.png",
+        name: "Chanterella",
+        rep: "Spore T. Spice (she/they high femme drag)",
+        project: "Holographic psychedelic performance art drag show.",
+        description:
+          "High fashion. High drama. Dragtastic. Spore T. Spice is fun. Definitely probably on mushrooms some of the time. Incredible gardener and environmentalist. Makes some mean food.",
+        availableTurns: [1, 4, 5, 7],
+      },
+      {
+        id: 3,
+        imgSrc: "img/planet-4.png",
+        repImgSrc: "img/rep-4.png",
+        splashImgSrc: "img/planet-4-splash.png",
+        name: "Kelpler",
+        rep: "Flotsam (they/them)",
+        project:
+          "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
+        description:
+          "Genderless being made of water. Somewhat surfer-bro but real genuine n sweet. Has a sibling Jestam they refer to, who is stuck trying to make it big in the Dominion Planetation. Jetsam is MORE surfer bro. Jetsam is maybe a shark (but art team can decide.) We may only see Jetsam in a special scenario ending.",
+        availableTurns: [2, 3, 4, 6],
+      },
+      {
+        id: 4,
+        imgSrc: "img/planet-5.png",
+        repImgSrc: "img/rep-5.png",
+        splashImgSrc: "img/planet-5-splash.png",
+        name: "Barkenberg",
+        rep: "Spike (cat), Spook (raccoon), and Spark (dog) - (independent genders)",
+        project:
+          "Audio drama of their heists narrated (like War of the Worlds).",
+        description:
+          "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
+        availableTurns: [2, 3, 5, 7],
+      },
+    ],
   };
 
-  story.state.playerName = playerName;
+  story.state = {
+    turn: 1,
+    helpedPlanets: setup.game.planets.map((planet) => ({
+      planet: planet.id,
+      timesHelped: 0,
+    })),
+    lastHelpedPlanet: null,
+    scenarioCompletedThisTurn: false,
+  };
 
-  story.show("Map Screen");
-};
+  setup.game.scenarios = window.story.passages
+    .filter((passage) => passage.tags.includes("scenario"))
+    .map((passage) => ({
+      scenarioPassage: passage.name,
+      complete: false,
+    }));
 
-setup.checkInputs = function () {
-  var playerName = document.getElementById("playerName").value.trim();
-  var planetName = document.getElementById("planetName").value.trim();
-  var projectDescription = document
-    .getElementById("projectDescription")
-    .value.trim();
+  // this is demented, but it works
+  // couldn't figure out how to override default behaviour of Twine's a tags
 
-  var planetImage = document.querySelector(
-    'input[name="planetImage"]:checked'
-  )?.value;
-
-  var nextButton = document.getElementById("nextButton");
-
-  nextButton.disabled = !(
-    playerName &&
-    planetName &&
-    projectDescription &&
-    planetImage
-  );
-};
-
-setup.showPlanet = function (planetIndex) {
-  story.state.currentPlanet = planetIndex;
-
-  const planet = setup.game.planets[planetIndex];
-  let content = planet.description;
-  let repContent = `<img class='repImage' src='${planet.repImgSrc}' /><div class='repName'>${planet.rep}</div>`;
-  var repContainer = document.getElementById("rep");
-
-  var splashContainer = document.getElementById("planet-splash");
-  splashContainer.style.backgroundImage = `url(${planet.splashImgSrc})`;
-  splashContainer.innerHTML =
-    "<h1 class='text-xl md:text-6xl text-neutral-200 font-display uppercase'>" +
-    planet.name +
-    "</h1> <div id='planetContent' class='text-neutral-300 text-base'></div>";
-
-  repContainer.innerHTML = repContent;
-
-  return content;
-};
-
-setup.modifyLinks = function () {
-  $("a[data-passage]").each(function () {
-    var $this = $(this);
-    var passageName = $this.attr("data-passage");
-    var text = $this.text();
-    var newDiv = $('<div data-next="' + passageName + '"></div>').text(text);
-    $this.replaceWith(newDiv);
+  $(document).on("click", "div[data-next]", function (e) {
+    var passageName = $(this).attr("data-next");
+    renderToSelector("#passage", passageName);
   });
-};
 
-setup.renderPlanetPassage = function (planetIndex) {
-  setup.startObserving();
-
-  if (story.state.scenarioCompletedThisTurn) {
-    console.log("A scenario has already been completed this turn.");
-    return;
-  }
-
-  try {
-    const planetElementSelector = ".planet" + planetIndex;
-    const planetElement = document.querySelector(planetElementSelector);
-
-    if (!planetElement) {
-      throw new Error(
-        `Element with selector "${planetElementSelector}" does not exist in the DOM.`
-      );
+  setup.startObserving = function () {
+    var targetNode = document.getElementById("passageContainer");
+    if (targetNode) {
+      var config = { childList: true, subtree: true };
+      var callback = function (mutationsList, observer) {
+        for (var mutation of mutationsList) {
+          if (mutation.type === "childList") {
+            setup.modifyLinks();
+            break;
+          }
+        }
+      };
+      var observer = new MutationObserver(callback);
+      observer.observe(targetNode, config);
+    } else {
+      setTimeout(startObserving, 500);
     }
+  };
 
-    if (planetElement.classList.contains("inactive")) {
-      console.log(
-        `Planet with index ${planetIndex} is inactive and should not be clickable.`
-      );
+  document.addEventListener("DOMContentLoaded", function () {
+    setup.startObserving();
+  });
+
+  setup.savePlayerInfo = function () {
+    var playerName = document.getElementById("playerName").value;
+    var planetName = document.getElementById("planetName").value;
+    var projectDescription =
+      document.getElementById("projectDescription").value;
+
+    var planetImgSrc = document.querySelector(
+      'input[name="planetImage"]:checked'
+    ).value;
+
+    story.state.playerPlanet = {
+      name: planetName,
+      description: projectDescription,
+      imgSrc: planetImgSrc,
+    };
+
+    story.state.playerName = playerName;
+
+    story.show("Map Screen");
+  };
+
+  setup.checkInputs = function () {
+    var playerName = document.getElementById("playerName").value.trim();
+    var planetName = document.getElementById("planetName").value.trim();
+    var projectDescription = document
+      .getElementById("projectDescription")
+      .value.trim();
+
+    var planetImage = document.querySelector(
+      'input[name="planetImage"]:checked'
+    )?.value;
+
+    var nextButton = document.getElementById("nextButton");
+
+    nextButton.disabled = !(
+      playerName &&
+      planetName &&
+      projectDescription &&
+      planetImage
+    );
+  };
+
+  setup.showPlanet = function (planetIndex) {
+    story.state.currentPlanet = planetIndex;
+
+    const planet = setup.game.planets[planetIndex];
+    let content = planet.description;
+    let repContent = `<img class='repImage' src='${planet.repImgSrc}' /><div class='repName'>${planet.rep}</div>`;
+    var repContainer = document.getElementById("rep");
+
+    var splashContainer = document.getElementById("planet-splash");
+    splashContainer.style.backgroundImage = `url(${planet.splashImgSrc})`;
+    splashContainer.innerHTML =
+      "<h1 class='text-xl md:text-6xl text-neutral-200 font-display uppercase'>" +
+      planet.name +
+      "</h1> <div id='planetContent' class='text-neutral-300 text-base'></div>";
+
+    repContainer.innerHTML = repContent;
+
+    return content;
+  };
+
+  setup.modifyLinks = function () {
+    $("a[data-passage]").each(function () {
+      var $this = $(this);
+      var passageName = $this.attr("data-passage");
+      var text = $this.text();
+      var newDiv = $('<div data-next="' + passageName + '"></div>').text(text);
+      $this.replaceWith(newDiv);
+    });
+  };
+
+  setup.renderPlanetPassage = function (planetIndex) {
+    setup.startObserving();
+
+    if (story.state.scenarioCompletedThisTurn) {
+      console.log("A scenario has already been completed this turn.");
       return;
     }
 
-    var planetContent = setup.showPlanet(planetIndex);
-    var scenarioData = setup.showRandomIncompleteScenario();
-    var scenarioContent = scenarioData.content;
-    var passageContent = "";
+    try {
+      const planetElementSelector = ".planet" + planetIndex;
+      const planetElement = document.querySelector(planetElementSelector);
 
-    if (scenarioData.scenarioPassage) {
-      passageContent = story.render(scenarioData.scenarioPassage);
-      story.state.currentScenario = scenarioData.scenarioPassage;
-    } else {
-      console.error("scenarioPassage is null for scenario", scenarioData);
-    }
-
-    var mapScreen = document.getElementById("mapScreen");
-    var passageContainer = document.getElementById("passageContainer");
-    var passage = document.getElementById("passage");
-    var planetContentContainer = document.getElementById("planetContent");
-    var hud = document.getElementById("hud");
-
-    if (mapScreen) mapScreen.style.display = "none";
-    if (hud) hud.style.display = "flex";
-    if (passageContainer) {
-      passage.innerHTML = passageContent;
-      if (planetContentContainer) {
-        planetContentContainer.innerHTML = planetContent;
+      if (!planetElement) {
+        throw new Error(
+          `Element with selector "${planetElementSelector}" does not exist in the DOM.`
+        );
       }
-      passageContainer.style.display = "block";
-    }
-  } catch (error) {
-    console.error("Error in renderPlanetPassage:", error);
-  }
-};
 
-setup.returnToMap = function () {
-  var hud = document.getElementById("hud");
-  var mapScreen = document.getElementById("mapScreen");
-  var passageContainer = document.getElementById("passageContainer");
+      if (planetElement.classList.contains("inactive")) {
+        console.log(
+          `Planet with index ${planetIndex} is inactive and should not be clickable.`
+        );
+        return;
+      }
 
-  if (hud) hud.style.display = "none";
-  if (mapScreen) mapScreen.style.display = "grid";
-  if (passage) passage.innerHTML = "";
+      var planetContent = setup.showPlanet(planetIndex);
+      var scenarioData = setup.showRandomIncompleteScenario();
+      var scenarioContent = scenarioData.content;
+      var passageContent = "";
 
-  story.state.currentPlanet = null;
-};
+      if (scenarioData.scenarioPassage) {
+        passageContent = story.render(scenarioData.scenarioPassage);
+        story.state.currentScenario = scenarioData.scenarioPassage;
+      } else {
+        console.error("scenarioPassage is null for scenario", scenarioData);
+      }
 
-setup.showRandomIncompleteScenario = function () {
-  var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
-    return !scenario.complete;
-  });
-
-  if (incompleteScenarios.length > 0) {
-    var scenario = either(incompleteScenarios);
-
-    return {
-      scenarioPassage: scenario.scenarioPassage,
-    };
-  } else {
-    return {
-      scenarioPassage: null,
-    };
-  }
-};
-
-setup.planetClickHandlers = {};
-
-setup.showMap = function () {
-  var mapScreen = document.getElementById("mapScreen");
-
-  if (mapScreen) {
-    mapScreen.style.display = "grid";
-    mapScreen.innerHTML = "";
-
-    let loadedPlanets = 0;
-    const totalPlanets =
-      setup.game.planets.length + (story.state.playerPlanet ? 1 : 0);
-
-    setup.game.planets.forEach((planet, index) => {
-      const planetContainer = document.createElement("div");
-      planetContainer.className = `planet-container planet-container${planet.id}`;
-
-      const img = document.createElement("img");
-      img.className = `planet planet${planet.id}`;
-      img.src = planet.imgSrc;
-
-      img.onload = function () {
-        if (planet.availableTurns.includes(story.state.turn)) {
-          planetContainer.classList.add("active-turn");
-
-          const clickHandler = setup.handlePlanetClick(index);
-          setup.planetClickHandlers[planet.id] = clickHandler;
-          img.addEventListener("click", clickHandler);
-        }
-        planetContainer.appendChild(img);
-        setup.appendTooltip(planet, planetContainer);
-        mapScreen.appendChild(planetContainer);
-        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
-      };
-    });
-
-    if (story.state.playerPlanet) {
-      const playerPlanetContainer = document.createElement("div");
-      playerPlanetContainer.className =
-        "planet-container planet-container-player";
-      const playerPlanetImg = document.createElement("img");
-      playerPlanetImg.className = "planet planet-player";
-      playerPlanetImg.src = story.state.playerPlanet.imgSrc;
-
-      playerPlanetImg.onload = function () {
-        playerPlanetImg.addEventListener("click", function () {
-          setup.renderPlanetPassage("player");
-          setup.toggleHUD(true);
-        });
-        playerPlanetContainer.appendChild(playerPlanetImg);
-        setup.appendTooltip(story.state.playerPlanet, playerPlanetContainer);
-        mapScreen.appendChild(playerPlanetContainer);
-        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
-      };
-    }
-  }
-};
-
-function checkAllPlanetsLoaded(loaded, total) {
-  if (loaded === total) {
-    setup.checkForIncompleteScenarios();
-  }
-}
-
-setup.checkForIncompleteScenarios = function () {
-  var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
-    return !scenario.complete;
-  });
-
-  if (incompleteScenarios.length === 0) {
-    document.querySelectorAll(".planet").forEach(function (planet) {
-      console.log("Getting planets…");
-      planet.style.pointerEvents = "none";
-      planet.classList.add("inactive");
-    });
-    var message = document.createElement("div");
-    message.textContent = "All scenarios complete.";
-
-    message.classList.add("next-turn-message");
-
-    message.onclick = setup.startNewTurn;
-    document.body.appendChild(message);
-  }
-};
-
-setup.appendTooltip = (planet, container) => {
-  const tooltipDiv = document.createElement("div");
-  tooltipDiv.className = "tooltip";
-  tooltipDiv.innerText = planet.name;
-  tooltipDiv.style.visibility = "hidden";
-  tooltipDiv.style.opacity = "0";
-  tooltipDiv.style.transition =
-    "visibility 0s linear 0.5s, opacity 0.5s linear";
-  container.appendChild(tooltipDiv);
-
-  container.onmouseover = function () {
-    tooltipDiv.style.visibility = "visible";
-    tooltipDiv.style.opacity = "1";
-    tooltipDiv.style.transitionDelay = "0s";
-  };
-
-  container.onmouseleave = function () {
-    tooltipDiv.style.visibility = "hidden";
-    tooltipDiv.style.opacity = "0";
-    tooltipDiv.style.transitionDelay = "0.5s";
-  };
-};
-setup.toggleHUDTop = function (shouldShow) {
-  var hudTop = document.getElementById("hudTop");
-  if (hudTop) {
-    hudTop.style.display = shouldShow ? "flex" : "none";
-  }
-};
-setup.toggleHUD = function (shouldShow) {
-  var hud = document.getElementById("hud");
-  if (hud) {
-    hud.style.display = shouldShow ? "flex" : "none";
-
-    if (!shouldShow) {
+      var mapScreen = document.getElementById("mapScreen");
       var passageContainer = document.getElementById("passageContainer");
       var passage = document.getElementById("passage");
+      var planetContentContainer = document.getElementById("planetContent");
+      var hud = document.getElementById("hud");
 
+      if (mapScreen) mapScreen.style.display = "none";
+      if (hud) hud.style.display = "flex";
       if (passageContainer) {
-        passage.innerHTML = "";
+        passage.innerHTML = passageContent;
+        if (planetContentContainer) {
+          planetContentContainer.innerHTML = planetContent;
+        }
+        passageContainer.style.display = "block";
+      }
+    } catch (error) {
+      console.error("Error in renderPlanetPassage:", error);
+    }
+  };
+
+  setup.returnToMap = function () {
+    var hud = document.getElementById("hud");
+    var mapScreen = document.getElementById("mapScreen");
+    var passageContainer = document.getElementById("passageContainer");
+
+    if (hud) hud.style.display = "none";
+    if (mapScreen) mapScreen.style.display = "grid";
+    if (passage) passage.innerHTML = "";
+
+    story.state.currentPlanet = null;
+  };
+
+  setup.showRandomIncompleteScenario = function () {
+    var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
+      return !scenario.complete;
+    });
+
+    if (incompleteScenarios.length > 0) {
+      var scenario = either(incompleteScenarios);
+
+      return {
+        scenarioPassage: scenario.scenarioPassage,
+      };
+    } else {
+      return {
+        scenarioPassage: null,
+      };
+    }
+  };
+
+  setup.planetClickHandlers = {};
+
+  setup.showMap = function () {
+    var mapScreen = document.getElementById("mapScreen");
+
+    if (mapScreen) {
+      mapScreen.style.display = "grid";
+      mapScreen.innerHTML = "";
+
+      let loadedPlanets = 0;
+      const totalPlanets =
+        setup.game.planets.length + (story.state.playerPlanet ? 1 : 0);
+
+      setup.game.planets.forEach((planet, index) => {
+        const planetContainer = document.createElement("div");
+        planetContainer.className = `planet-container planet-container${planet.id}`;
+
+        // Check if the planet has been helped
+        const hasBeenHelped = story.state.helpedPlanets.some(
+          (helpedPlanet) =>
+            helpedPlanet.planet === planet.id && helpedPlanet.timesHelped > 0
+        );
+
+        if (hasBeenHelped) {
+          // Create and append the circle container HTML
+          const circleContainer = document.createElement("div");
+          circleContainer.className = "circle-container";
+          const circle = document.createElement("div");
+          circle.className = "circle";
+          circleContainer.appendChild(circle);
+          planetContainer.appendChild(circleContainer);
+        }
+
+        const img = document.createElement("img");
+        img.className = `planet planet${planet.id}`;
+        img.src = planet.imgSrc;
+
+        img.onload = function () {
+          if (planet.availableTurns.includes(story.state.turn)) {
+            planetContainer.classList.add("active-turn");
+
+            const clickHandler = setup.handlePlanetClick(index);
+            setup.planetClickHandlers[planet.id] = clickHandler;
+            img.addEventListener("click", clickHandler);
+          }
+          planetContainer.appendChild(img);
+          setup.appendTooltip(planet, planetContainer);
+          mapScreen.appendChild(planetContainer);
+          checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
+        };
+      });
+
+      if (story.state.playerPlanet) {
+        const playerPlanetContainer = document.createElement("div");
+        playerPlanetContainer.className =
+          "planet-container planet-container-player";
+        const playerPlanetImg = document.createElement("img");
+        playerPlanetImg.className = "planet planet-player";
+        playerPlanetImg.src = story.state.playerPlanet.imgSrc;
+
+        playerPlanetImg.onload = function () {
+          playerPlanetImg.addEventListener("click", function () {
+            setup.renderPlanetPassage("player");
+            setup.toggleHUD(true);
+          });
+          playerPlanetContainer.appendChild(playerPlanetImg);
+          setup.appendTooltip(story.state.playerPlanet, playerPlanetContainer);
+          mapScreen.appendChild(playerPlanetContainer);
+          checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
+        };
       }
     }
-  } else {
-    console.error("HUD element not found");
+  };
+
+  function checkAllPlanetsLoaded(loaded, total) {
+    if (loaded === total) {
+      setup.checkForIncompleteScenarios();
+    }
   }
-};
-setup.updateEnergyBar = function () {
-  var energyBar = document.querySelector(".energy-bar");
-  if (energyBar) {
-    var newWidth = (setup.game.energy / 700) * 100;
-    newWidth = Math.min(Math.max(newWidth, 0), 100);
-    energyBar.style.width = newWidth + "%";
-  } else {
-    console.error("Energy bar element not found");
-  }
-};
-setup.helpPlanet = function (planetId) {
-  const planetHelped = story.state.helpedPlanets.find(
-    (p) => p.planet === planetId
-  );
-  story.state.lastHelpedPlanet = planetId;
 
-  if (planetHelped) {
-    planetHelped.timesHelped += 1;
-  } else {
-    story.state.helpedPlanets.push({ planet: planetId, timesHelped: 1 });
-  }
-};
+  setup.checkForIncompleteScenarios = function () {
+    var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
+      return !scenario.complete;
+    });
 
-setup.completeScenario = function () {
-  var currentScenario = story.state.currentScenario;
-  var currentPlanetIndex = story.state.currentPlanet;
+    if (incompleteScenarios.length === 0) {
+      document.querySelectorAll(".planet").forEach(function (planet) {
+        console.log("Getting planets…");
+        planet.style.pointerEvents = "none";
+        planet.classList.add("inactive");
+      });
+      var message = document.createElement("div");
+      message.textContent = "All scenarios complete.";
 
-  const scenario = setup.game.scenarios.find(
-    (s) => s.scenarioPassage === currentScenario
-  );
+      message.classList.add("next-turn-message");
 
-  if (scenario && !story.state.scenarioCompletedThisTurn) {
-    var currentPlanet = setup.game.planets[currentPlanetIndex];
-    scenario.complete = true;
-    story.state.scenarioCompletedThisTurn = true;
+      message.onclick = setup.startNewTurn;
+      document.body.appendChild(message);
+    }
+  };
 
+  setup.appendTooltip = (planet, container) => {
+    const tooltipDiv = document.createElement("div");
+    tooltipDiv.className = "tooltip";
+    tooltipDiv.innerText = planet.name;
+    tooltipDiv.style.visibility = "hidden";
+    tooltipDiv.style.opacity = "0";
+    tooltipDiv.style.transition =
+      "visibility 0s linear 0.5s, opacity 0.5s linear";
+    container.appendChild(tooltipDiv);
+
+    container.onmouseover = function () {
+      tooltipDiv.style.visibility = "visible";
+      tooltipDiv.style.opacity = "1";
+      tooltipDiv.style.transitionDelay = "0s";
+    };
+
+    container.onmouseleave = function () {
+      tooltipDiv.style.visibility = "hidden";
+      tooltipDiv.style.opacity = "0";
+      tooltipDiv.style.transitionDelay = "0.5s";
+    };
+  };
+  setup.toggleHUDTop = function (shouldShow) {
+    var hudTop = document.getElementById("hudTop");
+    if (hudTop) {
+      hudTop.style.display = shouldShow ? "flex" : "none";
+    }
+  };
+  setup.toggleHUD = function (shouldShow) {
+    var hud = document.getElementById("hud");
+    if (hud) {
+      hud.style.display = shouldShow ? "flex" : "none";
+
+      if (!shouldShow) {
+        var passageContainer = document.getElementById("passageContainer");
+        var passage = document.getElementById("passage");
+
+        if (passageContainer) {
+          passage.innerHTML = "";
+        }
+      }
+    } else {
+      console.error("HUD element not found");
+    }
+  };
+  setup.updateEnergyBar = function () {
+    var energyBar = document.querySelector(".energy-bar");
+    if (energyBar) {
+      var newWidth = (setup.game.energy / 700) * 100;
+      newWidth = Math.min(Math.max(newWidth, 0), 100);
+      energyBar.style.width = newWidth + "%";
+    } else {
+      console.error("Energy bar element not found");
+    }
+  };
+  setup.helpPlanet = function (planetId) {
+    const planetHelped = story.state.helpedPlanets.find(
+      (p) => p.planet === planetId
+    );
+    story.state.lastHelpedPlanet = planetId;
+
+    if (planetHelped) {
+      planetHelped.timesHelped += 1;
+    } else {
+      story.state.helpedPlanets.push({ planet: planetId, timesHelped: 1 });
+    }
+  };
+
+  setup.completeScenario = function () {
+    var currentScenario = story.state.currentScenario;
+    var currentPlanetIndex = story.state.currentPlanet;
+
+    const scenario = setup.game.scenarios.find(
+      (s) => s.scenarioPassage === currentScenario
+    );
+
+    if (scenario && !story.state.scenarioCompletedThisTurn) {
+      var currentPlanet = setup.game.planets[currentPlanetIndex];
+      scenario.complete = true;
+      story.state.scenarioCompletedThisTurn = true;
+
+      document
+        .querySelectorAll(".planet")
+        .forEach(function (planetElement, index) {
+          planetElement.classList.remove("active-turn");
+          planetElement.classList.add("inactive");
+          const clickHandler = setup.planetClickHandlers[index];
+          if (clickHandler) {
+            planetElement.removeEventListener("click", clickHandler);
+          }
+        });
+
+      if (currentPlanet) {
+        currentPlanet.connections++;
+
+        // Call the function to increment the timesHelped for the currentPlanet
+        setup.helpPlanet(currentPlanet.id);
+      } else {
+        console.error("currentPlanet is undefined or not found");
+      }
+
+      setup.startNewTurn();
+    }
+
+    story.checkpoint("Completed " + currentScenario);
+    story.show("Map Screen");
+  };
+
+  setup.startNewTurn = function () {
+    story.state.turn += 1;
+    story.state.scenarioCompletedThisTurn = false;
+    setup.updatePlanetsAndTurnCounter();
+    setTimeout(setup.showWeekPreamble, 0);
+  };
+
+  setup.updatePlanetsAndTurnCounter = function () {
     document
       .querySelectorAll(".planet")
       .forEach(function (planetElement, index) {
-        planetElement.classList.remove("active-turn");
-        planetElement.classList.add("inactive");
+        planetElement.classList.remove("inactive");
+        planetElement.classList.add("active-turn");
         const clickHandler = setup.planetClickHandlers[index];
         if (clickHandler) {
-          planetElement.removeEventListener("click", clickHandler);
+          planetElement.addEventListener("click", clickHandler);
         }
       });
-
-    if (currentPlanet) {
-      currentPlanet.connections++;
-
-      // Call the function to increment the timesHelped for the currentPlanet
-      setup.helpPlanet(currentPlanet.id);
-    } else {
-      console.error("currentPlanet is undefined or not found");
+    const turnCounterElement = document.getElementById("turnCounter");
+    if (turnCounterElement) {
+      turnCounterElement.innerText = `Turn: ${story.state.turn}`;
     }
+    setup.showMap();
+  };
 
-    setup.startNewTurn();
-  }
-
-  story.checkpoint("Completed " + currentScenario);
-  story.show("Map Screen");
-};
-
-setup.startNewTurn = function () {
-  story.state.turn += 1;
-  story.state.scenarioCompletedThisTurn = false;
-  setup.updatePlanetsAndTurnCounter();
-  setTimeout(setup.showWeekPreamble, 0);
-};
-
-setup.updatePlanetsAndTurnCounter = function () {
-  document.querySelectorAll(".planet").forEach(function (planetElement, index) {
-    planetElement.classList.remove("inactive");
-    planetElement.classList.add("active-turn");
-    const clickHandler = setup.planetClickHandlers[index];
-    if (clickHandler) {
-      planetElement.addEventListener("click", clickHandler);
-    }
-  });
-  const turnCounterElement = document.getElementById("turnCounter");
-  if (turnCounterElement) {
-    turnCounterElement.innerText = `Turn: ${story.state.turn}`;
-  }
-  setup.showMap();
-};
-
-setup.getWeekPreamble = function () {
-  const turnNumber = story.state.turn;
-  const passageName = "Week " + turnNumber;
-  renderToSelector(modalContent, passageName);
-};
-setup.showWeekPreamble = function () {
-  const modal = document.getElementById("weekPreamble");
-  const modalContent = document.getElementById("modalContent");
-  const turnNumber = story.state.turn;
-  const passageName = "Week " + turnNumber;
-
-  if (passageName) {
+  setup.getWeekPreamble = function () {
+    const turnNumber = story.state.turn;
+    const passageName = "Week " + turnNumber;
     renderToSelector(modalContent, passageName);
-    modal.style.display = "block";
-  } else {
-    console.error("No content found for passage: " + passageName);
-  }
-};
-setup.hideWeekPreamble = function () {
-  const modal = document.getElementById("weekPreamble");
-  if (modal) {
-    modal.style.display = "none";
-  }
-};
+  };
+  setup.showWeekPreamble = function () {
+    const modal = document.getElementById("weekPreamble");
+    const overlay = document.getElementById("overlay");
+    const modalContent = document.getElementById("modalContent");
+    const turnNumber = story.state.turn;
+    const passageName = "Week " + turnNumber;
 
-setup.handlePlanetClick = function (planetIndex) {
-  return function (event) {
-    if (!story.state.scenarioCompletedThisTurn) {
-      setup.renderPlanetPassage(planetIndex);
-      setup.toggleHUD(true);
+    if (passageName) {
+      renderToSelector(modalContent, passageName);
+      overlay.classList.remove("hidden");
+      modal.style.display = "block";
     } else {
-      console.log("A scenario has already been completed this turn.");
+      console.error("No content found for passage: " + passageName);
     }
   };
-};
-setup.attachEventListenersToPlanets = function () {
-  document.querySelectorAll(".planet").forEach((planetElement, index) => {
-    const planetIndex = planet.id;
-    if (setup.planetClickHandlers[planetIndex]) {
-      planetElement.removeEventListener(
+  setup.hideWeekPreamble = function () {
+    const modal = document.getElementById("weekPreamble");
+    const overlay = document.getElementById("overlay");
+    if (modal) {
+      modal.style.display = "none";
+      overlay.classList.add("hidden");
+    }
+  };
+
+  setup.handlePlanetClick = function (planetIndex) {
+    return function (event) {
+      if (!story.state.scenarioCompletedThisTurn) {
+        setup.renderPlanetPassage(planetIndex);
+        setup.toggleHUD(true);
+      } else {
+        console.log("A scenario has already been completed this turn.");
+      }
+    };
+  };
+  setup.attachEventListenersToPlanets = function () {
+    document.querySelectorAll(".planet").forEach((planetElement, index) => {
+      const planetIndex = planet.id;
+      if (setup.planetClickHandlers[planetIndex]) {
+        planetElement.removeEventListener(
+          "click",
+          setup.planetClickHandlers[planetIndex]
+        );
+      }
+      setup.planetClickHandlers[planetIndex] =
+        setup.handlePlanetClick(planetIndex);
+      planetElement.addEventListener(
         "click",
         setup.planetClickHandlers[planetIndex]
       );
-    }
-    setup.planetClickHandlers[planetIndex] =
-      setup.handlePlanetClick(planetIndex);
-    planetElement.addEventListener(
-      "click",
-      setup.planetClickHandlers[planetIndex]
-    );
-  });
-};
-setup.getPlanet = function (planetId) {
-  const planet = setup.game.planets.find((p) => p.id === planetId);
-  return planet ? planet.name : null;
-};
+    });
+  };
+  setup.getPlanet = function (planetId) {
+    const planet = setup.game.planets.find((p) => p.id === planetId);
+    return planet ? planet.name : null;
+  };
+});
 /* twine-user-script #2: "utilities.js" */
 </script><tw-passagedata pid="1" name="Start" tags="" position="100,100" size="100,100">&lt;% $(&quot;body&quot;).toggleClass(&quot;customization&quot;) %&gt;
 
@@ -2945,8 +2915,6 @@ setup.getPlanet = function (planetId) {
   &lt;div class=&quot;mx-auto max-w-3xl customization-form&quot;&gt;
     &lt;h1&gt;It&#39;s Jammy Jam Time!&lt;/h1&gt;
     &lt;h2&gt;DJ FUNKYBEATZ: Welcome to Gamma Space collaborative federation!&lt;/h2&gt;
-
-
         &lt;div&gt;
             &lt;label for=&quot;playerName&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;What&#39;s your name?&lt;/label&gt;
             &lt;div class=&quot;mt-2&quot;&gt;
@@ -2985,35 +2953,23 @@ setup.getPlanet = function (planetId) {
             &lt;/div&gt;
         &lt;/fieldset&gt;
         &lt;/div&gt;
-
-
         &lt;button id=&quot;nextButton&quot; onclick=&quot;setup.savePlayerInfo()&quot; class=&quot;disabled:opacity-25&quot; disabled&gt;Next&lt;/button&gt;
-
-
         &lt;% if (story.state.playerName &amp;&amp; story.state.planetName) { %&gt;
         [[Next-&gt;Map Screen]]
         &lt;% } %&gt;
     &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="Map Screen" tags="scripted" position="225,100" size="100,100">&lt;% $(&quot;body&quot;).removeClass(&quot;customization&quot;).addClass(&quot;map&quot;) %&gt;
-
+    &lt;div id=&quot;overlay&quot; class=&quot;hidden&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;mapScreen&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;tooltips&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;weekPreamble&quot;&gt;
       &lt;p id=&quot;modalContent&quot; class=&quot;text-2xl mb-4&quot;&gt;&lt;/p&gt;
         &lt;button onclick=&quot;setup.hideWeekPreamble()&quot;&gt;Close&lt;/button&gt;
     &lt;/div&gt;
-    &lt;div id=&quot;hudTop&quot; class=&quot;flex items-center w-full h-12 p-2 bg-neutral-400 text-neutral-900 absolute top-0 flex-row&quot;&gt;
-        &lt;div class=&quot;block text-sm mr-6&quot;&gt;Energy:&lt;/div&gt;
-
-        &lt;div class=&quot;relative w-2/3 block h-6 bg-neutral-200 rounded-full dark:bg-neutral-700&quot;&gt;
-            &lt;div id=&quot;energyChangeText&quot; class=&quot;h-6 flex items-center text-white text-sm z-40 energy-change-text absolute left-2&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;h-6 relative bg-neutral-600 rounded-full dark:bg-neutral-500 max-w-full energy-bar&quot;
-            style=&quot;width: &lt;%= setup.game.energy / 700 * 100 %&gt;%&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;ml-6 block text-sm&quot;&gt;
-          &lt;span id=&quot;turnCounter&quot;&gt;&lt;%= 7 - s.turn %&gt; weeks to the show!&lt;/span&gt;
-        &lt;/div&gt;
-
+    &lt;div id=&quot;hudTop&quot; class=&quot;flex w-auto items-end h-12 p-2 text-neutral-100 absolute top-0&quot;&gt;
+      &lt;div class=&quot;text-sm&quot;&gt;
+        &lt;span id=&quot;turnCounter&quot;&gt;&lt;%= 7 - s.turn %&gt; weeks to the radio show!&lt;/span&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
     &lt;div id=&quot;hud&quot;&gt;
       &lt;span onclick=&quot;setup.returnToMap()&quot; class=&quot;z-50 text-neutral-100 absolute top-6 right-6 uppercase  text-base cursor-pointer&quot;&gt;&amp;larr; back to map&lt;/span&gt;

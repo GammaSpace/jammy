@@ -6,17 +6,14 @@
 body,
 html {
   margin: 0;
-  height: 100%; /* Full height */
+  height: 100%;
 }
 
 #hud {
   @apply hidden;
-
   height: 100vh;
   width: 100vw;
   position: absolute;
-  top: 0;
-  left: 0;
   top: 0;
   left: 0;
   z-index: 100;
@@ -27,51 +24,51 @@ html {
   background-image: url(./img/twinkle.gif);
   background-size: cover;
   position: relative;
-  top: 0;
-  left: 0;
-  z-index: 0;
   flex-grow: 1;
   display: grid;
   height: 100vh;
   width: 100vw;
   z-index: 0;
-  grid-template-areas:
-    ". p1 . p2 ."
-    "p3 . p5 . p4"
-    ". . p6 . .";
+  grid-template-areas: ". p1 . p2 ." "p3 . p5 . p4" ". . p6 . .";
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
-
-  position: relative;
   overflow: hidden;
 }
+
 #planet-splash {
   @apply absolute w-full h-full z-0 flex flex-col;
 }
+
 #planet-info {
   @apply flex flex-row self-end flex-grow z-20 justify-end h-1/3 mx-6;
 }
+
 #rep {
   @apply flex flex-col self-start z-30 mr-6 w-64;
 }
+
 .repName {
   @apply mt-2 text-sm uppercase p-1 text-neutral-50 text-center;
 }
+
 .repImage {
   @apply w-40;
 }
+
 .passage-choices {
   @apply flex flex-row justify-between;
 }
+
 .passage-choices span {
   @apply underline font-bold cursor-pointer hover:text-neutral-950 text-neutral-800;
 }
+
 .active-turn img {
-  /* Initial state of the glow */
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
   animation: pulseGlow 2s infinite;
 }
+
 .planet-container.active-turn::before {
   @apply text-4xl text-yellow-400 z-50;
   content: "!";
@@ -97,19 +94,23 @@ html {
 
 body.map {
   padding: 0;
-  overflow: hidden; /* Prevent body scrolling */
+  overflow: hidden;
 }
+
 body.customization {
   @apply pt-12 px-6 pb-0 absolute top-0 left-0 w-full h-full bg-neutral-900 text-neutral-400;
   background-image: url(./img/twinkle.gif);
 }
+
 body.customization h1 {
   @apply text-4xl font-bold text-neutral-100;
 }
+
 tw-story {
   max-width: 100vw;
   line-height: normal;
 }
+
 div[data-next] {
   @apply underline font-bold cursor-pointer hover:text-neutral-950 text-neutral-800;
 }
@@ -117,34 +118,38 @@ div[data-next] {
 .energy-change-text {
   opacity: 0;
   transition: opacity 2s, transform 2s;
-  pointer-events: none; /* So it doesn't block clicks */
-  z-index: 10; /* Make sure it's above other elements */
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tooltip {
+  @apply z-50;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -10px);
+  white-space: nowrap;
+}
+
+.planet {
+  @apply z-40 max-h-40;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
 .planet-container {
   position: relative;
-  display: inline-block; /* or your preferred display type */
-}
-
-.tooltip {
-  position: absolute;
-  bottom: 100%; /* Adjust to position above the image */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -10px); /* Adjust to fine-tune the position */
-  white-space: nowrap; /* Keep the tooltip text on one line */
-  /* Add your styles for padding, background, etc. */
-}
-
-.planet {
-  width: 100px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-  margin: 0 auto;
-}
-.planet-container {
   display: flex;
   align-self: center;
+  margin: 0 auto;
+  justify-content: center;
+  justify-self: center;
+  max-height: 100%;
+  width: 100%;
+  align-content: center;
+  align-items: center;
 }
+
 .planet:hover {
   transform: scale(1.1);
 }
@@ -167,16 +172,15 @@ div[data-next] {
 .planet-container-player {
   grid-area: p6;
 }
-/* .planet-container7 {
-  grid-area: p7;
-} */
 
 .inactive {
   @apply opacity-25 pointer-events-none;
 }
+
 .next-turn-message {
   @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-opacity-90 px-4 py-2 border border-gray-300 shadow rounded-lg text-center bg-white z-50;
 }
+
 #sidebar ul {
   @apply p-0 list-none;
 }
@@ -192,12 +196,12 @@ div[data-next] {
 #tooltips {
   @apply absolute top-0 left-0 z-50 w-full h-full pointer-events-none;
 }
+
 .tooltip-container {
   position: relative;
   display: inline-block;
 }
 
-/* Tooltip text */
 .tooltip {
   @apply absolute font-mono whitespace-nowrap bg-black text-neutral-300 px-2 py-1 text-lg rounded-md;
   position: absolute;
@@ -206,7 +210,6 @@ div[data-next] {
   transform: translate(-50%, -10px);
 }
 
-/* Tooltip arrow */
 .tooltip::after {
   content: "";
   position: absolute;
@@ -222,7 +225,6 @@ button {
   @apply cursor-pointer rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
 }
 
-/* Show the tooltip text when you hover over the tooltip container */
 .tooltip-container:hover .tooltip-text {
   visibility: visible;
 }
@@ -230,15 +232,19 @@ button {
 .customization-form label {
   @apply text-neutral-100;
 }
+
 .customization-form div {
   @apply mt-4;
 }
+
 .customization-text-input {
   @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6;
 }
+
 .customization-textarea {
   @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6;
 }
+
 #weekPreamble {
   display: none;
   position: fixed;
@@ -250,4 +256,33 @@ button {
   z-index: 1000;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.circle-container {
+  @apply absolute z-30 h-40 w-40;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: blue;
+  width: 100%;
+  height: 100%;
+  animation: radiate 2s infinite;
+  opacity: 0;
+}
+
+@keyframes radiate {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+#overlay {
+  @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40;
 }
