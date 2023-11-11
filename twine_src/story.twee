@@ -15,7 +15,7 @@ Let's see if I can find the notes…
 
 :: Quantum Conundrum [scenario]
 
-A quantum computer has gone **haywire**, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
+A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
 
 [[Next...->Quantum Conundrum 2]]
 
@@ -44,6 +44,126 @@ Gathering stardust might be fun?
 </div>
 
 
+:: Galactic Restoration [scenario]
+
+The Great Library of Andromeda is in disarray, with knowledge scattered across the stars. Reorganize the cosmic archives and unlock ancient wisdom.
+
+[[Next...->Galactic Restoration 2]]
+
+:: Galactic Restoration 2
+
+Time to sort through the astral archives…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Cosmic Symphony [scenario]
+
+A celestial entity has lost its voice, rendering the galaxy silent. Find the harmonious chords to give voice back to the stars.
+
+[[Next...->Cosmic Symphony 2]]
+
+:: Cosmic Symphony 2
+
+Let's tune into the cosmic frequencies…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Nebula Maze [scenario]
+
+A labyrinth of cosmic dust and gas clouds has appeared. Navigate through the maze to discover hidden celestial treasures.
+
+[[Next...->Nebula Maze 2]]
+
+:: Nebula Maze 2
+
+This maze is intricate, but I'm up for the challenge…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Starlit Dance [scenario]
+
+A constellation has lost its rhythm, causing disarray in the night sky. Choreograph the celestial dance to restore order.
+
+[[Next...->Starlit Dance 2]]
+
+:: Starlit Dance 2
+
+Time to get these stars dancing again…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Comet's Tale [scenario]
+
+A wandering comet carries secrets from the edge of the universe. Chart its course and uncover the mysteries it holds.
+
+[[Next...->Comet's Tale 2]]
+
+:: Comet's Tale 2
+
+Chasing comets is no easy task, but it's worth it…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Aurora's Whisper [scenario]
+
+The Aurora Borealis has dimmed, losing its vibrant colors. Reignite the auroral lights to paint the sky with dazzling hues.
+
+[[Next...->Aurora's Whisper 2]]
+
+:: Aurora's Whisper 2
+
+Let's bring color back to the skies…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Celestial Riddle [scenario]
+
+An ancient star has posed a riddle, locking away a cosmic secret. Solve the riddle to gain access to hidden cosmic knowledge.
+
+[[Next...->Celestial Riddle 2]]
+
+:: Celestial Riddle 2
+
+Riddles in space? This should be interesting…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+:: Solar Serenade [scenario]
+
+The Sun's song has become erratic, affecting planetary orbits. Compose a new solar melody to bring stability back to the solar system.
+
+[[Next...->Solar Serenade 2]]
+
+:: Solar Serenade 2
+
+Time to compose a symphony for the Sun…
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
 :: Week 1 [preamble]
 
 Whew, helping planets is hard! Let's do it again this week.
@@ -54,4 +174,21 @@ A week goes by… Wow, helping <%= setup.getPlanet(s.currentPlanet) %> was the r
 
 :: Week 3 [preamble]
 
-I'm getting pretty good at this. Let's help some more planets!
+<%= setup.getPlanet(s.currentPlanet) %> indicates I'm getting pretty good at this. Let's help some more planets!
+
+
+:: Week 4 [preamble]
+
+Another week, another adventure. The stars are calling, and I can't wait to see what's out there! You're welcome, <%= setup.getPlanet(s.currentPlanet) %>!
+
+:: Week 5 [preamble]
+
+Time flies in the cosmos. Each planet, including <%= setup.getPlanet(s.currentPlanet) %>, has its own story.
+
+:: Week 6 [preamble]
+
+With every planet helped, I feel more connected to the universe. What new wonders will this week bring?
+
+:: Week 7 [preamble]
+
+Time for a big radio broadcast.
