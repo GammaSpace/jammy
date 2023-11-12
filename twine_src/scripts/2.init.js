@@ -1,5 +1,8 @@
 window.setup = window.setup || {};
+
 $(document).ready(function () {
+  $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
+
   setup.game = {
     planets: [
       {
@@ -92,13 +95,16 @@ $(document).ready(function () {
   $(document).on("click", "div[data-next]", function (e) {
     var passageName = $(this).attr("data-next");
     renderToSelector("#passage", passageName);
+    setup.typewriter();
   });
 
   setup.startObserving = function () {
-    var targetNode = document.getElementById("passageContainer");
-    if (targetNode) {
-      var config = { childList: true, subtree: true };
-      var callback = function (mutationsList, observer) {
+    var passageContainerNode = document.getElementById("passageContainer");
+    var passageNode = document.getElementById("passage");
+
+    if (passageContainerNode) {
+      var containerConfig = { childList: true, subtree: true };
+      var containerCallback = function (mutationsList, observer) {
         for (var mutation of mutationsList) {
           if (mutation.type === "childList") {
             setup.modifyLinks();
@@ -106,10 +112,25 @@ $(document).ready(function () {
           }
         }
       };
-      var observer = new MutationObserver(callback);
-      observer.observe(targetNode, config);
+      var containerObserver = new MutationObserver(containerCallback);
+      containerObserver.observe(passageContainerNode, containerConfig);
     } else {
-      setTimeout(startObserving, 500);
+      setTimeout(setup.startObserving, 500);
+    }
+
+    if (passageNode) {
+      var passageConfig = { childList: true, subtree: true };
+      var passageCallback = function (mutationsList, observer) {
+        for (var mutation of mutationsList) {
+          if (mutation.type === "childList") {
+            console.log("A child node has been added or removed.");
+            // setup.typewriter();
+            break;
+          }
+        }
+      };
+      var passageObserver = new MutationObserver(passageCallback);
+      passageObserver.observe(passageNode, passageConfig);
     }
   };
 
@@ -236,6 +257,8 @@ $(document).ready(function () {
       if (hud) hud.style.display = "flex";
       if (passageContainer) {
         passage.innerHTML = passageContent;
+        setup.typewriter();
+
         if (planetContentContainer) {
           planetContentContainer.innerHTML = planetContent;
         }
@@ -293,7 +316,6 @@ $(document).ready(function () {
         const planetContainer = document.createElement("div");
         planetContainer.className = `planet-container planet-container${planet.id}`;
 
-        // Check if the planet has been helped
         const hasBeenHelped = story.state.helpedPlanets.some(
           (helpedPlanet) =>
             helpedPlanet.planet === planet.id && helpedPlanet.timesHelped > 0
@@ -337,10 +359,10 @@ $(document).ready(function () {
         playerPlanetImg.src = story.state.playerPlanet.imgSrc;
 
         playerPlanetImg.onload = function () {
-          playerPlanetImg.addEventListener("click", function () {
-            setup.renderPlanetPassage("player");
-            setup.toggleHUD(true);
-          });
+          playerPlanetImg.addEventListener(
+            "click",
+            setup.handlePlanetClick("player")
+          );
           playerPlanetContainer.appendChild(playerPlanetImg);
           setup.appendTooltip(story.state.playerPlanet, playerPlanetContainer);
           mapScreen.appendChild(playerPlanetContainer);
@@ -542,13 +564,26 @@ $(document).ready(function () {
   setup.handlePlanetClick = function (planetIndex) {
     return function (event) {
       if (!story.state.scenarioCompletedThisTurn) {
-        setup.renderPlanetPassage(planetIndex);
-        setup.toggleHUD(true);
+        if (planetIndex === "player") {
+          var passage = document.getElementById("passage");
+          if (passage) {
+            passage.innerHTML = `<div class="uppercase text-sm">
+            ${story.state.playerName}'s Project</div>
+            <p>${story.state.playerPlanet.description}</p>
+            `;
+            setup.toggleHUD(true);
+            setup.typewriter();
+          }
+        } else {
+          setup.renderPlanetPassage(planetIndex);
+          setup.toggleHUD(true);
+        }
       } else {
         console.log("A scenario has already been completed this turn.");
       }
     };
   };
+
   setup.attachEventListenersToPlanets = function () {
     document.querySelectorAll(".planet").forEach((planetElement, index) => {
       const planetIndex = planet.id;
@@ -569,5 +604,18 @@ $(document).ready(function () {
   setup.getPlanet = function (planetId) {
     const planet = setup.game.planets.find((p) => p.id === planetId);
     return planet ? planet.name : null;
+  };
+  setup.typewriter = function () {
+    var passage = document.getElementById("passage");
+    if (passage && passage.textContent.trim() !== "") {
+      var split = new SplitText("#passage", {
+        type: "words",
+      });
+      gsap.from(split.words, {
+        autoAlpha: 0,
+        ease: "power3",
+        stagger: 0.1,
+      });
+    }
   };
 });

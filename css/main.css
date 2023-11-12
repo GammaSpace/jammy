@@ -61,7 +61,7 @@ html {
 }
 
 .passage-choices span {
-  @apply underline font-bold cursor-pointer hover:text-neutral-950 text-neutral-800;
+  @apply block font-bold cursor-pointer hover:text-neutral-950 text-neutral-800 border-b-2 border-b-neutral-800;
 }
 
 .active-turn img {
