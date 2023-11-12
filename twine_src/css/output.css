@@ -1840,11 +1840,14 @@ html {
 }
 
 .passage-choices span{
+  display: block;
   cursor: pointer;
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(38 38 38 / var(--tw-border-opacity));
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(38 38 38 / var(--tw-text-opacity));
-  text-decoration-line: underline;
 }
 
 .passage-choices span:hover{
