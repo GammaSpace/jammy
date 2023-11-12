@@ -32,7 +32,7 @@ Jammy Jam
         <div>
             <label for="projectDescription" class="block text-sm font-medium leading-6 text-gray-900">Tell us about your project.</label>
             <div class="mt-2">
-            <textarea rows="4" name="projectDescription" id="projectDescription" class="customization-textarea" oninput="setup.checkInputs()"></textarea>
+            <input id="projectDescription" name="projectDescription" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
 
