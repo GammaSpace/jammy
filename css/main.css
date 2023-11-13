@@ -76,7 +76,7 @@ html {
   left: 50%;
   transform: translateX(-50%);
 }
-#mapScreen.crisis .planet-container.active-turn::before {
+body.crisis .planet-container.active-turn::before {
   @apply text-4xl text-red-600 z-50;
   content: "❤️";
   position: absolute;
@@ -85,6 +85,9 @@ html {
   transform: translateX(-50%);
 }
 
+body.crisis #weekPreamble {
+  @apply bg-black w-full h-full text-green-500 flex flex-col justify-center items-center;
+}
 @keyframes pulseGlow {
   0%,
   100% {

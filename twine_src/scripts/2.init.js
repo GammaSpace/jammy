@@ -368,13 +368,9 @@ $(document).ready(function () {
         // Logic for crisis turns
         if (story.state.isCrisisTurn) {
           const mapScreen = document.getElementById("mapScreen");
-
-          if (story.state.isCrisisTurn) {
-            mapScreen.classList.add("crisis");
-          } else {
-            mapScreen.classList.remove("crisis");
-          }
+          $("body").addClass("crisis");
         } else {
+          $("body").removeClass("crisis");
           const hasBeenHelped = story.state.helpedPlanets.some(
             (helpedPlanet) =>
               helpedPlanet.planet === planet.id && helpedPlanet.timesHelped > 0
@@ -483,8 +479,8 @@ $(document).ready(function () {
     const planetHelped = story.state.helpedPlanets.find(
       (p) => p.planet === planetId
     );
-    story.state.lastHelpedPlanet = planetId;
-
+    story.state.lastHelpedPlanet = planetHelped;
+    console.log("Just helped a planet", planetHelped);
     if (planetHelped) {
       planetHelped.timesHelped += 1;
     } else {
@@ -618,8 +614,14 @@ $(document).ready(function () {
 
     if (targetPassage) {
       renderToSelector(modalContent, targetPassage.name);
+      // if it's a crisis turn, use setup.typewriter()
+      if (story.state.isCrisisTurn) {
+        setup.typewriter();
+        modal.style.display = "flex";
+      } else {
+        modal.style.display = "block";
+      }
       overlay.classList.remove("hidden");
-      modal.style.display = "block";
     } else {
       console.error("No content found for passage: " + passageTitle);
     }
