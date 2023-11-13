@@ -68,10 +68,17 @@ html {
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
   animation: pulseGlow 2s infinite;
 }
-
 .planet-container.active-turn::before {
   @apply text-4xl text-yellow-400 z-50;
   content: "!";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#mapScreen.crisis .planet-container.active-turn::before {
+  @apply text-4xl text-red-600 z-50;
+  content: "❤️";
   position: absolute;
   top: -50px;
   left: 50%;
@@ -285,4 +292,12 @@ button {
 
 #overlay {
   @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40;
+}
+.help-icon {
+  position: absolute;
+  top: -10px; /* Adjust as needed */
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 20px; /* Adjust size as needed */
+  color: red; /* Or any color you prefer */
 }

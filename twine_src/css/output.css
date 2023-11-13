@@ -1873,6 +1873,19 @@ html {
   transform: translateX(-50%);
 }
 
+#mapScreen.crisis .planet-container.active-turn::before{
+  z-index: 50;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+  content: "❤️";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @keyframes pulseGlow {
   0%,
   100% {
@@ -2294,6 +2307,18 @@ button:focus-visible{
   width: 100%;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
   --tw-bg-opacity: 0.5;
+}
+
+.help-icon {
+  position: absolute;
+  top: -10px;
+  /* Adjust as needed */
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 20px;
+  /* Adjust size as needed */
+  color: red;
+  /* Or any color you prefer */
 }
 
 .focus\:ring-indigo-600:focus{
