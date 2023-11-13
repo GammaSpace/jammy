@@ -1,3 +1,4 @@
+<!-- Planet request scenarios, random -->
 :: Melodic Quest [scenario]
 The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
@@ -164,6 +165,26 @@ Time to compose a symphony for the Sun…
   <span onclick="setup.returnToMap()">Move on…</span>
 </div>
 
+
+
+:: Week 4 crisis scenario [scenario crisis]
+
+<%= setup.getPlanet(s.currentPlanet) %> offers to help me find the source of the problem. Let's go!
+
+[[Next...->Week 4 crisis 2]]
+
+:: Week 4 crisis 2
+
+<%= setup.getPlanet(s.currentPlanet) %> is so great. I'm glad we're friends.
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Connect</span>
+  <span onclick="setup.returnToMap()">Move on…</span>
+</div>
+
+
+
+<!-- Week/turn preambles -->
 :: Week 1 [preamble]
 
 Whew, helping planets is hard! Let's do it again this week.
@@ -176,10 +197,9 @@ A week goes by… Wow, helping <%= setup.getPlanet(s.currentPlanet) %> was the r
 
 <%= setup.getPlanet(s.currentPlanet) %> indicates I'm getting pretty good at this. Let's help some more planets!
 
+:: Week 4 [preamble crisis]
 
-:: Week 4 [preamble]
-
-Another week, another adventure. The stars are calling, and I can't wait to see what's out there! You're welcome, <%= setup.getPlanet(s.currentPlanet) %>!
+The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger. 
 
 :: Week 5 [preamble]
 
@@ -189,6 +209,6 @@ Time flies in the cosmos. Each planet, including <%= setup.getPlanet(s.currentPl
 
 With every planet helped, I feel more connected to the universe. What new wonders will this week bring?
 
-:: Week 7 [preamble]
+:: Week 7 [preamble crisis]
 
-Time for a big radio broadcast.
+Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!

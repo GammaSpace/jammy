@@ -16,7 +16,7 @@ $(document).ready(function () {
           "EmCee for the show. The broadcast is actually being transmitted through DJ FUNKYBEATZ.",
         description:
           "DJ FUNKYBEATZ is the onboarder & tutorial for the game. Very welcoming and a little wacky.",
-        availableTurns: [1, 2, 4, 6],
+        availableTurns: [1, 2, 6],
       },
       {
         id: 1,
@@ -41,7 +41,7 @@ $(document).ready(function () {
         project: "Holographic psychedelic performance art drag show.",
         description:
           "High fashion. High drama. Dragtastic. Spore T. Spice is fun. Definitely probably on mushrooms some of the time. Incredible gardener and environmentalist. Makes some mean food.",
-        availableTurns: [1, 4, 5, 7],
+        availableTurns: [1, 5, 7],
       },
       {
         id: 3,
@@ -54,7 +54,7 @@ $(document).ready(function () {
           "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
         description:
           "Genderless being made of water. Somewhat surfer-bro but real genuine n sweet. Has a sibling Jestam they refer to, who is stuck trying to make it big in the Dominion Planetation. Jetsam is MORE surfer bro. Jetsam is maybe a shark (but art team can decide.) We may only see Jetsam in a special scenario ending.",
-        availableTurns: [2, 3, 4, 6],
+        availableTurns: [2, 3, 6],
       },
       {
         id: 4,
@@ -67,13 +67,14 @@ $(document).ready(function () {
           "Audio drama of their heists narrated (like War of the Worlds).",
         description:
           "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
-        availableTurns: [2, 3, 5, 7],
+        availableTurns: [2, 3, 5],
       },
     ],
   };
 
   story.state = {
     turn: 1,
+    isCrisisTurn: false,
     helpedPlanets: setup.game.planets.map((planet) => ({
       planet: planet.id,
       timesHelped: 0,
@@ -83,7 +84,19 @@ $(document).ready(function () {
   };
 
   setup.game.scenarios = window.story.passages
-    .filter((passage) => passage.tags.includes("scenario"))
+    .filter(
+      (passage) =>
+        passage.tags.includes("scenario") && !passage.tags.includes("crisis")
+    )
+    .map((passage) => ({
+      scenarioPassage: passage.name,
+      complete: false,
+    }));
+  setup.game.crisisScenarios = window.story.passages
+    .filter(
+      (passage) =>
+        passage.tags.includes("crisis") && passage.tags.includes("scenario")
+    )
     .map((passage) => ({
       scenarioPassage: passage.name,
       complete: false,
@@ -123,7 +136,8 @@ $(document).ready(function () {
       var passageCallback = function (mutationsList, observer) {
         for (var mutation of mutationsList) {
           if (mutation.type === "childList") {
-            console.log("A child node has been added or removed.");
+            setup.modifyLinks();
+            // console.log("A child node has been added or removed.");
             // setup.typewriter();
             break;
           }
@@ -182,8 +196,7 @@ $(document).ready(function () {
 
   setup.showPlanet = function (planetIndex) {
     story.state.currentPlanet = planetIndex;
-
-    const planet = setup.game.planets[planetIndex];
+    const planet = setup.game.planets.find((p) => p.id === planetIndex);
     let content = planet.description;
     let repContent = `<img class='repImage' src='${planet.repImgSrc}' /><div class='repName'>${planet.rep}</div>`;
     var repContainer = document.getElementById("rep");
@@ -268,6 +281,26 @@ $(document).ready(function () {
       console.error("Error in renderPlanetPassage:", error);
     }
   };
+  setup.renderCrisisPassage = function (planetIndex, scenarioPassage) {
+    setup.startObserving();
+
+    var planetContent = setup.showPlanet(planetIndex); // Display planet info
+    var passageContent = story.render(scenarioPassage); // Render crisis passage
+    var passageContainer = document.getElementById("passageContainer");
+    var planetContentContainer = document.getElementById("planetContent");
+    var passage = document.getElementById("passage");
+
+    if (passageContainer) {
+      passage.innerHTML = passageContent;
+      setup.typewriter();
+
+      if (planetContentContainer) {
+        planetContentContainer.innerHTML = planetContent; // Set planet content
+      }
+
+      passageContainer.style.display = "block";
+    }
+  };
 
   setup.returnToMap = function () {
     var hud = document.getElementById("hud");
@@ -312,63 +345,56 @@ $(document).ready(function () {
       const totalPlanets =
         setup.game.planets.length + (story.state.playerPlanet ? 1 : 0);
 
-      setup.game.planets.forEach((planet, index) => {
+      setup.game.planets.forEach((planet) => {
         const planetContainer = document.createElement("div");
         planetContainer.className = `planet-container planet-container${planet.id}`;
-
-        const hasBeenHelped = story.state.helpedPlanets.some(
-          (helpedPlanet) =>
-            helpedPlanet.planet === planet.id && helpedPlanet.timesHelped > 0
-        );
-
-        if (hasBeenHelped) {
-          // Create and append the circle container HTML
-          const circleContainer = document.createElement("div");
-          circleContainer.className = "circle-container";
-          const circle = document.createElement("div");
-          circle.className = "circle";
-          circleContainer.appendChild(circle);
-          planetContainer.appendChild(circleContainer);
-        }
 
         const img = document.createElement("img");
         img.className = `planet planet${planet.id}`;
         img.src = planet.imgSrc;
 
-        img.onload = function () {
-          if (planet.availableTurns.includes(story.state.turn)) {
-            planetContainer.classList.add("active-turn");
+        const isActiveThisTurn =
+          planet.availableTurns.includes(story.state.turn) ||
+          (story.state.isCrisisTurn &&
+            story.state.crisisOfferingPlanets.includes(planet.id));
 
-            const clickHandler = setup.handlePlanetClick(index);
-            setup.planetClickHandlers[planet.id] = clickHandler;
-            img.addEventListener("click", clickHandler);
+        if (isActiveThisTurn) {
+          planetContainer.classList.add("active-turn");
+          const clickHandler = setup.handlePlanetClick(planet.id);
+          setup.planetClickHandlers[planet.id] = clickHandler;
+          img.addEventListener("click", clickHandler);
+        }
+
+        // Logic for crisis turns
+        if (story.state.isCrisisTurn) {
+          const mapScreen = document.getElementById("mapScreen");
+
+          if (story.state.isCrisisTurn) {
+            mapScreen.classList.add("crisis");
+          } else {
+            mapScreen.classList.remove("crisis");
           }
-          planetContainer.appendChild(img);
-          setup.appendTooltip(planet, planetContainer);
-          mapScreen.appendChild(planetContainer);
-          checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
-        };
-      });
-
-      if (story.state.playerPlanet) {
-        const playerPlanetContainer = document.createElement("div");
-        playerPlanetContainer.className =
-          "planet-container planet-container-player";
-        const playerPlanetImg = document.createElement("img");
-        playerPlanetImg.className = "planet planet-player";
-        playerPlanetImg.src = story.state.playerPlanet.imgSrc;
-
-        playerPlanetImg.onload = function () {
-          playerPlanetImg.addEventListener(
-            "click",
-            setup.handlePlanetClick("player")
+        } else {
+          const hasBeenHelped = story.state.helpedPlanets.some(
+            (helpedPlanet) =>
+              helpedPlanet.planet === planet.id && helpedPlanet.timesHelped > 0
           );
-          playerPlanetContainer.appendChild(playerPlanetImg);
-          setup.appendTooltip(story.state.playerPlanet, playerPlanetContainer);
-          mapScreen.appendChild(playerPlanetContainer);
-          checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
-        };
-      }
+
+          if (hasBeenHelped) {
+            const circleContainer = document.createElement("div");
+            circleContainer.className = "circle-container";
+            const circle = document.createElement("div");
+            circle.className = "circle";
+            circleContainer.appendChild(circle);
+            planetContainer.appendChild(circleContainer);
+          }
+        }
+
+        planetContainer.appendChild(img);
+        setup.appendTooltip(planet, planetContainer);
+        mapScreen.appendChild(planetContainer);
+        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
+      });
     }
   };
 
@@ -385,7 +411,6 @@ $(document).ready(function () {
 
     if (incompleteScenarios.length === 0) {
       document.querySelectorAll(".planet").forEach(function (planet) {
-        console.log("Getting planets…");
         planet.style.pointerEvents = "none";
         planet.classList.add("inactive");
       });
@@ -510,48 +535,96 @@ $(document).ready(function () {
   setup.startNewTurn = function () {
     story.state.turn += 1;
     story.state.scenarioCompletedThisTurn = false;
+    story.state.isCrisisTurn = story.state.turn === 4 || story.state.turn === 7;
+
+    story.state.crisisOfferingPlanets = [];
+
+    if (story.state.isCrisisTurn) {
+      story.state.crisisScenariosForTurn = setup.game.crisisScenarios.filter(
+        (scenario) =>
+          scenario.scenarioPassage.startsWith("Week " + story.state.turn)
+      );
+
+      const shuffledPlanets = setup.game.planets.sort(
+        () => 0.5 - Math.random()
+      );
+      const offeringPlanets = shuffledPlanets
+        .slice(0, 3)
+        .map((planet) => planet.id);
+      story.state.crisisOfferingPlanets = offeringPlanets;
+      console.log("Crisis offering planet IDs:", offeringPlanets);
+    }
+
     setup.updatePlanetsAndTurnCounter();
     setTimeout(setup.showWeekPreamble, 0);
   };
-
   setup.updatePlanetsAndTurnCounter = function () {
+    // console.log(
+    //   "Updating planets and turn counter, Crisis Turn:",
+    //   story.state.isCrisisTurn
+    // );
+
+    // setTimeout(function () {
+    //   const mapScreen = document.getElementById("mapScreen");
+
+    //   if (story.state.isCrisisTurn) {
+    //     mapScreen.classList.add("crisis");
+    //     console.log("Crisis class added to mapScreen:", mapScreen.classList);
+    //   } else {
+    //     mapScreen.classList.remove("crisis");
+    //   }
+    // }, 0);
+
     document
       .querySelectorAll(".planet")
       .forEach(function (planetElement, index) {
         planetElement.classList.remove("inactive");
-        planetElement.classList.add("active-turn");
+
+        if (
+          story.state.isCrisisTurn &&
+          !story.state.crisisOfferingPlanets.includes(index)
+        ) {
+          // Do not add "active-turn" class if it's a crisis turn and the planet is not offering help
+          planetElement.classList.remove("active-turn");
+        } else {
+          // Add "active-turn" class on regular turns or if the planet is offering help on a crisis turn
+          planetElement.classList.add("active-turn");
+        }
+
         const clickHandler = setup.planetClickHandlers[index];
         if (clickHandler) {
           planetElement.addEventListener("click", clickHandler);
         }
       });
+
     const turnCounterElement = document.getElementById("turnCounter");
     if (turnCounterElement) {
       turnCounterElement.innerText = `Turn: ${story.state.turn}`;
     }
-    setup.showMap();
   };
 
-  setup.getWeekPreamble = function () {
-    const turnNumber = story.state.turn;
-    const passageName = "Week " + turnNumber;
-    renderToSelector(modalContent, passageName);
-  };
   setup.showWeekPreamble = function () {
     const modal = document.getElementById("weekPreamble");
     const overlay = document.getElementById("overlay");
     const modalContent = document.getElementById("modalContent");
     const turnNumber = story.state.turn;
-    const passageName = "Week " + turnNumber;
+    const passageTitle = "Week " + turnNumber;
+    const targetPassage = window.story.passages.find(
+      (passage) =>
+        passage &&
+        passage.name === passageTitle &&
+        passage.tags.includes("preamble")
+    );
 
-    if (passageName) {
-      renderToSelector(modalContent, passageName);
+    if (targetPassage) {
+      renderToSelector(modalContent, targetPassage.name);
       overlay.classList.remove("hidden");
       modal.style.display = "block";
     } else {
-      console.error("No content found for passage: " + passageName);
+      console.error("No content found for passage: " + passageTitle);
     }
   };
+
   setup.hideWeekPreamble = function () {
     const modal = document.getElementById("weekPreamble");
     const overlay = document.getElementById("overlay");
@@ -561,23 +634,35 @@ $(document).ready(function () {
     }
   };
 
-  setup.handlePlanetClick = function (planetIndex) {
-    return function (event) {
+  setup.handlePlanetClick = function (planetId) {
+    return function () {
+      console.log("Clicked Planet ID:", planetId);
+      const planet = setup.game.planets.find((p) => p.id === planetId);
+      console.log("Clicked Planet Data:", planet);
+
+      if (!planet) {
+        console.error("Planet not found for ID:", planetId);
+        return;
+      }
+
       if (!story.state.scenarioCompletedThisTurn) {
-        if (planetIndex === "player") {
-          var passage = document.getElementById("passage");
-          if (passage) {
-            passage.innerHTML = `<div class="uppercase text-sm">
-            ${story.state.playerName}'s Project</div>
-            <p>${story.state.playerPlanet.description}</p>
-            `;
-            setup.toggleHUD(true);
-            setup.typewriter();
+        if (
+          story.state.isCrisisTurn &&
+          story.state.crisisOfferingPlanets.includes(planet.id)
+        ) {
+          const crisisScenario = either(story.state.crisisScenariosForTurn);
+          if (crisisScenario) {
+            setup.renderCrisisPassage(
+              planet.id,
+              crisisScenario.scenarioPassage
+            );
+          } else {
+            console.error("No crisis scenario available for this turn.");
           }
-        } else {
-          setup.renderPlanetPassage(planetIndex);
-          setup.toggleHUD(true);
+        } else if (!story.state.isCrisisTurn) {
+          setup.renderPlanetPassage(planet.id);
         }
+        setup.toggleHUD(true);
       } else {
         console.log("A scenario has already been completed this turn.");
       }
