@@ -2769,6 +2769,24 @@ $(document).ready(function () {
         mapScreen.appendChild(planetContainer);
         checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
       });
+      if (story.state.playerPlanet) {
+        const playerPlanet = story.state.playerPlanet;
+        const playerPlanetContainer = document.createElement("div");
+        playerPlanetContainer.className = `planet-container planet-container-player`;
+
+        const img = document.createElement("img");
+        img.className = `planet player-planet`;
+        img.src = playerPlanet.imgSrc;
+
+        const clickHandler = setup.handlePlanetClick(-1);
+        setup.planetClickHandlers[-1] = clickHandler;
+        img.addEventListener("click", clickHandler);
+
+        playerPlanetContainer.appendChild(img);
+        setup.appendTooltip(playerPlanet, playerPlanetContainer);
+        mapScreen.appendChild(playerPlanetContainer);
+        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
+      }
     }
   };
 
