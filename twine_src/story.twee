@@ -165,9 +165,7 @@ Time to compose a symphony for the Sun…
   <span onclick="setup.returnToMap()">Move on…</span>
 </div>
 
-
-
-:: Week 4 crisis scenario [scenario crisis]
+:: Week 4 An Offer of Help [scenario crisis]
 
 <%= setup.getPlanet(s.currentPlanet) %> offers to help me find the source of the problem. Let's go!
 

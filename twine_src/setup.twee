@@ -65,7 +65,7 @@ Jammy Jam
 
 
 :: Map Screen [scripted]
-<% $("body").removeClass("customization").addClass("map") %>
+  <% $("body").removeClass("customization").addClass("map") %>
     <div id="overlay" class="hidden"></div>
     <div id="mapScreen"></div>
     <div id="tooltips"></div>
@@ -84,7 +84,7 @@ Jammy Jam
         
       <div id="planet-info">
           <div id="passageContainer">
-            <div id="passage"  class="prose prose-neutral prose-2xl"></div>
+            <div id="passage"></div>
           </div>
           <div id="rep" class=""></div>
         </div>
