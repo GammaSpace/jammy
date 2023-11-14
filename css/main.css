@@ -43,7 +43,11 @@ html {
 #planet-info {
   @apply flex flex-row self-end flex-grow z-20 justify-end h-1/3 mx-6;
 }
-
+.player-screen {
+  #planet-info {
+    @apply h-2/3;
+  }
+}
 #rep {
   @apply flex flex-col self-start z-30 mr-6 w-64;
 }
@@ -61,7 +65,7 @@ html {
 }
 
 .passage-choices span {
-  @apply block font-bold cursor-pointer hover:text-neutral-950 text-neutral-800 border-b-2 border-b-neutral-800;
+  @apply block font-bold cursor-pointer hover:text-neutral-950 text-neutral-800;
 }
 
 .active-turn img {
@@ -100,6 +104,30 @@ body.crisis #weekPreamble {
 
 #passageContainer {
   @apply content-end justify-end mr-6 flex-col p-6 overflow-y-auto bg-neutral-100 bg-opacity-75 rounded-t-2xl h-full w-full;
+}
+
+#hud.player-screen #passageContainer {
+  @apply mr-0 flex-col p-6 overflow-y-auto bg-neutral-900 bg-opacity-75 rounded-2xl h-full w-full text-neutral-200;
+}
+
+#hud.player-screen #passageContainer > * {
+  @apply mb-4 text-neutral-200;
+}
+
+#hud.player-screen #passageContainer #passage h2 {
+  @apply text-2xl font-bold text-neutral-50 mb-4;
+}
+
+#hud.player-screen #passageContainer #passage p {
+  @apply text-base text-neutral-200 mb-4;
+}
+
+#hud.player-screen #passageContainer #passage pre {
+  @apply font-mono text-base text-neutral-200;
+}
+
+#hud.player-screen #rep {
+  @apply hidden;
 }
 
 body.map {

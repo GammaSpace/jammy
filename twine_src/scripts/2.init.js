@@ -2,6 +2,7 @@ window.setup = window.setup || {};
 
 $(document).ready(function () {
   $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
+  // Assuming setup.returnToMap is your function to return to the map
 
   setup.game = {
     planets: [
@@ -163,6 +164,7 @@ $(document).ready(function () {
     ).value;
 
     story.state.playerPlanet = {
+      id: -1,
       name: planetName,
       description: projectDescription,
       imgSrc: planetImgSrc,
@@ -225,6 +227,7 @@ $(document).ready(function () {
 
   setup.renderPlanetPassage = function (planetIndex) {
     setup.startObserving();
+    console.log("Rendering passage for planet index:", planetIndex);
 
     if (story.state.scenarioCompletedThisTurn) {
       console.log("A scenario has already been completed this turn.");
@@ -305,13 +308,29 @@ $(document).ready(function () {
   setup.returnToMap = function () {
     var hud = document.getElementById("hud");
     var mapScreen = document.getElementById("mapScreen");
-    var passageContainer = document.getElementById("passageContainer");
+    var passage = document.getElementById("passage");
+
+    // Clearing the content of planet-splash and rep
+    var splashContainer = document.getElementById("planet-splash");
+    var repContainer = document.getElementById("rep");
+
+    if (splashContainer) {
+      splashContainer.style.backgroundImage = "";
+      splashContainer.innerHTML = "";
+    }
+
+    if (repContainer) {
+      repContainer.innerHTML = "";
+    }
 
     if (hud) hud.style.display = "none";
     if (mapScreen) mapScreen.style.display = "grid";
-    if (passage) passage.innerHTML = "";
+    if (passageContainer)
+      passageContainer.innerHTML = "<div id='passage'></div>";
 
     story.state.currentPlanet = null;
+
+    if (hud) hud.classList.remove("player-screen");
   };
 
   setup.showRandomIncompleteScenario = function () {
@@ -400,14 +419,13 @@ $(document).ready(function () {
         img.className = `planet player-planet`;
         img.src = playerPlanet.imgSrc;
 
-        const clickHandler = setup.handlePlanetClick(-1);
-        setup.planetClickHandlers[-1] = clickHandler;
-        img.addEventListener("click", clickHandler);
+        // const clickHandler = setup.handlePlanetClick(-1);
+        // img.addEventListener("click", clickHandler);
+        img.addEventListener("click", setup.handlePlayerPlanetClick);
 
         playerPlanetContainer.appendChild(img);
         setup.appendTooltip(playerPlanet, playerPlanetContainer);
         mapScreen.appendChild(playerPlanetContainer);
-        checkAllPlanetsLoaded(++loadedPlanets, totalPlanets);
       }
     }
   };
@@ -417,6 +435,38 @@ $(document).ready(function () {
       setup.checkForIncompleteScenarios();
     }
   }
+
+  setup.renderPlayerPlanetPassage = function () {
+    var passage = document.getElementById("passage");
+    var passageContent = "<h2>" + story.state.playerName + "'s Project</h2>";
+    passageContent += "<p>" + story.state.playerPlanet.description + "</p>";
+
+    passageContent += "<h3>Help Chart</h3>";
+    passageContent += "<pre>";
+    setup.game.planets.forEach(function (planet) {
+      var helpedTimes =
+        story.state.helpedPlanets.find((p) => p.planet === planet.id)
+          ?.timesHelped || 0;
+      passageContent += planet.name + ": " + "❤️".repeat(helpedTimes) + "\n";
+    });
+    passageContent += "</pre>";
+
+    if (passage) {
+      passage.innerHTML = passageContent;
+      if (passageContainer) {
+        passageContainer.style.display = "block";
+      }
+    }
+
+    // Add the player-screen class to HUD when displaying player planet content
+    var hud = document.getElementById("hud");
+    if (hud) hud.classList.add("player-screen");
+    document
+      .getElementById("planet-splash")
+      .addEventListener("click", function () {
+        setup.returnToMap();
+      });
+  };
 
   setup.checkForIncompleteScenarios = function () {
     var incompleteScenarios = setup.game.scenarios.filter(function (scenario) {
@@ -654,39 +704,43 @@ $(document).ready(function () {
     }
   };
 
-  setup.handlePlanetClick = function (planetId) {
+  setup.handlePlanetClick = function (planetIndex) {
     return function () {
-      console.log("Clicked Planet ID:", planetId);
-      const planet = setup.game.planets.find((p) => p.id === planetId);
-      console.log("Clicked Planet Data:", planet);
+      // if (planetIndex === -1) {
+      //   console.log("Player's planet clicked.");
+      //   setup.renderPlayerPlanetPassage();
+      //   setup.toggleHUD(true);
+      //   return;
+      // }
 
-      if (!planet) {
-        console.error("Planet not found for ID:", planetId);
-        return;
-      }
-
+      console.log("Clicked Planet Index:", planetIndex);
       if (!story.state.scenarioCompletedThisTurn) {
         if (
           story.state.isCrisisTurn &&
-          story.state.crisisOfferingPlanets.includes(planet.id)
+          story.state.crisisOfferingPlanets.includes(planetIndex)
         ) {
           const crisisScenario = either(story.state.crisisScenariosForTurn);
           if (crisisScenario) {
             setup.renderCrisisPassage(
-              planet.id,
+              planetIndex,
               crisisScenario.scenarioPassage
             );
           } else {
             console.error("No crisis scenario available for this turn.");
           }
         } else if (!story.state.isCrisisTurn) {
-          setup.renderPlanetPassage(planet.id);
+          setup.renderPlanetPassage(planetIndex);
         }
         setup.toggleHUD(true);
       } else {
         console.log("A scenario has already been completed this turn.");
       }
     };
+  };
+  setup.handlePlayerPlanetClick = function () {
+    console.log("Player's planet clicked");
+    setup.renderPlayerPlanetPassage();
+    setup.toggleHUD(true);
   };
 
   setup.attachEventListenersToPlanets = function () {
