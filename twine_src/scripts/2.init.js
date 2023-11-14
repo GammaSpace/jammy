@@ -583,7 +583,6 @@ $(document).ready(function () {
       if (planet) {
         planet.connections++;
 
-        // Call the function to increment the timesHelped for the currentPlanet
         setup.helpPlanet(planet.id);
       } else {
         console.error("currentPlanet is undefined or not found");

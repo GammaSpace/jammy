@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -105,7 +106,12 @@ body.crisis #weekPreamble {
 #passageContainer {
   @apply content-end justify-end mr-6 flex-col p-6 overflow-y-auto bg-neutral-100 bg-opacity-75 rounded-t-2xl h-full w-full;
 }
-
+#hud #passageContainer #passage {
+  @apply prose prose-xl prose-neutral;
+}
+#hud #passageContainer #passage p {
+  @apply mt-0;
+}
 #hud.player-screen #passageContainer {
   @apply mr-0 flex-col p-6 overflow-y-auto bg-neutral-900 bg-opacity-75 rounded-2xl h-full w-full text-neutral-200;
 }
@@ -113,11 +119,12 @@ body.crisis #weekPreamble {
 #hud.player-screen #passageContainer > * {
   @apply mb-4 text-neutral-200;
 }
-
 #hud.player-screen #passageContainer #passage h2 {
-  @apply text-2xl font-bold text-neutral-50 mb-4;
+  @apply text-2xl font-bold text-neutral-50 mb-4 mt-0;
 }
-
+#hud.player-screen #passageContainer #passage {
+  @apply prose prose-xl prose-neutral prose-invert;
+}
 #hud.player-screen #passageContainer #passage p {
   @apply text-base text-neutral-200 mb-4;
 }
