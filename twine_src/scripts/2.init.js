@@ -2,7 +2,6 @@ window.setup = window.setup || {};
 
 $(document).ready(function () {
   $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
-  // Assuming setup.returnToMap is your function to return to the map
 
   setup.game = {
     planets: [
@@ -310,7 +309,6 @@ $(document).ready(function () {
     var mapScreen = document.getElementById("mapScreen");
     var passage = document.getElementById("passage");
 
-    // Clearing the content of planet-splash and rep
     var splashContainer = document.getElementById("planet-splash");
     var repContainer = document.getElementById("rep");
 
@@ -437,6 +435,7 @@ $(document).ready(function () {
   }
 
   setup.renderPlayerPlanetPassage = function () {
+    story.state.currentPlanet = -1;
     var passage = document.getElementById("passage");
     var passageContent = "<h2>" + story.state.playerName + "'s Project</h2>";
     passageContent += "<p>" + story.state.playerPlanet.description + "</p>";
@@ -458,13 +457,14 @@ $(document).ready(function () {
       }
     }
 
-    // Add the player-screen class to HUD when displaying player planet content
     var hud = document.getElementById("hud");
     if (hud) hud.classList.add("player-screen");
     document
       .getElementById("planet-splash")
       .addEventListener("click", function () {
-        setup.returnToMap();
+        if (story.state.currentPlanet === -1) {
+          setup.returnToMap();
+        }
       });
   };
 
@@ -741,6 +741,7 @@ $(document).ready(function () {
     console.log("Player's planet clicked");
     setup.renderPlayerPlanetPassage();
     setup.toggleHUD(true);
+    story.state.currentPlanet = -1;
   };
 
   setup.attachEventListenersToPlanets = function () {
