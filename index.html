@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<tw-story tags></tw-story>
-		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Jammy Jam" startnode="1" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url("https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap");
+		<!-- UUID://26C4E0D5-E346-4B7E-93DA-9172B2497F38// --><tw-storydata name="Jammy Jam" startnode="1" creator="Tweego" creator-version="2.1.1" ifid="26C4E0D5-E346-4B7E-93DA-9172B2497F38" zoom="1" format="Snowman" format-version="2.0.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url("https://fonts.googleapis.com/css2?family=Handjet:wght@700&family=Courier+Prime&display=swap");
 
 /*
 ! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com
@@ -143,7 +143,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: Courier New;
+  font-family: Courier Prime;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -2789,7 +2789,7 @@ body.crisis #weekPreamble{
 }
 
 #hud.player-screen #passageContainer #passage pre{
-  font-family: Courier New;
+  font-family: Courier Prime;
   font-size: 1rem;
   line-height: 1.5rem;
   --tw-text-opacity: 1;
@@ -2835,7 +2835,8 @@ tw-story {
   line-height: normal;
 }
 
-div[data-next]{
+div[data-next],
+.passage-choices span > *{
   cursor: pointer;
   font-weight: 700;
   --tw-text-opacity: 1;
@@ -2843,7 +2844,8 @@ div[data-next]{
   text-decoration-line: underline;
 }
 
-div[data-next]:hover{
+div[data-next]:hover,
+.passage-choices span > *:hover{
   --tw-text-opacity: 1;
   color: rgb(10 10 10 / var(--tw-text-opacity));
 }
@@ -2986,7 +2988,7 @@ div[data-next]:hover{
   padding-right: 0.5rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  font-family: Courier New;
+  font-family: Courier Prime;
   font-size: 1.125rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
@@ -3012,7 +3014,7 @@ button{
   cursor: pointer;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
-  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.625rem;
@@ -3029,14 +3031,14 @@ button{
 
 button:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+  background-color: rgb(115 115 115 / var(--tw-bg-opacity));
 }
 
 button:focus-visible{
   outline-style: solid;
   outline-width: 2px;
   outline-offset: 2px;
-  outline-color: #4f46e5;
+  outline-color: #525252;
 }
 
 .tooltip-container:hover .tooltip-text {
@@ -3088,7 +3090,7 @@ button:focus-visible{
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
   --tw-ring-inset: inset;
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(82 82 82 / var(--tw-ring-opacity));
 }
 
 @media (min-width: 640px){
@@ -3134,7 +3136,7 @@ button:focus-visible{
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
   --tw-ring-inset: inset;
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(82 82 82 / var(--tw-ring-opacity));
 }
 
 @media (min-width: 640px){

@@ -7,7 +7,7 @@ module.exports = {
         body: "Helvetica",
         display: "Handjet",
         sans: "Helvetica",
-        mono: "Courier New",
+        mono: "Courier Prime",
       },
     },
   },
