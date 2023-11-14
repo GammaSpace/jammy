@@ -2199,15 +2199,15 @@ $(document).ready(function () {
   };
 
   setup.completeScenario = function () {
+    var planetIndex = story.state.currentPlanet;
+    const planet = setup.game.planets.find((p) => p.id === planetIndex);
     var currentScenario = story.state.currentScenario;
-    var currentPlanetIndex = story.state.currentPlanet;
 
     const scenario = setup.game.scenarios.find(
       (s) => s.scenarioPassage === currentScenario
     );
 
     if (scenario && !story.state.scenarioCompletedThisTurn) {
-      var currentPlanet = setup.game.planets[currentPlanetIndex];
       scenario.complete = true;
       story.state.scenarioCompletedThisTurn = true;
 
@@ -2222,11 +2222,11 @@ $(document).ready(function () {
           }
         });
 
-      if (currentPlanet) {
-        currentPlanet.connections++;
+      if (planet) {
+        planet.connections++;
 
         // Call the function to increment the timesHelped for the currentPlanet
-        setup.helpPlanet(currentPlanet.id);
+        setup.helpPlanet(planet.id);
       } else {
         console.error("currentPlanet is undefined or not found");
       }
