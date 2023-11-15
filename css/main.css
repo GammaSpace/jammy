@@ -112,7 +112,7 @@ body.crisis #weekPreamble {
   @apply mt-0;
 }
 #hud.player-screen #passageContainer {
-  @apply mr-0 flex-col p-6 overflow-y-auto bg-neutral-900 bg-opacity-75 rounded-2xl h-full w-full text-neutral-200;
+  @apply mr-0 flex-col p-6 overflow-y-auto bg-neutral-900 rounded-2xl h-full w-full text-neutral-200;
 }
 
 #hud.player-screen #passageContainer > * {
