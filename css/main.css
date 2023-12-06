@@ -35,21 +35,15 @@ html {
   gap: 10px;
   overflow: hidden;
 }
-
 #planet-splash {
   @apply absolute w-full h-full z-0 flex flex-col;
 }
-
 #planet-info {
-  @apply flex flex-row self-end flex-grow z-20 justify-end h-1/3 mx-6;
+  @apply flex flex-col self-end flex-grow z-20 justify-end mx-6 w-full md:w-2/3;
 }
-.player-screen {
-  #planet-info {
-    @apply h-2/3;
-  }
-}
+
 #rep {
-  @apply flex flex-col self-start z-30 mr-6 w-64;
+  @apply text-center self-start z-30 w-96 mx-auto my-0;
 }
 
 .repName {
@@ -57,7 +51,7 @@ html {
 }
 
 .repImage {
-  @apply w-40;
+  @apply w-96 h-96 mx-auto justify-center;
 }
 
 .passage-choices {
@@ -70,7 +64,7 @@ html {
 
 .active-turn img {
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
-  animation: pulseGlow 2s infinite;
+  animation: pulseGlow 8s infinite;
 }
 .planet-container.active-turn::before {
   @apply text-4xl text-yellow-400 z-50;
@@ -101,12 +95,26 @@ body.crisis #weekPreamble {
     filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
   }
 }
-
+#ui {
+  @apply flex flex-row justify-between h-full;
+}
+#ui #playerScreen {
+  @apply w-64 bg-neutral-900 text-neutral-100 p-6;
+}
+#ui #playerInfo {
+  @apply mt-12;
+}
 #passageContainer {
-  @apply content-end justify-end mr-6 flex-col p-6 overflow-y-auto bg-neutral-100 bg-opacity-75 rounded-t-2xl h-full w-full;
+  @apply content-end justify-end flex-col p-6 overflow-y-auto bg-neutral-100 bg-opacity-75 rounded-t-2xl h-full w-full md:w-2/3 mx-auto;
 }
 #hud #passageContainer #passage {
   @apply prose prose-xl prose-neutral;
+}
+#hud #planetName {
+  @apply text-3xl md:text-6xl text-neutral-200 font-display uppercase w-full md:w-2/3 mx-auto;
+}
+#hud #planetContent {
+  @apply w-full md:w-2/3 mx-auto;
 }
 #hud #passageContainer #passage p {
   @apply mt-0;

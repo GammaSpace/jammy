@@ -205,7 +205,7 @@ $(document).ready(function () {
     var splashContainer = document.getElementById("planet-splash");
     splashContainer.style.backgroundImage = `url(${planet.splashImgSrc})`;
     splashContainer.innerHTML =
-      "<h1 class='text-xl md:text-6xl text-neutral-200 font-display uppercase'>" +
+      "<h1 id='planetName'>" +
       planet.name +
       "</h1> <div id='planetContent' class='text-neutral-300 text-base'></div>";
 
@@ -426,6 +426,17 @@ $(document).ready(function () {
         mapScreen.appendChild(playerPlanetContainer);
       }
     }
+
+    var playerContent = "";
+    setup.game.planets.forEach(function (planet) {
+      var helpedTimes =
+        story.state.helpedPlanets.find((p) => p.planet === planet.id)
+          ?.timesHelped || 0;
+      playerContent +=
+        "<p>" + planet.name + ":<br>" + "❤️".repeat(helpedTimes) + "</p>";
+    });
+
+    document.getElementById("playerInfo").innerHTML = playerContent;
   };
 
   function checkAllPlanetsLoaded(loaded, total) {
@@ -439,23 +450,6 @@ $(document).ready(function () {
     var passage = document.getElementById("passage");
     var passageContent = "<h2>" + story.state.playerName + "'s Project</h2>";
     passageContent += "<p>" + story.state.playerPlanet.description + "</p>";
-
-    passageContent += "<h3>Help Chart</h3>";
-    passageContent += "<pre>";
-    setup.game.planets.forEach(function (planet) {
-      var helpedTimes =
-        story.state.helpedPlanets.find((p) => p.planet === planet.id)
-          ?.timesHelped || 0;
-      passageContent += planet.name + ": " + "❤️".repeat(helpedTimes) + "\n";
-    });
-    passageContent += "</pre>";
-
-    if (passage) {
-      passage.innerHTML = passageContent;
-      if (passageContainer) {
-        passageContainer.style.display = "block";
-      }
-    }
 
     var hud = document.getElementById("hud");
     if (hud) hud.classList.add("player-screen");
