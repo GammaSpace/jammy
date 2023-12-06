@@ -9,6 +9,43 @@
 Jammy Jam
 
 :: Start
+
+*KSSHT.* 
+
+*KSSSHHHHT.*
+
+Unknown Signal: Hello? *KSSHT.* Hello hello?
+
+Unknown Signal: Dobeedoooo doo doot do doooo! 🎵
+
+Unknown Signal: Are you receiving this? 
+
+[[Yes|A.0]]
+[[No|B.0]]
+
+:: A.0
+
+Unknown Signal: Excellent! I love when things work the way they're supposed to!
+
+[[Next|Main.1]]
+
+:: B.0
+
+Unknown Signal: Hah. You won't fool me that easily.
+
+Unknown Signal: I'm *only* 13 centuries old.
+
+[[Next|Main.1]]
+
+:: Main.1
+
+Unknown Signal: Of course, as your planet's representative, I'll just need you to fill out a quick transmission.
+
+Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy. 🎵
+
+[[Download the Document|Customization]]
+
+:: Customization
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="./scripts/1.SplitText.min.js"></script>
 <% $("body").addClass("customization").removeClass("map") %>
@@ -67,26 +104,30 @@ Jammy Jam
 :: Map Screen [scripted]
   <% $("body").removeClass("customization").addClass("map") %>
     <div id="overlay" class="hidden"></div>
+    <div id="ui">
+    <div id="playerScreen">
+      <div class="text-sm">
+        <span id="turnCounter"><%= 7 - s.turn %> weeks to the radio show!</span>
+      </div>
+      <div id="playerInfo"></div>
+    </div>
     <div id="mapScreen"></div>
+    </div>
     <div id="tooltips"></div>
     <div id="weekPreamble">
       <p id="modalContent" class="text-2xl mb-4"></p>
         <button onclick="setup.hideWeekPreamble()">Close</button>
     </div>
-    <div id="hudTop" class="flex w-auto items-end h-12 p-2 text-neutral-100 absolute top-0">
-      <div class="text-sm">
-        <span id="turnCounter"><%= 7 - s.turn %> weeks to the radio show!</span>
-      </div>
-    </div>
+    
     <div id="hud">
       <span onclick="setup.returnToMap()" class="z-50 text-neutral-100 absolute top-6 right-6 uppercase  text-base cursor-pointer">&larr; back to map</span>
       <div id="planet-splash" class="flex-shrink-0 px-6 pt-6"></div>
         
       <div id="planet-info">
+          <div id="rep" class=""></div>
           <div id="passageContainer">
             <div id="passage"></div>
           </div>
-          <div id="rep" class=""></div>
         </div>
     </div>
 
