@@ -757,22 +757,6 @@ select{
   visibility: visible;
 }
 
-.absolute{
-  position: absolute;
-}
-
-.right-6{
-  right: 1.5rem;
-}
-
-.top-6{
-  top: 1.5rem;
-}
-
-.z-50{
-  z-index: 50;
-}
-
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -838,10 +822,6 @@ select{
   flex-shrink: 0;
 }
 
-.cursor-pointer{
-  cursor: pointer;
-}
-
 .items-center{
   align-items: center;
 }
@@ -894,10 +874,6 @@ select{
   font-weight: 600;
 }
 
-.uppercase{
-  text-transform: uppercase;
-}
-
 .leading-6{
   line-height: 1.5rem;
 }
@@ -910,11 +886,6 @@ select{
 .text-indigo-600{
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
-}
-
-.text-neutral-100{
-  --tw-text-opacity: 1;
-  color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
 .text-neutral-200{
@@ -3251,6 +3222,19 @@ button:focus-visible{
   /* Or any color you prefer */
 }
 
+#backToMap{
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  --tw-text-opacity: 1;
+  color: rgb(245 245 245 / var(--tw-text-opacity));
+}
+
 .focus\:ring-indigo-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
@@ -3428,6 +3412,37 @@ $(document).ready(function () {
     setup.startObserving();
   });
 
+  setup.renderIntro = function () {
+    setup.startObserving();
+    story.show("Map Screen");
+    var planetContent = setup.showPlanet(0);
+
+    var passageContainer = document.getElementById("passageContainer");
+    var hud = document.getElementById("hud");
+    var backToMap = document.getElementById("backToMap");
+
+    if (mapScreen) mapScreen.style.display = "none";
+    if (hud) {
+      hud.style.display = "flex";
+      backToMap.style.display = "none";
+    }
+    if (passageContainer) {
+      passageContainer.style.display = "block";
+    }
+
+    var introContent = story.render("Intro 3");
+    var passage = document.getElementById("passage");
+    if (passage) {
+      passage.innerHTML = introContent;
+      setup.typewriter();
+    }
+
+    var planetContentContainer = document.getElementById("planetContent");
+    if (planetContentContainer) {
+      planetContentContainer.innerHTML = planetContent;
+    }
+  };
+
   setup.savePlayerInfo = function () {
     var playerName = document.getElementById("playerName").value;
     var planetName = document.getElementById("planetName").value;
@@ -3447,7 +3462,7 @@ $(document).ready(function () {
 
     story.state.playerName = playerName;
 
-    story.show("Map Screen");
+    story.show("Intro");
   };
 
   setup.checkInputs = function () {
@@ -3472,8 +3487,11 @@ $(document).ready(function () {
   };
 
   setup.showPlanet = function (planetIndex) {
+    setup.startObserving();
+
     story.state.currentPlanet = planetIndex;
     const planet = setup.game.planets.find((p) => p.id === planetIndex);
+    console.log("Showing planet:", planet);
     let content = planet.description;
     let repContent = `<img class='repImage' src='${planet.repImgSrc}' /><div class='repName'>${planet.rep}</div>`;
     var repContainer = document.getElementById("rep");
@@ -3543,9 +3561,13 @@ $(document).ready(function () {
       var passage = document.getElementById("passage");
       var planetContentContainer = document.getElementById("planetContent");
       var hud = document.getElementById("hud");
+      var backToMap = document.getElementById("backToMap");
 
       if (mapScreen) mapScreen.style.display = "none";
-      if (hud) hud.style.display = "flex";
+      if (hud) {
+        hud.style.display = "flex";
+        backToMap.style.display = "block";
+      }
       if (passageContainer) {
         passage.innerHTML = passageContent;
         setup.typewriter();
@@ -3626,7 +3648,10 @@ $(document).ready(function () {
   };
 
   setup.planetClickHandlers = {};
-
+  $(window).on("sm.passage.showing", function (event, eventObject) {
+    // Current Passage object
+    console.log(eventObject.passage.name);
+  });
   setup.showMap = function () {
     var mapScreen = document.getElementById("mapScreen");
 
@@ -3892,22 +3917,6 @@ $(document).ready(function () {
     setTimeout(setup.showWeekPreamble, 0);
   };
   setup.updatePlanetsAndTurnCounter = function () {
-    // console.log(
-    //   "Updating planets and turn counter, Crisis Turn:",
-    //   story.state.isCrisisTurn
-    // );
-
-    // setTimeout(function () {
-    //   const mapScreen = document.getElementById("mapScreen");
-
-    //   if (story.state.isCrisisTurn) {
-    //     mapScreen.classList.add("crisis");
-    //     console.log("Crisis class added to mapScreen:", mapScreen.classList);
-    //   } else {
-    //     mapScreen.classList.remove("crisis");
-    //   }
-    // }, 0);
-
     document
       .querySelectorAll(".planet")
       .forEach(function (planetElement, index) {
@@ -3975,13 +3984,6 @@ $(document).ready(function () {
 
   setup.handlePlanetClick = function (planetIndex) {
     return function () {
-      // if (planetIndex === -1) {
-      //   console.log("Player's planet clicked.");
-      //   setup.renderPlayerPlanetPassage();
-      //   setup.toggleHUD(true);
-      //   return;
-      // }
-
       console.log("Clicked Planet Index:", planetIndex);
       if (!story.state.scenarioCompletedThisTurn) {
         if (
@@ -4076,29 +4078,30 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
 
 &lt;div class=&quot;mx-auto max-w-7xl px-4 sm:px-6 lg:px-8&quot;&gt;
   &lt;div class=&quot;mx-auto max-w-3xl customization-form&quot;&gt;
-    &lt;h1&gt;It&#39;s Jammy Jam Time!&lt;/h1&gt;
-    &lt;h2&gt;DJ FUNKYBEATZ: Welcome to Gamma Space collaborative federation!&lt;/h2&gt;
+    &lt;p&gt;Dear Planet Representative,&lt;/p&gt;
+
+    &lt;p&gt;Please fill out the following information.&lt;/p&gt;
         &lt;div&gt;
-            &lt;label for=&quot;playerName&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;What&#39;s your name?&lt;/label&gt;
+            &lt;label for=&quot;playerName&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;Your full name:&lt;/label&gt;
             &lt;div class=&quot;mt-2&quot;&gt;
                 &lt;input id=&quot;playerName&quot; name=&quot;playerName&quot; type=&quot;text&quot; value=&quot;&quot; oninput=&quot;setup.checkInputs()&quot; class=&quot;customization-text-input&quot;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
-            &lt;label for=&quot;planetName&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;What&#39;s your planet&#39;s name?&lt;/label&gt;
+            &lt;label for=&quot;planetName&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;The name of your planet:&lt;/label&gt;
             &lt;div class=&quot;mt-2&quot;&gt;
                 &lt;input id=&quot;planetName&quot; name=&quot;planetName&quot; type=&quot;text&quot; value=&quot;&quot; oninput=&quot;setup.checkInputs()&quot; class=&quot;customization-text-input&quot;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
-            &lt;label for=&quot;projectDescription&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;Tell us about your project.&lt;/label&gt;
+            &lt;label for=&quot;projectDescription&quot; class=&quot;block text-sm font-medium leading-6 text-gray-900&quot;&gt;Your planet&#39;s main artistic output (eg. singing, dancing, competitive digital zip-lining, intergalactic fermentation stations):&lt;/label&gt;
             &lt;div class=&quot;mt-2&quot;&gt;
             &lt;input id=&quot;projectDescription&quot; name=&quot;projectDescription&quot; type=&quot;text&quot; value=&quot;&quot; oninput=&quot;setup.checkInputs()&quot; class=&quot;customization-text-input&quot;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
 
         &lt;div&gt;
-        &lt;p for=&quot;planetImg&quot; class=&quot;text-base font-semibold text-neutral-50&quot;&gt;Home Planet&lt;/p&gt;
+        &lt;!-- &lt;p for=&quot;planetImg&quot; class=&quot;text-base font-semibold text-neutral-50&quot;&gt;Home Planet&lt;/p&gt; --&gt;
         &lt;p class=&quot;text-sm text-neutral-200&quot;&gt;Pick a planet body:&lt;/p&gt;
         &lt;fieldset class=&quot;mt-4&quot; id=&quot;planetImg&quot;&gt;
             &lt;div class=&quot;space-y-4&quot;&gt;
@@ -4116,17 +4119,14 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
             &lt;/div&gt;
         &lt;/fieldset&gt;
         &lt;/div&gt;
-        &lt;button id=&quot;nextButton&quot; onclick=&quot;setup.savePlayerInfo()&quot; class=&quot;disabled:opacity-25&quot; disabled&gt;Next&lt;/button&gt;
-        &lt;% if (story.state.playerName &amp;&amp; story.state.planetName) { %&gt;
-        [[Next-&gt;Map Screen]]
-        &lt;% } %&gt;
+        &lt;button id=&quot;nextButton&quot; onclick=&quot;setup.savePlayerInfo()&quot; class=&quot;disabled:opacity-25&quot; disabled&gt;Transmit the document&lt;/button&gt;
     &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Map Screen" tags="scripted" position="725,100" size="100,100">&lt;% $(&quot;body&quot;).removeClass(&quot;customization&quot;).addClass(&quot;map&quot;) %&gt;
     &lt;div id=&quot;overlay&quot; class=&quot;hidden&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;ui&quot;&gt;
     &lt;div id=&quot;playerScreen&quot;&gt;
       &lt;div class=&quot;text-sm&quot;&gt;
-        &lt;span id=&quot;turnCounter&quot;&gt;&lt;%= 7 - s.turn %&gt; weeks to the radio show!&lt;/span&gt;
+        &lt;span id=&quot;turnCounter&quot;&gt;&lt;%= 8 - s.turn %&gt; weeks to the radio show!&lt;/span&gt;
       &lt;/div&gt;
       &lt;div id=&quot;playerInfo&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
@@ -4139,7 +4139,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
     &lt;/div&gt;
     
     &lt;div id=&quot;hud&quot;&gt;
-      &lt;span onclick=&quot;setup.returnToMap()&quot; class=&quot;z-50 text-neutral-100 absolute top-6 right-6 uppercase  text-base cursor-pointer&quot;&gt;&amp;larr; back to map&lt;/span&gt;
+      &lt;span onclick=&quot;setup.returnToMap()&quot; id=&quot;backToMap&quot;&gt;&amp;larr; back to map&lt;/span&gt;
       &lt;div id=&quot;planet-splash&quot; class=&quot;flex-shrink-0 px-6 pt-6&quot;&gt;&lt;/div&gt;
         
       &lt;div id=&quot;planet-info&quot;&gt;
@@ -4152,7 +4152,6 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
 
 &lt;script&gt;
   setup.showMap();
-  setup.toggleHUDTop(true)
 &lt;/script&gt;
 
 &lt;% console.log(setup.game) %&gt;
@@ -4163,87 +4162,140 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
   var planetIndex = story.state.planetIndex; // Retrieve the index from story.state
   setup.renderPlanetPassage(planetIndex);
   setup.story.render(planets[planetIndex].passage); 
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="8" name="Melodic Quest" tags="scenario" position="975,100" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="8" name="Intro" tags="" position="975,100" size="100,100">Unknown Signal: Well, &lt;%= story.state.playerName %&gt; from &lt;%= story.state.playerPlanet.name %&gt;. It&#39;s my honour and delight to *welcome you*...
 
-[[Next...-&gt;Melodic Quest 2]]</tw-passagedata><tw-passagedata pid="9" name="Melodic Quest 2" tags="" position="1100,100" size="100,100">Let&#39;s see if I can find the notes…
+[[Next|Intro 2]]</tw-passagedata><tw-passagedata pid="9" name="Intro 2" tags="" position="1100,100" size="100,100">Unknown Signal: **... to the Gamma Federation!**
+
+&lt;button id=&quot;renderIntroButton&quot; onclick=&quot;setup.renderIntro();&quot; &gt;Next&lt;/button&gt;</tw-passagedata><tw-passagedata pid="10" name="Intro 3" tags="" position="1225,100" size="100,100">Unknown Signal: I just realized I had my video turned off this whole time... *some host I am!*
+
+[[Next|Intro 4]]</tw-passagedata><tw-passagedata pid="11" name="Intro 4" tags="" position="100,225" size="100,100">Unknown Signal: Allow me to introduce myself. I am ❄︎pioGA⍓︎rovvst♏︎♋︎S:laQN⬧︎doü⧫︎ffpz⍓︎?MBzx■︎Bzt.
+
+[[Next|Intro 5]]</tw-passagedata><tw-passagedata pid="12" name="Intro 5" tags="" position="225,225" size="100,100">Unknown Signal: But my friends call me *DJ FUNKYBEATZ.* 🎵
+
+[[Next|Intro 6]]</tw-passagedata><tw-passagedata pid="13" name="Intro 6" tags="" position="350,225" size="100,100">DJ: We&#39;re grateful to have you as the newest member of the Federation.
+
+[[Next|Intro 7]]</tw-passagedata><tw-passagedata pid="14" name="Intro 7" tags="" position="475,225" size="100,100">DJ: I know you&#39;ve had a tough time recently, what with losing your job at the Dominion Planetation and all. I know what that place can do to your trust...
+
+[[Next|Intro 8]]</tw-passagedata><tw-passagedata pid="15" name="Intro 8" tags="" position="600,225" size="100,100">DJ: But things are different here. There&#39;s no overlord. No forced overtime. Just a commitment to our collective wellbeing and shared values. I know you already got the values information beforehand, but I&#39;ll share them again.
+  
+[[Next|Intro 9]]</tw-passagedata><tw-passagedata pid="16" name="Intro 9" tags="" position="725,225" size="100,100">- Collective care and support
+- Personal and Collective Accountability
+- Creative Empowerment
+- Challenging Systemic Norms
+- Art as a Means for Change*
+
+[[Next|Intro 10]]</tw-passagedata><tw-passagedata pid="17" name="Intro 10" tags="" position="850,225" size="100,100">DJ: Opting into the Federation means opting into the values. The values are iterative, but commitment to the Federation means commitment working *with* us to make those changes.
+
+[[Next|Intro 11]]</tw-passagedata><tw-passagedata pid="18" name="Intro 11" tags="" position="975,225" size="100,100">DJ: But I&#39;m talking your ear off! I&#39;m so excited to see how you will exhibit your [projectDescription] during the Radio Show in **7 weeks**.
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  [[Radio show?|Radio Show Explanation]]
+  &lt;span onclick=&quot;setup.returnToMap();&quot;&gt;Oh yeah, I know about that.&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="19" name="Radio Show Explanation" tags="" position="1100,225" size="100,100">DJ: YOU DON&#39;T KNOW ABOUT THE RADIO SHOW?!?
+DJ: ...
+
+[[Next|Radio Show Explanation 2]]</tw-passagedata><tw-passagedata pid="20" name="Radio Show Explanation 2" tags="" position="1225,225" size="100,100">DJ: Sorry, I got a little carried away there. It&#39;s just... a kinda big deal.
+
+[[Next|Radio Show Explanation 3]]</tw-passagedata><tw-passagedata pid="21" name="Radio Show Explanation 3" tags="" position="100,350" size="100,100">DJ: Every **year** The Gamma Federation hosts an intergalactic radio show where all the Gamma planets exhibit their artistic creations across the galaxy.
+
+[[Next|Radio Show Explanation 4]]</tw-passagedata><tw-passagedata pid="22" name="Radio Show Explanation 4" tags="" position="225,350" size="100,100">DJ: As you get acquainted with the Federation, I encourage you to check in on the other planets every so often to see how their projects are coming along for the radio show. This is something we call the *buddy system*. 
+
+[[Next|Radio Show Explanation 5]]</tw-passagedata><tw-passagedata pid="23" name="Radio Show Explanation 5" tags="" position="350,350" size="100,100">DJ: *Check in on your buddies🎵&lt;br&gt;
+and they&#39;ll check in on youuu.&lt;br&gt;
+It makes us all do better,&lt;br&gt;
+and it&#39;s easy enough to dooo!*🎵
+
+[[Next|Radio Show Explanation 6]]</tw-passagedata><tw-passagedata pid="24" name="Radio Show Explanation 6" tags="" position="475,350" size="100,100">DJ: Okay, yeah yeah. Not my finest work.
+
+[[Next|Radio Show Explanation 7]]</tw-passagedata><tw-passagedata pid="25" name="Radio Show Explanation 7" tags="" position="600,350" size="100,100">DJ: Nothing to add? Wow. An alien can take a hint. Well, off with you then. I&#39;m transmitting the coordinates of the other planets to you now. 
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&quot;setup.returnToMap();&quot;&gt;Open map&lt;/span&gt;
+&lt;/div&gt;
+
+
+
+&lt;!-- Planet request scenarios, random --&gt;</tw-passagedata><tw-passagedata pid="26" name="Melodic Quest" tags="scenario" position="725,350" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+
+[[Next...-&gt;Melodic Quest 2]]</tw-passagedata><tw-passagedata pid="27" name="Melodic Quest 2" tags="" position="850,350" size="100,100">Let&#39;s see if I can find the notes…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="Quantum Conundrum" tags="scenario" position="1225,100" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="Quantum Conundrum" tags="scenario" position="975,350" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
 
-[[Next...-&gt;Quantum Conundrum 2]]</tw-passagedata><tw-passagedata pid="11" name="Quantum Conundrum 2" tags="scenario" position="100,225" size="100,100">I have no idea how to solve these puzzles, but i&#39;ll give it my best shot…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="12" name="Stellar Cradle" tags="" position="225,225" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
-
-[[Next...-&gt;Stellar Cradle 2]]</tw-passagedata><tw-passagedata pid="13" name="Stellar Cradle 2" tags="" position="350,225" size="100,100">Gathering stardust might be fun?
-
+[[Next...-&gt;Quantum Conundrum 2]]</tw-passagedata><tw-passagedata pid="29" name="Quantum Conundrum 2" tags="scenario" position="1100,350" size="100,100">I have no idea how to solve these puzzles, but i&#39;ll give it my best shot…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="Galactic Restoration" tags="scenario" position="475,225" size="100,100">The Great Library of Andromeda is in disarray, with knowledge scattered across the stars. Reorganize the cosmic archives and unlock ancient wisdom.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="Stellar Cradle" tags="" position="1225,350" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
 
-[[Next...-&gt;Galactic Restoration 2]]</tw-passagedata><tw-passagedata pid="15" name="Galactic Restoration 2" tags="" position="600,225" size="100,100">Time to sort through the astral archives…
+[[Next...-&gt;Stellar Cradle 2]]</tw-passagedata><tw-passagedata pid="31" name="Stellar Cradle 2" tags="" position="100,475" size="100,100">Gathering stardust might be fun?
 
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="16" name="Cosmic Symphony" tags="scenario" position="725,225" size="100,100">A celestial entity has lost its voice, rendering the galaxy silent. Find the harmonious chords to give voice back to the stars.
-
-[[Next...-&gt;Cosmic Symphony 2]]</tw-passagedata><tw-passagedata pid="17" name="Cosmic Symphony 2" tags="" position="850,225" size="100,100">Let&#39;s tune into the cosmic frequencies…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="Nebula Maze" tags="scenario" position="975,225" size="100,100">A labyrinth of cosmic dust and gas clouds has appeared. Navigate through the maze to discover hidden celestial treasures.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="Galactic Restoration" tags="scenario" position="225,475" size="100,100">The Great Library of Andromeda is in disarray, with knowledge scattered across the stars. Reorganize the cosmic archives and unlock ancient wisdom.
 
-[[Next...-&gt;Nebula Maze 2]]</tw-passagedata><tw-passagedata pid="19" name="Nebula Maze 2" tags="" position="1100,225" size="100,100">This maze is intricate, but I&#39;m up for the challenge…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="Starlit Dance" tags="scenario" position="1225,225" size="100,100">A constellation has lost its rhythm, causing disarray in the night sky. Choreograph the celestial dance to restore order.
-
-[[Next...-&gt;Starlit Dance 2]]</tw-passagedata><tw-passagedata pid="21" name="Starlit Dance 2" tags="" position="100,350" size="100,100">Time to get these stars dancing again…
+[[Next...-&gt;Galactic Restoration 2]]</tw-passagedata><tw-passagedata pid="33" name="Galactic Restoration 2" tags="" position="350,475" size="100,100">Time to sort through the astral archives…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="Comet&#39;s Tale" tags="scenario" position="225,350" size="100,100">A wandering comet carries secrets from the edge of the universe. Chart its course and uncover the mysteries it holds.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="Cosmic Symphony" tags="scenario" position="475,475" size="100,100">A celestial entity has lost its voice, rendering the galaxy silent. Find the harmonious chords to give voice back to the stars.
 
-[[Next...-&gt;Comet&#39;s Tale 2]]</tw-passagedata><tw-passagedata pid="23" name="Comet&#39;s Tale 2" tags="" position="350,350" size="100,100">Chasing comets is no easy task, but it&#39;s worth it…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="Aurora&#39;s Whisper" tags="scenario" position="475,350" size="100,100">The Aurora Borealis has dimmed, losing its vibrant colors. Reignite the auroral lights to paint the sky with dazzling hues.
-
-[[Next...-&gt;Aurora&#39;s Whisper 2]]</tw-passagedata><tw-passagedata pid="25" name="Aurora&#39;s Whisper 2" tags="" position="600,350" size="100,100">Let&#39;s bring color back to the skies…
+[[Next...-&gt;Cosmic Symphony 2]]</tw-passagedata><tw-passagedata pid="35" name="Cosmic Symphony 2" tags="" position="600,475" size="100,100">Let&#39;s tune into the cosmic frequencies…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="26" name="Celestial Riddle" tags="scenario" position="725,350" size="100,100">An ancient star has posed a riddle, locking away a cosmic secret. Solve the riddle to gain access to hidden cosmic knowledge.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="Nebula Maze" tags="scenario" position="725,475" size="100,100">A labyrinth of cosmic dust and gas clouds has appeared. Navigate through the maze to discover hidden celestial treasures.
 
-[[Next...-&gt;Celestial Riddle 2]]</tw-passagedata><tw-passagedata pid="27" name="Celestial Riddle 2" tags="" position="850,350" size="100,100">Riddles in space? This should be interesting…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="Solar Serenade" tags="scenario" position="975,350" size="100,100">The Sun&#39;s song has become erratic, affecting planetary orbits. Compose a new solar melody to bring stability back to the solar system.
-
-[[Next...-&gt;Solar Serenade 2]]</tw-passagedata><tw-passagedata pid="29" name="Solar Serenade 2" tags="" position="1100,350" size="100,100">Time to compose a symphony for the Sun…
+[[Next...-&gt;Nebula Maze 2]]</tw-passagedata><tw-passagedata pid="37" name="Nebula Maze 2" tags="" position="850,475" size="100,100">This maze is intricate, but I&#39;m up for the challenge…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="Week 4 An Offer of Help" tags="scenario crisis" position="1225,350" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; offers to help me find the source of the problem. Let&#39;s go!
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="38" name="Starlit Dance" tags="scenario" position="975,475" size="100,100">A constellation has lost its rhythm, causing disarray in the night sky. Choreograph the celestial dance to restore order.
 
-[[Next...-&gt;Week 4 crisis 2]]</tw-passagedata><tw-passagedata pid="31" name="Week 4 crisis 2" tags="" position="100,475" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; is so great. I&#39;m glad we&#39;re friends.
+[[Next...-&gt;Starlit Dance 2]]</tw-passagedata><tw-passagedata pid="39" name="Starlit Dance 2" tags="" position="1100,475" size="100,100">Time to get these stars dancing again…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="Comet&#39;s Tale" tags="scenario" position="1225,475" size="100,100">A wandering comet carries secrets from the edge of the universe. Chart its course and uncover the mysteries it holds.
+
+[[Next...-&gt;Comet&#39;s Tale 2]]</tw-passagedata><tw-passagedata pid="41" name="Comet&#39;s Tale 2" tags="" position="100,600" size="100,100">Chasing comets is no easy task, but it&#39;s worth it…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="Aurora&#39;s Whisper" tags="scenario" position="225,600" size="100,100">The Aurora Borealis has dimmed, losing its vibrant colors. Reignite the auroral lights to paint the sky with dazzling hues.
+
+[[Next...-&gt;Aurora&#39;s Whisper 2]]</tw-passagedata><tw-passagedata pid="43" name="Aurora&#39;s Whisper 2" tags="" position="350,600" size="100,100">Let&#39;s bring color back to the skies…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="Celestial Riddle" tags="scenario" position="475,600" size="100,100">An ancient star has posed a riddle, locking away a cosmic secret. Solve the riddle to gain access to hidden cosmic knowledge.
+
+[[Next...-&gt;Celestial Riddle 2]]</tw-passagedata><tw-passagedata pid="45" name="Celestial Riddle 2" tags="" position="600,600" size="100,100">Riddles in space? This should be interesting…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="46" name="Solar Serenade" tags="scenario" position="725,600" size="100,100">The Sun&#39;s song has become erratic, affecting planetary orbits. Compose a new solar melody to bring stability back to the solar system.
+
+[[Next...-&gt;Solar Serenade 2]]</tw-passagedata><tw-passagedata pid="47" name="Solar Serenade 2" tags="" position="850,600" size="100,100">Time to compose a symphony for the Sun…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="48" name="Week 4 An Offer of Help" tags="scenario crisis" position="975,600" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; offers to help me find the source of the problem. Let&#39;s go!
+
+[[Next...-&gt;Week 4 crisis 2]]</tw-passagedata><tw-passagedata pid="49" name="Week 4 crisis 2" tags="" position="1100,600" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; is so great. I&#39;m glad we&#39;re friends.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
@@ -4252,7 +4304,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
 
 
 
-&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="32" name="Week 1" tags="preamble" position="225,475" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="33" name="Week 2" tags="preamble" position="350,475" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="34" name="Week 3" tags="preamble" position="475,475" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="35" name="Week 4" tags="preamble crisis" position="600,475" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="36" name="Week 5" tags="preamble" position="725,475" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="37" name="Week 6" tags="preamble" position="850,475" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="38" name="Week 7" tags="preamble crisis" position="975,475" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!</tw-passagedata></tw-storydata>
+&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="50" name="Week 1" tags="preamble" position="1225,600" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="51" name="Week 2" tags="preamble" position="100,725" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="52" name="Week 3" tags="preamble" position="225,725" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="53" name="Week 4" tags="preamble crisis" position="350,725" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="54" name="Week 5" tags="preamble" position="475,725" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="55" name="Week 6" tags="preamble" position="600,725" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="56" name="Week 7" tags="preamble crisis" position="725,725" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

@@ -46,35 +46,37 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
 [[Download the Document|Customization]]
 
 :: Customization
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="./scripts/1.SplitText.min.js"></script>
 <% $("body").addClass("customization").removeClass("map") %>
 
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-3xl customization-form">
-    <h1>It's Jammy Jam Time!</h1>
-    <h2>DJ FUNKYBEATZ: Welcome to Gamma Space collaborative federation!</h2>
+    <p>Dear Planet Representative,</p>
+
+    <p>Please fill out the following information.</p>
         <div>
-            <label for="playerName" class="block text-sm font-medium leading-6 text-gray-900">What's your name?</label>
+            <label for="playerName" class="block text-sm font-medium leading-6 text-gray-900">Your full name:</label>
             <div class="mt-2">
                 <input id="playerName" name="playerName" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
         <div>
-            <label for="planetName" class="block text-sm font-medium leading-6 text-gray-900">What's your planet's name?</label>
+            <label for="planetName" class="block text-sm font-medium leading-6 text-gray-900">The name of your planet:</label>
             <div class="mt-2">
                 <input id="planetName" name="planetName" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
         <div>
-            <label for="projectDescription" class="block text-sm font-medium leading-6 text-gray-900">Tell us about your project.</label>
+            <label for="projectDescription" class="block text-sm font-medium leading-6 text-gray-900">Your planet's main artistic output (eg. singing, dancing, competitive digital zip-lining, intergalactic fermentation stations):</label>
             <div class="mt-2">
             <input id="projectDescription" name="projectDescription" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
 
         <div>
-        <p for="planetImg" class="text-base font-semibold text-neutral-50">Home Planet</p>
+        <!-- <p for="planetImg" class="text-base font-semibold text-neutral-50">Home Planet</p> -->
         <p class="text-sm text-neutral-200">Pick a planet body:</p>
         <fieldset class="mt-4" id="planetImg">
             <div class="space-y-4">
@@ -92,10 +94,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
             </div>
         </fieldset>
         </div>
-        <button id="nextButton" onclick="setup.savePlayerInfo()" class="disabled:opacity-25" disabled>Next</button>
-        <% if (story.state.playerName && story.state.planetName) { %>
-        [[Next->Map Screen]]
-        <% } %>
+        <button id="nextButton" onclick="setup.savePlayerInfo()" class="disabled:opacity-25" disabled>Transmit the document</button>
     </div>
 </div>
 
@@ -107,7 +106,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
     <div id="ui">
     <div id="playerScreen">
       <div class="text-sm">
-        <span id="turnCounter"><%= 7 - s.turn %> weeks to the radio show!</span>
+        <span id="turnCounter"><%= 8 - s.turn %> weeks to the radio show!</span>
       </div>
       <div id="playerInfo"></div>
     </div>
@@ -120,7 +119,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
     </div>
     
     <div id="hud">
-      <span onclick="setup.returnToMap()" class="z-50 text-neutral-100 absolute top-6 right-6 uppercase  text-base cursor-pointer">&larr; back to map</span>
+      <span onclick="setup.returnToMap()" id="backToMap">&larr; back to map</span>
       <div id="planet-splash" class="flex-shrink-0 px-6 pt-6"></div>
         
       <div id="planet-info">
@@ -133,7 +132,6 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
 
 <script>
   setup.showMap();
-  setup.toggleHUDTop(true)
 </script>
 
 <% console.log(setup.game) %>

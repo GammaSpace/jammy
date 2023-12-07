@@ -745,22 +745,6 @@ select{
   visibility: visible;
 }
 
-.absolute{
-  position: absolute;
-}
-
-.right-6{
-  right: 1.5rem;
-}
-
-.top-6{
-  top: 1.5rem;
-}
-
-.z-50{
-  z-index: 50;
-}
-
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -826,10 +810,6 @@ select{
   flex-shrink: 0;
 }
 
-.cursor-pointer{
-  cursor: pointer;
-}
-
 .items-center{
   align-items: center;
 }
@@ -882,10 +862,6 @@ select{
   font-weight: 600;
 }
 
-.uppercase{
-  text-transform: uppercase;
-}
-
 .leading-6{
   line-height: 1.5rem;
 }
@@ -898,11 +874,6 @@ select{
 .text-indigo-600{
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
-}
-
-.text-neutral-100{
-  --tw-text-opacity: 1;
-  color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
 .text-neutral-200{
@@ -3237,6 +3208,19 @@ button:focus-visible{
   /* Adjust size as needed */
   color: red;
   /* Or any color you prefer */
+}
+
+#backToMap{
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  --tw-text-opacity: 1;
+  color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
 .focus\:ring-indigo-600:focus{
