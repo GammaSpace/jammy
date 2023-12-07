@@ -347,3 +347,6 @@ button {
   font-size: 20px; /* Adjust size as needed */
   color: red; /* Or any color you prefer */
 }
+#backToMap {
+  @apply z-50 text-neutral-100 absolute top-6 right-6 uppercase  text-base cursor-pointer;
+}

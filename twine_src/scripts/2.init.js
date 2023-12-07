@@ -152,6 +152,37 @@ $(document).ready(function () {
     setup.startObserving();
   });
 
+  setup.renderIntro = function () {
+    setup.startObserving();
+    story.show("Map Screen");
+    var planetContent = setup.showPlanet(0);
+
+    var passageContainer = document.getElementById("passageContainer");
+    var hud = document.getElementById("hud");
+    var backToMap = document.getElementById("backToMap");
+
+    if (mapScreen) mapScreen.style.display = "none";
+    if (hud) {
+      hud.style.display = "flex";
+      backToMap.style.display = "none";
+    }
+    if (passageContainer) {
+      passageContainer.style.display = "block";
+    }
+
+    var introContent = story.render("Intro 3");
+    var passage = document.getElementById("passage");
+    if (passage) {
+      passage.innerHTML = introContent;
+      setup.typewriter();
+    }
+
+    var planetContentContainer = document.getElementById("planetContent");
+    if (planetContentContainer) {
+      planetContentContainer.innerHTML = planetContent;
+    }
+  };
+
   setup.savePlayerInfo = function () {
     var playerName = document.getElementById("playerName").value;
     var planetName = document.getElementById("planetName").value;
@@ -171,7 +202,7 @@ $(document).ready(function () {
 
     story.state.playerName = playerName;
 
-    story.show("Map Screen");
+    story.show("Intro");
   };
 
   setup.checkInputs = function () {
@@ -196,8 +227,11 @@ $(document).ready(function () {
   };
 
   setup.showPlanet = function (planetIndex) {
+    setup.startObserving();
+
     story.state.currentPlanet = planetIndex;
     const planet = setup.game.planets.find((p) => p.id === planetIndex);
+    console.log("Showing planet:", planet);
     let content = planet.description;
     let repContent = `<img class='repImage' src='${planet.repImgSrc}' /><div class='repName'>${planet.rep}</div>`;
     var repContainer = document.getElementById("rep");
@@ -267,9 +301,13 @@ $(document).ready(function () {
       var passage = document.getElementById("passage");
       var planetContentContainer = document.getElementById("planetContent");
       var hud = document.getElementById("hud");
+      var backToMap = document.getElementById("backToMap");
 
       if (mapScreen) mapScreen.style.display = "none";
-      if (hud) hud.style.display = "flex";
+      if (hud) {
+        hud.style.display = "flex";
+        backToMap.style.display = "block";
+      }
       if (passageContainer) {
         passage.innerHTML = passageContent;
         setup.typewriter();
@@ -350,7 +388,10 @@ $(document).ready(function () {
   };
 
   setup.planetClickHandlers = {};
-
+  $(window).on("sm.passage.showing", function (event, eventObject) {
+    // Current Passage object
+    console.log(eventObject.passage.name);
+  });
   setup.showMap = function () {
     var mapScreen = document.getElementById("mapScreen");
 
@@ -616,22 +657,6 @@ $(document).ready(function () {
     setTimeout(setup.showWeekPreamble, 0);
   };
   setup.updatePlanetsAndTurnCounter = function () {
-    // console.log(
-    //   "Updating planets and turn counter, Crisis Turn:",
-    //   story.state.isCrisisTurn
-    // );
-
-    // setTimeout(function () {
-    //   const mapScreen = document.getElementById("mapScreen");
-
-    //   if (story.state.isCrisisTurn) {
-    //     mapScreen.classList.add("crisis");
-    //     console.log("Crisis class added to mapScreen:", mapScreen.classList);
-    //   } else {
-    //     mapScreen.classList.remove("crisis");
-    //   }
-    // }, 0);
-
     document
       .querySelectorAll(".planet")
       .forEach(function (planetElement, index) {
@@ -699,13 +724,6 @@ $(document).ready(function () {
 
   setup.handlePlanetClick = function (planetIndex) {
     return function () {
-      // if (planetIndex === -1) {
-      //   console.log("Player's planet clicked.");
-      //   setup.renderPlayerPlanetPassage();
-      //   setup.toggleHUD(true);
-      //   return;
-      // }
-
       console.log("Clicked Planet Index:", planetIndex);
       if (!story.state.scenarioCompletedThisTurn) {
         if (

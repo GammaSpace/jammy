@@ -1,3 +1,109 @@
+:: Intro
+Unknown Signal: Well, <%= story.state.playerName %> from <%= story.state.playerPlanet.name %>. It's my honour and delight to *welcome you*...
+
+[[Next|Intro 2]]
+
+:: Intro 2
+Unknown Signal: **... to the Gamma Federation!**
+
+<button id="renderIntroButton" onclick="setup.renderIntro();" >Next</button>
+
+:: Intro 3
+Unknown Signal: I just realized I had my video turned off this whole time... *some host I am!*
+
+[[Next|Intro 4]]
+
+:: Intro 4
+Unknown Signal: Allow me to introduce myself. I am ❄︎pioGA⍓︎rovvst♏︎♋︎S:laQN⬧︎doü⧫︎ffpz⍓︎?MBzx■︎Bzt.
+
+[[Next|Intro 5]]
+
+:: Intro 5
+Unknown Signal: But my friends call me *DJ FUNKYBEATZ.* 🎵
+
+[[Next|Intro 6]]
+
+:: Intro 6
+DJ: We're grateful to have you as the newest member of the Federation.
+
+[[Next|Intro 7]]
+
+:: Intro 7
+
+DJ: I know you've had a tough time recently, what with losing your job at the Dominion Planetation and all. I know what that place can do to your trust...
+
+[[Next|Intro 8]]
+
+:: Intro 8
+DJ: But things are different here. There's no overlord. No forced overtime. Just a commitment to our collective wellbeing and shared values. I know you already got the values information beforehand, but I'll share them again.
+  
+[[Next|Intro 9]]
+
+:: Intro 9
+- Collective care and support
+- Personal and Collective Accountability
+- Creative Empowerment
+- Challenging Systemic Norms
+- Art as a Means for Change*
+
+[[Next|Intro 10]]
+
+:: Intro 10
+DJ: Opting into the Federation means opting into the values. The values are iterative, but commitment to the Federation means commitment working *with* us to make those changes.
+
+[[Next|Intro 11]]
+
+:: Intro 11
+DJ: But I'm talking your ear off! I'm so excited to see how you will exhibit your [projectDescription] during the Radio Show in **7 weeks**.
+
+<div class="passage-choices">
+  [[Radio show?|Radio Show Explanation]]
+  <span onclick="setup.returnToMap();">Oh yeah, I know about that.</span>
+</div>
+
+:: Radio Show Explanation
+DJ: YOU DON'T KNOW ABOUT THE RADIO SHOW?!?
+DJ: ...
+
+[[Next|Radio Show Explanation 2]]
+
+:: Radio Show Explanation 2
+DJ: Sorry, I got a little carried away there. It's just... a kinda big deal.
+
+[[Next|Radio Show Explanation 3]]
+
+:: Radio Show Explanation 3
+DJ: Every **year** The Gamma Federation hosts an intergalactic radio show where all the Gamma planets exhibit their artistic creations across the galaxy.
+
+[[Next|Radio Show Explanation 4]]
+
+:: Radio Show Explanation 4
+DJ: As you get acquainted with the Federation, I encourage you to check in on the other planets every so often to see how their projects are coming along for the radio show. This is something we call the *buddy system*. 
+
+[[Next|Radio Show Explanation 5]]
+
+:: Radio Show Explanation 5
+DJ: *Check in on your buddies🎵<br>
+and they'll check in on youuu.<br>
+It makes us all do better,<br>
+and it's easy enough to dooo!*🎵
+
+[[Next|Radio Show Explanation 6]]
+
+:: Radio Show Explanation 6
+DJ: Okay, yeah yeah. Not my finest work.
+
+[[Next|Radio Show Explanation 7]]
+
+:: Radio Show Explanation 7
+DJ: Nothing to add? Wow. An alien can take a hint. Well, off with you then. I'm transmitting the coordinates of the other planets to you now. 
+
+<div class="passage-choices">
+  <span onclick="setup.returnToMap();">Open map</span>
+</div>
+
+
+
 <!-- Planet request scenarios, random -->
 :: Melodic Quest [scenario]
 The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
