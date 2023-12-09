@@ -65,7 +65,7 @@ html {
 
 .active-turn img {
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
-  animation: pulseGlow 8s infinite;
+  animation: pulseGlow 3s infinite;
 }
 .planet-container.active-turn::before {
   @apply text-4xl text-yellow-400 z-50;
@@ -75,13 +75,25 @@ html {
   left: 50%;
   transform: translateX(-50%);
 }
-body.crisis .planet-container.active-turn::before {
-  @apply text-4xl text-red-600 z-50;
-  content: "❤️";
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.planet-container.active-turn::before {
+  @apply text-4xl text-yellow-400 z-50;
+  content: "!";
   position: absolute;
   top: -50px;
   left: 50%;
   transform: translateX(-50%);
+  animation: bounce 1s infinite;
 }
 
 body.crisis #weekPreamble {
@@ -379,6 +391,8 @@ button {
   }
 }
 a {
+  color: currentColor;
+  text-decoration-color: currentColor;
   &:hover {
     color: currentColor;
     @apply underline;

@@ -1008,7 +1008,7 @@ html {
 
 .active-turn img {
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
-  animation: pulseGlow 8s infinite;
+  animation: pulseGlow 3s infinite;
 }
 
 .planet-container.active-turn::before{
@@ -1024,17 +1024,29 @@ html {
   transform: translateX(-50%);
 }
 
-body.crisis .planet-container.active-turn::before{
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.planet-container.active-turn::before{
   z-index: 50;
   font-size: 2.25rem;
   line-height: 2.5rem;
   --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-  content: "❤️";
+  color: rgb(250 204 21 / var(--tw-text-opacity));
+  content: "!";
   position: absolute;
   top: -50px;
   left: 50%;
   transform: translateX(-50%);
+  animation: bounce 1s infinite;
 }
 
 body.crisis #weekPreamble{
@@ -3299,6 +3311,8 @@ button:focus-visible{
 }
 
 a {
+  color: currentColor;
+  text-decoration-color: currentColor;
   &:hover {
     color: currentColor;
   }
