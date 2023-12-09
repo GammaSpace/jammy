@@ -904,7 +904,7 @@ select{
 body,
 html {
   margin: 0;
-  height: 100%;
+  height: 100vh;
   background-image: url(./img/twinkle.gif);
   background-size: cover;
 }
@@ -925,8 +925,6 @@ html {
   left: 0px;
   height: 100%;
   width: 100%;
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 3rem;
@@ -2800,6 +2798,8 @@ body.crisis #weekPreamble{
 body.map {
   padding: 0;
   overflow: hidden;
+  background-image: url(./img/twinkle.gif);
+  background-size: cover;
 }
 
 body.customization h1{
@@ -3167,15 +3167,8 @@ button:focus-visible{
   }
 }
 
-#overlay{
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: 40;
-  height: 100%;
-  width: 100%;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-  --tw-bg-opacity: 0.5;
+#overlay {
+  /* @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40; */
 }
 
 .help-icon {
@@ -4258,7 +4251,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
         &lt;/fieldset&gt;
         &lt;/div&gt;
         &lt;button id=&quot;nextButton&quot; onclick=&quot;setup.savePlayerInfo()&quot; class=&quot;disabled:opacity-25&quot; disabled&gt;Transmit the document&lt;/button&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Map Screen" tags="scripted" position="850,100" size="100,100">&lt;% $(&quot;body&quot;).removeClass(&quot;customization&quot;).addClass(&quot;map&quot;) %&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Map Screen" tags="scripted" position="850,100" size="100,100">&lt;% $(&quot;body&quot;).removeClass(&quot;customization&quot;) %&gt;
     &lt;div id=&quot;overlay&quot; class=&quot;hidden&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;ui&quot;&gt;
     &lt;div id=&quot;playerScreen&quot;&gt;

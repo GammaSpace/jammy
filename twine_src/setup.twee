@@ -101,7 +101,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
 
 
 :: Map Screen [scripted]
-  <% $("body").removeClass("customization").addClass("map") %>
+  <% $("body").removeClass("customization") %>
     <div id="overlay" class="hidden"></div>
     <div id="ui">
     <div id="playerScreen">
