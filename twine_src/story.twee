@@ -316,3 +316,19 @@ With every planet helped, I feel more connected to the universe. What new wonder
 :: Week 7 [preamble crisis]
 
 Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!
+
+
+<!-- inactive turn → no bananas -->
+
+:: No Bananas [inactive-turn]
+
+We ran out of bananas last week. I'm not sure what to do.
+
+[[Next...->No Bananas 2]]
+
+:: No Bananas 2
+
+I'm going to try to find some bananas.
+
+<span onclick="setup.returnToMap()">Move on…</span>
+

@@ -1020,7 +1020,7 @@ html {
 
 .active-turn img {
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
-  animation: pulseGlow 8s infinite;
+  animation: pulseGlow 3s infinite;
 }
 
 .planet-container.active-turn::before{
@@ -1036,17 +1036,29 @@ html {
   transform: translateX(-50%);
 }
 
-body.crisis .planet-container.active-turn::before{
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.planet-container.active-turn::before{
   z-index: 50;
   font-size: 2.25rem;
   line-height: 2.5rem;
   --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-  content: "❤️";
+  color: rgb(250 204 21 / var(--tw-text-opacity));
+  content: "!";
   position: absolute;
   top: -50px;
   left: 50%;
   transform: translateX(-50%);
+  animation: bounce 1s infinite;
 }
 
 body.crisis #weekPreamble{
@@ -3311,6 +3323,8 @@ button:focus-visible{
 }
 
 a {
+  color: currentColor;
+  text-decoration-color: currentColor;
   &:hover {
     color: currentColor;
   }
@@ -3590,7 +3604,7 @@ $(document).ready(function () {
     }
 
     try {
-      const planetElementSelector = ".planet" + planetIndex;
+      const planetElementSelector = `.planet-container${planetIndex}`;
       const planetElement = document.querySelector(planetElementSelector);
 
       if (!planetElement) {
@@ -3599,23 +3613,34 @@ $(document).ready(function () {
         );
       }
 
-      if (planetElement.classList.contains("inactive")) {
-        console.log(
-          `Planet with index ${planetIndex} is inactive and should not be clickable.`
-        );
-        return;
-      }
-
       var planetContent = setup.showPlanet(planetIndex);
-      var scenarioData = setup.showRandomIncompleteScenario();
-      var scenarioContent = scenarioData.content;
       var passageContent = "";
 
-      if (scenarioData.scenarioPassage) {
-        passageContent = story.render(scenarioData.scenarioPassage);
-        story.state.currentScenario = scenarioData.scenarioPassage;
+      if (!planetElement.classList.contains("active-turn")) {
+        console.log(planetElement.classList);
+        console.log(`Planet with index ${planetIndex} is inactive.`);
+
+        var inactiveTurnPassages = story.passages.filter(function (passage) {
+          return passage.tags.includes("inactive-turn");
+        });
+
+        var selectedPassage =
+          inactiveTurnPassages[
+            Math.floor(Math.random() * inactiveTurnPassages.length)
+          ];
+
+        passageContent = story.render(selectedPassage.name);
       } else {
-        console.error("scenarioPassage is null for scenario", scenarioData);
+        console.log(`Planet with index ${planetIndex} is active.`);
+
+        var scenarioData = setup.showRandomIncompleteScenario();
+
+        if (scenarioData.scenarioPassage) {
+          passageContent = story.render(scenarioData.scenarioPassage);
+          story.state.currentScenario = scenarioData.scenarioPassage;
+        } else {
+          console.error("scenarioPassage is null for scenario", scenarioData);
+        }
       }
 
       var mapScreen = document.getElementById("mapScreen");
@@ -3740,6 +3765,11 @@ $(document).ready(function () {
           const clickHandler = setup.handlePlanetClick(planet.id);
           setup.planetClickHandlers[planet.id] = clickHandler;
           img.addEventListener("click", clickHandler);
+        } else {
+          img.addEventListener(
+            "click",
+            setup.handleInactivePlanetClick(planet.id)
+          );
         }
 
         // Logic for crisis turns
@@ -3810,6 +3840,7 @@ $(document).ready(function () {
     var passage = document.getElementById("passage");
     var passageContent = "<h2>" + story.state.playerName + "'s Project</h2>";
     passageContent += "<p>" + story.state.playerPlanet.description + "</p>";
+    passage.innerHTML = passageContent;
 
     var hud = document.getElementById("hud");
     if (hud) hud.classList.add("player-screen");
@@ -4067,7 +4098,25 @@ $(document).ready(function () {
       }
     };
   };
+  setup.handleInactivePlanetClick = function (planetIndex) {
+    return function () {
+      console.log("Clicked on an inactive planet");
 
+      var inactiveTurnPassages = story.passages.filter(function (passage) {
+        return passage.tags.includes("inactive-turn");
+      });
+
+      var selectedPassage =
+        inactiveTurnPassages[
+          Math.floor(Math.random() * inactiveTurnPassages.length)
+        ];
+
+      setup.renderPlanetPassage(planetIndex, selectedPassage.name);
+
+      // Show the HUD
+      setup.toggleHUD(true);
+    };
+  };
   setup.handlePlayerPlanetClick = function () {
     console.log("Player's planet clicked");
     setup.renderPlayerPlanetPassage();
@@ -4434,7 +4483,14 @@ and it&#39;s easy enough to dooo!*🎵
 
 
 
-&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="51" name="Week 1" tags="preamble" position="100,725" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="52" name="Week 2" tags="preamble" position="225,725" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="53" name="Week 3" tags="preamble" position="350,725" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="54" name="Week 4" tags="preamble crisis" position="475,725" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="55" name="Week 5" tags="preamble" position="600,725" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="56" name="Week 6" tags="preamble" position="725,725" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="57" name="Week 7" tags="preamble crisis" position="850,725" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!</tw-passagedata></tw-storydata>
+&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="51" name="Week 1" tags="preamble" position="100,725" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="52" name="Week 2" tags="preamble" position="225,725" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="53" name="Week 3" tags="preamble" position="350,725" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="54" name="Week 4" tags="preamble crisis" position="475,725" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="55" name="Week 5" tags="preamble" position="600,725" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="56" name="Week 6" tags="preamble" position="725,725" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="57" name="Week 7" tags="preamble crisis" position="850,725" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!
+
+
+&lt;!-- inactive turn → no bananas --&gt;</tw-passagedata><tw-passagedata pid="58" name="No Bananas" tags="inactive-turn" position="975,725" size="100,100">We ran out of bananas last week. I&#39;m not sure what to do.
+
+[[Next...-&gt;No Bananas 2]]</tw-passagedata><tw-passagedata pid="59" name="No Bananas 2" tags="" position="1100,725" size="100,100">I&#39;m going to try to find some bananas.
+
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

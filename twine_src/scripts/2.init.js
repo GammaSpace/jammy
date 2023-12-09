@@ -260,7 +260,7 @@ $(document).ready(function () {
     }
 
     try {
-      const planetElementSelector = ".planet" + planetIndex;
+      const planetElementSelector = `.planet-container${planetIndex}`;
       const planetElement = document.querySelector(planetElementSelector);
 
       if (!planetElement) {
@@ -269,23 +269,34 @@ $(document).ready(function () {
         );
       }
 
-      if (planetElement.classList.contains("inactive")) {
-        console.log(
-          `Planet with index ${planetIndex} is inactive and should not be clickable.`
-        );
-        return;
-      }
-
       var planetContent = setup.showPlanet(planetIndex);
-      var scenarioData = setup.showRandomIncompleteScenario();
-      var scenarioContent = scenarioData.content;
       var passageContent = "";
 
-      if (scenarioData.scenarioPassage) {
-        passageContent = story.render(scenarioData.scenarioPassage);
-        story.state.currentScenario = scenarioData.scenarioPassage;
+      if (!planetElement.classList.contains("active-turn")) {
+        console.log(planetElement.classList);
+        console.log(`Planet with index ${planetIndex} is inactive.`);
+
+        var inactiveTurnPassages = story.passages.filter(function (passage) {
+          return passage.tags.includes("inactive-turn");
+        });
+
+        var selectedPassage =
+          inactiveTurnPassages[
+            Math.floor(Math.random() * inactiveTurnPassages.length)
+          ];
+
+        passageContent = story.render(selectedPassage.name);
       } else {
-        console.error("scenarioPassage is null for scenario", scenarioData);
+        console.log(`Planet with index ${planetIndex} is active.`);
+
+        var scenarioData = setup.showRandomIncompleteScenario();
+
+        if (scenarioData.scenarioPassage) {
+          passageContent = story.render(scenarioData.scenarioPassage);
+          story.state.currentScenario = scenarioData.scenarioPassage;
+        } else {
+          console.error("scenarioPassage is null for scenario", scenarioData);
+        }
       }
 
       var mapScreen = document.getElementById("mapScreen");
@@ -410,6 +421,11 @@ $(document).ready(function () {
           const clickHandler = setup.handlePlanetClick(planet.id);
           setup.planetClickHandlers[planet.id] = clickHandler;
           img.addEventListener("click", clickHandler);
+        } else {
+          img.addEventListener(
+            "click",
+            setup.handleInactivePlanetClick(planet.id)
+          );
         }
 
         // Logic for crisis turns
@@ -480,6 +496,7 @@ $(document).ready(function () {
     var passage = document.getElementById("passage");
     var passageContent = "<h2>" + story.state.playerName + "'s Project</h2>";
     passageContent += "<p>" + story.state.playerPlanet.description + "</p>";
+    passage.innerHTML = passageContent;
 
     var hud = document.getElementById("hud");
     if (hud) hud.classList.add("player-screen");
@@ -737,7 +754,25 @@ $(document).ready(function () {
       }
     };
   };
+  setup.handleInactivePlanetClick = function (planetIndex) {
+    return function () {
+      console.log("Clicked on an inactive planet");
 
+      var inactiveTurnPassages = story.passages.filter(function (passage) {
+        return passage.tags.includes("inactive-turn");
+      });
+
+      var selectedPassage =
+        inactiveTurnPassages[
+          Math.floor(Math.random() * inactiveTurnPassages.length)
+        ];
+
+      setup.renderPlanetPassage(planetIndex, selectedPassage.name);
+
+      // Show the HUD
+      setup.toggleHUD(true);
+    };
+  };
   setup.handlePlayerPlanetClick = function () {
     console.log("Player's planet clicked");
     setup.renderPlayerPlanetPassage();
