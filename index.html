@@ -757,11 +757,6 @@ select{
   visibility: visible;
 }
 
-.mx-auto{
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .mb-4{
   margin-bottom: 1rem;
 }
@@ -790,6 +785,10 @@ select{
   display: grid;
 }
 
+.contents{
+  display: contents;
+}
+
 .hidden{
   display: none;
 }
@@ -810,14 +809,6 @@ select{
   width: 1rem;
 }
 
-.max-w-3xl{
-  max-width: 48rem;
-}
-
-.max-w-7xl{
-  max-width: 80rem;
-}
-
 .flex-shrink-0{
   flex-shrink: 0;
 }
@@ -835,11 +826,6 @@ select{
 .border-gray-300{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
-.px-4{
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .px-6{
@@ -919,6 +905,8 @@ body,
 html {
   margin: 0;
   height: 100%;
+  background-image: url(./img/twinkle.gif);
+  background-size: cover;
 }
 
 #hud{
@@ -943,8 +931,6 @@ html {
   padding-right: 1.5rem;
   padding-top: 3rem;
   padding-bottom: 0px;
-  background-image: url(./img/twinkle.gif);
-  background-size: cover;
   position: relative;
   flex-grow: 1;
   display: grid;
@@ -2816,23 +2802,6 @@ body.map {
   overflow: hidden;
 }
 
-body.customization{
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 3rem;
-  padding-bottom: 0px;
-  --tw-text-opacity: 1;
-  color: rgb(163 163 163 / var(--tw-text-opacity));
-  background-image: url(./img/twinkle.gif);
-}
-
 body.customization h1{
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -3061,8 +3030,7 @@ button:focus-visible{
   color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
-.customization-form div{
-  margin-top: 1rem;
+.customization-form div {
 }
 
 .customization-text-input{
@@ -3235,6 +3203,129 @@ button:focus-visible{
   color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
+.device-wrapper{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  padding: 3rem;
+  background: url(./img/device.png) no-repeat center center fixed;
+  .device{
+    margin-top: 230px;
+  }
+  .device{
+    height: 560px;
+  }
+  .device{
+    width: 24rem;
+  }
+  .device{
+    overflow-x: hidden;
+  }
+  .device{
+    overflow-y: scroll;
+  }
+  .device{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .device{
+    font-family: Courier Prime;
+  }
+  .device{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  .device{
+    --tw-text-opacity: 1;
+    color: rgb(34 197 94 / var(--tw-text-opacity));
+  }
+  .device {
+    p{
+      margin-bottom: 1rem;
+    }
+    p{
+      display: block;
+    }
+    p {
+      text-shadow: 0 0 15px 8px rgba(153, 153, 255, 0.2);
+      a{
+        --tw-text-opacity: 1;
+        color: rgb(74 222 128 / var(--tw-text-opacity));
+      }
+      a {
+        &:hover{
+          --tw-text-opacity: 1;
+          color: rgb(134 239 172 / var(--tw-text-opacity));
+        }
+        &:hover{
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
+}
+
+#startScreen{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  #startButton{
+    border-radius: 0.375rem;
+  }
+  #startButton{
+    --tw-bg-opacity: 1;
+    background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+  }
+  #startButton{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  #startButton{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  #startButton{
+    font-family: Handjet;
+  }
+  #startButton{
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+  #startButton{
+    font-weight: 700;
+  }
+  #startButton{
+    text-transform: uppercase;
+  }
+  #startButton{
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity));
+  }
+  #startButton {
+    a{
+      --tw-text-opacity: 1;
+      color: rgb(0 0 0 / var(--tw-text-opacity));
+    }
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+a {
+  &:hover {
+    color: currentColor;
+  }
+  &:hover{
+    text-decoration-line: underline;
+  }
+}
+
 .focus\:ring-indigo-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
@@ -3243,26 +3334,14 @@ button:focus-visible{
 .disabled\:opacity-25:disabled{
   opacity: 0.25;
 }
-
-@media (min-width: 640px){
-  .sm\:px-6{
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px){
-  .lg\:px-8{
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "2.init.js" */
 window.setup = window.setup || {};
 
 $(document).ready(function () {
-  $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
+  //this is for the device display at the start of the game
+  // $(".passage").html("");
 
+  $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
   setup.game = {
     planets: [
       {
@@ -3508,16 +3587,6 @@ $(document).ready(function () {
     return content;
   };
 
-  setup.modifyLinks = function () {
-    $("a[data-passage]").each(function () {
-      var $this = $(this);
-      var passageName = $this.attr("data-passage");
-      var text = $this.text();
-      var newDiv = $('<div data-next="' + passageName + '"></div>').text(text);
-      $this.replaceWith(newDiv);
-    });
-  };
-
   setup.renderPlanetPassage = function (planetIndex) {
     setup.startObserving();
     console.log("Rendering passage for planet index:", planetIndex);
@@ -3648,10 +3717,7 @@ $(document).ready(function () {
   };
 
   setup.planetClickHandlers = {};
-  $(window).on("sm.passage.showing", function (event, eventObject) {
-    // Current Passage object
-    console.log(eventObject.passage.name);
-  });
+
   setup.showMap = function () {
     var mapScreen = document.getElementById("mapScreen");
 
@@ -4008,6 +4074,7 @@ $(document).ready(function () {
       }
     };
   };
+
   setup.handlePlayerPlanetClick = function () {
     console.log("Player's planet clicked");
     setup.renderPlayerPlanetPassage();
@@ -4050,34 +4117,105 @@ $(document).ready(function () {
     }
   };
 });
-/* twine-user-script #2: "utilities.js" */
-</script><tw-passagedata pid="1" name="Start" tags="" position="100,100" size="100,100">*KSSHT.* 
+setup.deviceTextAnimation = function () {
+  var passage = $(".device");
+  if (passage) {
+    var split = new SplitText(passage, {
+      type: "chars, words",
+    });
+    gsap.from(split.chars, {
+      autoAlpha: 0,
+      ease: "expo",
+      stagger: 0.01,
+    });
+  }
+};
+// Device overlay
 
-*KSSSHHHHT.*
+setup.modifyLinks = function () {
+  $("a[data-passage]").each(function () {
+    var $this = $(this);
+    var passageName = $this.attr("data-passage");
+    var text = $this.text();
+    var newDiv = $('<div data-next="' + passageName + '"></div>').text(text);
+    $this.replaceWith(newDiv);
+  });
+};
+
+$(window).on("sm.passage.shown", function (event, eventObject) {
+  var currentPassage = eventObject.passage;
+  var passageContainer = $("tw-passage.passage");
+  passageContainer.find(".device-wrapper").remove();
+  if (currentPassage.tags.includes("device-overlay")) {
+    var outerWrapper = $('<div class="device-wrapper"></div>');
+    var innerWrapper = $('<div class="device"></div>');
+    passageContainer.contents().appendTo(innerWrapper);
+    innerWrapper.appendTo(outerWrapper);
+    passageContainer.prepend(outerWrapper);
+    // setTimeout(setup.modifyLinks, 1);
+    setTimeout(setup.deviceTextAnimation, 1);
+  }
+});
+
+// setup.currentPassage = null; // Initialize a global variable
+
+// $(window).on("sm.passage.shown", function (event, eventObject) {
+//   setup.currentPassage = eventObject.passage; // Store the current passage
+//   console.log(setup.currentPassage.name);
+
+//   setup.applyOverlayIfNeeded(eventObject.passage);
+// });
+
+// setup.applyOverlayIfNeeded = function (passage) {
+//   if (passage.tags.includes("device-overlay")) {
+//     setup.applyDeviceOverlay(passage);
+//     setTimeout(setup.modifyLinks, 1);
+//     setTimeout(setup.deviceTextAnimation, 1);
+//   } else {
+//     const overlayContainerEl = document.getElementById(
+//       "device-overlay-container"
+//     );
+//     overlayContainerEl?.remove();
+//   }
+// };
+// setup.customRenderPassage = function (passageName) {
+//   renderToSelector(".passage", passageName); // Replace with your main passage selector
+
+//   setup.currentPassage = story.passage(passageName);
+//   setup.applyOverlayIfNeeded(setup.currentPassage);
+// };
+
+// $(document).on("click", "div[data-next]", function (e) {
+//   var passageName = $(this).attr("data-next");
+//   setup.customRenderPassage(passageName);
+// });
+/* twine-user-script #2: "utilities.js" */
+</script><tw-passagedata pid="1" name="Start" tags="" position="100,100" size="100,100">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./scripts/1.SplitText.min.js&quot;&gt;&lt;/script&gt;
+&lt;div id=&quot;startScreen&quot;&gt;
+  &lt;div id=&quot;startButton&quot;&gt;
+    [[Start Game|A]]
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="A" tags="device-overlay" position="225,100" size="100,100">*KSSHT.* 
+
+*KSSSHHHHT.* 
 
 Unknown Signal: Hello? *KSSHT.* Hello hello?
 
-Unknown Signal: Dobeedoooo doo doot do doooo! 🎵
-
-Unknown Signal: Are you receiving this? 
-
 [[Yes|A.0]]
-[[No|B.0]]</tw-passagedata><tw-passagedata pid="2" name="A.0" tags="" position="225,100" size="100,100">Unknown Signal: Excellent! I love when things work the way they&#39;re supposed to!
+[[No|B.0]]</tw-passagedata><tw-passagedata pid="3" name="A.0" tags="device-overlay" position="350,100" size="100,100">Unknown Signal: Excellent! I love when things work the way they&#39;re supposed to!
 
-[[Next|Main.1]]</tw-passagedata><tw-passagedata pid="3" name="B.0" tags="" position="350,100" size="100,100">Unknown Signal: Hah. You won&#39;t fool me that easily.
+[[Next|Main.1]]</tw-passagedata><tw-passagedata pid="4" name="B.0" tags="device-overlay" position="475,100" size="100,100">Unknown Signal: Hah. You won&#39;t fool me that easily.
 
 Unknown Signal: I&#39;m *only* 13 centuries old.
 
-[[Next|Main.1]]</tw-passagedata><tw-passagedata pid="4" name="Main.1" tags="" position="475,100" size="100,100">Unknown Signal: Of course, as your planet&#39;s representative, I&#39;ll just need you to fill out a quick transmission.
+[[Next|Main.1]]</tw-passagedata><tw-passagedata pid="5" name="Main.1" tags="device-overlay" position="600,100" size="100,100">Unknown Signal: Of course, as your planet&#39;s representative, I&#39;ll just need you to fill out a quick transmission.
 
 Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureaucracy. 🎵
 
-[[Download the Document|Customization]]</tw-passagedata><tw-passagedata pid="5" name="Customization" tags="" position="600,100" size="100,100">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./scripts/1.SplitText.min.js&quot;&gt;&lt;/script&gt;
-&lt;% $(&quot;body&quot;).addClass(&quot;customization&quot;).removeClass(&quot;map&quot;) %&gt;
+[[Download the Document|Customization]]</tw-passagedata><tw-passagedata pid="6" name="Customization" tags="device-overlay" position="725,100" size="100,100">&lt;% $(&quot;body&quot;).addClass(&quot;customization&quot;).removeClass(&quot;map&quot;) %&gt;
 
-&lt;div class=&quot;mx-auto max-w-7xl px-4 sm:px-6 lg:px-8&quot;&gt;
-  &lt;div class=&quot;mx-auto max-w-3xl customization-form&quot;&gt;
+  &lt;div class=&quot;customization-form&quot;&gt;
     &lt;p&gt;Dear Planet Representative,&lt;/p&gt;
 
     &lt;p&gt;Please fill out the following information.&lt;/p&gt;
@@ -4120,8 +4258,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
         &lt;/fieldset&gt;
         &lt;/div&gt;
         &lt;button id=&quot;nextButton&quot; onclick=&quot;setup.savePlayerInfo()&quot; class=&quot;disabled:opacity-25&quot; disabled&gt;Transmit the document&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Map Screen" tags="scripted" position="725,100" size="100,100">&lt;% $(&quot;body&quot;).removeClass(&quot;customization&quot;).addClass(&quot;map&quot;) %&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Map Screen" tags="scripted" position="850,100" size="100,100">&lt;% $(&quot;body&quot;).removeClass(&quot;customization&quot;).addClass(&quot;map&quot;) %&gt;
     &lt;div id=&quot;overlay&quot; class=&quot;hidden&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;ui&quot;&gt;
     &lt;div id=&quot;playerScreen&quot;&gt;
@@ -4158,56 +4295,56 @@ Unknown Signal: I know, I know. But sometimes community takes a lil&#39; bureauc
 &lt;% console.log(story.state) %&gt;
 &lt;!-- 
 [[Help Planets|HelpPlanets]]
-[[Start Radio Show|RadioShow]] --&gt;</tw-passagedata><tw-passagedata pid="7" name="PlanetPassage" tags="planet" position="850,100" size="100,100">&lt;script&gt;
+[[Start Radio Show|RadioShow]] --&gt;</tw-passagedata><tw-passagedata pid="8" name="PlanetPassage" tags="planet" position="975,100" size="100,100">&lt;script&gt;
   var planetIndex = story.state.planetIndex; // Retrieve the index from story.state
   setup.renderPlanetPassage(planetIndex);
   setup.story.render(planets[planetIndex].passage); 
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="8" name="Intro" tags="" position="975,100" size="100,100">Unknown Signal: Well, &lt;%= story.state.playerName %&gt; from &lt;%= story.state.playerPlanet.name %&gt;. It&#39;s my honour and delight to *welcome you*...
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="9" name="Intro" tags="device-overlay" position="1100,100" size="100,100">Unknown Signal: Well, &lt;%= story.state.playerName %&gt; from &lt;%= story.state.playerPlanet.name %&gt;. It&#39;s my honour and delight to *welcome you*...
 
-[[Next|Intro 2]]</tw-passagedata><tw-passagedata pid="9" name="Intro 2" tags="" position="1100,100" size="100,100">Unknown Signal: **... to the Gamma Federation!**
+[[Next|Intro 2]]</tw-passagedata><tw-passagedata pid="10" name="Intro 2" tags="device-overlay" position="1225,100" size="100,100">Unknown Signal: **... to the Gamma Federation!**
 
-&lt;button id=&quot;renderIntroButton&quot; onclick=&quot;setup.renderIntro();&quot; &gt;Next&lt;/button&gt;</tw-passagedata><tw-passagedata pid="10" name="Intro 3" tags="" position="1225,100" size="100,100">Unknown Signal: I just realized I had my video turned off this whole time... *some host I am!*
+&lt;button id=&quot;renderIntroButton&quot; onclick=&quot;setup.renderIntro();&quot; &gt;Next&lt;/button&gt;</tw-passagedata><tw-passagedata pid="11" name="Intro 3" tags="" position="100,225" size="100,100">Unknown Signal: I just realized I had my video turned off this whole time... *some host I am!*
 
-[[Next|Intro 4]]</tw-passagedata><tw-passagedata pid="11" name="Intro 4" tags="" position="100,225" size="100,100">Unknown Signal: Allow me to introduce myself. I am ❄︎pioGA⍓︎rovvst♏︎♋︎S:laQN⬧︎doü⧫︎ffpz⍓︎?MBzx■︎Bzt.
+[[Next|Intro 4]]</tw-passagedata><tw-passagedata pid="12" name="Intro 4" tags="" position="225,225" size="100,100">Unknown Signal: Allow me to introduce myself. I am ❄︎pioGA⍓︎rovvst♏︎♋︎S:laQN⬧︎doü⧫︎ffpz⍓︎?MBzx■︎Bzt.
 
-[[Next|Intro 5]]</tw-passagedata><tw-passagedata pid="12" name="Intro 5" tags="" position="225,225" size="100,100">Unknown Signal: But my friends call me *DJ FUNKYBEATZ.* 🎵
+[[Next|Intro 5]]</tw-passagedata><tw-passagedata pid="13" name="Intro 5" tags="" position="350,225" size="100,100">Unknown Signal: But my friends call me *DJ FUNKYBEATZ.* 🎵
 
-[[Next|Intro 6]]</tw-passagedata><tw-passagedata pid="13" name="Intro 6" tags="" position="350,225" size="100,100">DJ: We&#39;re grateful to have you as the newest member of the Federation.
+[[Next|Intro 6]]</tw-passagedata><tw-passagedata pid="14" name="Intro 6" tags="" position="475,225" size="100,100">DJ: We&#39;re grateful to have you as the newest member of the Federation.
 
-[[Next|Intro 7]]</tw-passagedata><tw-passagedata pid="14" name="Intro 7" tags="" position="475,225" size="100,100">DJ: I know you&#39;ve had a tough time recently, what with losing your job at the Dominion Planetation and all. I know what that place can do to your trust...
+[[Next|Intro 7]]</tw-passagedata><tw-passagedata pid="15" name="Intro 7" tags="" position="600,225" size="100,100">DJ: I know you&#39;ve had a tough time recently, what with losing your job at the Dominion Planetation and all. I know what that place can do to your trust...
 
-[[Next|Intro 8]]</tw-passagedata><tw-passagedata pid="15" name="Intro 8" tags="" position="600,225" size="100,100">DJ: But things are different here. There&#39;s no overlord. No forced overtime. Just a commitment to our collective wellbeing and shared values. I know you already got the values information beforehand, but I&#39;ll share them again.
+[[Next|Intro 8]]</tw-passagedata><tw-passagedata pid="16" name="Intro 8" tags="" position="725,225" size="100,100">DJ: But things are different here. There&#39;s no overlord. No forced overtime. Just a commitment to our collective wellbeing and shared values. I know you already got the values information beforehand, but I&#39;ll share them again.
   
-[[Next|Intro 9]]</tw-passagedata><tw-passagedata pid="16" name="Intro 9" tags="" position="725,225" size="100,100">- Collective care and support
+[[Next|Intro 9]]</tw-passagedata><tw-passagedata pid="17" name="Intro 9" tags="" position="850,225" size="100,100">- Collective care and support
 - Personal and Collective Accountability
 - Creative Empowerment
 - Challenging Systemic Norms
 - Art as a Means for Change*
 
-[[Next|Intro 10]]</tw-passagedata><tw-passagedata pid="17" name="Intro 10" tags="" position="850,225" size="100,100">DJ: Opting into the Federation means opting into the values. The values are iterative, but commitment to the Federation means commitment working *with* us to make those changes.
+[[Next|Intro 10]]</tw-passagedata><tw-passagedata pid="18" name="Intro 10" tags="" position="975,225" size="100,100">DJ: Opting into the Federation means opting into the values. The values are iterative, but commitment to the Federation means commitment working *with* us to make those changes.
 
-[[Next|Intro 11]]</tw-passagedata><tw-passagedata pid="18" name="Intro 11" tags="" position="975,225" size="100,100">DJ: But I&#39;m talking your ear off! I&#39;m so excited to see how you will exhibit your [projectDescription] during the Radio Show in **7 weeks**.
+[[Next|Intro 11]]</tw-passagedata><tw-passagedata pid="19" name="Intro 11" tags="" position="1100,225" size="100,100">DJ: But I&#39;m talking your ear off! I&#39;m so excited to see how you will exhibit your [projectDescription] during the Radio Show in **7 weeks**.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   [[Radio show?|Radio Show Explanation]]
   &lt;span onclick=&quot;setup.returnToMap();&quot;&gt;Oh yeah, I know about that.&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="19" name="Radio Show Explanation" tags="" position="1100,225" size="100,100">DJ: YOU DON&#39;T KNOW ABOUT THE RADIO SHOW?!?
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="Radio Show Explanation" tags="" position="1225,225" size="100,100">DJ: YOU DON&#39;T KNOW ABOUT THE RADIO SHOW?!?
 DJ: ...
 
-[[Next|Radio Show Explanation 2]]</tw-passagedata><tw-passagedata pid="20" name="Radio Show Explanation 2" tags="" position="1225,225" size="100,100">DJ: Sorry, I got a little carried away there. It&#39;s just... a kinda big deal.
+[[Next|Radio Show Explanation 2]]</tw-passagedata><tw-passagedata pid="21" name="Radio Show Explanation 2" tags="" position="100,350" size="100,100">DJ: Sorry, I got a little carried away there. It&#39;s just... a kinda big deal.
 
-[[Next|Radio Show Explanation 3]]</tw-passagedata><tw-passagedata pid="21" name="Radio Show Explanation 3" tags="" position="100,350" size="100,100">DJ: Every **year** The Gamma Federation hosts an intergalactic radio show where all the Gamma planets exhibit their artistic creations across the galaxy.
+[[Next|Radio Show Explanation 3]]</tw-passagedata><tw-passagedata pid="22" name="Radio Show Explanation 3" tags="" position="225,350" size="100,100">DJ: Every **year** The Gamma Federation hosts an intergalactic radio show where all the Gamma planets exhibit their artistic creations across the galaxy.
 
-[[Next|Radio Show Explanation 4]]</tw-passagedata><tw-passagedata pid="22" name="Radio Show Explanation 4" tags="" position="225,350" size="100,100">DJ: As you get acquainted with the Federation, I encourage you to check in on the other planets every so often to see how their projects are coming along for the radio show. This is something we call the *buddy system*. 
+[[Next|Radio Show Explanation 4]]</tw-passagedata><tw-passagedata pid="23" name="Radio Show Explanation 4" tags="" position="350,350" size="100,100">DJ: As you get acquainted with the Federation, I encourage you to check in on the other planets every so often to see how their projects are coming along for the radio show. This is something we call the *buddy system*. 
 
-[[Next|Radio Show Explanation 5]]</tw-passagedata><tw-passagedata pid="23" name="Radio Show Explanation 5" tags="" position="350,350" size="100,100">DJ: *Check in on your buddies🎵&lt;br&gt;
+[[Next|Radio Show Explanation 5]]</tw-passagedata><tw-passagedata pid="24" name="Radio Show Explanation 5" tags="" position="475,350" size="100,100">DJ: *Check in on your buddies🎵&lt;br&gt;
 and they&#39;ll check in on youuu.&lt;br&gt;
 It makes us all do better,&lt;br&gt;
 and it&#39;s easy enough to dooo!*🎵
 
-[[Next|Radio Show Explanation 6]]</tw-passagedata><tw-passagedata pid="24" name="Radio Show Explanation 6" tags="" position="475,350" size="100,100">DJ: Okay, yeah yeah. Not my finest work.
+[[Next|Radio Show Explanation 6]]</tw-passagedata><tw-passagedata pid="25" name="Radio Show Explanation 6" tags="" position="600,350" size="100,100">DJ: Okay, yeah yeah. Not my finest work.
 
-[[Next|Radio Show Explanation 7]]</tw-passagedata><tw-passagedata pid="25" name="Radio Show Explanation 7" tags="" position="600,350" size="100,100">DJ: Nothing to add? Wow. An alien can take a hint. Well, off with you then. I&#39;m transmitting the coordinates of the other planets to you now. 
+[[Next|Radio Show Explanation 7]]</tw-passagedata><tw-passagedata pid="26" name="Radio Show Explanation 7" tags="" position="725,350" size="100,100">DJ: Nothing to add? Wow. An alien can take a hint. Well, off with you then. I&#39;m transmitting the coordinates of the other planets to you now. 
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&quot;setup.returnToMap();&quot;&gt;Open map&lt;/span&gt;
@@ -4215,87 +4352,87 @@ and it&#39;s easy enough to dooo!*🎵
 
 
 
-&lt;!-- Planet request scenarios, random --&gt;</tw-passagedata><tw-passagedata pid="26" name="Melodic Quest" tags="scenario" position="725,350" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+&lt;!-- Planet request scenarios, random --&gt;</tw-passagedata><tw-passagedata pid="27" name="Melodic Quest" tags="scenario" position="850,350" size="100,100">The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
-[[Next...-&gt;Melodic Quest 2]]</tw-passagedata><tw-passagedata pid="27" name="Melodic Quest 2" tags="" position="850,350" size="100,100">Let&#39;s see if I can find the notes…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="Quantum Conundrum" tags="scenario" position="975,350" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
-
-[[Next...-&gt;Quantum Conundrum 2]]</tw-passagedata><tw-passagedata pid="29" name="Quantum Conundrum 2" tags="scenario" position="1100,350" size="100,100">I have no idea how to solve these puzzles, but i&#39;ll give it my best shot…
+[[Next...-&gt;Melodic Quest 2]]</tw-passagedata><tw-passagedata pid="28" name="Melodic Quest 2" tags="" position="975,350" size="100,100">Let&#39;s see if I can find the notes…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="Stellar Cradle" tags="" position="1225,350" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="Quantum Conundrum" tags="scenario" position="1100,350" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
 
-[[Next...-&gt;Stellar Cradle 2]]</tw-passagedata><tw-passagedata pid="31" name="Stellar Cradle 2" tags="" position="100,475" size="100,100">Gathering stardust might be fun?
+[[Next...-&gt;Quantum Conundrum 2]]</tw-passagedata><tw-passagedata pid="30" name="Quantum Conundrum 2" tags="scenario" position="1225,350" size="100,100">I have no idea how to solve these puzzles, but i&#39;ll give it my best shot…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="Stellar Cradle" tags="" position="100,475" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
+
+[[Next...-&gt;Stellar Cradle 2]]</tw-passagedata><tw-passagedata pid="32" name="Stellar Cradle 2" tags="" position="225,475" size="100,100">Gathering stardust might be fun?
 
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="Galactic Restoration" tags="scenario" position="225,475" size="100,100">The Great Library of Andromeda is in disarray, with knowledge scattered across the stars. Reorganize the cosmic archives and unlock ancient wisdom.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="33" name="Galactic Restoration" tags="scenario" position="350,475" size="100,100">The Great Library of Andromeda is in disarray, with knowledge scattered across the stars. Reorganize the cosmic archives and unlock ancient wisdom.
 
-[[Next...-&gt;Galactic Restoration 2]]</tw-passagedata><tw-passagedata pid="33" name="Galactic Restoration 2" tags="" position="350,475" size="100,100">Time to sort through the astral archives…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="Cosmic Symphony" tags="scenario" position="475,475" size="100,100">A celestial entity has lost its voice, rendering the galaxy silent. Find the harmonious chords to give voice back to the stars.
-
-[[Next...-&gt;Cosmic Symphony 2]]</tw-passagedata><tw-passagedata pid="35" name="Cosmic Symphony 2" tags="" position="600,475" size="100,100">Let&#39;s tune into the cosmic frequencies…
+[[Next...-&gt;Galactic Restoration 2]]</tw-passagedata><tw-passagedata pid="34" name="Galactic Restoration 2" tags="" position="475,475" size="100,100">Time to sort through the astral archives…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="Nebula Maze" tags="scenario" position="725,475" size="100,100">A labyrinth of cosmic dust and gas clouds has appeared. Navigate through the maze to discover hidden celestial treasures.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="Cosmic Symphony" tags="scenario" position="600,475" size="100,100">A celestial entity has lost its voice, rendering the galaxy silent. Find the harmonious chords to give voice back to the stars.
 
-[[Next...-&gt;Nebula Maze 2]]</tw-passagedata><tw-passagedata pid="37" name="Nebula Maze 2" tags="" position="850,475" size="100,100">This maze is intricate, but I&#39;m up for the challenge…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="38" name="Starlit Dance" tags="scenario" position="975,475" size="100,100">A constellation has lost its rhythm, causing disarray in the night sky. Choreograph the celestial dance to restore order.
-
-[[Next...-&gt;Starlit Dance 2]]</tw-passagedata><tw-passagedata pid="39" name="Starlit Dance 2" tags="" position="1100,475" size="100,100">Time to get these stars dancing again…
+[[Next...-&gt;Cosmic Symphony 2]]</tw-passagedata><tw-passagedata pid="36" name="Cosmic Symphony 2" tags="" position="725,475" size="100,100">Let&#39;s tune into the cosmic frequencies…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="Comet&#39;s Tale" tags="scenario" position="1225,475" size="100,100">A wandering comet carries secrets from the edge of the universe. Chart its course and uncover the mysteries it holds.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="37" name="Nebula Maze" tags="scenario" position="850,475" size="100,100">A labyrinth of cosmic dust and gas clouds has appeared. Navigate through the maze to discover hidden celestial treasures.
 
-[[Next...-&gt;Comet&#39;s Tale 2]]</tw-passagedata><tw-passagedata pid="41" name="Comet&#39;s Tale 2" tags="" position="100,600" size="100,100">Chasing comets is no easy task, but it&#39;s worth it…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="Aurora&#39;s Whisper" tags="scenario" position="225,600" size="100,100">The Aurora Borealis has dimmed, losing its vibrant colors. Reignite the auroral lights to paint the sky with dazzling hues.
-
-[[Next...-&gt;Aurora&#39;s Whisper 2]]</tw-passagedata><tw-passagedata pid="43" name="Aurora&#39;s Whisper 2" tags="" position="350,600" size="100,100">Let&#39;s bring color back to the skies…
+[[Next...-&gt;Nebula Maze 2]]</tw-passagedata><tw-passagedata pid="38" name="Nebula Maze 2" tags="" position="975,475" size="100,100">This maze is intricate, but I&#39;m up for the challenge…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="Celestial Riddle" tags="scenario" position="475,600" size="100,100">An ancient star has posed a riddle, locking away a cosmic secret. Solve the riddle to gain access to hidden cosmic knowledge.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="39" name="Starlit Dance" tags="scenario" position="1100,475" size="100,100">A constellation has lost its rhythm, causing disarray in the night sky. Choreograph the celestial dance to restore order.
 
-[[Next...-&gt;Celestial Riddle 2]]</tw-passagedata><tw-passagedata pid="45" name="Celestial Riddle 2" tags="" position="600,600" size="100,100">Riddles in space? This should be interesting…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="46" name="Solar Serenade" tags="scenario" position="725,600" size="100,100">The Sun&#39;s song has become erratic, affecting planetary orbits. Compose a new solar melody to bring stability back to the solar system.
-
-[[Next...-&gt;Solar Serenade 2]]</tw-passagedata><tw-passagedata pid="47" name="Solar Serenade 2" tags="" position="850,600" size="100,100">Time to compose a symphony for the Sun…
+[[Next...-&gt;Starlit Dance 2]]</tw-passagedata><tw-passagedata pid="40" name="Starlit Dance 2" tags="" position="1225,475" size="100,100">Time to get these stars dancing again…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="48" name="Week 4 An Offer of Help" tags="scenario crisis" position="975,600" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; offers to help me find the source of the problem. Let&#39;s go!
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="41" name="Comet&#39;s Tale" tags="scenario" position="100,600" size="100,100">A wandering comet carries secrets from the edge of the universe. Chart its course and uncover the mysteries it holds.
 
-[[Next...-&gt;Week 4 crisis 2]]</tw-passagedata><tw-passagedata pid="49" name="Week 4 crisis 2" tags="" position="1100,600" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; is so great. I&#39;m glad we&#39;re friends.
+[[Next...-&gt;Comet&#39;s Tale 2]]</tw-passagedata><tw-passagedata pid="42" name="Comet&#39;s Tale 2" tags="" position="225,600" size="100,100">Chasing comets is no easy task, but it&#39;s worth it…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="43" name="Aurora&#39;s Whisper" tags="scenario" position="350,600" size="100,100">The Aurora Borealis has dimmed, losing its vibrant colors. Reignite the auroral lights to paint the sky with dazzling hues.
+
+[[Next...-&gt;Aurora&#39;s Whisper 2]]</tw-passagedata><tw-passagedata pid="44" name="Aurora&#39;s Whisper 2" tags="" position="475,600" size="100,100">Let&#39;s bring color back to the skies…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="45" name="Celestial Riddle" tags="scenario" position="600,600" size="100,100">An ancient star has posed a riddle, locking away a cosmic secret. Solve the riddle to gain access to hidden cosmic knowledge.
+
+[[Next...-&gt;Celestial Riddle 2]]</tw-passagedata><tw-passagedata pid="46" name="Celestial Riddle 2" tags="" position="725,600" size="100,100">Riddles in space? This should be interesting…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name="Solar Serenade" tags="scenario" position="850,600" size="100,100">The Sun&#39;s song has become erratic, affecting planetary orbits. Compose a new solar melody to bring stability back to the solar system.
+
+[[Next...-&gt;Solar Serenade 2]]</tw-passagedata><tw-passagedata pid="48" name="Solar Serenade 2" tags="" position="975,600" size="100,100">Time to compose a symphony for the Sun…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="49" name="Week 4 An Offer of Help" tags="scenario crisis" position="1100,600" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; offers to help me find the source of the problem. Let&#39;s go!
+
+[[Next...-&gt;Week 4 crisis 2]]</tw-passagedata><tw-passagedata pid="50" name="Week 4 crisis 2" tags="" position="1225,600" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; is so great. I&#39;m glad we&#39;re friends.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
@@ -4304,7 +4441,7 @@ and it&#39;s easy enough to dooo!*🎵
 
 
 
-&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="50" name="Week 1" tags="preamble" position="1225,600" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="51" name="Week 2" tags="preamble" position="100,725" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="52" name="Week 3" tags="preamble" position="225,725" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="53" name="Week 4" tags="preamble crisis" position="350,725" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="54" name="Week 5" tags="preamble" position="475,725" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="55" name="Week 6" tags="preamble" position="600,725" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="56" name="Week 7" tags="preamble crisis" position="725,725" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!</tw-passagedata></tw-storydata>
+&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="51" name="Week 1" tags="preamble" position="100,725" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="52" name="Week 2" tags="preamble" position="225,725" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="53" name="Week 3" tags="preamble" position="350,725" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="54" name="Week 4" tags="preamble crisis" position="475,725" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="55" name="Week 5" tags="preamble" position="600,725" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="56" name="Week 6" tags="preamble" position="725,725" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="57" name="Week 7" tags="preamble crisis" position="850,725" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

@@ -1,9 +1,9 @@
-:: Intro
+:: Intro [device-overlay]
 Unknown Signal: Well, <%= story.state.playerName %> from <%= story.state.playerPlanet.name %>. It's my honour and delight to *welcome you*...
 
 [[Next|Intro 2]]
 
-:: Intro 2
+:: Intro 2 [device-overlay]
 Unknown Signal: **... to the Gamma Federation!**
 
 <button id="renderIntroButton" onclick="setup.renderIntro();" >Next</button>

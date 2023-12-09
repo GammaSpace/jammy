@@ -1,8 +1,10 @@
 window.setup = window.setup || {};
 
 $(document).ready(function () {
-  $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
+  //this is for the device display at the start of the game
+  // $(".passage").html("");
 
+  $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
   setup.game = {
     planets: [
       {
@@ -248,16 +250,6 @@ $(document).ready(function () {
     return content;
   };
 
-  setup.modifyLinks = function () {
-    $("a[data-passage]").each(function () {
-      var $this = $(this);
-      var passageName = $this.attr("data-passage");
-      var text = $this.text();
-      var newDiv = $('<div data-next="' + passageName + '"></div>').text(text);
-      $this.replaceWith(newDiv);
-    });
-  };
-
   setup.renderPlanetPassage = function (planetIndex) {
     setup.startObserving();
     console.log("Rendering passage for planet index:", planetIndex);
@@ -388,10 +380,7 @@ $(document).ready(function () {
   };
 
   setup.planetClickHandlers = {};
-  $(window).on("sm.passage.showing", function (event, eventObject) {
-    // Current Passage object
-    console.log(eventObject.passage.name);
-  });
+
   setup.showMap = function () {
     var mapScreen = document.getElementById("mapScreen");
 
@@ -748,6 +737,7 @@ $(document).ready(function () {
       }
     };
   };
+
   setup.handlePlayerPlanetClick = function () {
     console.log("Player's planet clicked");
     setup.renderPlayerPlanetPassage();
@@ -790,3 +780,75 @@ $(document).ready(function () {
     }
   };
 });
+setup.deviceTextAnimation = function () {
+  var passage = $(".device");
+  if (passage) {
+    var split = new SplitText(passage, {
+      type: "chars, words",
+    });
+    gsap.from(split.chars, {
+      autoAlpha: 0,
+      ease: "expo",
+      stagger: 0.01,
+    });
+  }
+};
+// Device overlay
+
+setup.modifyLinks = function () {
+  $("a[data-passage]").each(function () {
+    var $this = $(this);
+    var passageName = $this.attr("data-passage");
+    var text = $this.text();
+    var newDiv = $('<div data-next="' + passageName + '"></div>').text(text);
+    $this.replaceWith(newDiv);
+  });
+};
+
+$(window).on("sm.passage.shown", function (event, eventObject) {
+  var currentPassage = eventObject.passage;
+  var passageContainer = $("tw-passage.passage");
+  passageContainer.find(".device-wrapper").remove();
+  if (currentPassage.tags.includes("device-overlay")) {
+    var outerWrapper = $('<div class="device-wrapper"></div>');
+    var innerWrapper = $('<div class="device"></div>');
+    passageContainer.contents().appendTo(innerWrapper);
+    innerWrapper.appendTo(outerWrapper);
+    passageContainer.prepend(outerWrapper);
+    // setTimeout(setup.modifyLinks, 1);
+    setTimeout(setup.deviceTextAnimation, 1);
+  }
+});
+
+// setup.currentPassage = null; // Initialize a global variable
+
+// $(window).on("sm.passage.shown", function (event, eventObject) {
+//   setup.currentPassage = eventObject.passage; // Store the current passage
+//   console.log(setup.currentPassage.name);
+
+//   setup.applyOverlayIfNeeded(eventObject.passage);
+// });
+
+// setup.applyOverlayIfNeeded = function (passage) {
+//   if (passage.tags.includes("device-overlay")) {
+//     setup.applyDeviceOverlay(passage);
+//     setTimeout(setup.modifyLinks, 1);
+//     setTimeout(setup.deviceTextAnimation, 1);
+//   } else {
+//     const overlayContainerEl = document.getElementById(
+//       "device-overlay-container"
+//     );
+//     overlayContainerEl?.remove();
+//   }
+// };
+// setup.customRenderPassage = function (passageName) {
+//   renderToSelector(".passage", passageName); // Replace with your main passage selector
+
+//   setup.currentPassage = story.passage(passageName);
+//   setup.applyOverlayIfNeeded(setup.currentPassage);
+// };
+
+// $(document).on("click", "div[data-next]", function (e) {
+//   var passageName = $(this).attr("data-next");
+//   setup.customRenderPassage(passageName);
+// });
