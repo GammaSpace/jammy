@@ -745,11 +745,6 @@ select{
   visibility: visible;
 }
 
-.mx-auto{
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .mb-4{
   margin-bottom: 1rem;
 }
@@ -778,6 +773,10 @@ select{
   display: grid;
 }
 
+.contents{
+  display: contents;
+}
+
 .hidden{
   display: none;
 }
@@ -798,14 +797,6 @@ select{
   width: 1rem;
 }
 
-.max-w-3xl{
-  max-width: 48rem;
-}
-
-.max-w-7xl{
-  max-width: 80rem;
-}
-
 .flex-shrink-0{
   flex-shrink: 0;
 }
@@ -823,11 +814,6 @@ select{
 .border-gray-300{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
-.px-4{
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .px-6{
@@ -907,6 +893,8 @@ body,
 html {
   margin: 0;
   height: 100%;
+  background-image: url(./img/twinkle.gif);
+  background-size: cover;
 }
 
 #hud{
@@ -931,8 +919,6 @@ html {
   padding-right: 1.5rem;
   padding-top: 3rem;
   padding-bottom: 0px;
-  background-image: url(./img/twinkle.gif);
-  background-size: cover;
   position: relative;
   flex-grow: 1;
   display: grid;
@@ -2804,23 +2790,6 @@ body.map {
   overflow: hidden;
 }
 
-body.customization{
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 3rem;
-  padding-bottom: 0px;
-  --tw-text-opacity: 1;
-  color: rgb(163 163 163 / var(--tw-text-opacity));
-  background-image: url(./img/twinkle.gif);
-}
-
 body.customization h1{
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -3049,8 +3018,7 @@ button:focus-visible{
   color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
-.customization-form div{
-  margin-top: 1rem;
+.customization-form div {
 }
 
 .customization-text-input{
@@ -3223,6 +3191,129 @@ button:focus-visible{
   color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
+.device-wrapper{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  padding: 3rem;
+  background: url(./img/device.png) no-repeat center center fixed;
+  .device{
+    margin-top: 230px;
+  }
+  .device{
+    height: 560px;
+  }
+  .device{
+    width: 24rem;
+  }
+  .device{
+    overflow-x: hidden;
+  }
+  .device{
+    overflow-y: scroll;
+  }
+  .device{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .device{
+    font-family: Courier Prime;
+  }
+  .device{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  .device{
+    --tw-text-opacity: 1;
+    color: rgb(34 197 94 / var(--tw-text-opacity));
+  }
+  .device {
+    p{
+      margin-bottom: 1rem;
+    }
+    p{
+      display: block;
+    }
+    p {
+      text-shadow: 0 0 15px 8px rgba(153, 153, 255, 0.2);
+      a{
+        --tw-text-opacity: 1;
+        color: rgb(74 222 128 / var(--tw-text-opacity));
+      }
+      a {
+        &:hover{
+          --tw-text-opacity: 1;
+          color: rgb(134 239 172 / var(--tw-text-opacity));
+        }
+        &:hover{
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
+}
+
+#startScreen{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  #startButton{
+    border-radius: 0.375rem;
+  }
+  #startButton{
+    --tw-bg-opacity: 1;
+    background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+  }
+  #startButton{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  #startButton{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  #startButton{
+    font-family: Handjet;
+  }
+  #startButton{
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+  #startButton{
+    font-weight: 700;
+  }
+  #startButton{
+    text-transform: uppercase;
+  }
+  #startButton{
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity));
+  }
+  #startButton {
+    a{
+      --tw-text-opacity: 1;
+      color: rgb(0 0 0 / var(--tw-text-opacity));
+    }
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+a {
+  &:hover {
+    color: currentColor;
+  }
+  &:hover{
+    text-decoration-line: underline;
+  }
+}
+
 .focus\:ring-indigo-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
@@ -3230,18 +3321,4 @@ button:focus-visible{
 
 .disabled\:opacity-25:disabled{
   opacity: 0.25;
-}
-
-@media (min-width: 640px){
-  .sm\:px-6{
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px){
-  .lg\:px-8{
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
 }

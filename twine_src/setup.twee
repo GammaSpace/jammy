@@ -9,27 +9,31 @@
 Jammy Jam
 
 :: Start
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="./scripts/1.SplitText.min.js"></script>
+<div id="startScreen">
+  <div id="startButton">
+    [[Start Game|A]]
+  </div>
+</div>
+:: A [device-overlay]
 
 *KSSHT.* 
 
-*KSSSHHHHT.*
+*KSSSHHHHT.* 
 
 Unknown Signal: Hello? *KSSHT.* Hello hello?
-
-Unknown Signal: Dobeedoooo doo doot do doooo! 🎵
-
-Unknown Signal: Are you receiving this? 
 
 [[Yes|A.0]]
 [[No|B.0]]
 
-:: A.0
+:: A.0 [device-overlay]
 
 Unknown Signal: Excellent! I love when things work the way they're supposed to!
 
 [[Next|Main.1]]
 
-:: B.0
+:: B.0 [device-overlay]
 
 Unknown Signal: Hah. You won't fool me that easily.
 
@@ -37,7 +41,7 @@ Unknown Signal: I'm *only* 13 centuries old.
 
 [[Next|Main.1]]
 
-:: Main.1
+:: Main.1 [device-overlay]
 
 Unknown Signal: Of course, as your planet's representative, I'll just need you to fill out a quick transmission.
 
@@ -45,14 +49,11 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
 
 [[Download the Document|Customization]]
 
-:: Customization
+:: Customization [device-overlay]
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="./scripts/1.SplitText.min.js"></script>
 <% $("body").addClass("customization").removeClass("map") %>
 
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-3xl customization-form">
+  <div class="customization-form">
     <p>Dear Planet Representative,</p>
 
     <p>Please fill out the following information.</p>
@@ -95,7 +96,6 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
         </fieldset>
         </div>
         <button id="nextButton" onclick="setup.savePlayerInfo()" class="disabled:opacity-25" disabled>Transmit the document</button>
-    </div>
 </div>
 
 
