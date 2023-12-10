@@ -9,13 +9,16 @@
 Jammy Jam
 
 :: Start
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="./scripts/1.SplitText.min.js"></script>
+
 <div id="startScreen">
   <div id="startButton">
     [[Start Game|A]]
   </div>
 </div>
+
 :: A [device-overlay]
 
 *KSSHT.* 
@@ -58,19 +61,19 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
 
     <p>Please fill out the following information.</p>
         <div>
-            <label for="playerName" class="block text-sm font-medium leading-6 text-gray-900">Your full name:</label>
+            <label for="playerName">Your full name:</label>
             <div class="mt-2">
                 <input id="playerName" name="playerName" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
         <div>
-            <label for="planetName" class="block text-sm font-medium leading-6 text-gray-900">The name of your planet:</label>
+            <label for="planetName">The name of your planet:</label>
             <div class="mt-2">
                 <input id="planetName" name="planetName" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
         </div>
         <div>
-            <label for="projectDescription" class="block text-sm font-medium leading-6 text-gray-900">Your planet's main artistic output (eg. singing, dancing, competitive digital zip-lining, intergalactic fermentation stations):</label>
+            <label for="projectDescription">Your planet's main artistic output (eg. singing, dancing, competitive digital zip-lining, intergalactic fermentation stations):</label>
             <div class="mt-2">
             <input id="projectDescription" name="projectDescription" type="text" value="" oninput="setup.checkInputs()" class="customization-text-input">
             </div>
@@ -78,9 +81,9 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
 
         <div>
         <!-- <p for="planetImg" class="text-base font-semibold text-neutral-50">Home Planet</p> -->
-        <p class="text-sm text-neutral-200">Pick a planet body:</p>
+        <label>Pick a planet body:</label>
         <fieldset class="mt-4" id="planetImg">
-            <div class="space-y-4">
+            <div class="space-x-4 flex flex-wrap flex-row">
                 <% 
                 ["saturn", "banana", "blorb", "earth", "macaroni"].map(function(imgName, index) {
                     var imgPath = "img/player-planet-" + imgName + ".png";
