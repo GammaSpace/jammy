@@ -139,9 +139,6 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
 
 <% console.log(setup.game) %>
 <% console.log(story.state) %>
-<!-- 
-[[Help Planets|HelpPlanets]]
-[[Start Radio Show|RadioShow]] -->
 
 :: PlanetPassage [planet]
 <script>
