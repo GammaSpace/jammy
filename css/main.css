@@ -293,14 +293,14 @@ button {
 }
 
 .customization-form label {
-  @apply text-neutral-100;
+  @apply text-green-300 leading-none text-sm;
 }
 
 .customization-form div {
 }
 
 .customization-text-input {
-  @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-neutral-600 sm:text-sm sm:leading-6;
+  @apply block mb-4 w-full rounded-md border-0 py-1.5 text-green-400 shadow-sm ring-1 ring-inset ring-green-300 placeholder:text-green-500 focus:ring-2 focus:ring-inset focus:ring-green-600 bg-transparent sm:text-sm sm:leading-6;
 }
 
 .customization-textarea {
@@ -364,7 +364,7 @@ button {
   @apply p-12 flex justify-center h-screen w-screen;
   background: url(./img/device.png) no-repeat center center fixed;
   .device {
-    @apply text-green-500 w-96 h-[560px] mt-[230px] px-12 font-mono text-lg overflow-y-scroll overflow-x-hidden;
+    @apply text-green-500 w-96 h-[560px] mt-[200px] px-12 font-mono text-lg overflow-y-scroll overflow-x-hidden;
     p {
       @apply mb-4 block;
       text-shadow: 0 0 15px 8px rgba(153, 153, 255, 0.2);
@@ -397,4 +397,16 @@ a {
     color: currentColor;
     @apply underline;
   }
+}
+.fade-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: none;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 1s ease;
 }

@@ -828,7 +828,6 @@ setup.deviceTextAnimation = function () {
     });
   }
 };
-// Device overlay
 
 setup.modifyLinks = function () {
   $("a[data-passage]").each(function () {
@@ -841,8 +840,11 @@ setup.modifyLinks = function () {
 };
 
 $(window).on("sm.passage.shown", function (event, eventObject) {
+  story.state.currentPassage = eventObject.passage;
   var currentPassage = eventObject.passage;
   var passageContainer = $("tw-passage.passage");
+  // Device overlay
+  // stuff for device wrapper
   passageContainer.find(".device-wrapper").remove();
   if (currentPassage.tags.includes("device-overlay")) {
     var outerWrapper = $('<div class="device-wrapper"></div>');
@@ -850,40 +852,22 @@ $(window).on("sm.passage.shown", function (event, eventObject) {
     passageContainer.contents().appendTo(innerWrapper);
     innerWrapper.appendTo(outerWrapper);
     passageContainer.prepend(outerWrapper);
-    // setTimeout(setup.modifyLinks, 1);
     setTimeout(setup.deviceTextAnimation, 1);
   }
+  // for passages that fade in
+  passageContainer.prepend("<div class='fade-overlay'></div>");
 });
 
-// setup.currentPassage = null; // Initialize a global variable
+// $(".passage").on("click", "a[data-passage]", function (e) {
+//   console.log(story.state);
+//   $(".passage").off("click", "a[data-passage]");
+//   if (story.state.currentPassage !== "A") return;
 
-// $(window).on("sm.passage.shown", function (event, eventObject) {
-//   setup.currentPassage = eventObject.passage; // Store the current passage
-//   console.log(setup.currentPassage.name);
+//   var destination = $(e.target).closest("a[data-passage]").data("passage");
+//   $(".passage").fadeOut("fast", function () {
+//     story.show(destination);
+//     $(".passage").fadeIn("fast");
+//   });
 
-//   setup.applyOverlayIfNeeded(eventObject.passage);
-// });
-
-// setup.applyOverlayIfNeeded = function (passage) {
-//   if (passage.tags.includes("device-overlay")) {
-//     setup.applyDeviceOverlay(passage);
-//     setTimeout(setup.modifyLinks, 1);
-//     setTimeout(setup.deviceTextAnimation, 1);
-//   } else {
-//     const overlayContainerEl = document.getElementById(
-//       "device-overlay-container"
-//     );
-//     overlayContainerEl?.remove();
-//   }
-// };
-// setup.customRenderPassage = function (passageName) {
-//   renderToSelector(".passage", passageName); // Replace with your main passage selector
-
-//   setup.currentPassage = story.passage(passageName);
-//   setup.applyOverlayIfNeeded(setup.currentPassage);
-// };
-
-// $(document).on("click", "div[data-next]", function (e) {
-//   var passageName = $(this).attr("data-next");
-//   setup.customRenderPassage(passageName);
+//   e.stopPropagation();
 // });
