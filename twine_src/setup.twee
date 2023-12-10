@@ -15,7 +15,7 @@ Jammy Jam
 
 <div id="startScreen">
   <div id="startButton">
-    [[Start Game|A]]
+    Start Game
   </div>
 </div>
 
@@ -98,7 +98,7 @@ Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy
             </div>
         </fieldset>
         </div>
-        <button id="nextButton" onclick="setup.savePlayerInfo()" class="disabled:opacity-25" disabled>Transmit the document</button>
+        <button id="nextButton" onclick="setup.savePlayerInfo()" class="disabled:opacity-25 my-4 text-center mx-auto" disabled>Transmit the document</button>
 </div>
 
 

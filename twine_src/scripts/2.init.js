@@ -814,6 +814,14 @@ $(document).ready(function () {
       });
     }
   };
+  $("#startButton").on("click", function () {
+    $("body").fadeOut("4000", function () {
+      setTimeout(function () {
+        $("body").fadeIn("2000");
+        story.show("A");
+      }, 1000);
+    });
+  });
 });
 setup.deviceTextAnimation = function () {
   var passage = $(".device");

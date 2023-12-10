@@ -381,7 +381,10 @@ button {
 #startScreen {
   @apply flex justify-center items-center h-screen w-screen;
   #startButton {
-    @apply bg-slate-300 text-black px-8 py-4 rounded-md text-7xl font-bold font-display uppercase;
+    @apply bg-slate-400 text-black px-8 py-4 rounded-md text-7xl font-bold font-display uppercase cursor-pointer;
+    &:hover {
+      @apply bg-slate-300;
+    }
     a {
       @apply text-black;
       &:hover {
