@@ -970,6 +970,7 @@ html {
 }
 
 #rep{
+  position: relative;
   z-index: 30;
   margin-left: auto;
   margin-right: auto;
@@ -990,14 +991,22 @@ html {
 }
 
 .repName{
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
   margin-top: 0.5rem;
+  width: 100%;
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
   padding: 0.25rem;
   text-align: center;
   font-size: 0.875rem;
   line-height: 1.25rem;
   text-transform: uppercase;
   --tw-text-opacity: 1;
-  color: rgb(250 250 250 / var(--tw-text-opacity));
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .repImage{

@@ -44,7 +44,7 @@ html {
 }
 
 #rep {
-  @apply flex flex-col text-center self-start z-30 h-1/2 mx-auto my-0;
+  @apply flex flex-col text-center self-start z-30 h-1/2 mx-auto my-0 relative;
 }
 #rep img {
   width: 100%;
@@ -53,7 +53,7 @@ html {
 }
 
 .repName {
-  @apply mt-2 text-sm uppercase p-1 text-neutral-50 text-center;
+  @apply mt-2 text-sm uppercase p-1 text-black bg-slate-200 text-center absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full;
 }
 
 .repImage {
