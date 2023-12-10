@@ -973,17 +973,12 @@ html {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   display: flex;
+  height: 50%;
   width: 100%;
   flex-grow: 1;
   flex-direction: column;
   justify-content: flex-end;
   align-self: flex-end;
-}
-
-@media (min-width: 768px){
-  #planet-info{
-    width: 66.666667%;
-  }
 }
 
 #rep{
@@ -992,9 +987,18 @@ html {
   margin-right: auto;
   margin-top: 0px;
   margin-bottom: 0px;
-  width: 24rem;
+  display: flex;
+  height: 50%;
+  flex-direction: column;
   align-self: flex-start;
   text-align: center;
+}
+
+#rep img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .repName{
@@ -1011,8 +1015,6 @@ html {
 .repImage{
   margin-left: auto;
   margin-right: auto;
-  height: 24rem;
-  width: 24rem;
   justify-content: center;
 }
 
@@ -1125,7 +1127,7 @@ body.crisis #weekPreamble{
 #passageContainer{
   margin-left: auto;
   margin-right: auto;
-  height: 100%;
+  height: 50%;
   width: 100%;
   flex-direction: column;
   align-content: flex-end;
@@ -3201,8 +3203,15 @@ button:focus-visible{
   }
 }
 
-#overlay {
-  /* @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40; */
+#overlay{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 40;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.5;
 }
 
 .help-icon {
@@ -3542,33 +3551,40 @@ $(document).ready(function () {
 
   setup.renderIntro = function () {
     setup.startObserving();
-    story.show("Map Screen");
-    var planetContent = setup.showPlanet(0);
+    $("body").fadeOut("4000", function () {
+      setTimeout(function () {
+        $("body").fadeIn("2000");
+        story.show("Map Screen");
+        var planetContent = setup.showPlanet(0);
 
-    var passageContainer = document.getElementById("passageContainer");
-    var hud = document.getElementById("hud");
-    var backToMap = document.getElementById("backToMap");
+        var passageContainer = document.getElementById("passageContainer");
+        var hud = document.getElementById("hud");
+        var backToMap = document.getElementById("backToMap");
 
-    if (mapScreen) mapScreen.style.display = "none";
-    if (hud) {
-      hud.style.display = "flex";
-      backToMap.style.display = "none";
-    }
-    if (passageContainer) {
-      passageContainer.style.display = "block";
-    }
+        if (mapScreen) mapScreen.style.display = "none";
+        if (hud) {
+          hud.style.display = "flex";
+          backToMap.style.display = "none";
+        }
+        if (passageContainer) {
+          passageContainer.style.display = "block";
+        }
 
-    var introContent = story.render("Intro 3");
-    var passage = document.getElementById("passage");
-    if (passage) {
-      passage.innerHTML = introContent;
-      setup.typewriter();
-    }
+        var introContent = story.render("Intro 3");
+        var passage = document.getElementById("passage");
+        if (passage) {
+          setTimeout(function () {
+            passage.innerHTML = introContent;
+            setup.typewriter();
+          }, 2000);
+        }
 
-    var planetContentContainer = document.getElementById("planetContent");
-    if (planetContentContainer) {
-      planetContentContainer.innerHTML = planetContent;
-    }
+        var planetContentContainer = document.getElementById("planetContent");
+        if (planetContentContainer) {
+          planetContentContainer.innerHTML = planetContent;
+        }
+      }, 1000);
+    });
   };
 
   setup.savePlayerInfo = function () {
@@ -4187,10 +4203,30 @@ $(document).ready(function () {
     const planet = setup.game.planets.find((p) => p.id === planetId);
     return planet ? planet.name : null;
   };
+
+  var split;
+
+  document.addEventListener("keydown", function (event) {
+    if (event.code === "Space" && split) {
+      split.revert();
+      gsap.to(split.words, { autoAlpha: 1, duration: 0 });
+      gsap.to(split.chars, { autoAlpha: 1, duration: 0 });
+    }
+  });
+
+  $("#startButton").on("click", function () {
+    $("body").fadeOut("4000", function () {
+      setTimeout(function () {
+        $("body").fadeIn("2000");
+        story.show("A");
+      }, 1000);
+    });
+  });
+
   setup.typewriter = function () {
-    var passage = document.getElementById("passage");
-    if (passage && passage.textContent.trim() !== "") {
-      var split = new SplitText("#passage", {
+    var passage = $("#passage");
+    if (passage) {
+      split = new SplitText("#passage", {
         type: "words",
       });
       gsap.from(split.words, {
@@ -4200,28 +4236,21 @@ $(document).ready(function () {
       });
     }
   };
-  $("#startButton").on("click", function () {
-    $("body").fadeOut("4000", function () {
-      setTimeout(function () {
-        $("body").fadeIn("2000");
-        story.show("A");
-      }, 1000);
-    });
-  });
+
+  setup.deviceTextAnimation = function () {
+    var passage = $(".device");
+    if (passage) {
+      split = new SplitText(passage, {
+        type: "chars, words",
+      });
+      gsap.from(split.chars, {
+        autoAlpha: 0,
+        ease: "power1",
+        stagger: 0.01,
+      });
+    }
+  };
 });
-setup.deviceTextAnimation = function () {
-  var passage = $(".device");
-  if (passage) {
-    var split = new SplitText(passage, {
-      type: "chars, words",
-    });
-    gsap.from(split.chars, {
-      autoAlpha: 0,
-      ease: "expo",
-      stagger: 0.01,
-    });
-  }
-};
 
 setup.modifyLinks = function () {
   $("a[data-passage]").each(function () {

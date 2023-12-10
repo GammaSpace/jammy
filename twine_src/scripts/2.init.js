@@ -156,33 +156,40 @@ $(document).ready(function () {
 
   setup.renderIntro = function () {
     setup.startObserving();
-    story.show("Map Screen");
-    var planetContent = setup.showPlanet(0);
+    $("body").fadeOut("4000", function () {
+      setTimeout(function () {
+        $("body").fadeIn("2000");
+        story.show("Map Screen");
+        var planetContent = setup.showPlanet(0);
 
-    var passageContainer = document.getElementById("passageContainer");
-    var hud = document.getElementById("hud");
-    var backToMap = document.getElementById("backToMap");
+        var passageContainer = document.getElementById("passageContainer");
+        var hud = document.getElementById("hud");
+        var backToMap = document.getElementById("backToMap");
 
-    if (mapScreen) mapScreen.style.display = "none";
-    if (hud) {
-      hud.style.display = "flex";
-      backToMap.style.display = "none";
-    }
-    if (passageContainer) {
-      passageContainer.style.display = "block";
-    }
+        if (mapScreen) mapScreen.style.display = "none";
+        if (hud) {
+          hud.style.display = "flex";
+          backToMap.style.display = "none";
+        }
+        if (passageContainer) {
+          passageContainer.style.display = "block";
+        }
 
-    var introContent = story.render("Intro 3");
-    var passage = document.getElementById("passage");
-    if (passage) {
-      passage.innerHTML = introContent;
-      setup.typewriter();
-    }
+        var introContent = story.render("Intro 3");
+        var passage = document.getElementById("passage");
+        if (passage) {
+          setTimeout(function () {
+            passage.innerHTML = introContent;
+            setup.typewriter();
+          }, 2000);
+        }
 
-    var planetContentContainer = document.getElementById("planetContent");
-    if (planetContentContainer) {
-      planetContentContainer.innerHTML = planetContent;
-    }
+        var planetContentContainer = document.getElementById("planetContent");
+        if (planetContentContainer) {
+          planetContentContainer.innerHTML = planetContent;
+        }
+      }, 1000);
+    });
   };
 
   setup.savePlayerInfo = function () {
@@ -801,10 +808,30 @@ $(document).ready(function () {
     const planet = setup.game.planets.find((p) => p.id === planetId);
     return planet ? planet.name : null;
   };
+
+  var split;
+
+  document.addEventListener("keydown", function (event) {
+    if (event.code === "Space" && split) {
+      split.revert();
+      gsap.to(split.words, { autoAlpha: 1, duration: 0 });
+      gsap.to(split.chars, { autoAlpha: 1, duration: 0 });
+    }
+  });
+
+  $("#startButton").on("click", function () {
+    $("body").fadeOut("4000", function () {
+      setTimeout(function () {
+        $("body").fadeIn("2000");
+        story.show("A");
+      }, 1000);
+    });
+  });
+
   setup.typewriter = function () {
-    var passage = document.getElementById("passage");
-    if (passage && passage.textContent.trim() !== "") {
-      var split = new SplitText("#passage", {
+    var passage = $("#passage");
+    if (passage) {
+      split = new SplitText("#passage", {
         type: "words",
       });
       gsap.from(split.words, {
@@ -814,28 +841,21 @@ $(document).ready(function () {
       });
     }
   };
-  $("#startButton").on("click", function () {
-    $("body").fadeOut("4000", function () {
-      setTimeout(function () {
-        $("body").fadeIn("2000");
-        story.show("A");
-      }, 1000);
-    });
-  });
+
+  setup.deviceTextAnimation = function () {
+    var passage = $(".device");
+    if (passage) {
+      split = new SplitText(passage, {
+        type: "chars, words",
+      });
+      gsap.from(split.chars, {
+        autoAlpha: 0,
+        ease: "power1",
+        stagger: 0.01,
+      });
+    }
+  };
 });
-setup.deviceTextAnimation = function () {
-  var passage = $(".device");
-  if (passage) {
-    var split = new SplitText(passage, {
-      type: "chars, words",
-    });
-    gsap.from(split.chars, {
-      autoAlpha: 0,
-      ease: "expo",
-      stagger: 0.01,
-    });
-  }
-};
 
 setup.modifyLinks = function () {
   $("a[data-passage]").each(function () {
