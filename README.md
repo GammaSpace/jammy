@@ -1,9 +1,13 @@
 ## Gamma Jammy Gammy!
 
-_Jennie will update this with more details_
+Install [tweego](https://www.motoslave.net/tweego/) and the [snowman 2.0.2](https://videlais.github.io/snowman/#/2/) storyformat in your working directory.
 
-- tweego
-- snowman 2.0.2
+## Running the game locally
+
+- `npx tailwindcss -i ./css/main.css -o ./twine_src/css/output.css --watch`
+- `tweego -o output.html twine_src -w`
+- `python3 -m http.server 9001`
+- `open http://localhost:9001/output.html`
 
 ## Useful resources
 
