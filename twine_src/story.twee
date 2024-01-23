@@ -107,7 +107,7 @@ Okay, yeah yeah. Not my finest work.
 :: Radio Show Explanation 7
 Nothing to add? Wow. An alien can take a hint. 
 
-Well, off with you then. I'm transmitting the coordinates of the other planets to you now. 
+Well, off with you then. I'm transmitting the coordinates of the other planets to you now.
 
 <div class="passage-choices">
   <span onclick="setup.returnToMap();">Open map</span>
@@ -116,7 +116,7 @@ Well, off with you then. I'm transmitting the coordinates of the other planets t
 
 
 <!-- Planet request scenarios, random -->
-:: Melodic Quest [scenario]
+:: Chanterella1 [scenario]
 The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
 
 [[Next...->Melodic Quest 2]]
