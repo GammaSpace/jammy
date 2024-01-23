@@ -25,30 +25,36 @@ Jammy Jam
 
 *KSSSHHHHT.* 
 
-Unknown Signal: Hello? *KSSHT.* Hello hello?
+Hello? *KSSHT.* Hello hello?
+
+Are you receiving this? 
 
 [[Yes|A.0]]
 [[No|B.0]]
 
 :: A.0 [device-overlay]
 
-Unknown Signal: Excellent! I love when things work the way they're supposed to!
+Excellent! 
+
+I do so love when things work the way they're supposed to!
 
 [[Next|Main.1]]
 
 :: B.0 [device-overlay]
 
-Unknown Signal: Hah. You won't fool me that easily.
+Hah. You won't fool me that easily.
 
-Unknown Signal: I'm *only* 13 centuries old.
+I'm *only* 13 centuries old.
 
 [[Next|Main.1]]
 
 :: Main.1 [device-overlay]
 
-Unknown Signal: Of course, as your planet's representative, I'll just need you to fill out a quick transmission.
+As the representative of your planet, you'll need to fill out a quick digital form for me.
 
-Unknown Signal: I know, I know. But sometimes community takes a lil' bureaucracy. 🎵
+I know, I know...
+
+Sometimes community takes a lil' bureaucracy. 🎵
 
 [[Download the Document|Customization]]
 
