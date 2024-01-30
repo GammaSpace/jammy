@@ -117,17 +117,30 @@ Well, off with you then. I'm transmitting the coordinates of the other planets t
 
 <!-- Planet request scenarios, random -->
 :: Chanterella1 [scenario]
-Oh hello darling. You must be
+Oh hello darling. You must be <%= story.state.playerName %>. I heard you tried to start a union at the Dominion. You've got guts.
 
-[[Next...->Melodic Quest 2]]
+[[Next...->Chanterella2]]
 
-:: Melodic Quest 2
+:: Chanterella2
 
-Let's see if I can find the notes…
+I'm Spore T. Spice. The most recognized queen of myconsynthetics in this known universe. *It's a pleasure.*
+
+[[Next...->Chanterella3]]
+
+:: Chanterella3
+
+I'm working on a little something for the radio show... a high fashion, high art, and just generally *high* drag show. Think psychadelic. Think Monet but gay and on drugs. Think *glamour*.
+
+[[Next...->Chanterella4]]
+
+:: Chanterella4
+
+We've been growing local flowers for our costumes, but grinding them into dyes is going slower than expected. Would you be able to spare some extra hands (or appendages) to help us out?
+
 
 <div class="passage-choices">
-  <span onclick='setup.completeScenario();'>Connect</span>
-  <span onclick="setup.returnToMap()">Move on…</span>
+  <span onclick='setup.completeScenario();'>Of course</span>
+  <span onclick="setup.returnToMap()">I'll let you know…</span>
 </div>
 
 
