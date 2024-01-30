@@ -119,24 +119,23 @@ Well, off with you then. I'm transmitting the coordinates of the other planets t
 :: Chanterella1 [scenario]
 Oh hello darling. You must be <%= story.state.playerName %>. I heard you tried to start a union at the Dominion. You've got guts.
 
-[[Next...->Chanterella2]]
+[[Next...->Chanterella1_B]]
 
-:: Chanterella2
+:: Chanterella1_B
 
 I'm Spore T. Spice. The most recognized queen of myconsynthetics in this known universe. *It's a pleasure.*
 
-[[Next...->Chanterella3]]
+[[Next...->Chanterella1_C]]
 
-:: Chanterella3
+:: Chanterella1_C
 
 I'm working on a little something for the radio show... a high fashion, high art, and just generally *high* drag show. Think psychadelic. Think Monet but gay and on drugs. Think *glamour*.
 
-[[Next...->Chanterella4]]
+[[Next...->Chanterella1_D]]
 
-:: Chanterella4
+:: Chanterella1_D
 
 We've been growing local flowers for our costumes, but grinding them into dyes is going slower than expected. Would you be able to spare some extra hands (or appendages) to help us out?
-
 
 <div class="passage-choices">
   <span onclick='setup.completeScenario();'>Of course</span>
@@ -144,10 +143,35 @@ We've been growing local flowers for our costumes, but grinding them into dyes i
 </div>
 
 
+:: Razzmatazz1 [scenario]
+Huh? Who's this? Ah, right ya are. <%= story.state.playerName %>. Enemy #1 of the dominion planetation, I hear.
+
+[[Next...->Razzmatazz1_B]]
+
+:: Razzmatazz1_B
+I'm Boris. Boris the clown. One and only representative of this heaping pile of junk. What can I do ya for?
+
+[[Next...->Razzmatazz1_C]]
+
+:: Razzmatazz1_C
+
+You're here to offer me help? Hmphf. Well... we're always looking for more trash. Got this whole hologographic cirucs nightmare we're planning for the radio show.
+
+[[Next...->Razzmattazz1_D]]
+
+:: Razzmatazz1_D
+
+Got any pipe cleaners? I'm, uh... working on a thing.
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Actually I do.</span>
+  <span onclick="setup.returnToMap()">I'll let you know...</span>
+</div>
+
+
 :: Quantum Conundrum [scenario]
 
 A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
-
 [[Next...->Quantum Conundrum 2]]
 
 :: Quantum Conundrum 2 [scenario]
