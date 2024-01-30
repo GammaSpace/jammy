@@ -34,7 +34,7 @@ We're grateful to have you as the newest member of the Federation.
 
 :: Intro 7
 
-I know you've had a tough time recently, what with losing your job at the Dominion Planetation and all. I know what that place can do to your trust...
+I know you've had a tough time recently. I know what the Dominion can do to your trust...
 
 [[Next|Intro 8]]
 
@@ -53,7 +53,7 @@ But things are different here. There's no overlord. No forced overtime. Just a c
 [[Next|Intro 10]]
 
 :: Intro 10
-Opting into the Federation means opting into the values. The values are iterative, but commitment to the Federation means commitment working *with* us to make those changes.
+Opting into the Federation means opting into these values. They're iterative, but commitment to the Federation means commitment working *with* us to make those changes.
 
 [[Next|Intro 11]]
 
@@ -117,7 +117,7 @@ Well, off with you then. I'm transmitting the coordinates of the other planets t
 
 <!-- Planet request scenarios, random -->
 :: Chanterella1 [scenario]
-The Intergalactic Orchestra has lost its melody, scattering notes across the cosmos. Retrieve the musical fragments to restore harmony to the galaxy.
+Oh hello darling. You must be
 
 [[Next...->Melodic Quest 2]]
 
