@@ -812,6 +812,14 @@ $(document).ready(function () {
   var split;
 
   document.addEventListener("keydown", function (event) {
+    if (
+      event.target.tagName === "INPUT" ||
+      event.target.tagName === "TEXTAREA" ||
+      event.target.tagName === "SELECT"
+    ) {
+      return;
+    }
+
     if (event.code === "Space" && split) {
       split.revert();
       gsap.to(split.words, { autoAlpha: 1, duration: 0 });
