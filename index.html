@@ -3708,7 +3708,7 @@ Well, off with you then. I&#39;m transmitting the coordinates of the other plane
 
 [[Next...-&gt;Chanterella1_B]]</tw-passagedata><tw-passagedata pid="30" name="Chanterella1_B" tags="" position="1225,350" size="100,100">I&#39;m Spore T. Spice. The most recognized queen of myconsynthetics in this known universe. *It&#39;s a pleasure.*
 
-[[Next...-&gt;Chanterella1_C]]</tw-passagedata><tw-passagedata pid="31" name="Chanterella1_C" tags="" position="100,475" size="100,100">I&#39;m working on a little something for the radio show... a high fashion, high art, and just generally *high* drag show. Think psychadelic. Think Monet but gay and on drugs. Think *glamour*.
+[[Next...-&gt;Chanterella1_C]]</tw-passagedata><tw-passagedata pid="31" name="Chanterella1_C" tags="" position="100,475" size="100,100">I&#39;m working on a little something for the radio show... a high fashion, high art, and just overall *high* drag show. Think psychadelic. Think Monet but gay and on drugs. Think *glamour*.
 
 [[Next...-&gt;Chanterella1_D]]</tw-passagedata><tw-passagedata pid="32" name="Chanterella1_D" tags="" position="225,475" size="100,100">We&#39;ve been growing local flowers for our costumes, but grinding them into dyes is going slower than expected. Would you be able to spare some extra hands (or appendages) to help us out?
 
@@ -3723,94 +3723,122 @@ Well, off with you then. I&#39;m transmitting the coordinates of the other plane
 [[Is there anything I can do to help you out?-&gt;ChanterellaCostumes_C]]</tw-passagedata><tw-passagedata pid="36" name="ChanterellaCostumes_B" tags="" position="725,475" size="100,100">Beautiful news, my sweet porcini.
 [[Is there anything I can do to help you out?-&gt;ChanterellaCostumes_C]]</tw-passagedata><tw-passagedata pid="37" name="ChanterellaCostumes_C" tags="" position="850,475" size="100,100">Well... there is, in fact. We&#39;re trying to help make the radio show carbon neutral, but we don&#39;t have enough shroom power to set up all the solar panels.
 
-Do you have any appendages to spare?
+We&#39;ll show you how to set up your own, but could use some support.
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;I think we&#39;ve got some capacity.&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Not this week...&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="38" name="Razzmatazz1" tags="scenario" position="975,475" size="100,100">Huh? Who&#39;s this? Ah, right ya are. &lt;%= story.state.playerName %&gt;. Enemy #1 of the dominion planetation, I hear.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="38" name="ChanterellaSad" tags="scenario" position="975,475" size="100,100">Hi doll. Nice to see your holographic face.
+[[You seem down-&gt;ChanterellaSadA]]
+[[Need any support this week?-&gt;ChanterellaSadB]]</tw-passagedata><tw-passagedata pid="39" name="ChanterellaSadA" tags="" position="1100,475" size="100,100">I&#39;ve been better. Things are just... overwhelming.
+[[I&#39;m here to listen, if you need.-&gt;ChanterellaSadC]]
+[[Yeah, I feel that too.-&gt;ChanterellaSad_Z]]</tw-passagedata><tw-passagedata pid="40" name="ChanterellaSadZ" tags="" position="1225,475" size="100,100">Sounds like you&#39;re also in need of some support, Porcini. Why don&#39;t you take some time for yourself.
+[[I&#39;d love to hold some space for you.-&gt;ChanterellaC]]
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Thanks, I&#39;ll do that.&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="41" name="ChanterellaSadB" tags="" position="100,600" size="100,100">Maybe... maybe you could just chat for a bit?
+[[Of course!-&gt;ChanterellaD
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;I&#39;m feeling a little overwhelmed right now.&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="ChanterellaSadC" tags="" position="225,600" size="100,100">Thanks, porcini. I don&#39;t know if I ever told you, but I had my own experience with the Dominion Planetation, about a century ago.
+[[Next...-&gt;ChanterellaD]]</tw-passagedata><tw-passagedata pid="43" name="ChanterellaSadD" tags="" position="350,600" size="100,100">It left a mark. This feeling that I&#39;m never doing enough. That I&#39;m foolish to try and resist.
+[[I know that feeling-&gt;ChanterellaSadE]]
+[[You can&#39;t do everything-&gt;ChanterellaSadF]]</tw-passagedata><tw-passagedata pid="44" name="ChanterellaSadE" tags="" position="475,600" size="100,100">I thought you might. I hate that you do, but it&#39;s helpful to know I&#39;m not the only one.
+[[Next...-&gt;ChanterellaSadG]]</tw-passagedata><tw-passagedata pid="45" name="ChanterellaSadF" tags="" position="600,600" size="100,100">I know that logically, but... sometimes it *feels* so real.
+[[Next...-&gt;ChanterellaSadG]]</tw-passagedata><tw-passagedata pid="46" name="ChanterellaSadG" tags="" position="725,600" size="100,100">Thanks for listening, porcini. The show&#39;s actually coming along pretty well.
 
-[[Next...-&gt;Razzmatazz1_B]]</tw-passagedata><tw-passagedata pid="39" name="Razzmatazz1_B" tags="" position="1100,475" size="100,100">I&#39;m Boris. Boris the clown. One and only representative of this heaping pile of junk. What can I do ya for?
+[[Next...-&gt;ChanterellaSadH]]</tw-passagedata><tw-passagedata pid="47" name="ChanterellaSadH" tags="" position="850,600" size="100,100">I know I&#39;m in a better place now. Sometimes that makes it harder.
 
-[[Need any help?-&gt;Razzmatazz1_C]]</tw-passagedata><tw-passagedata pid="40" name="Razzmatazz1_C" tags="" position="1225,475" size="100,100">Hmphf. Well... we&#39;re always looking for more trash. Got this whole hologographic cirucs nightmare we&#39;re planning for the radio show.
+But, it&#39;s okay.
+[[Next...-&gt;ChanterellaSadI]]</tw-passagedata><tw-passagedata pid="48" name="ChanterellaSadI" tags="" position="975,600" size="100,100">Well, you know what they say...
 
-[[Next...-&gt;Razzmattazz1_D]]</tw-passagedata><tw-passagedata pid="41" name="Razzmatazz1_D" tags="" position="100,600" size="100,100">Do you happen to have any pipe cleaners? I&#39;m, uh... working on a thing.
+*The show must go on!*
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;(Back to map)&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="49" name="Razzmatazz1" tags="scenario" position="1100,600" size="100,100">Huh? Who&#39;s this? Ah, right ya are. &lt;%= story.state.playerName %&gt;. Enemy #1 of the dominion planetation, I hear.
+
+[[Next...-&gt;Razzmatazz1_B]]</tw-passagedata><tw-passagedata pid="50" name="Razzmatazz1_B" tags="" position="1225,600" size="100,100">I&#39;m Boris. Boris the clown. One and only representative of this heaping pile of junk. What can I do ya for?
+
+[[Need any help?-&gt;Razzmatazz1_C]]</tw-passagedata><tw-passagedata pid="51" name="Razzmatazz1_C" tags="" position="100,725" size="100,100">Hmphf. Well... we&#39;re always looking for more trash. Got this whole hologographic cirucs nightmare we&#39;re planning for the radio show.
+
+[[Next...-&gt;Razzmattazz1_D]]</tw-passagedata><tw-passagedata pid="52" name="Razzmatazz1_D" tags="" position="225,725" size="100,100">Do you happen to have any pipe cleaners? I&#39;m, uh... working on a thing.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Actually I do.&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;I&#39;ll let you know...&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="Quantum Conundrum" tags="scenario" position="225,600" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
-[[Next...-&gt;Quantum Conundrum 2]]</tw-passagedata><tw-passagedata pid="43" name="Quantum Conundrum 2" tags="scenario" position="350,600" size="100,100">I have no idea how to solve these puzzles, but i&#39;ll give it my best shot…
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="53" name="Quantum Conundrum" tags="scenario" position="350,725" size="100,100">A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
+[[Next...-&gt;Quantum Conundrum 2]]</tw-passagedata><tw-passagedata pid="54" name="Quantum Conundrum 2" tags="scenario" position="475,725" size="100,100">I have no idea how to solve these puzzles, but i&#39;ll give it my best shot…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="Stellar Cradle" tags="" position="475,600" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="Stellar Cradle" tags="" position="600,725" size="100,100">A newborn nebula is struggling to form stars. Gather stardust and cosmic energy to nurture its growth and witness the birth of new suns.
 
-[[Next...-&gt;Stellar Cradle 2]]</tw-passagedata><tw-passagedata pid="45" name="Stellar Cradle 2" tags="" position="600,600" size="100,100">Gathering stardust might be fun?
+[[Next...-&gt;Stellar Cradle 2]]</tw-passagedata><tw-passagedata pid="56" name="Stellar Cradle 2" tags="" position="725,725" size="100,100">Gathering stardust might be fun?
 
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="46" name="Galactic Restoration" tags="scenario" position="725,600" size="100,100">The Great Library of Andromeda is in disarray, with knowledge scattered across the stars. Reorganize the cosmic archives and unlock ancient wisdom.
-
-[[Next...-&gt;Galactic Restoration 2]]</tw-passagedata><tw-passagedata pid="47" name="Galactic Restoration 2" tags="" position="850,600" size="100,100">Time to sort through the astral archives…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="48" name="Cosmic Symphony" tags="scenario" position="975,600" size="100,100">A celestial entity has lost its voice, rendering the galaxy silent. Find the harmonious chords to give voice back to the stars.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="57" name="Galactic Restoration" tags="scenario" position="850,725" size="100,100">The Great Library of Andromeda is in disarray, with knowledge scattered across the stars. Reorganize the cosmic archives and unlock ancient wisdom.
 
-[[Next...-&gt;Cosmic Symphony 2]]</tw-passagedata><tw-passagedata pid="49" name="Cosmic Symphony 2" tags="" position="1100,600" size="100,100">Let&#39;s tune into the cosmic frequencies…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="50" name="Nebula Maze" tags="scenario" position="1225,600" size="100,100">A labyrinth of cosmic dust and gas clouds has appeared. Navigate through the maze to discover hidden celestial treasures.
-
-[[Next...-&gt;Nebula Maze 2]]</tw-passagedata><tw-passagedata pid="51" name="Nebula Maze 2" tags="" position="100,725" size="100,100">This maze is intricate, but I&#39;m up for the challenge…
+[[Next...-&gt;Galactic Restoration 2]]</tw-passagedata><tw-passagedata pid="58" name="Galactic Restoration 2" tags="" position="975,725" size="100,100">Time to sort through the astral archives…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="52" name="Starlit Dance" tags="scenario" position="225,725" size="100,100">A constellation has lost its rhythm, causing disarray in the night sky. Choreograph the celestial dance to restore order.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="59" name="Cosmic Symphony" tags="scenario" position="1100,725" size="100,100">A celestial entity has lost its voice, rendering the galaxy silent. Find the harmonious chords to give voice back to the stars.
 
-[[Next...-&gt;Starlit Dance 2]]</tw-passagedata><tw-passagedata pid="53" name="Starlit Dance 2" tags="" position="350,725" size="100,100">Time to get these stars dancing again…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="54" name="Comet&#39;s Tale" tags="scenario" position="475,725" size="100,100">A wandering comet carries secrets from the edge of the universe. Chart its course and uncover the mysteries it holds.
-
-[[Next...-&gt;Comet&#39;s Tale 2]]</tw-passagedata><tw-passagedata pid="55" name="Comet&#39;s Tale 2" tags="" position="600,725" size="100,100">Chasing comets is no easy task, but it&#39;s worth it…
+[[Next...-&gt;Cosmic Symphony 2]]</tw-passagedata><tw-passagedata pid="60" name="Cosmic Symphony 2" tags="" position="1225,725" size="100,100">Let&#39;s tune into the cosmic frequencies…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="56" name="Aurora&#39;s Whisper" tags="scenario" position="725,725" size="100,100">The Aurora Borealis has dimmed, losing its vibrant colors. Reignite the auroral lights to paint the sky with dazzling hues.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="Nebula Maze" tags="scenario" position="100,850" size="100,100">A labyrinth of cosmic dust and gas clouds has appeared. Navigate through the maze to discover hidden celestial treasures.
 
-[[Next...-&gt;Aurora&#39;s Whisper 2]]</tw-passagedata><tw-passagedata pid="57" name="Aurora&#39;s Whisper 2" tags="" position="850,725" size="100,100">Let&#39;s bring color back to the skies…
-
-&lt;div class=&quot;passage-choices&quot;&gt;
-  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
-  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="58" name="Celestial Riddle" tags="scenario" position="975,725" size="100,100">An ancient star has posed a riddle, locking away a cosmic secret. Solve the riddle to gain access to hidden cosmic knowledge.
-
-[[Next...-&gt;Celestial Riddle 2]]</tw-passagedata><tw-passagedata pid="59" name="Celestial Riddle 2" tags="" position="1100,725" size="100,100">Riddles in space? This should be interesting…
+[[Next...-&gt;Nebula Maze 2]]</tw-passagedata><tw-passagedata pid="62" name="Nebula Maze 2" tags="" position="225,850" size="100,100">This maze is intricate, but I&#39;m up for the challenge…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="60" name="Solar Serenade" tags="scenario" position="1225,725" size="100,100">The Sun&#39;s song has become erratic, affecting planetary orbits. Compose a new solar melody to bring stability back to the solar system.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="63" name="Starlit Dance" tags="scenario" position="350,850" size="100,100">A constellation has lost its rhythm, causing disarray in the night sky. Choreograph the celestial dance to restore order.
 
-[[Next...-&gt;Solar Serenade 2]]</tw-passagedata><tw-passagedata pid="61" name="Solar Serenade 2" tags="" position="100,850" size="100,100">Time to compose a symphony for the Sun…
+[[Next...-&gt;Starlit Dance 2]]</tw-passagedata><tw-passagedata pid="64" name="Starlit Dance 2" tags="" position="475,850" size="100,100">Time to get these stars dancing again…
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
   &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="62" name="Week 4 An Offer of Help" tags="scenario crisis" position="225,850" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; offers to help me find the source of the problem. Let&#39;s go!
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name="Comet&#39;s Tale" tags="scenario" position="600,850" size="100,100">A wandering comet carries secrets from the edge of the universe. Chart its course and uncover the mysteries it holds.
 
-[[Next...-&gt;Week 4 crisis 2]]</tw-passagedata><tw-passagedata pid="63" name="Week 4 crisis 2" tags="" position="350,850" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; is so great. I&#39;m glad we&#39;re friends.
+[[Next...-&gt;Comet&#39;s Tale 2]]</tw-passagedata><tw-passagedata pid="66" name="Comet&#39;s Tale 2" tags="" position="725,850" size="100,100">Chasing comets is no easy task, but it&#39;s worth it…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="67" name="Aurora&#39;s Whisper" tags="scenario" position="850,850" size="100,100">The Aurora Borealis has dimmed, losing its vibrant colors. Reignite the auroral lights to paint the sky with dazzling hues.
+
+[[Next...-&gt;Aurora&#39;s Whisper 2]]</tw-passagedata><tw-passagedata pid="68" name="Aurora&#39;s Whisper 2" tags="" position="975,850" size="100,100">Let&#39;s bring color back to the skies…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="69" name="Celestial Riddle" tags="scenario" position="1100,850" size="100,100">An ancient star has posed a riddle, locking away a cosmic secret. Solve the riddle to gain access to hidden cosmic knowledge.
+
+[[Next...-&gt;Celestial Riddle 2]]</tw-passagedata><tw-passagedata pid="70" name="Celestial Riddle 2" tags="" position="1225,850" size="100,100">Riddles in space? This should be interesting…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="71" name="Solar Serenade" tags="scenario" position="100,975" size="100,100">The Sun&#39;s song has become erratic, affecting planetary orbits. Compose a new solar melody to bring stability back to the solar system.
+
+[[Next...-&gt;Solar Serenade 2]]</tw-passagedata><tw-passagedata pid="72" name="Solar Serenade 2" tags="" position="225,975" size="100,100">Time to compose a symphony for the Sun…
+
+&lt;div class=&quot;passage-choices&quot;&gt;
+  &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
+  &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="73" name="Week 4 An Offer of Help" tags="scenario crisis" position="350,975" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; offers to help me find the source of the problem. Let&#39;s go!
+
+[[Next...-&gt;Week 4 crisis 2]]</tw-passagedata><tw-passagedata pid="74" name="Week 4 crisis 2" tags="" position="475,975" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; is so great. I&#39;m glad we&#39;re friends.
 
 &lt;div class=&quot;passage-choices&quot;&gt;
   &lt;span onclick=&#39;setup.completeScenario();&#39;&gt;Connect&lt;/span&gt;
@@ -3819,12 +3847,12 @@ Do you have any appendages to spare?
 
 
 
-&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="64" name="Week 1" tags="preamble" position="475,850" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="65" name="Week 2" tags="preamble" position="600,850" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="66" name="Week 3" tags="preamble" position="725,850" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="67" name="Week 4" tags="preamble crisis" position="850,850" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="68" name="Week 5" tags="preamble" position="975,850" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="69" name="Week 6" tags="preamble" position="1100,850" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="70" name="Week 7" tags="preamble crisis" position="1225,850" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!
+&lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="75" name="Week 1" tags="preamble" position="600,975" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="76" name="Week 2" tags="preamble" position="725,975" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="77" name="Week 3" tags="preamble" position="850,975" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="78" name="Week 4" tags="preamble crisis" position="975,975" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="79" name="Week 5" tags="preamble" position="1100,975" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="80" name="Week 6" tags="preamble" position="1225,975" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="81" name="Week 7" tags="preamble crisis" position="100,1100" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!
 
 
-&lt;!-- inactive turn → no bananas --&gt;</tw-passagedata><tw-passagedata pid="71" name="No Bananas" tags="inactive-turn" position="100,975" size="100,100">We ran out of bananas last week. I&#39;m not sure what to do.
+&lt;!-- inactive turn → no bananas --&gt;</tw-passagedata><tw-passagedata pid="82" name="No Bananas" tags="inactive-turn" position="225,1100" size="100,100">We ran out of bananas last week. I&#39;m not sure what to do.
 
-[[Next...-&gt;No Bananas 2]]</tw-passagedata><tw-passagedata pid="72" name="No Bananas 2" tags="" position="225,975" size="100,100">I&#39;m going to try to find some bananas.
+[[Next...-&gt;No Bananas 2]]</tw-passagedata><tw-passagedata pid="83" name="No Bananas 2" tags="" position="350,1100" size="100,100">I&#39;m going to try to find some bananas.
 
 &lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;</tw-passagedata></tw-storydata>
 		<script>
