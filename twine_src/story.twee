@@ -116,7 +116,7 @@ Well, off with you then. I'm transmitting the coordinates of the other planets t
 
 
 <!-- Planet request scenarios, random -->
-:: Chanterella1 [scenario]
+:: Chanterella1 [scenario chanterella]
 Oh hello darling. You must be <%= story.state.playerName %>. I heard you tried to start a union at the Dominion. You've got guts.
 
 [[Next...->Chanterella1_B]]
@@ -129,7 +129,7 @@ I'm Spore T. Spice. The most recognized queen of myconsynthetics in this known u
 
 :: Chanterella1_C
 
-I'm working on a little something for the radio show... a high fashion, high art, and just generally *high* drag show. Think psychadelic. Think Monet but gay and on drugs. Think *glamour*.
+I'm working on a little something for the radio show... a high fashion, high art, and just overall *high* drag show. Think psychadelic. Think Monet but gay and on drugs. Think *glamour*.
 
 [[Next...->Chanterella1_D]]
 
@@ -143,7 +143,7 @@ We've been growing local flowers for our costumes, but grinding them into dyes i
 </div>
 
 
-:: ChanterellaCostumes [scenario]
+:: ChanterellaCostumes [scenario chanterella]
 Why hello darling, how are you this week?
 
 [[Feeling a little rough...->ChanterellaCostumes_A]]
@@ -164,14 +164,77 @@ Beautiful news, my sweet porcini.
 :: ChanterellaCostumes_C
 Well... there is, in fact. We're trying to help make the radio show carbon neutral, but we don't have enough shroom power to set up all the solar panels.
 
-Do you have any appendages to spare?
+We'll show you how to set up your own, but could use some support.
 <div class="passage-choices">
   <span onclick='setup.completeScenario();'>I think we've got some capacity.</span>
   <span onclick="setup.returnToMap()">Not this week...</span>
 </div> 
 
 
-:: Razzmatazz1 [scenario]
+:: ChanterellaSad [scenario chanterella]
+Hi doll. Nice to see your holographic face.
+[[You seem down->ChanterellaSadA]]
+[[Need any support this week?->ChanterellaSadB]]
+
+:: ChanterellaSadA
+I've been better. Things are just... overwhelming.
+[[I'm here to listen, if you need.->ChanterellaSadC]]
+[[Yeah, I feel that too.->ChanterellaSad_Z]]
+
+:: ChanterellaSadZ
+Sounds like you're also in need of some support, Porcini. Why don't you take some time for yourself.
+[[I'd love to hold some space for you.->ChanterellaC]]
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">Thanks, I'll do that.</span>
+</div> 
+
+:: ChanterellaSadB
+Maybe... maybe you could just chat for a bit?
+[[Of course!->ChanterellaD
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">I'm feeling a little overwhelmed right now.</span>
+</div> 
+
+:: ChanterellaSadC
+Thanks, porcini. I don't know if I ever told you, but I had my own experience with the Dominion Planetation, about a century ago.
+[[Next...->ChanterellaD]]
+
+::ChanterellaSadD
+It left a mark. This feeling that I'm never doing enough. That I'm foolish to try and resist.
+[[I know that feeling->ChanterellaSadE]]
+[[You can't do everything->ChanterellaSadF]]
+
+:: ChanterellaSadE
+I thought you might. I hate that you do, but it's helpful to know I'm not the only one.
+[[Next...->ChanterellaSadG]]
+
+:: ChanterellaSadF
+I know that logically, but... sometimes it *feels* so real.
+[[Next...->ChanterellaSadG]]
+
+:: ChanterellaSadG
+Thanks for listening, porcini. The show's actually coming along pretty well.
+
+[[Next...->ChanterellaSadH]]
+
+:: ChanterellaSadH
+I know I'm in a better place now. Sometimes that makes it harder.
+
+But, it's okay.
+[[Next...->ChanterellaSadI]]
+
+:: ChanterellaSadI
+Well, you know what they say...
+
+*The show must go on!*
+
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>(Back to map)</span>
+</div> 
+
+
+
+:: Razzmatazz1 [scenario razzmatazz]
 Huh? Who's this? Ah, right ya are. <%= story.state.playerName %>. Enemy #1 of the dominion planetation, I hear.
 
 [[Next...->Razzmatazz1_B]]
