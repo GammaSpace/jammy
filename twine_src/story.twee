@@ -143,6 +143,34 @@ We've been growing local flowers for our costumes, but grinding them into dyes i
 </div>
 
 
+:: ChanterellaCostumes [scenario]
+Why hello darling, how are you this week?
+
+[[Feeling a little rough...->ChanterellaCostumes_A]]
+[[Things are good!->ChanterellaCostumes_B]]
+
+:: ChanterellaCostumes_A
+Well, heck. I'm sorry to hear. I know you really went through the ringer with the dominion planetation. Takes time to heal from that.
+[[Next...->ChanterellaCostumes_AB]]
+
+:: ChanterellaCostumes_AB
+Give yourself that space, sweet porcini.
+[[Is there anything I can do to help you out?->ChanterellaCostumes_C]]
+
+:: ChanterellaCostumes_B
+Beautiful news, my sweet porcini.
+[[Is there anything I can do to help you out?->ChanterellaCostumes_C]]
+
+:: ChanterellaCostumes_C
+Well... there is, in fact. We're trying to help make the radio show carbon neutral, but we don't have enough shroom power to set up all the solar panels.
+
+Do you have any appendages to spare?
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>I think we've got some capacity.</span>
+  <span onclick="setup.returnToMap()">Not this week...</span>
+</div> 
+
+
 :: Razzmatazz1 [scenario]
 Huh? Who's this? Ah, right ya are. <%= story.state.playerName %>. Enemy #1 of the dominion planetation, I hear.
 
@@ -151,17 +179,17 @@ Huh? Who's this? Ah, right ya are. <%= story.state.playerName %>. Enemy #1 of th
 :: Razzmatazz1_B
 I'm Boris. Boris the clown. One and only representative of this heaping pile of junk. What can I do ya for?
 
-[[Next...->Razzmatazz1_C]]
+[[Need any help?->Razzmatazz1_C]]
 
 :: Razzmatazz1_C
 
-You're here to offer me help? Hmphf. Well... we're always looking for more trash. Got this whole hologographic cirucs nightmare we're planning for the radio show.
+Hmphf. Well... we're always looking for more trash. Got this whole hologographic cirucs nightmare we're planning for the radio show.
 
 [[Next...->Razzmattazz1_D]]
 
 :: Razzmatazz1_D
 
-Got any pipe cleaners? I'm, uh... working on a thing.
+Do you happen to have any pipe cleaners? I'm, uh... working on a thing.
 
 <div class="passage-choices">
   <span onclick='setup.completeScenario();'>Actually I do.</span>
