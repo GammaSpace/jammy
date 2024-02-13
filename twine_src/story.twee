@@ -175,6 +175,9 @@ We'll show you how to set up your own, but could use some support.
 Hi doll. Nice to see your holographic face.
 [[You seem down->ChanterellaSadA]]
 [[Need any support this week?->ChanterellaSadB]]
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>(Back to map)</span>
+</div> 
 
 :: ChanterellaSadA
 I've been better. Things are just... overwhelming.
@@ -231,6 +234,64 @@ Well, you know what they say...
 <div class="passage-choices">
   <span onclick='setup.completeScenario();'>(Back to map)</span>
 </div> 
+
+
+:: ChanterellaFabric [scenario Chanterella]
+Darling! What a pleasure to see you.
+[[You too.->ChanterellaFabricA
+[[Well I *am* fabulous.->ChanterellaFabricB]]
+
+:: ChanterellaFabricA
+I have a request. I'm looking for scraps, old clothes, unused bedsheets. Anything remotely fabric-like. The costuming department has taken over and we need all the material we can get!
+[[I've got some old things you can use.->ChanterellaFabricC]]
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">I think we're all out.</span>
+</div> 
+
+:: ChanterellaFabricB
+Yes porcini! And you *know* it. 
+Never let the world take that spark from you.
+[[Next...ChanterellaA]]
+
+:: ChanterellaFabricC
+You're a lifesaver, porcini!
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>(Back to map)</span>
+</div>
+
+
+:: ChanterellaThread
+Ah, darling! You caught me at a bad time... the show is in crisis!
+[[What's going on?->ChanterellaThreadA]]
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">(Back to map)</span>
+</div> 
+
+:: ChanterellaThreadA
+We've been harvesting conductive thread from the mycelial network but we can't afford to extract more. We're going for conductive fashion, but we've only got enough thread for half the cosutmes.
+It's a fashion disaster!
+[[Next...ChanterellaThreadB]]
+
+:: ChanterellaThreadB
+I may just need to compromise my end goals...
+[[What if you decorate the others in phosphorescent spores?->ChanterellaC]]
+[[You could ship out some magic mushrooms to go with the show?->ChanterellaThreadD]]
+
+:: ChanterellaThreadC
+That's... a *sickening* idea! I was so hung up on the conductive thread I forgot about our other resources.
+[[Next...->ChanterellaThreadE]]
+
+:: ChanterellaThreadD
+Hah! That *would* make for a heck of a performance. 
+
+But you're right... I've been so hung up on conductive thread that I forgot about our other resources.
+[[Next...->ChanterellaThreadE]]
+
+:: ChanterellaThreadE
+You're a real doll, Porcini. The show is saved!
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>(Back to map)</span>
+</div>
 
 
 
