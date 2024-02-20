@@ -321,6 +321,75 @@ Do you happen to have any pipe cleaners? I'm, uh... working on a thing.
 </div>
 
 
+:: Razzmatazz2 [scenario razzmatazz]
+Whaddaya want?!
+
+[[Need any help preparing for the show?->Razzmatazz2_A]]
+[[Sorry to disturb you!->Razzmatazz2_B]]
+
+:: Razzmatazz2_A
+I always need help!
+
+[[What do you need?->Razzmatazz2_C]]
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">(Return to map.)</span>
+</div>
+
+:: Razzmatazz2_C
+What I always need! More trash!
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Let me see what I can dig up for you.</span>
+  <span onclick="setup.returnToMap()">I'm all out right now, sorry.</span>
+</div>
+
+:: Razzmatazz2_B
+Nah, it's not you. I'm always disturbed.
+
+[[Need you any help preparing for the show?->Razzmatazz2_A]]
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">(Return to map.)</span>
+</div>
+
+
+
+
+
+
+
+:: Funkybeatz2 [scenario funkybeatz]
+Kiddo! What's the latest?
+
+[[I'm 100 years old!->Funkybeatz2_A]]
+[[Really feeling the weight of the galaxy these days.->Funkybeatz2_B]]
+
+:: Funkybeatz2_A
+A baby in my eyes!
+
+[[Need any help with anything this week?->Funkybeatz2_C]]
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">(Return to map.)</span>
+</div>
+
+:: Funkybeatz2_B
+Gravity's got ya down, eh?
+
+I'm just kidding around. Things are definitely heavy.
+[[I've still got some extra time to help out if you need.->Funkybeatz2_C]]
+<div class="passage-choices">
+  <span onclick="setup.returnToMap()">(Return to map.)</span>
+</div>
+
+:: Funkybeatz2_C
+Actually I *could* use some help distributing virtual flyers for the show. 
+
+Spore T. Spice made this great holographic art for them, but we haven't hit up all our contacts yet. I can give you a list.
+<div class="passage-choices">
+  <span onclick='setup.completeScenario();'>Happy to help!</span>
+  <span onclick="setup.returnToMap()">Sorry, I just can't look at screens anymore this week.</span>
+</div>
+
+
+
 :: Quantum Conundrum [scenario]
 
 A quantum computer has gone haywire, creating chaos in the time-space continuum. Solve complex puzzles to recalibrate the machine and stabilize reality. 
