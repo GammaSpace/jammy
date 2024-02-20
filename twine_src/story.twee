@@ -193,7 +193,7 @@ Sounds like you're also in need of some support, Porcini. Why don't you take som
 
 :: ChanterellaSadB
 Maybe... maybe you could just chat for a bit?
-[[Of course!->ChanterellaD
+[[Of course!->ChanterellaD]]
 <div class="passage-choices">
   <span onclick="setup.returnToMap()">I'm feeling a little overwhelmed right now.</span>
 </div> 
@@ -202,7 +202,7 @@ Maybe... maybe you could just chat for a bit?
 Thanks, porcini. I don't know if I ever told you, but I had my own experience with the Dominion Planetation, about a century ago.
 [[Next...->ChanterellaD]]
 
-::ChanterellaSadD
+:: ChanterellaSadD
 It left a mark. This feeling that I'm never doing enough. That I'm foolish to try and resist.
 [[I know that feeling->ChanterellaSadE]]
 [[You can't do everything->ChanterellaSadF]]
