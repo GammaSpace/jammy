@@ -18,6 +18,7 @@ $(document).ready(function () {
           "EmCee for the show. The broadcast is actually being transmitted through DJ FUNKYBEATZ.",
         description:
           "DJ FUNKYBEATZ is the onboarder & tutorial for the game. Very welcoming and a little wacky.",
+        revealTurn: 1,
         availableTurns: [1, 2, 6],
       },
       {
@@ -31,6 +32,7 @@ $(document).ready(function () {
           "Holographic circus show. Involves juggling spoons and repurposing all kinds of garbage. Very silly and wild.",
         description:
           "Boris is a loveable grump who has seen some stuff. Loves collecting the weirdos to join his circus planet.",
+        revealTurn: 1,
         availableTurns: [1, 3, 5, 6],
       },
       {
@@ -43,6 +45,7 @@ $(document).ready(function () {
         project: "Holographic psychedelic performance art drag show.",
         description:
           "High fashion. High drama. Dragtastic. Spore T. Spice is fun. Definitely probably on mushrooms some of the time. Incredible gardener and environmentalist. Makes some mean food.",
+        revealTurn: 1,
         availableTurns: [1, 5, 7],
       },
       {
@@ -56,6 +59,7 @@ $(document).ready(function () {
           "Videography radio livestream of water show (with surfers!) Airships, boats, all things. Tricks! Clown planet lends them some unicylers.",
         description:
           "Genderless being made of water. Somewhat surfer-bro but real genuine n sweet. Has a sibling Jestam they refer to, who is stuck trying to make it big in the Dominion Planetation. Jetsam is MORE surfer bro. Jetsam is maybe a shark (but art team can decide.) We may only see Jetsam in a special scenario ending.",
+        revealTurn: 3,
         availableTurns: [2, 3, 6],
       },
       {
@@ -69,6 +73,7 @@ $(document).ready(function () {
           "Audio drama of their heists narrated (like War of the Worlds).",
         description:
           "Ghost pets who care. They will send you short videos of pets doing weird n cute things to cheer you up. Sometimes go full goblin mode. They love to cause mischief and mess with capitalism -- sneak into the Dominion Plantation and mess things up.",
+        revealTurn: 3,
         availableTurns: [2, 3, 5],
       },
     ],
