@@ -3929,11 +3929,36 @@ Spore T. Spice made this great holographic art for them, but we haven&#39;t hit 
 &lt;!-- Week/turn preambles --&gt;</tw-passagedata><tw-passagedata pid="93" name="Week 1" tags="preamble" position="350,1225" size="100,100">Whew, helping planets is hard! Let&#39;s do it again this week.</tw-passagedata><tw-passagedata pid="94" name="Week 2" tags="preamble" position="475,1225" size="100,100">A week goes by… Wow, helping &lt;%= setup.getPlanet(s.currentPlanet) %&gt; was the right call. Our connection is stronger than ever!</tw-passagedata><tw-passagedata pid="95" name="Week 3" tags="preamble" position="600,1225" size="100,100">&lt;%= setup.getPlanet(s.currentPlanet) %&gt; indicates I&#39;m getting pretty good at this. Let&#39;s help some more planets!</tw-passagedata><tw-passagedata pid="96" name="Week 4" tags="preamble crisis" position="725,1225" size="100,100">The Sun has been blotted out by a mysterious force. The solar system is in chaos, and the planets are in danger.</tw-passagedata><tw-passagedata pid="97" name="Week 5" tags="preamble" position="850,1225" size="100,100">Time flies in the cosmos. Each planet, including &lt;%= setup.getPlanet(s.currentPlanet) %&gt;, has its own story.</tw-passagedata><tw-passagedata pid="98" name="Week 6" tags="preamble" position="975,1225" size="100,100">With every planet helped, I feel more connected to the universe. What new wonders will this week bring?</tw-passagedata><tw-passagedata pid="99" name="Week 7" tags="preamble crisis" position="1100,1225" size="100,100">Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!
 
 
-&lt;!-- inactive turn → no bananas --&gt;</tw-passagedata><tw-passagedata pid="100" name="No Bananas" tags="inactive-turn" position="1225,1225" size="100,100">We ran out of bananas last week. I&#39;m not sure what to do.
+&lt;!-- inactive turns --&gt;</tw-passagedata><tw-passagedata pid="100" name="InactiveChanterella_1" tags="inactive-turn Chanterella" position="1225,1225" size="100,100">Hello beautiful! I am *thriving* this week. Covered in sequins, but feeling *fine*. Take a gander at these new costumes.
 
-[[Next...-&gt;No Bananas 2]]</tw-passagedata><tw-passagedata pid="101" name="No Bananas 2" tags="" position="100,1350" size="100,100">I&#39;m going to try to find some bananas.
+[[I can&#39;t wait...-&gt;InactiveKelpler_1_A]]
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Next time, I&#39;m afraid.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="101" name="Chanterella_1_A" tags="" position="100,1350" size="100,100">(Chanterella transmits some four dimensional snapshots of her costumes. The materials are unlike anything you&#39;ve ever seen, with a beauty and depth you&#39;ve only ever witnessed in nebulas.)
 
-&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Move on…&lt;/span&gt;</tw-passagedata></tw-storydata>
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;(Return to map)&lt;/span&gt;</tw-passagedata><tw-passagedata pid="102" name="InactiveRazzmatazz_1" tags="inactive-turn Razzmatazz" position="225,1350" size="100,100">Huh? Back again, eh? Look, I appreciate ya, but we&#39;re good this week. 
+
+(In the background, you hear the unmistakable grunts and cheering of gymnasts practicing a routine.)
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;(Move on…)&lt;/span&gt;</tw-passagedata><tw-passagedata pid="103" name="InactiveFunkybeatz_1" tags="inactive-turn Funkybeatz" position="350,1350" size="100,100">Hey kid! You&#39;re a doll for helping out, you know? But we&#39;re all good over here right now.
+
+Wanna hear some beats?
+
+[[You know it!-&gt;InactiveFunkybeatz_1_A]]
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Another time.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="104" name="InactiveFunkybeatz_1_A" tags="" position="475,1350" size="100,100">(Music fills your speakers. It&#39;s groovy, distorted, with rich undertones of alien instrumentals. You feel unable to resist the urge to dance.)
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;(Return to map)&lt;/span&gt;</tw-passagedata><tw-passagedata pid="105" name="InactiveKelpler_1" tags="inactive-turn Kelpler" position="600,1350" size="100,100">Whoa, hey, so cool to see you. We&#39;re just vibing this week. Wanna see some of our new tricks?
+
+[[Definitely!...-&gt;InactiveKelpler_1_A]]
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;Sorry, gotta run!&lt;/span&gt;</tw-passagedata><tw-passagedata pid="106" name="InactiveKelpler_1_A" tags="" position="725,1350" size="100,100">(Flotsam flips and flops on their surfboard in an almost hypnotizing way. The sun shimmers on their liquid flesh. You can&#39;t pull your eyes away, until they are done.)
+
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;(Return to map)&lt;/span&gt;</tw-passagedata><tw-passagedata pid="107" name="InactiveBarkenberg_1" tags="inactive-turn Barkenberg" position="850,1350" size="100,100">Spark: Woof! You&#39;re back!
+Spook: Always so helpful!
+Spike: We&#39;re actually a little busy right now, pet.
+
+(In the background, you can hear Spike pawing through a sound effect library.)
+
+[[Next...-&gt;InactiveBarkenberg_1_A]</tw-passagedata><tw-passagedata pid="108" name="InactiveBarkenberg_1_A" tags="" position="975,1350" size="100,100">Spark: We love to see you!
+Spook: Just busy in the recording booth right now...
+Spike: Until next week. Mrow!
+
+&lt;span onclick=&quot;setup.returnToMap()&quot;&gt;(Return to map)&lt;/span&gt;</tw-passagedata></tw-storydata>
 		<script>
 		(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";window.either=function(){for(var n=[],t=0;t<arguments.length;t++)if(arguments[t]instanceof Array)for(var r=0;r<arguments[t].length;r++)n.push(arguments[t][r]);else n.push(arguments[t]);return n[_.random(n.length-1)]},window.hasVisited=function(){var n=null;if(1==arguments.length)return null!=(n=window.story.passage(arguments[0]))&&window.story.history.includes(n.id);for(var t=0;t<arguments.length;t++)if(null==(n=window.story.passage(arguments[t]))||0==window.story.history.includes(n.id))return!1;return!0},window.visited=function(){for(var n=[],t=[],r=0;r<arguments.length;r++){var e=window.story.passage(arguments[r]);null!=e&&(t=window.story.history.filter(function(n){return n==e.id})),n.push(t.length)}return Math.min.apply(Math,n)},window.renderToSelector=function(n,t){var r=window.story.passage(t);null!=r&&$(n).html(r.render())},window.getStyles=function(){return $.when.apply($,$.map(arguments,function(n){return $.get(n,function(n){$("<style>"+n+"</style>").appendTo("head")})}))};

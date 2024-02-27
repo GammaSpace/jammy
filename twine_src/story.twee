@@ -587,17 +587,73 @@ With every planet helped, I feel more connected to the universe. What new wonder
 Time for a big radio broadcast. But what is this around the corner!? A black hole is approaching the solar system!
 
 
-<!-- inactive turn → no bananas -->
+<!-- inactive turns -->
 
-:: No Bananas [inactive-turn]
+:: InactiveChanterella_1 [inactive-turn Chanterella]
 
-We ran out of bananas last week. I'm not sure what to do.
+Hello beautiful! I am *thriving* this week. Covered in sequins, but feeling *fine*. Take a gander at these new costumes.
 
-[[Next...->No Bananas 2]]
+[[I can't wait...->InactiveKelpler_1_A]]
+<span onclick="setup.returnToMap()">Next time, I'm afraid.</span>
 
-:: No Bananas 2
+:: Chanterella_1_A
 
-I'm going to try to find some bananas.
+(Chanterella transmits some four dimensional snapshots of her costumes. The materials are unlike anything you've ever seen, with a beauty and depth you've only ever witnessed in nebulas.)
 
-<span onclick="setup.returnToMap()">Move on…</span>
+<span onclick="setup.returnToMap()">(Return to map)</span>
 
+
+:: InactiveRazzmatazz_1 [inactive-turn Razzmatazz]
+
+Huh? Back again, eh? Look, I appreciate ya, but we're good this week. 
+
+(In the background, you hear the unmistakable grunts and cheering of gymnasts practicing a routine.)
+<span onclick="setup.returnToMap()">(Move on…)</span>
+
+
+:: InactiveFunkybeatz_1 [inactive-turn Funkybeatz]
+
+Hey kid! You're a doll for helping out, you know? But we're all good over here right now.
+
+Wanna hear some beats?
+
+[[You know it!->InactiveFunkybeatz_1_A]]
+<span onclick="setup.returnToMap()">Another time.</span>
+
+:: InactiveFunkybeatz_1_A
+
+(Music fills your speakers. It's groovy, distorted, with rich undertones of alien instrumentals. You feel unable to resist the urge to dance.)
+<span onclick="setup.returnToMap()">(Return to map)</span>
+
+
+:: InactiveKelpler_1 [inactive-turn Kelpler]
+
+Whoa, hey, so cool to see you. We're just vibing this week. Wanna see some of our new tricks?
+
+[[Definitely!...->InactiveKelpler_1_A]]
+<span onclick="setup.returnToMap()">Sorry, gotta run!</span>
+
+:: InactiveKelpler_1_A
+
+(Flotsam flips and flops on their surfboard in an almost hypnotizing way. The sun shimmers on their liquid flesh. You can't pull your eyes away, until they are done.)
+
+<span onclick="setup.returnToMap()">(Return to map)</span>
+
+
+:: InactiveBarkenberg_1 [inactive-turn Barkenberg]
+
+Spark: Woof! You're back!
+Spook: Always so helpful!
+Spike: We're actually a little busy right now, pet.
+
+(In the background, you can hear Spike pawing through a sound effect library.)
+
+[[Next...->InactiveBarkenberg_1_A]
+
+:: InactiveBarkenberg_1_A
+
+Spark: We love to see you!
+Spook: Just busy in the recording booth right now...
+Spike: Until next week. Mrow!
+
+<span onclick="setup.returnToMap()">(Return to map)</span>
